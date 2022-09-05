@@ -51,7 +51,7 @@ class OrderController extends GetxController implements IOrder{
       Uri.parse("${Utilities.baseURL}order_status/$id"),
       body:jsonEncode({"status":status})
      );
-    var decodedResponse = jsonDecode(response.body);
+   // var decodedResponse = jsonDecode(response.body);
     if (response.statusCode==200)
     {
       update();
@@ -63,7 +63,6 @@ class OrderController extends GetxController implements IOrder{
   @override
   fetchOrderDetail(String id)async{
     var perf= await Utilities.prefs;
-
     Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
     var response = await client.client.get(
         headers:Utilities.header,
