@@ -1,25 +1,25 @@
 import 'dart:convert';
 import 'package:get/get.dart';
-import 'package:opencart/model/Customer.dart';
+import 'package:opencart/model/customer.dart';
 import '../Hepler/Base.dart';
 import '../InterFace/ICustomer.dart';
+import 'package:get_it/get_it.dart';
+
+import '../model/addCustomer.dart';
+
 
 class CustomerController extends GetxController implements ICustomer{
- final String limit;
- final String page;
- CustomerController(this.limit,this.page);
  var _data;
  String msg=String.fromCharCodes([]);
  Customer get data => _data;
-
-
- @override
- dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+ var isDataLoading=false.obs;
+ var client =GetIt.instance.get<Http>();
+ List<String>? error;
 
 @override
 void onInit(){
-  isDataLoading=false.obs;
-  fetchCustomer(limit,page);
+  error=List.empty();
+  fetchCustomer("10","3");
   super.onInit();
 }
 
@@ -60,7 +60,6 @@ void onInit(){
     {
       isDataLoading(true);
       msg="تم الحذف بنجاح";
-      print('saaaaaaaaaaaaaa');
       update();
     }else if (response.statusCode==401){
       Get.offAllNamed('/Login');
@@ -68,6 +67,38 @@ void onInit(){
     return msg;
   }
 
+
+  @override
+   addNewCustomer(PostCustomer customer) async{
+    isDataLoading(false);
+    var perf= await Utilities.prefs;
+    Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
+    var response = await client.client.post(
+      headers:Utilities.header,
+      Uri.parse("${Utilities.baseURL}customers"),
+      body:jsonEncode(customer.toJson())
+    );
+    var decodedResponse = jsonDecode(response.body)as Map<String, dynamic>;
+    if (response.statusCode==400){
+      isDataLoading(true);
+
+    error=decodedResponse["error"].cast<String>();
+
+      msg="تم الحفظ بنجاح";
+      update();
+
+
+    }
+    if (response.statusCode==200)
+    {
+      isDataLoading(true);
+      msg="تم الحفظ بنجاح";
+      update();
+
+    }else if (response.statusCode==401){
+      Get.offAllNamed('/Login');
+    }
+  }
 
 
 
