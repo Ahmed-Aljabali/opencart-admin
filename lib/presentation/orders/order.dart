@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/Controllers/OrderController.dart';
+import 'package:opencart/Controllers/order_controller.dart';
 
 class Order extends StatefulWidget {
   const Order({Key? key}) : super(key: key);
@@ -41,7 +41,7 @@ class OrderState extends State<Order>{
                     FlatButton(
                     child:const Text("Customer"),
                     onPressed: (){
-                      Get.toNamed('/Customer');
+                    //  Get.toNamed('/Customer');
 
               }),
                 Text(order.trx.data[i].orderid.toString()),

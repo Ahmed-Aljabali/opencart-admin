@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/Controllers/OrderController.dart';
+import 'package:opencart/Controllers/order_controller.dart';
 
 class OrderDetail extends StatefulWidget {
   const OrderDetail({Key? key,}) : super(key: key);
