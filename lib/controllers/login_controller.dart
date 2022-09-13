@@ -7,7 +7,7 @@ import '../Hepler/Base.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/user.dart';
-import 'CustomerController.dart';
+
 
 class LoginController extends GetxController with StateMixin{
  // var client =  http.Client();

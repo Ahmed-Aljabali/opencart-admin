@@ -75,10 +75,10 @@ class Customer {
     }
   }
   //
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = Map<String, dynamic>();
-  //   data['data'] =data != null ? data!.map((v) => v?.toJson()).toList() : null;
-  //   return data;
-  // }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+
+    return data;
+  }
 }
 
