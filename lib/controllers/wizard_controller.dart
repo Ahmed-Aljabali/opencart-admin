@@ -8,39 +8,31 @@ import '../model/ProductData.dart';
 
 class WizardController extends GetxController {
   var selectedDate = DateTime.now().obs;
-
-  List<String> relatedProdOptions = ["منتج1", "منتج2", "منتج3", "منتج4"];
-  List<String> compOptions = ["apple", "HTC", "Samsung", "Fox"];
-  List<String> taxCategOptions = ["فئة1", "فئة2", "فئة3", "فئة4"];
-  List<String> compCategOptions = ["فئة1", "فئة2", "فئة3", "فئة4"];
-  List<String> marketsOptions = ["متجر1", "متجر2", "متجر3", "متجر4"];
-  List<String> statuesOptions = [
-    "حالة1",
-    "حالة2",
-    "حالة3",
-  ];
-  List<String> orderOptions = [
-    "امر1",
-    "امر2",
-    "امر3",
-  ];
-  List<String> statues2Options = [
-    "حالة1",
-    "حالة2",
-    "حالة3",
-  ];
-  List<String> weightOptions = ["فئة1", "فئة2", "فئة3", "فئة4"];
-  List<String> unintOptionsList = [
-    "وحدة1",
-    "وحدة2",
-    "وحدة3",
-  ];
+  var selectedCompany = ''.obs;
+  /**/
+  List<String> relatedProdOptionsList = ["منتج1", "منتج2", "منتج3", "منتج4"];
+  List<String> compOptionsList = ["apple", "HTC", "Samsung", "Fox"];
+  List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+  List<String> compCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+  List<String> marketsOptionsList = ["متجر1", "متجر2", "متجر3", "متجر4"];
+  List<String> statuesOptionsList = ["حالة1", "حالة2", "حالة3",];
+  List<String> orderOptionsList = ["امر1", "امر2", "امر3",];
+  List<String> statues2OptionsList = ["حالة1", "حالة2", "حالة3",];
+  List<String> weightOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+  List<String> unintOptionsList = ["وحدة1", "وحدة2", "وحدة3",];
+  List<String> featureOptionsList = ["ميزة1", "ميزة2", "ميزة3",];
+  List<String> optionsproductlist = ["Option1", "Option2", "Option3",];
   RxList<String> attrWidgetList = RxList<String>([]);
+  Rx<List<String>> selectedCompanyList = Rx<List<String>>([]);
 
 
-
- void setAttrWidgetList(String value) {
+ void addAttribWidget(String value) {
     attrWidgetList.add(value);
+    attrWidgetList.refresh();
+    update();
+  }
+  void removeAttribWidget(int index) {
+    attrWidgetList.removeAt(index);
     attrWidgetList.refresh();
     update();
   }
@@ -71,13 +63,14 @@ class WizardController extends GetxController {
     _currentStep > 0 ? _currentStep -= 1 : null;
   }
 
-  late List<Generl> genrlproduct4;
-  late List<Generl> genrlproduct1;
-  late List<Generl> genrlproduct2;
-  late List<Generl> genrlproduct3;
-  late List<Generl> genrlproduct5;
-  late List<Generl> linkeproduct1;
-  late List<Generl> attributeproduct1;
+  late List<Product> genrlproduct4;
+  late List<Product> genrlproduct1;
+  late List<Product> genrlproduct2;
+  late List<Product> genrlproduct3;
+  late List<Product> genrlproduct5;
+  late List<Product> linkeproduct1;
+  late List<Product> attributeproduct1;
+  late List<Product> optionsproduct1;
 
 // getUsers(){
 //   repository.getUsers().then( (data){ this._userList.value = data; } );
@@ -93,6 +86,7 @@ class WizardController extends GetxController {
     genrlproduct5 = generateItems(1, 'تخصيص');
     linkeproduct1 = generateItems(1, 'معلومات الصنع');
     attributeproduct1 = generateItems(1, 'خصائص مميزات');
+    optionsproduct1 = generateItems(1, 'Add Option');
 
 
   }
@@ -126,11 +120,11 @@ class WizardController extends GetxController {
     }
   }
 
-  List<Generl> generateItems(int numberOfItems, String header) {
+  List<Product> generateItems(int numberOfItems, String header) {
     return List.generate(numberOfItems, (int index) {
-      return Generl(
+      return Product(
           header: header,
-          body: 'Employee - $index Details',
+          body: ' - $index Details',
           isExpanded: false.obs);
     });
   }

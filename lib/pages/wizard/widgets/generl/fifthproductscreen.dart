@@ -26,7 +26,7 @@ class FifhProductScreen extends StatelessWidget {
             controller.genrlproduct5[panelIndex].isExpanded!.value =
                 !isExpanded;
           },
-          children: controller.genrlproduct5.map<ExpansionPanel>((Generl item) {
+          children: controller.genrlproduct5.map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
                 backgroundColor: Colors.grey[200],
                 canTapOnHeader: true,
@@ -190,7 +190,7 @@ class FifhProductScreen extends StatelessWidget {
                         height: 10,
                       ),
                       TextDropdownFormField(
-                        options: controller.weightOptions,
+                        options: controller.weightOptionsList,
                         decoration: InputDecoration(
                             hintText: " فئة الوزن",
                             border: OutlineInputBorder(),
@@ -205,13 +205,13 @@ class FifhProductScreen extends StatelessWidget {
                             suffixIcon: Icon(Icons.arrow_drop_down),
                             labelText: "فئة الوزن ",
                             alignLabelWithHint: false),
-                        dropdownHeight: controller.weightOptions.length * 50,
+                        dropdownHeight: controller.weightOptionsList.length * 50,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       TextDropdownFormField(
-                        options: controller.statuesOptions,
+                        options: controller.statuesOptionsList,
                         decoration: InputDecoration(
                             hintText: "الحالة",
                             border: OutlineInputBorder(),
@@ -226,13 +226,13 @@ class FifhProductScreen extends StatelessWidget {
                             suffixIcon: Icon(Icons.arrow_drop_down),
                             labelText: "الحالة",
                             alignLabelWithHint: false),
-                        dropdownHeight: controller.statues2Options.length * 50,
+                        dropdownHeight: controller.statues2OptionsList.length * 50,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       TextDropdownFormField(
-                        options: controller.orderOptions,
+                        options: controller.orderOptionsList,
                         decoration: InputDecoration(
                             hintText: "امر الترتيب",
                             border: OutlineInputBorder(),
@@ -247,7 +247,7 @@ class FifhProductScreen extends StatelessWidget {
                             suffixIcon: Icon(Icons.arrow_drop_down),
                             labelText: "امر الترتيب",
                             alignLabelWithHint: false),
-                        dropdownHeight: controller.orderOptions.length * 50,
+                        dropdownHeight: controller.orderOptionsList.length * 50,
                       ),
                       /*  Container(
                         constraints: BoxConstraints(maxWidth: 250),

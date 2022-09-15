@@ -25,7 +25,7 @@ class Firstproductcontainer extends StatelessWidget {
             controller.genrlproduct1[panelIndex].isExpanded!.value =
                 !isExpanded;
           },
-          children: controller.genrlproduct1.map<ExpansionPanel>((Generl item) {
+          children: controller.genrlproduct1.map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
                 backgroundColor: Colors.grey[200],
                 canTapOnHeader: true,

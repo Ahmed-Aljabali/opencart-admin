@@ -27,7 +27,7 @@ class ForthProductContainer extends StatelessWidget {
             controller.genrlproduct4[panelIndex].isExpanded!.value =
                 !isExpanded;
           },
-          children: controller.genrlproduct4.map<ExpansionPanel>((Generl item) {
+          children: controller.genrlproduct4.map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
                 backgroundColor: Colors.grey[200],
                 canTapOnHeader: true,
@@ -112,7 +112,7 @@ class ForthProductContainer extends StatelessWidget {
                         thickness: 1,
                       ),
                       TextDropdownFormField(
-                        options: controller.statuesOptions,
+                        options: controller.statuesOptionsList,
                         decoration: InputDecoration(
                             hintText: "جالة نفاذ المخزون",
                             border: OutlineInputBorder(),
@@ -127,7 +127,7 @@ class ForthProductContainer extends StatelessWidget {
                             suffixIcon: Icon(Icons.arrow_drop_down),
                             labelText: "جالة نفاذ المخزون",
                             alignLabelWithHint: false),
-                        dropdownHeight: controller.statuesOptions.length * 50,
+                        dropdownHeight: controller.statuesOptionsList.length * 50,
                       ),
                       SizedBox(
                         height: 10,

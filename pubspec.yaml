@@ -39,11 +39,12 @@ dependencies:
   shared_preferences: ^2.0.15
   get_it: ^7.2.0
   deep_menu:
-  keep_keyboard_popup_menu:
-  flutter_svg:
-  cached_network_image:
+  multiselect:
   intl:
   dropdown_plus:
+
+
+
 
 
 dev_dependencies:

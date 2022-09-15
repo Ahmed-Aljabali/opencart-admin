@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const taxCategInputDecoration= InputDecoration(
+const CategInputDecoration= InputDecoration(
 
 hintText: "فئة الضريبة",
 border: OutlineInputBorder(),
@@ -36,8 +36,10 @@ const companyInputDecoration= InputDecoration(
 const companyCategInputDecoration= InputDecoration(
 
     hintText: "الفئات",
+
     border: OutlineInputBorder(),
     focusedBorder: OutlineInputBorder(
+
       borderSide:
       BorderSide(color: Colors.grey, width: 2.0),
       borderRadius:

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class Generl {
-  Generl({
+class Product {
+  Product({
     this.body,
     this.header,
     this.isExpanded,

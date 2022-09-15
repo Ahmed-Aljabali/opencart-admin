@@ -31,7 +31,7 @@ class ThirdProductContainer extends StatelessWidget {
             controller.genrlproduct3[panelIndex].isExpanded!.value =
                 !isExpanded;
           },
-          children: controller.genrlproduct3.map<ExpansionPanel>((Generl item) {
+          children: controller.genrlproduct3.map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
                 backgroundColor: Colors.grey[200],
                 canTapOnHeader: true,
@@ -85,9 +85,9 @@ class ThirdProductContainer extends StatelessWidget {
                         height: 59,
                         child: TextDropdownFormField(
 
-                          options: controller.taxCategOptions,
-                          decoration: taxCategInputDecoration,
-                          dropdownHeight: controller.taxCategOptions.length * 50,
+                          options: controller.taxCategOptionsList,
+                          decoration: CategInputDecoration,
+                          dropdownHeight: controller.taxCategOptionsList.length * 50,
                         ),
                       ),
                     ],

@@ -6,6 +6,7 @@ import 'package:opencart/pages/wizard/widgets/generl/fothproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/secondproductcontainter.dart';
 import 'package:opencart/pages/wizard/widgets/generl/thirdproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/linke/firstproductlinkecontainer.dart';
+import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
 
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
@@ -80,12 +81,10 @@ class WizardPage extends GetView<WizardController> {
                             : StepState.disabled,
                       ),
                       Step(
-                        title: new Text("step4"),
+                        title: new Text("Options"),
                         content: Column(
                           children: <Widget>[
-                            TextFormField(
-                              decoration: InputDecoration(labelText: 'step4'),
-                            ),
+                           OptionsProductContainer(controller: controller)
                           ],
                         ),
                         isActive: controller.currentStep.value >= 0,

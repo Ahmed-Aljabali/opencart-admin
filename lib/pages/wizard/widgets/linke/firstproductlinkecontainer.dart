@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:multiselect/multiselect.dart';
+
 
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/text_constrants.dart';
@@ -32,7 +34,7 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
             controller.linkeproduct1[panelIndex].isExpanded!.value =
             !isExpanded;
           },
-          children: controller.linkeproduct1.map<ExpansionPanel>((Generl item) {
+          children: controller.linkeproduct1.map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
                 backgroundColor: Colors.grey[200],
                 canTapOnHeader: true,
@@ -53,9 +55,24 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                     children: [
                      SizedBox(height: 10,),
                       TextDropdownFormField(
-                        options: controller.compOptions,
+                        options: controller.compOptionsList,
                         decoration: companyInputDecoration,
-                        dropdownHeight: controller.taxCategOptions.length * 50,
+                        dropdownHeight: controller.taxCategOptionsList.length * 50,
+                      ),
+                      SizedBox(height: 10,),
+                      DropDownMultiSelect(
+
+                        options: controller.compOptionsList,
+                        whenEmpty: 'الشركة المنصعة',
+                        onChanged: (value) {
+                          controller.selectedCompanyList.value = value;
+                          controller.selectedCompany.value = "";
+                          controller.selectedCompanyList.value.forEach((element) {
+                            controller.selectedCompany.value =
+                                controller.selectedCompany.value + " " + element;
+                          });
+                        },
+                        selectedValues: controller.selectedCompanyList.value,
                       ),// الشركة المصنعة
                       SizedBox(
                         height: 10,
@@ -65,9 +82,9 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                         height: 59,
                         child: TextDropdownFormField(
 
-                          options: controller.compCategOptions,
+                          options: controller.compCategOptionsList,
                           decoration: companyCategInputDecoration,
-                          dropdownHeight: controller.compCategOptions.length * 50,
+                          dropdownHeight: controller.compCategOptionsList.length * 50,
                         ),// الفئات
                       ),
                       SizedBox(height: 10,),
@@ -80,9 +97,9 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                         height: 59,
                         child: TextDropdownFormField(
 
-                          options: controller.marketsOptions,
+                          options: controller.marketsOptionsList,
                           decoration: companyCategInputDecoration.copyWith(hintText:'المتاجر',labelText:'المتاجر'),
-                          dropdownHeight: controller.marketsOptions.length * 50,
+                          dropdownHeight: controller.marketsOptionsList.length * 50,
                         ),
                       ),
                       SizedBox(height: 10,),
@@ -95,9 +112,22 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                         height: 59,
                         child: TextDropdownFormField(
 
-                          options: controller.relatedProdOptions,
+                          options: controller.relatedProdOptionsList,
                           decoration: companyCategInputDecoration.copyWith(hintText:'منتجات ذات صلة',labelText:'منتجات ذات صلة'),
-                          dropdownHeight: controller.relatedProdOptions.length * 50,
+                          dropdownHeight: controller.relatedProdOptionsList.length * 50,
+                        ),
+                      ),
+                      Container(
+                        constraints: BoxConstraints(maxWidth: 250),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+
+                            Text('Choose One Item With Done Button',style:  TextStyle(fontSize: 14,color: Colors.black)),
+
+
+                          ],
                         ),
                       ),
 

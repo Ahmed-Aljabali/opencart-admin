@@ -14,13 +14,9 @@ import 'model/customer.dart';
 import 'model/dashboard.dart';
 
 
-final  getIt =GetIt.instance;
-void startUp(){
-  getIt.registerLazySingleton(() => Http());
-}
 void main() {
  // Get.put(Http());
-  startUp();
+
   runApp(const MyApp());
 }
 
