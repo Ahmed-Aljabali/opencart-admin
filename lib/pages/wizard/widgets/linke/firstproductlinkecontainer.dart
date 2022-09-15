@@ -60,7 +60,7 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                         dropdownHeight: controller.taxCategOptionsList.length * 50,
                       ),
                       SizedBox(height: 10,),
-                      DropDownMultiSelect(
+                    /*  DropDownMultiSelect(
 
                         options: controller.compOptionsList,
                         whenEmpty: 'الشركة المنصعة',
@@ -73,7 +73,7 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                           });
                         },
                         selectedValues: controller.selectedCompanyList.value,
-                      ),// الشركة المصنعة
+                      )*/// الشركة المصنعة
                       SizedBox(
                         height: 10,
                       ),
