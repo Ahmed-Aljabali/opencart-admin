@@ -152,7 +152,7 @@ class LoginForm extends StatefulWidget{
 
 }
 class _LoginForm extends State<LoginForm> {
-  LoginController login = Get.put(LoginController());
+  var login = Get.put(LoginController());
 
 
   var userName=  TextEditingController();
