@@ -5,7 +5,7 @@ import '../Hepler/Base.dart';
 import '../InterFace/ICustomer.dart';
 import 'package:get_it/get_it.dart';
 
-import '../model/customer.dart';
+import '../model/addCustomer.dart';
 
 
 class CustomerController extends GetxController implements ICustomer{
@@ -69,7 +69,7 @@ void onInit(){
 
 
   @override
-   addNewCustomer(Customer customer) async{
+   addNewCustomer(PostCustomer customer) async{
     isDataLoading(false);
     var perf= await Utilities.prefs;
     Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
@@ -104,4 +104,3 @@ void onInit(){
 
 
 }
-

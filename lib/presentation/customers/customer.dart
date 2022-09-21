@@ -2,21 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/Controllers/customer_controller.dart';
-import 'package:http/http.dart' as http;
 
-class Customer extends StatefulWidget {
+class CustomerPage extends StatefulWidget {
 
-  const Customer({Key? key}) : super(key: key);
+  const CustomerPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return CustomerState();
+    return CustomerPageState();
   }
 
 }
 
-class CustomerState extends State<Customer>{
+class CustomerPageState extends State<CustomerPage>{
 
   @override
   void initState(){
@@ -45,7 +44,13 @@ class CustomerState extends State<Customer>{
               FlatButton(
                   child:const Text("Add new Customer"),
                   onPressed: (){
-                //    Get.toNamed('/AddCustomer');
+                  Get.toNamed('/AddCustomer');
+
+                  }),
+                   FlatButton(
+                  child:const Text("Add new Customer"),
+                  onPressed: (){
+                  Get.toNamed('/Product');
 
                   }),
 

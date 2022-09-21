@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/pages/mainproductpage/widgets/gridviewcontainer.dart';
 
-import '../../controllers/productpagecontroller.dart';
+import '../../controllers/porducts_controller.dart';
 import '../../core/utils/math_utils.dart';
 
 import '../wizard/wizard_page.dart';
 
-class ProductPage extends GetView<ProductPageController> {
+class ProductPage extends GetView<ProductController> {
+  final  product = Get.put(ProductController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +19,11 @@ class ProductPage extends GetView<ProductPageController> {
           children: [
             Container(),
             Padding(
-              padding: EdgeInsets.only(left: 30),
+              padding:const EdgeInsets.only(left: 30),
               child: Center(
                   child: Text(
-                controller.title,
-                style: TextStyle(color: Colors.black),
+                controller.msg,
+                style:const  TextStyle(color: Colors.black),
               )),
             ),
             const Icon(
@@ -44,12 +45,11 @@ class ProductPage extends GetView<ProductPageController> {
         ),*/
       ),
       body: Padding(
-        padding:
-            const EdgeInsets.only(right: 11, left: 11, top: 11, bottom: 11),
+        padding: const EdgeInsets.only(right: 11, left: 11, top: 11, bottom: 11),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(right: 11, left: 11),
+              padding:const  EdgeInsets.only(right: 11, left: 11),
               child: TextField(
                 textAlign: TextAlign.right,
                 decoration: InputDecoration(
@@ -58,11 +58,11 @@ class ProductPage extends GetView<ProductPageController> {
                       Get.snackbar(
                         "Icon Action",
                         "Search button was clicked",
-                        icon: Icon(Icons.check, color: Colors.blue),
+                        icon:const Icon(Icons.check, color: Colors.blue),
                         snackPosition: SnackPosition.BOTTOM,
                       );
                     },
-                    child: Icon(
+                    child:const Icon(
                       Icons.search,
                       color: Colors.grey,
                     ),
@@ -72,29 +72,29 @@ class ProductPage extends GetView<ProductPageController> {
                       Get.snackbar(
                         "Icon Action",
                         "Settings button was clicked",
-                        icon: Icon(Icons.check, color: Colors.blue),
+                        icon:const Icon(Icons.check, color: Colors.blue),
                         snackPosition: SnackPosition.BOTTOM,
                       );
                     },
-                    child: Icon(
+                    child:const Icon(
                       Icons.settings,
                       color: Colors.grey,
                     ),
                   ),
                   hintText: 'ابحث من هنا ',
-                  hintStyle: TextStyle(
+                  hintStyle:const TextStyle(
                     fontSize: 19,
                   ),
                   contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
-                  border: OutlineInputBorder(
+                  const  EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
-                  enabledBorder: OutlineInputBorder(
+                  enabledBorder:const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey, width: 0.5),
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   ),
-                  focusedBorder: OutlineInputBorder(
+                  focusedBorder:const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey, width: 2.0),
                     borderRadius: BorderRadius.all(Radius.circular(32.0)),
                   ),
@@ -126,15 +126,15 @@ class ProductPage extends GetView<ProductPageController> {
                                 blurRadius: getHorizontalSize(
                                   0.1,
                                 ),
-                                offset: Offset(
+                                offset:const Offset(
                                   0,
                                   4,
                                 ), //shadow of the container
                               ),
                             ],
                           ),
-                          margin: EdgeInsets.all(2),
-                          child: Icon(Icons.grid_view))),
+                          margin:const EdgeInsets.all(2),
+                          child:const Icon(Icons.grid_view))),
                 ),
                 const SizedBox(
                   width: 5,
@@ -146,7 +146,7 @@ class ProductPage extends GetView<ProductPageController> {
                         Get.snackbar(
                           "Icon Action",
                           "List button was clicked",
-                          icon: Icon(Icons.check, color: Colors.blue),
+                          icon:const Icon(Icons.check, color: Colors.blue),
                           snackPosition: SnackPosition.BOTTOM,
                         );
                       },
@@ -162,7 +162,7 @@ class ProductPage extends GetView<ProductPageController> {
                       Get.snackbar(
                         "TextBotton Action",
                         "Text button was clicked",
-                        icon: Icon(Icons.check, color: Colors.blue),
+                        icon:const Icon(Icons.check, color: Colors.blue),
                         snackPosition: SnackPosition.BOTTOM,
                       );
                     },
@@ -177,21 +177,28 @@ class ProductPage extends GetView<ProductPageController> {
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 4),
-                child: GridView.count(
-                  // Create a grid with 2 columns. If you change the scrollDirection to
-                  // horizontal, this produces 2 rows.
-                  crossAxisCount: 2,
-                  padding: const EdgeInsets.only(top: 10, bottom: 4),
+              child:    GridtrashItemWidget(product: controller.data))
 
-                  // Generate 100 widgets that display their index in the List.
-                  children: List.generate(20, (index) {
-                    return GridtrashItemWidget();
+                // 4  child: GridView.count(
+              //
+              //     // Create a grid with 2 columns. If you change the scrollDirection to
+              //     // horizontal, this produces 2 rows.
+              //       crossAxisCount: 2,
+              //       padding: const EdgeInsets.only(top: 10, bottom: 4),
+              //
+              //       // Generate 100 widgets that display their index in the List.
+              //
+              //       children: List.generate(controller.data.length, ( index) {
+              //
+              //
+              //       })
+              //   ),
+              )
 
-                    //my return;
-                  }),
-                ),
-              ),
-            )
+
+
+
+
           ],
         ),
       ),

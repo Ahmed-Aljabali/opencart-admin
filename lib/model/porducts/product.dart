@@ -1,34 +1,34 @@
 class Products{
-  String? model;
-  int? quantity;
-  String? price;
-  int? taxClassId;
-  int? manufacturerId;
-  String? sku;
-  String? keyword;
-  int? status;
-  int? points;
-  int? reward;
-  String? image;
-  List<String>? otherImages;
-  int? shipping;
-  int? stockStatusId;
-  String? upc;
-  String? ean;
-  String? jan;
-  String? isbn;
-  String? mpn;
-  String? location;
-  String? dateAvailable;
-  int? weight;
-  int? weightClassId;
-  int? length;
-  int? width;
-  int? height;
-  int? lengthClassId;
-  int? subtract;
-  int? minimum;
-  String? sortOrder;
+  dynamic model;
+  dynamic quantity;
+  dynamic price;
+  dynamic taxClassId;
+  dynamic manufacturerId;
+  dynamic sku;
+  dynamic keyword;
+  dynamic status;
+  dynamic points;
+  dynamic reward;
+  dynamic image;
+ // List<String>? otherImages;
+  dynamic shipping;
+  dynamic stockStatusId;
+  dynamic upc;
+  dynamic ean;
+  dynamic jan;
+  dynamic isbn;
+  dynamic mpn;
+  dynamic location;
+  dynamic dateAvailable;
+  dynamic weight;
+  dynamic weightClassId;
+  dynamic length;
+  dynamic width;
+  dynamic height;
+  dynamic lengthClassId;
+  dynamic subtract;
+  dynamic minimum;
+  dynamic sortOrder;
   List<int>? productStore;
   List<int>? productRelated;
   List<int>? productFilter;
@@ -51,7 +51,7 @@ class Products{
         this.points,
         this.reward,
         this.image,
-        this.otherImages,
+     //   this.otherImages,
         this.shipping,
         this.stockStatusId,
         this.upc,
@@ -92,7 +92,7 @@ class Products{
     points = json['points'];
     reward = json['reward'];
     image = json['image'];
-    otherImages = json['other_images'].cast<String>();
+  //  otherImages = json['other_images'].cast<String>();
     shipping = json['shipping'];
     stockStatusId = json['stock_status_id'];
     upc = json['upc'];
@@ -111,20 +111,20 @@ class Products{
     subtract = json['subtract'];
     minimum = json['minimum'];
     sortOrder = json['sort_order'];
-    productStore = json['product_store'].cast<int>();
-    productRelated = json['product_related'].cast<int>();
-    productFilter = json['product_filter'].cast<int>();
+    productStore = json['product_store'];
+    productRelated = json['product_related'];
+    productFilter = json['product_filter'];
     if (json['product_description'] != null) {
       productDescription = <ProductDescription>[];
       json['product_description'].forEach((v) {
-        productDescription!.add(new ProductDescription.fromJson(v));
+        productDescription!.add( ProductDescription.fromJson(v));
       });
     }
-    productCategory = json['product_category'].cast<int>();
+    productCategory = json['product_category'];
     if (json['product_special'] != null) {
       productSpecial = <ProductSpecial>[];
       json['product_special'].forEach((v) {
-        productSpecial!.add(new ProductSpecial.fromJson(v));
+        productSpecial!.add( ProductSpecial.fromJson(v));
       });
     }
     if (json['product_discount'] != null) {
@@ -160,7 +160,7 @@ class Products{
     data['points'] = points;
     data['reward'] = reward;
     data['image'] = image;
-    data['other_images'] = otherImages;
+   // data['other_images'] = otherImages;
     data['shipping'] = shipping;
     data['stock_status_id'] = stockStatusId;
     data['upc'] = upc;
@@ -208,13 +208,13 @@ class Products{
 }
 
 class ProductDescription {
-  int? languageId;
-  String? name;
-  String? description;
-  String? metaTitle;
-  String? metaDescription;
-  String? metaKeyword;
-  String? tag;
+  dynamic languageId;
+  dynamic name;
+  dynamic description;
+  dynamic metaTitle;
+  dynamic metaDescription;
+  dynamic metaKeyword;
+  dynamic tag;
 
   ProductDescription(
       {this.languageId,
@@ -249,11 +249,11 @@ class ProductDescription {
 }
 
 class ProductSpecial {
-  int? customerGroupId;
-  String? price;
-  int? priority;
-  String? dateStart;
-  String? dateEnd;
+  dynamic customerGroupId;
+  dynamic price;
+  dynamic priority;
+  dynamic dateStart;
+  dynamic dateEnd;
 
   ProductSpecial(
       {this.customerGroupId,
@@ -282,13 +282,13 @@ class ProductSpecial {
 }
 
 class ProductDiscount {
-  String? name;
-  int? customerGroupId;
-  String? price;
-  int? priority;
-  int? quantity;
-  String? dateStart;
-  String? dateEnd;
+  dynamic name;
+  dynamic customerGroupId;
+  dynamic price;
+  dynamic priority;
+  dynamic quantity;
+  dynamic dateStart;
+  dynamic dateEnd;
 
   ProductDiscount(
       {this.name,
@@ -323,7 +323,7 @@ class ProductDiscount {
 }
 
 class ProductAttribute {
-  int? attributeId;
+  dynamic attributeId;
   List<ProductAttributeDescription>? productAttributeDescription;
 
   ProductAttribute({this.attributeId, this.productAttributeDescription});
@@ -351,8 +351,8 @@ class ProductAttribute {
 }
 
 class ProductAttributeDescription {
-  String? text;
-  int? languageId;
+  dynamic text;
+  dynamic languageId;
 
   ProductAttributeDescription({this.text, this.languageId});
 
@@ -370,9 +370,9 @@ class ProductAttributeDescription {
 }
 
 class ProductOption {
-  String? type;
-  int? optionId;
-  int? required;
+ dynamic type;
+ dynamic optionId;
+ dynamic required;
   List<ProductOptionValue>? productOptionValue;
 
   ProductOption(
@@ -404,15 +404,15 @@ class ProductOption {
 }
 
 class ProductOptionValue {
-  String? price;
-  String? pricePrefix;
-  int? subtract;
-  int? points;
-  String? pointsPrefix;
-  int? weight;
-  String? weightPrefix;
-  int? optionValueId;
-  int? quantity;
+  dynamic price;
+  dynamic pricePrefix;
+  dynamic subtract;
+  dynamic points;
+  dynamic pointsPrefix;
+  dynamic weight;
+  dynamic weightPrefix;
+  dynamic optionValueId;
+  dynamic quantity;
 
   ProductOptionValue(
       {this.price,
@@ -450,4 +450,18 @@ class ProductOptionValue {
     data['quantity'] = quantity;
     return data;
   }
+}
+
+
+class Product {
+  var data = <Products>[];
+
+  Product.fromJson(Map<String, dynamic> json) {
+
+    (json['data'] as List).forEach((e) => data.add(Products.fromJson(e)));
+    print(data.length);
+  }
+
+
+
 }

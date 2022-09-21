@@ -1,14 +1,9 @@
 
-class Address {
+import 'Bases/base_address.dart';
+
+class Address extends BaseAddress {
   String? addressid;
   String? customerid;
-  String? firstname;
-  String? lastname;
-  String? company;
-  String? address1;
-  String? address2;
-  String? postcode;
-  String? city;
   String? zoneid;
   String? zone;
   String? zonecode;
@@ -16,8 +11,7 @@ class Address {
   String? country;
   String? isocode2;
   String? isocode3;
-
-  Address({this.addressid, this.customerid, this.firstname, this.lastname, this.company, this.address1, this.address2, this.postcode, this.city, this.zoneid, this.zone, this.zonecode, this.countryid, this.country, this.isocode2, this.isocode3});
+  Address({this.addressid, this.customerid, this.zoneid, this.zone, this.zonecode, this.countryid, this.country, this.isocode2, this.isocode3});
 
   Address.fromJson(Map<String, dynamic> json) {
     addressid = json['address_id'];

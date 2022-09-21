@@ -3,8 +3,8 @@
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myRootNode = Root.fromJson(map);
 */
-import 'address.dart';
-import 'Bases/base_customer.dart';
+import '../address.dart';
+import '../Bases/base_customer.dart';
 
 class CustomerDetails extends BaseCustomer{
   List<Address?>? addresses;
