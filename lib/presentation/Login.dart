@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../Controllers/LoginController.dart';
+import '../Controllers/login_controller.dart';
 import '../model/user.dart';
 
 class Login extends StatefulWidget {

@@ -1,57 +1,29 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
+import 'package:opencart/controllers/BaseController.dart';
 import '../Hepler/Base.dart';
-import 'package:http/http.dart' as http;
 
 import '../model/user.dart';
-import 'CustomerController.dart';
 
-class LoginController extends GetxController with StateMixin{
- // var client =  http.Client();
-  Http client =GetIt.instance.get<Http>();
-//var client =Http();
-@override
+class LoginController extends BaseController with StateMixin{
+ @override
 void  onInit() {
   getToken();
+  super.onInit();
 }
 
 login(User user)async {
-    var perf= await Utilities.prefs;
-    Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
-    var response = await client.client.post(
-      headers:Utilities.header,
-      Uri.parse("${Utilities.baseURL}login"),
-      body:jsonEncode(user.toJson())
-    );
-    var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
-    if (response.statusCode==200)
-    {
-      Get.offNamed('/Order');
-    }else{
+  var res= await post(user,"login");
+  if (res.statusCode==200) {
+    Get.offNamed('/');
+  }
+  return msg;
 
-      Get.defaultDialog(
-        title: "خطا في الدخول",
-        middleText: "البيانات المدخله غير صحيحه",
-       // content: getContent(),
-        barrierDismissible: false,
-        radius: 50.0,
-        cancel: cancelBtn(),
-      );
-    }
 
  }
-  Widget cancelBtn() {
-    return ElevatedButton(onPressed: () {
-      Get.back();
-    }, child:const Text("Cancel"));
-  }
-
 
   getToken() async{
-      var response = await client.client.post(
+      var response = await client.post(
           headers:Utilities.header ,
           Uri.parse("${Utilities.baseURL}oauth2/token/client_credentials"),
                 );

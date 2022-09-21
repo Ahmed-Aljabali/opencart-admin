@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:dio/dio.dart'as dio;
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../hepler/Base.dart';
@@ -10,7 +9,7 @@ class BaseController extends GetxController{
   var client = getIt.get<http.Client>();
   String msg=String.fromCharCodes([]);
   var isDataLoading=false.obs;
-  var di = dio.Dio();
+  //var di = dio.Dio();
 
   List<String>? error;
 

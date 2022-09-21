@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:opencart/Controllers/customer_controller.dart';
 import 'package:opencart/controllers/porducts_controller.dart';
 import '../../model/porducts/product.dart';
@@ -21,7 +20,7 @@ class AddProduct extends StatefulWidget {
 
 class AddProductState extends State<AddProduct>{
 
-  final ImagePicker _picker = ImagePicker();
+  //final ImagePicker _picker = ImagePicker();
   final  productController = Get.put(ProductController());
 
 late   File image;
@@ -65,10 +64,10 @@ late   File image;
               FlatButton(
                   child:const Text("choose image"),
                   onPressed: () async{
-                   final img = await _picker.pickImage(source: ImageSource.camera);
-                    setState(() {
-                     image =File(img!.path);
-                    });
+                   // final img = await _picker.pickImage(source: ImageSource.camera);
+                   //  setState(() {
+                   //   image =File(img!.path);
+                   //  });
                   }),
 
               FlatButton(

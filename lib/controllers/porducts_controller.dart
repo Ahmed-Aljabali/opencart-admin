@@ -1,7 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:image_picker/image_picker.dart';
 import 'package:opencart/Interface/Iproduct.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import '../model/porducts/product.dart';

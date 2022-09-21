@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
-import 'package:opencart/Controllers/CustomerController.dart';
-import 'package:opencart/presentation/Customer.dart';
-import 'package:opencart/presentation/Order.dart';
-import 'package:opencart/presentation/OrderDetail.dart';
+import 'package:opencart/pages/dashboard/dashboard_binding.dart';
+import 'package:opencart/pages/loginpage.dart';
 import 'package:opencart/presentation/Login.dart';
 import 'package:http/http.dart' as http;
 
 import 'Hepler/Base.dart';
+import 'model/dashboard.dart';
 
 
 final  getIt =GetIt.instance;
 void startUp(){
-  getIt.registerLazySingleton(() => Http());
+ // getIt.registerLazySingleton(() => Http());
 }
 void main() {
- // Get.put(Http());
-  startUp();
   runApp(const MyApp());
 }
 
@@ -34,10 +31,19 @@ class MyApp extends StatelessWidget {
       initialRoute: "/Login",
 
       getPages: [
-        GetPage(name: "/Login", page:()=>const Login()),
-        GetPage(name: "/Order", page:()=>const Order()),
-        GetPage(name: "/OrderDetails", page:()=>const OrderDetail()),
-        GetPage(name: "/Customer", page:()=>const Customer(page:"3"))
+       // GetPage(name: "/Login", page:()=>const Login()),
+       // GetPage(name: "/Order", page:()=>const Order()),
+      //  GetPage(name: "/OrderDetails", page:()=>const OrderDetail()),
+     //   GetPage(name: "/Customer", page:()=>const Customer(page:"3"))
+        GetPage(
+          name: "/",
+          page: () => MyDashBoard(),
+          binding: DashBoardBindings(),
+        ),
+        GetPage(
+          name: "/login",
+          page: () => AuthThreePage(),
+        )
 
       ],
     );

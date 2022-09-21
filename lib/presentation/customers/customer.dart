@@ -67,8 +67,8 @@ class CustomerPageState extends State<CustomerPage>{
                      cancel: cancelBtn(),
                    );
                   }),
-              Text( customerController.data.data!.isEmpty==true?"لأيوجد بيانات ":customerController.data.data![0]!.customerid.toString()
-              )
+           //   Text( customerController.data.data!.isEmpty==true?"لأيوجد بيانات ":customerController.data.data![0]!.customerid.toString()
+
 
             ],)
 

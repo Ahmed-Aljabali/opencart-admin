@@ -1,4 +1,3 @@
-import 'package:dropdown_plus/dropdown_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,32 +21,32 @@ class RowTextFilds extends GetView<WizardController> {
             onChanged: (value) {},
           ),
         ),
-        Expanded(
-
-          child:  TextDropdownFormField(
-
-
-            options: controller.featureOptionsList,
-            decoration: InputDecoration(
-
-                hintText: "الميزة",
-                border: OutlineInputBorder(),
-                focusedBorder: OutlineInputBorder(
-
-                  borderSide:
-                  BorderSide(color: Colors.grey, width: 2.0),
-                  borderRadius:
-                  BorderRadius.all(Radius.circular(32.0)),
-                ),
-                contentPadding:
-                EdgeInsets.only(left: 15, right: 29),
-                suffixIcon: Icon(Icons.arrow_drop_down),
-                labelText: "الميزة",
-
-                alignLabelWithHint: true),
-            dropdownHeight: controller.featureOptionsList.length * 50,
-          ),
-        ),
+        // Expanded(
+        //
+        //   child:  TextDropdownFormField(
+        //
+        //
+        //     options: controller.featureOptionsList,
+        //     decoration: InputDecoration(
+        //
+        //         hintText: "الميزة",
+        //         border: OutlineInputBorder(),
+        //         focusedBorder: OutlineInputBorder(
+        //
+        //           borderSide:
+        //           BorderSide(color: Colors.grey, width: 2.0),
+        //           borderRadius:
+        //           BorderRadius.all(Radius.circular(32.0)),
+        //         ),
+        //         contentPadding:
+        //         EdgeInsets.only(left: 15, right: 29),
+        //         suffixIcon: Icon(Icons.arrow_drop_down),
+        //         labelText: "الميزة",
+        //
+        //         alignLabelWithHint: true),
+        //     dropdownHeight: controller.featureOptionsList.length * 50,
+        //   ),
+        // ),
         RawMaterialButton(
 
 
