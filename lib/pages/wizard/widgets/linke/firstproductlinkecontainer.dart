@@ -1,11 +1,11 @@
 import 'dart:ui';
 
-import 'package:dropdown_plus/dropdown_plus.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:multiselect/multiselect.dart';
+
 
 
 import '../../../../controllers/wizard_controller.dart';
@@ -54,54 +54,134 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                   child: Column(
                     children: [
                      SizedBox(height: 10,),
-                      TextDropdownFormField(
-                        options: controller.compOptionsList,
-                        decoration: companyInputDecoration,
-                        dropdownHeight: controller.taxCategOptionsList.length * 50,
-                      ),
-                      SizedBox(height: 10,),
-                    /*  DropDownMultiSelect(
-
-                        options: controller.compOptionsList,
-                        whenEmpty: 'الشركة المنصعة',
-                        onChanged: (value) {
-                          controller.selectedCompanyList.value = value;
-                          controller.selectedCompany.value = "";
-                          controller.selectedCompanyList.value.forEach((element) {
-                            controller.selectedCompany.value =
-                                controller.selectedCompany.value + " " + element;
-                          });
-                        },
-                        selectedValues: controller.selectedCompanyList.value,
-                      )*/// الشركة المصنعة
-                      SizedBox(
-                        height: 10,
-                      ),
                       Container(
                         alignment: Alignment.center,
-                        height: 59,
-                        child: TextDropdownFormField(
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
 
-                          options: controller.compCategOptionsList,
-                          decoration: companyCategInputDecoration,
-                          dropdownHeight: controller.compCategOptionsList.length * 50,
-                        ),// الفئات
-                      ),
-                      SizedBox(height: 10,),
-                      Container(height:47,child: MyTextFieldWidget(hintText: 'الفلتر', onChanged: (value){print(value);})),// الفلتر
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        height: 59,
-                        child: TextDropdownFormField(
-
-                          options: controller.marketsOptionsList,
-                          decoration: companyCategInputDecoration.copyWith(hintText:'المتاجر',labelText:'المتاجر'),
-                          dropdownHeight: controller.marketsOptionsList.length * 50,
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("الشركة المصنعة"),
+                                      value: controller.selectedcompOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedcompOptions.value = v!;},
+                                      items:controller.compOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
                         ),
                       ),
+                      SizedBox(height: 10,),
+                      SizedBox(height: 10,),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("الفئات"),
+                                      value: controller.selectedcompCategOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedcompCategOptions.value = v!;},
+                                      items:controller.compCategOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 10,),
+
+                      Container(height:47,child: MyTextFieldWidget(hintText: 'الفلتر', onChanged: (value){print(value);})),// الفلتر
+                      SizedBox(height: 10,),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("المتاجر"),
+                                      value: controller.selectedmarketsOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedmarketsOptions.value = v!;},
+                                      items:controller.marketsOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
+                        ),
+                      ),
+
                       SizedBox(height: 10,),
                       Container(height:47,child: MyTextFieldWidget(hintText: 'التحميلات', onChanged: (value){print(value);})),
                       SizedBox(
@@ -109,15 +189,46 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                       ),
                       Container(
                         alignment: Alignment.center,
-                        height: 59,
-                        child: TextDropdownFormField(
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
 
-                          options: controller.relatedProdOptionsList,
-                          decoration: companyCategInputDecoration.copyWith(hintText:'منتجات ذات صلة',labelText:'منتجات ذات صلة'),
-                          dropdownHeight: controller.relatedProdOptionsList.length * 50,
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("منتجات ذات صلة"),
+                                      value: controller.selectedrelatedProdOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedrelatedProdOptions.value = v!;},
+                                      items:controller.relatedProdOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
+                          ),
                         ),
                       ),
-                      Container(
+
+                    /*  Container(
                         constraints: BoxConstraints(maxWidth: 250),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
@@ -129,7 +240,7 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
 
                           ],
                         ),
-                      ),
+                      ),*/// addition
 
                     ],
                   ),

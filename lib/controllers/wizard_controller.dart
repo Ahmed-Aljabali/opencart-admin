@@ -2,38 +2,146 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:meta/meta.dart';
+import 'package:opencart/model/attr_model.dart';
+import 'package:opencart/model/option_model.dart';
+import 'package:opencart/model/sub_model.dart';
 
 import '../core/constrants/widgetconstrant.dart';
 import '../model/ProductData.dart';
+import '../model/checkbox_data.dart';
 
 class WizardController extends GetxController {
+  var selectedTime = TimeOfDay.now().obs;
+
   var selectedDate = DateTime.now().obs;
+  var selectedOptionDate = DateTime.now().obs;
+  var selectedDeliveryOptionDate = DateTime.now().obs;
+  var selectedOptionTimeDate =  new DateTime.now().obs;
   var selectedCompany = ''.obs;
-  /**/
-  List<String> relatedProdOptionsList = ["منتج1", "منتج2", "منتج3", "منتج4"];
+ var  currentOptionDateIndex ;
+ var currentDeliveryDateIndex;
+  var  currentOptionTimeDateIndex ;
+  var currentOptioncheckIndex ;
+
+  List<String> relatedProdOptionsList = ["الكيمرات", "الساعات", "العطور", "المنتجات"];
+  var selectedrelatedProdOptions = Rxn<String>();
   List<String> compOptionsList = ["apple", "HTC", "Samsung", "Fox"];
+  // RxString selectedcompOptions= 'apple'.obs;
+  var selectedcompOptions = Rxn<String>();
   List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
-  List<String> compCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+/*  RxString selectedtaxCategOptions= 'فئة2'.obs;*/
+  var selectedtaxCategOptions = Rxn<String>();
+  List<String> compCategOptionsList = ["الكيمرات", "الساعات", "العطور", "المنتجات"];
+  var selectedcompCategOptions = Rxn<String>();
   List<String> marketsOptionsList = ["متجر1", "متجر2", "متجر3", "متجر4"];
+  var selectedmarketsOptions = Rxn<String>();
   List<String> statuesOptionsList = ["حالة1", "حالة2", "حالة3",];
+  var selectedstatuesOptions = Rxn<String>();
   List<String> orderOptionsList = ["امر1", "امر2", "امر3",];
+
+  var selectedorderOptions = Rxn<String>();
   List<String> statues2OptionsList = ["حالة1", "حالة2", "حالة3",];
   List<String> weightOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+  var selectedweightOptions = Rxn<String>();
   List<String> unintOptionsList = ["وحدة1", "وحدة2", "وحدة3",];
+  var selectedunintOptions = Rxn<String>();
   List<String> featureOptionsList = ["ميزة1", "ميزة2", "ميزة3",];
-  List<String> optionsproductlist = ["Option1", "Option2", "Option3",];
-  RxList<String> attrWidgetList = RxList<String>([]);
-  Rx<List<String>> selectedCompanyList = Rx<List<String>>([]);
 
 
- void addAttribWidget(String value) {
+  List<String> optionsproductlist = ["Checkbox", "Date", "Date & Time" ,"Delivery Date","File"];
+  List<String> optioncheckchoose = ["small", "medium", "large",];
+  List<String> CheckBoxPriceChooseOptionlist = ["+", "-"];
+  List<String> CheckBoxPointsChooseOptionlist = ["+", "-"];
+  List<String> CheckBoxWeightChooseOptionlist = ["+", "-"];
+  List<String> optionTaxcheckchoose = ['yes', 'no'];
+  List<String> optionsproductyesnolist = ["yes", "no"];
+  List<String> optionsproductdatelist = ["yes", "no"];
+  List<String> SelectedTimeDateOption = ["yes", "no"];
+  List<String> optionsproductdeliverydatelist = ["yes", "no"];
+  List<String> subscrOptionsList = ["خطة1", "خطة2", "خطة3",];
+
+  var selectedsubscrOptions = Rxn<String>();
+  List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
+
+  var selectedcustmGroupOptions = Rxn<String>();
+
+
+  RxList<AttrModel> attrWidgetList = RxList  <AttrModel>([]);
+  RxList<OptModel> optWidgetList = RxList  <OptModel>([]);
+
+  RxList<SubModel> subscWidgetList = RxList  <SubModel>([]);
+
+
+
+  var selectedOption= Rxn<String>();
+ var isselectedCheckBoxOption= Rxn<String>();
+ var isSelectedDateOption= Rxn<String>();
+ var isSelectedDeliveryDateOption=Rxn<String>();
+ var isSelectedTimeDateOption=Rxn<String>();
+ var selectedCheckBoxTaxOption= Rxn<String>();
+ var selectedCheckBoxChooseOption= Rxn<String>();
+ var selectedCheckBoxPriceChooseOption= Rxn<String>();
+ var CheckBoxPointsChooseOption= Rxn<String>();
+ var CheckBoxWeightChooseOption=Rxn<String>();
+
+  dynamic  qty=0;
+  dynamic price= 50.0;
+    dynamic  point  = 0;
+  dynamic weight= 10.0;
+  RxList<CheckBoxDataModel> checkBoxDataList = RxList  <CheckBoxDataModel>([]);
+
+
+
+  void addAttribWidget(AttrModel value) {
     attrWidgetList.add(value);
     attrWidgetList.refresh();
     update();
   }
+  void addOptWidget(OptModel value) {
+    optWidgetList.add(value);
+    optWidgetList.refresh();
+    update();
+  }
   void removeAttribWidget(int index) {
     attrWidgetList.removeAt(index);
-    attrWidgetList.refresh();
+
+  }
+  void removeOptWidget(int index) {
+    optWidgetList.removeAt(index);
+    optWidgetList.refresh();
+    update();
+  }
+  void addSubscrWidget(SubModel value) {
+    subscWidgetList.add(value);
+    subscWidgetList.refresh();
+    update();
+  }
+
+  void removeSubscrWidget(int value) {
+    subscWidgetList.removeAt(value);
+    subscWidgetList.refresh();
+    update();
+  }
+
+  void addCheckBoxModel(CheckBoxDataModel value) {
+    checkBoxDataList.add(value);
+    checkBoxDataList.refresh();
+    update();
+  }
+  void removeCheckBoxModel(int value) {
+    checkBoxDataList.removeAt(value);
+    checkBoxDataList.refresh();
+    update();
+  }
+  void changeValueSub(int index,var value) {
+   subscWidgetList[index].subSelected = value!;
+   subscWidgetList.refresh();
+    update();
+  }
+
+  void changeValueGrp(int index,var value) {
+    subscWidgetList[index].grpSelected =value!;
+   subscWidgetList.refresh();
     update();
   }
 
@@ -71,6 +179,13 @@ class WizardController extends GetxController {
   late List<Product> linkeproduct1;
   late List<Product> attributeproduct1;
   late List<Product> optionsproduct1;
+  late List<Product> optionsproduct2;
+  late List<Product> checkBox;
+  late List<Product> datecontainertitle;
+  late List<Product> timeDateContainerTitele;
+  late List<Product> DeliveryDateContainerTitle;
+  late List<Product> subscribeproduct1;
+  late List<Product> discount1;
 
 // getUsers(){
 //   repository.getUsers().then( (data){ this._userList.value = data; } );
@@ -87,6 +202,12 @@ class WizardController extends GetxController {
     linkeproduct1 = generateItems(1, 'معلومات الصنع');
     attributeproduct1 = generateItems(1, 'خصائص مميزات');
     optionsproduct1 = generateItems(1, 'Add Option');
+    checkBox = generateItems(1,'CheckBox');
+    datecontainertitle=  generateItems(1,'Date');
+    timeDateContainerTitele= generateItems(1, ' Date & Time');
+    DeliveryDateContainerTitle = generateItems(1, 'Delivery Date');
+    subscribeproduct1 = generateItems(1, 'اضافة خطة الاشتراك');
+    discount1 = generateItems(1 , 'اضافة تخفيض');
 
 
   }
@@ -99,8 +220,9 @@ class WizardController extends GetxController {
   @override
   void onClose() {}
 
-  chooseDate() async {
+  chooseGenerlDate() async {
     DateTime? pickedDate = await showDatePicker(
+
       context: Get.context!,
       initialDate: selectedDate.value,
       firstDate: DateTime(2000),
@@ -119,6 +241,85 @@ class WizardController extends GetxController {
       selectedDate.value = pickedDate;
     }
   }
+  chooseTime() async {
+    TimeOfDay? pickedTime = await showTimePicker(
+        context: Get.context!,
+        initialTime: selectedTime.value,
+        builder: (context, child) {
+          return Theme(data: ThemeData.light(), child: child!);
+        },
+        initialEntryMode: TimePickerEntryMode.input,
+        helpText: 'اختر وقت',
+
+        cancelText: 'الغاء',
+        confirmText: 'تأكيد',
+        errorInvalidText: 'الرجاء ادخال وقت صحيح',
+        hourLabelText: ' الساعة',
+        minuteLabelText: 'الدقيقة');
+    if (pickedTime != null && pickedTime != selectedTime.value) {
+      selectedTime.value = pickedTime;
+    }
+  }
+  chooseOptionDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: selectedOptionDate.value,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2024),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select DOB',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'DOB',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != selectedOptionDate.value) {
+      selectedOptionDate.value = pickedDate;
+    }
+  }
+  chooseOptionTimeDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: selectedOptionTimeDate.value,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2024),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select DOB',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'DOB',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != selectedOptionTimeDate.value) {
+      selectedOptionTimeDate.value = pickedDate;
+    }
+  }
+  chooseDeliveryDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: selectedDeliveryOptionDate.value,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2024),
+      //initialEntryMode: DatePickerEntryMode.input,
+      // initialDatePickerMode: DatePickerMode.year,
+      helpText: 'Select DOB',
+      cancelText: 'Close',
+      confirmText: 'Confirm',
+      errorFormatText: 'Enter valid date',
+      errorInvalidText: 'Enter valid date range',
+      fieldLabelText: 'DOB',
+      fieldHintText: 'Month/Date/Year',
+    );
+    if (pickedDate != null && pickedDate != selectedDeliveryOptionDate.value) {
+      selectedDeliveryOptionDate.value = pickedDate;
+    }
+  }
 
   List<Product> generateItems(int numberOfItems, String header) {
     return List.generate(numberOfItems, (int index) {
@@ -127,5 +328,12 @@ class WizardController extends GetxController {
           body: ' - $index Details',
           isExpanded: false.obs);
     });
+  }
+ void addCheckBx(String header) {
+  checkBox.add(Product(
+      header: header,
+      body: ' Details',
+      isExpanded: false.obs));
+  update();
   }
 }

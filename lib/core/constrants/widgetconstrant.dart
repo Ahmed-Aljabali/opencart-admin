@@ -3,38 +3,52 @@ import 'package:flutter/material.dart';
 class MyTextFieldWidget extends StatelessWidget {
   final String hintText ;
   final Function onChanged ;
+
+
   MyTextFieldWidget({required this.hintText,required this.onChanged( value)});
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return  DecoratedBox(
+        decoration: BoxDecoration(
 
-      onChanged: (value){onChanged(value);},
-      textAlign: TextAlign.center,
-      decoration: InputDecoration(
-        hintText:hintText,
+            color:Colors.white60, //background color of dropdown button
+            border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+            borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+            boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+              //blur radius of shadow
+            ]
+        ),
 
-        hintStyle: TextStyle(
-          fontSize: 19,
-        ),
-        contentPadding: EdgeInsets.symmetric(
-            vertical: 10.0, horizontal: 40.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderSide:
-          BorderSide(color: Colors.grey, width: 0.5),
-          borderRadius:
-          BorderRadius.all(Radius.circular(5.0)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderSide:
-          BorderSide(color: Colors.grey, width: 2.0),
-          borderRadius:
-          BorderRadius.all(Radius.circular(32.0)),
-        ),
-      ),
+        child:Container(
+          margin: EdgeInsets.only(left: 5),
+
+
+          child: Center(
+            child: TextField(
+
+
+
+              onChanged: (dynamic value){onChanged(value);},
+              textAlign: TextAlign.center,
+              decoration: InputDecoration(
+                fillColor:Colors.transparent,
+                hintText:hintText,
+
+                hintStyle: TextStyle(
+                  fontSize: 19,
+                ),
+                contentPadding: EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 40.0),
+
+
+              ),
+            ),
+          ),
+        )
     );
+
+
+
   }
 }
 

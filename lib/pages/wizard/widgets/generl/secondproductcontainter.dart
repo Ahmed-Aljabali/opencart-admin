@@ -52,7 +52,7 @@ class Secondproductcontainer extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      MyTextFieldWidget(hintText:"Universal Product Code" ,onChanged: (value){print(value);}),
+                      MyTextFieldWidget(hintText:"Universal Product Code",onChanged: (value){print(value);}),
                       SizedBox(
                         height: 10,
                       ),

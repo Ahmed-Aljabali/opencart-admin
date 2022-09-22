@@ -1,7 +1,8 @@
-import 'package:dropdown_plus/dropdown_plus.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:opencart/core/constrants/widgetconstrant.dart';
 
 
 import '../../../../controllers/wizard_controller.dart';
@@ -52,245 +53,192 @@ class FifhProductScreen extends StatelessWidget {
                         },
                         listSwitchText: '1قابل للشحن',
                       ),
-                      TextField(
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "الطول",
-                          hintStyle: TextStyle(
-                            fontSize: 19,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 40.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.5),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
+                      MyTextFieldWidget(hintText: "الطول", onChanged: (v){print(v);}),
+                      SizedBox(height: 10,),
+                      MyTextFieldWidget(hintText: "العرض", onChanged: (v){print(v);}),
+                      SizedBox(height: 10,),
+                      MyTextFieldWidget(hintText: 'الارتفاع', onChanged: (v){print(v);}),
+                      SizedBox(
+                        height: 10,
+                      ),
+
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("وحدة القياس"),
+                                      value: controller.selectedunintOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedunintOptions.value = v!;},
+                                      items:controller.unintOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
                           ),
                         ),
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
-                      TextField(
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "العرض",
-                          hintStyle: TextStyle(
-                            fontSize: 19,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 40.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.5),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
+                      MyTextFieldWidget(hintText: 'الوزن', onChanged: (v){print(v);}),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("فئة الوزن"),
+                                      value: controller.selectedweightOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedweightOptions.value = v!;},
+                                      items:controller.weightOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
                           ),
                         ),
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
-                      TextField(
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: 'الارتفاع',
-                          hintStyle: TextStyle(
-                            fontSize: 17,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 40.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.5),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("الحالة"),
+                                      value: controller.selectedstatuesOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedstatuesOptions.value = v!;},
+                                      items:controller.statuesOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
+                            ),
                           ),
                         ),
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
-                      TextDropdownFormField(
-                        options: controller.unintOptionsList,
-                        decoration: InputDecoration(
-                            hintText: " وجدة القياس ",
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(32.0)),
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("امر الترتيب"),
+                                      value: controller.selectedorderOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedorderOptions.value = v!;},
+                                      items:controller.orderOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
                             ),
-                            contentPadding:
-                                EdgeInsets.only(left: 15, right: 29),
-                            suffixIcon: Icon(Icons.arrow_drop_down),
-                            labelText: "وجدة القياس",
-                            alignLabelWithHint: false),
-                        dropdownHeight: controller.unintOptionsList.length * 50,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextField(
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: 'الوزن',
-                          hintStyle: TextStyle(
-                            fontSize: 19,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 40.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.5),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextDropdownFormField(
-                        options: controller.weightOptionsList,
-                        decoration: InputDecoration(
-                            hintText: " فئة الوزن",
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(32.0)),
-                            ),
-                            contentPadding:
-                                EdgeInsets.only(left: 15, right: 29),
-                            suffixIcon: Icon(Icons.arrow_drop_down),
-                            labelText: "فئة الوزن ",
-                            alignLabelWithHint: false),
-                        dropdownHeight: controller.weightOptionsList.length * 50,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextDropdownFormField(
-                        options: controller.statuesOptionsList,
-                        decoration: InputDecoration(
-                            hintText: "الحالة",
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(32.0)),
-                            ),
-                            contentPadding:
-                                EdgeInsets.only(left: 15, right: 29),
-                            suffixIcon: Icon(Icons.arrow_drop_down),
-                            labelText: "الحالة",
-                            alignLabelWithHint: false),
-                        dropdownHeight: controller.statues2OptionsList.length * 50,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      TextDropdownFormField(
-                        options: controller.orderOptionsList,
-                        decoration: InputDecoration(
-                            hintText: "امر الترتيب",
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(32.0)),
-                            ),
-                            contentPadding:
-                                EdgeInsets.only(left: 15, right: 29),
-                            suffixIcon: Icon(Icons.arrow_drop_down),
-                            labelText: "امر الترتيب",
-                            alignLabelWithHint: false),
-                        dropdownHeight: controller.orderOptionsList.length * 50,
-                      ),
-                      /*  Container(
-                        constraints: BoxConstraints(maxWidth: 250),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Text('Dropdown with  Hint',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.blueGrey)),
-                            Container(
-                              margin: EdgeInsets.only(left: 16, right: 16),
-                              child: Card(
-                                  child: DropdownButton<String>(
-                                hint: const Text('Choose'),
-                                onChanged: (String newValue) {
-                                  setState(() {
-                                    dropdownNames = newValue;
-                                  });
-                                },
-                                value: dropdownNames,
-                                items: <String>[
-                                  'Sara',
-                                  'Jaad',
-                                  'Rama',
-                                  'Ali'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Container(
-                                        margin:
-                                            EdgeInsets.only(left: 4, right: 4),
-                                        child: Text(value,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.blueGrey))),
-                                  );
-                                }).toList(),
-                              )),
-                            ),
-                          ],
-                        ),
-                      ),*/ //dropdownlist
+
                     ],
                   ),
                 ),

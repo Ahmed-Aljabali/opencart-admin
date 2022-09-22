@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/pages/wizard/widgets/attribute/firstproductattributecontainer.dart';
+import 'package:opencart/pages/wizard/widgets/discount/discountcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/fifthproductscreen.dart';
 import 'package:opencart/pages/wizard/widgets/generl/fothproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/secondproductcontainter.dart';
 import 'package:opencart/pages/wizard/widgets/generl/thirdproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/linke/firstproductlinkecontainer.dart';
+import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/checkboxcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
+import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
@@ -30,13 +33,12 @@ class WizardPage extends GetView<WizardController> {
             centerTitle: true,
           ),
           body: Container(
-            child: Column(
+            child: Row(
               children: [
                 Expanded(
                   child: Stepper(
                     type: stepperType,
-                    physics: AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics()),
+                    physics: ClampingScrollPhysics(),
                     currentStep: controller.currentStep.value,
                     onStepTapped: (step) => controller.tapped(step),
                     onStepContinue:
@@ -79,42 +81,32 @@ class WizardPage extends GetView<WizardController> {
                         state: controller.currentStep.value >= 2
                             ? StepState.complete
                             : StepState.disabled,
-                      ),
+                      ), //attripute
                       Step(
                         title: new Text("Options"),
                         content: Column(
                           children: <Widget>[
-                           OptionsProductContainer(controller: controller)
+                            /*if(controller.selectedOption.value=='Date')
+                              CheckBoxContainer(controller: controller),*/
+                            OptionsProductContainer(controller: controller)
                           ],
                         ),
                         isActive: controller.currentStep.value >= 0,
                         state: controller.currentStep.value >= 3
                             ? StepState.complete
                             : StepState.disabled,
-                      ),
+                      ), // options
                       Step(
-                        title: new Text('step5'),
-                        content: Column(
-                          children: <Widget>[
-                            TextFormField(
-                              decoration: InputDecoration(labelText: 'step5'),
-                            ),
-                          ],
-                        ),
+                        title: new Text('الاشتراك'),
+                        content: FirstProductSubscribeContainer(controller: controller,),
                         isActive: controller.currentStep.value >= 0,
                         state: controller.currentStep.value >= 4
                             ? StepState.complete
                             : StepState.disabled,
-                      ),
+                      ),// subscribe
                       Step(
-                        title: new Text('step6'),
-                        content: Column(
-                          children: <Widget>[
-                            TextFormField(
-                              decoration: InputDecoration(labelText: 'step6'),
-                            ),
-                          ],
-                        ),
+                        title: new Text('تخفيض'),
+                        content: DiscountContainer(controller: controller,),
                         isActive: controller.currentStep.value >= 0,
                         state: controller.currentStep.value >= 5
                             ? StepState.complete

@@ -1,9 +1,10 @@
-import 'package:dropdown_plus/dropdown_plus.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:opencart/core/constrants/widgetconstrant.dart';
 
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../model/ProductData.dart';
@@ -46,61 +47,11 @@ class ForthProductContainer extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: Column(
                     children: [
-                      TextField(
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "الكمية",
-                          hintStyle: TextStyle(
-                            fontSize: 19,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 40.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.5),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
-                          ),
-                        ),
-                      ),
+                      MyTextFieldWidget(hintText:  "الكمية", onChanged: (v){print(v);}),
                       SizedBox(
                         height: 10,
                       ),
-                      TextField(
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: "الحد الادنى للكمية",
-                          hintStyle: TextStyle(
-                            fontSize: 19,
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 40.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 0.5),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(5.0)),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.grey, width: 2.0),
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(32.0)),
-                          ),
-                        ),
-                      ),
+                      MyTextFieldWidget(hintText: "الحد الادنى للكمية", onChanged:  (v){print(v);}),
                       LSwitchListTile(
                         isChecked: controller.isSwitchedOn.value,
                         listSwitchFun: (b) {
@@ -108,27 +59,49 @@ class ForthProductContainer extends StatelessWidget {
                         },
                         listSwitchText: 'Subact Stoc',
                       ),
-                      Divider(
-                        thickness: 1,
-                      ),
-                      TextDropdownFormField(
-                        options: controller.statuesOptionsList,
-                        decoration: InputDecoration(
-                            hintText: "جالة نفاذ المخزون",
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(32.0)),
+                      Divider(thickness: 1,),
+
+                      Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        child: Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(left: 1,right: 1),
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
+
+                                    color:Colors.white60, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                    boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Container(
+                                  child: Center(
+                                    child: DropdownButton<String>(
+                                      hint:  Text("حالة نفاذ المخزون"),
+                                      value: controller.selectedstatuesOptions.value,
+                                      onChanged:(v) {
+                                        controller.selectedstatuesOptions.value = v!;},
+                                      items:controller.statuesOptionsList.
+                                      map<DropdownMenuItem<String>>((String value) {
+                                        return   DropdownMenuItem<String>(
+                                          enabled: true,
+                                          value: value,
+                                          child: Text(value),
+                                        );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                )
                             ),
-                            contentPadding:
-                                EdgeInsets.only(left: 15, right: 29),
-                            suffixIcon: Icon(Icons.arrow_drop_down),
-                            labelText: "جالة نفاذ المخزون",
-                            alignLabelWithHint: false),
-                        dropdownHeight: controller.statuesOptionsList.length * 50,
+                          ),
+                        ),
                       ),
+
                       SizedBox(
                         height: 10,
                       ),
@@ -145,18 +118,22 @@ class ForthProductContainer extends StatelessWidget {
                         },
                         selectedValues: controller.selectedOptionList.value,
                       ),*/
-
                       Text(
                         "التاريخ المتاح",
                         style: TextStyle(fontSize: 15),
                       ),
+
                       TextField(
+
+
                         onTap: () {
-                          controller.chooseDate();
+                          controller.chooseGenerlDate();
                         },
                         textAlign: TextAlign.center,
                         readOnly: true,
                         decoration: InputDecoration(
+                          fillColor:Colors.white60, //background color of dropdown button
+
                           prefixIcon: Icon(
                             Icons.date_range_rounded,
                             color: Colors.blueAccent,

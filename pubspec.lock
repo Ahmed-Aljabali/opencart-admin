@@ -50,20 +50,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  deep_menu:
-    dependency: "direct main"
-    description:
-      name: deep_menu
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  dropdown_plus:
-    dependency: "direct main"
-    description:
-      name: dropdown_plus
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.9"
   fake_async:
     dependency: transitive
     description:
@@ -97,11 +83,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  flutter_localizations:
-    dependency: transitive
-    description: flutter
-    source: sdk
-    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -182,13 +163,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  multiselect:
-    dependency: "direct main"
-    description:
-      name: multiselect
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.7"
   path:
     dependency: transitive
     description:
@@ -313,13 +287,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
-  states_rebuilder:
-    dependency: transitive
-    description:
-      name: states_rebuilder
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.1.0+1"
   stream_channel:
     dependency: transitive
     description:
