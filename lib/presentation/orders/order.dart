@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/Controllers/order_controller.dart';
 
+import '../../model/orders/add_order.dart';
+
 class Order extends StatefulWidget {
   const Order({Key? key}) : super(key: key);
 
@@ -15,7 +17,14 @@ class Order extends StatefulWidget {
 }
 
 class OrderState extends State<Order>{
-  final  order = Get.put(OrderController());
+  OrderController  order = Get.put(OrderController());
+
+  @override
+  void initState(){
+    order.fetchOrder();
+    super.initState();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +50,22 @@ class OrderState extends State<Order>{
                     FlatButton(
                     child:const Text("Customer"),
                     onPressed: (){
-                    //  Get.toNamed('/Customer');
+                      Get.toNamed('/Customer');
+
+              }),
+
+                    FlatButton(
+                        child:const Text("add Order"),
+                        onPressed: (){
+                        //  Get.toNamed('/AddOrder');
+
+                          Get.toNamed('/Product');
+
+                        }),
+                    FlatButton(
+                    child:const Text("Prod"),
+                    onPressed: (){
+                      Get.toNamed('/Product');
 
               }),
                 Text(order.trx.data[i].orderid.toString()),

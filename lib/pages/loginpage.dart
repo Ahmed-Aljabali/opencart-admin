@@ -1,13 +1,18 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:opencart/controllers/users_controller.dart';
+import '../model/user.dart';
+import '../../controllers/users_controller.dart';
 
 class AuthThreePage extends StatefulWidget {
-  static final String path = "lib/src/pages/login/auth3.dart";
+  static  String path = "lib/src/pages/login/auth3.dart";
 
   @override
-  _AuthThreePageState createState() => _AuthThreePageState();
+  _AuthThreePageState  createState() =>  _AuthThreePageState();
 }
+
 
 class _AuthThreePageState extends State<AuthThreePage> {
   late final String backImg;
@@ -25,7 +30,7 @@ class _AuthThreePageState extends State<AuthThreePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      color: Color(0xff69B457),
+      color:const Color(0xff69B457),
       child: Stack(
         children: <Widget>[
           Container(
@@ -38,8 +43,8 @@ class _AuthThreePageState extends State<AuthThreePage> {
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 padding:
-                    EdgeInsets.only(left: 40, top: 10, right: 40, bottom: 10),
-                child: Text(
+                const  EdgeInsets.only(left: 40, top: 10, right: 40, bottom: 10),
+                child:const Text(
                   "تسجيل الدخول",
                   style: TextStyle(
                       fontSize: 20,
@@ -49,15 +54,15 @@ class _AuthThreePageState extends State<AuthThreePage> {
                 ),
                 onPressed: () {
                   setState(() {
-                    formVisible = true;
-                    _formsIndex = 1;
+                   formVisible = true;
+                   _formsIndex = 1;
                   });
                 },
               ),
             ),
           ),
           AnimatedSwitcher(
-            duration: Duration(milliseconds: 500),
+            duration:const Duration(milliseconds: 500),
             child: (!formVisible)
                 ? null
                 : Container(
@@ -77,15 +82,7 @@ class _AuthThreePageState extends State<AuthThreePage> {
                               color: _formsIndex == 1
                                   ? Colors.white
                                   : Colors.white,
-                              child: Text(
-                                "تسجيل دخول",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.black,
-                                    fontFamily: 'FONTSrepo'),
-                              ),
-                              padding: EdgeInsets.only(
+                              padding:const EdgeInsets.only(
                                   left: 15, right: 15, top: 5, bottom: 5),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0)),
@@ -94,6 +91,14 @@ class _AuthThreePageState extends State<AuthThreePage> {
                                   _formsIndex = 1;
                                 });
                               },
+                              child:const Text(
+                                "تسجيل دخول",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black,
+                                    fontFamily: 'FONTSrepo'),
+                              ),
                             ),
                             const SizedBox(width: 10.0),
                             /* RaisedButton(
@@ -114,7 +119,7 @@ class _AuthThreePageState extends State<AuthThreePage> {
 
                             IconButton(
                               color: Colors.white,
-                              icon: Icon(Icons.clear),
+                              icon:const Icon(Icons.clear),
                               onPressed: () {
                                 setState(() {
                                   formVisible = false;
@@ -123,7 +128,7 @@ class _AuthThreePageState extends State<AuthThreePage> {
                             )
                           ],
                         ),
-                        Container(
+                       Container(
                           child: AnimatedSwitcher(
                             duration: Duration(milliseconds: 300),
                             child:
@@ -139,11 +144,18 @@ class _AuthThreePageState extends State<AuthThreePage> {
     ));
   }
 }
+class LoginForm extends StatefulWidget{
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({
-    Key? key,
-  }) : super(key: key);
+  const LoginForm({Key? key}) : super(key: key);
+  @override
+  State<LoginForm> createState() => _LoginForm();
+
+}
+class _LoginForm extends State<LoginForm> {
+  var login = Get.put(UsersController());
+  var userName=  TextEditingController();
+  var password=  TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -153,25 +165,46 @@ class LoginForm extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16.0),
       ),
-      child: ListView(
+      child: Form(
+        key:_formKey ,
+      child:ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.all(16.0),
         children: <Widget>[
-          TextField(
+          TextFormField(
+            controller: userName,
             textAlign: TextAlign.right,
-            decoration: InputDecoration(
-              hintText: "ادحل رقم التلفون",
+            decoration:const InputDecoration(
+              hintText: "ادحل اسم المستخدم",
               border: OutlineInputBorder(),
+
+
             ),
+            validator: (text){
+              if (text == null || text.isEmpty) {
+                return 'يرجى ادحال اسم المستخدم ';
+              }
+              return null;
+
+            },
           ),
           const SizedBox(height: 10.0),
-          TextField(
+          TextFormField(
+            controller: password,
             textAlign: TextAlign.right,
             obscureText: true,
-            decoration: InputDecoration(
+            decoration:const InputDecoration(
               hintText: "ادحل كلمة السر",
               border: OutlineInputBorder(),
+
             ),
+            validator: (text){
+              if (text == null || text.isEmpty) {
+                return 'يرجى ادحال كلمة المرور';
+              }
+              return null;
+
+            },
           ),
           const SizedBox(height: 10.0),
           RaisedButton(
@@ -181,11 +214,17 @@ class LoginForm extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: Text("Login"),
-            onPressed: () {},
+            child:const Text("Login"),
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                  login.login(User(password:password.text,username: userName.text ));
+              }
+
+            },
           ),
         ],
       ),
+      )
     );
   }
 }
@@ -245,3 +284,6 @@ class SignupForm extends StatelessWidget {
     );
   }
 }
+
+
+

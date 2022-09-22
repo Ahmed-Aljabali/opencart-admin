@@ -38,7 +38,14 @@ dependencies:
   http: ^0.13.4
   shared_preferences: ^2.0.15
   get_it: ^7.2.0
+  deep_menu:
+  multiselect:
   intl:
+  dropdown_plus:
+
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -65,16 +72,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - images/
-
-
-  fonts:
-    - family: FONTSrepo
-      fonts:
-        - asset: fonts/static/Cairo-Light.ttf
-          weight: 900
-        - asset: fonts/static/Cairo-Regular.ttf
-          weight: 900
-
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

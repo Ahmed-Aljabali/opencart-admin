@@ -1,12 +1,8 @@
-import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
+import '../model/cutomers/add_customer.dart';
+abstract class ICustomers{
 
-import '../Hepler/Base.dart';
-abstract class ICustomer{
+    fetchCustomer(String limit,String page);
+    Future<String?> deleteCustomer(String id);
+     addNewCustomer(PostCustomer postCustomer);
 
-  var isDataLoading=false.obs;
-  Http client =GetIt.instance.get<Http>();
-
-  fetchCustomer(String limit,String page);
-  Future<String?> deleteCustomer(String id);
 }

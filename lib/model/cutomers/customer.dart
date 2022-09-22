@@ -3,25 +3,20 @@
 Map<String, dynamic> map = jsonDecode(<myJSONString>);
 var myRootNode = Root.fromJson(map);
 */
-import 'Address.dart';
+import '../address.dart';
+import '../Bases/base_customer.dart';
 
-class CustomerDetails {
+class CustomerDetails extends BaseCustomer{
   List<Address?>? addresses;
   int? customerid;
   int? customergroupid;
   String? name;
-  String? email;
-  int? newsletter;
-  String? telephone;
-  int? status;
-  int? approved;
-  int? safe;
   String? ip;
   int? rewardpoints;
   String? date_added;
 
 
-  CustomerDetails({this.addresses,this.customerid, this.customergroupid, this.name, this.email, this.newsletter, this.telephone, this.status, this.approved, this.safe, this.ip, this.rewardpoints,this.date_added});
+  CustomerDetails({this.addresses,this.customerid, this.customergroupid, this.name,this.ip, this.rewardpoints,this.date_added});
 
   CustomerDetails.fromJson(Map<String, dynamic> json) {
     if (json['addresses'] != null) {
@@ -81,4 +76,9 @@ class Customer {
     return data;
   }
 }
+
+
+
+
+
 

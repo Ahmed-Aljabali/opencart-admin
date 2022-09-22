@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import '../controllers/dashboard_controller.dart';
 import '../navigation/custom_animated_bottom_bar.dart';
 
+import '../pages/customers/customer_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/mainproductpage/productpage.dart';
-import '../pages/messages/messages_page.dart';
 import '../pages/orders/orders_page.dart';
-import '../pages/users/users_page.dart';
+import '../pages/users/user_page.dart';
 
 class MyDashBoard extends StatefulWidget {
   @override
@@ -16,8 +16,6 @@ class MyDashBoard extends StatefulWidget {
 }
 
 class _MyDashBoardState extends State<MyDashBoard> {
-  int _currentIndex = 0;
-
   final _inactiveColor = Colors.grey;
 
   @override
@@ -28,9 +26,9 @@ class _MyDashBoardState extends State<MyDashBoard> {
           child: IndexedStack(
             index: controller.tabIndex,
             children: [
-              UserPage(),
+            //  UserPage(),
               ProductPage(),
-              MessagesPage(),
+              CustomerPage(),
               OrderPage(),
               HomePage(),
             ],
@@ -46,29 +44,29 @@ class _MyDashBoardState extends State<MyDashBoard> {
           onItemSelected: controller.changeTabIndex,
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(
-              icon: Icon(Icons.account_circle),
-              title: Text('حسابي'),
+              icon:const Icon(Icons.account_circle),
+              title:const Text('حسابي'),
               activeColor: Colors.grey,
               inactiveColor: _inactiveColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.category_outlined),
-              title: Text('المنتجات'),
+              icon:const Icon(Icons.category_outlined),
+              title:const Text('المنتجات'),
               activeColor: Colors.grey,
               inactiveColor: _inactiveColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.people),
-              title: Text('ادارة العملاء'),
+              icon:const Icon(Icons.people),
+              title:const Text('ادارة العملاء'),
               activeColor: Colors.grey,
               inactiveColor: _inactiveColor,
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.receipt_long),
-              title: Text(
+              icon:const Icon(Icons.receipt_long),
+              title:const Text(
                 'الطلبات ',
               ),
               activeColor: Colors.grey,
@@ -76,8 +74,8 @@ class _MyDashBoardState extends State<MyDashBoard> {
               textAlign: TextAlign.center,
             ),
             BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('الرئيسية'),
+              icon:const Icon(Icons.home),
+              title:const Text('الرئيسية'),
               activeColor: Colors.grey,
               inactiveColor: _inactiveColor,
               textAlign: TextAlign.center,

@@ -3,10 +3,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../controllers/OrdersController.dart';
+import '../../Controllers/order_controller.dart';
 
-class OrderPage extends GetView<OrdersController> {
-  int counter = 0;
+class OrderPage extends GetView<OrderController> {
+
+  @override
+  // TODO: implement controller
+  OrderController get controller => super.controller;
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    controller.fetchOrder();
+    return super.createElement();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,24 +27,13 @@ class OrderPage extends GetView<OrdersController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Obx(
-                () => Text(controller.counter.value.toString()),
+                () => Text(controller.trx.data.toString()),
               ),
-              /* ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.redAccent,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20))),
-                child: Text("Increase "),
-                onPressed: () {
-                  controller.increaseCounter();
-                },
-              ),*/
             ],
           ),
         ),
       ),
     );
-    ;
+
   }
 }
