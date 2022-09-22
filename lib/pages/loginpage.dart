@@ -155,6 +155,7 @@ class _LoginForm extends State<LoginForm> {
   var login = Get.put(UsersController());
   var userName=  TextEditingController();
   var password=  TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -164,27 +165,46 @@ class _LoginForm extends State<LoginForm> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16.0),
       ),
-      child: ListView(
+      child: Form(
+        key:_formKey ,
+      child:ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.all(16.0),
         children: <Widget>[
-          TextField(
+          TextFormField(
             controller: userName,
             textAlign: TextAlign.right,
             decoration:const InputDecoration(
               hintText: "ادحل اسم المستخدم",
               border: OutlineInputBorder(),
+
+
             ),
+            validator: (text){
+              if (text == null || text.isEmpty) {
+                return 'يرجى ادحال اسم المستخدم ';
+              }
+              return null;
+
+            },
           ),
           const SizedBox(height: 10.0),
-          TextField(
+          TextFormField(
             controller: password,
             textAlign: TextAlign.right,
             obscureText: true,
             decoration:const InputDecoration(
               hintText: "ادحل كلمة السر",
               border: OutlineInputBorder(),
+
             ),
+            validator: (text){
+              if (text == null || text.isEmpty) {
+                return 'يرجى ادحال كلمة المرور';
+              }
+              return null;
+
+            },
           ),
           const SizedBox(height: 10.0),
           RaisedButton(
@@ -196,12 +216,15 @@ class _LoginForm extends State<LoginForm> {
             ),
             child:const Text("Login"),
             onPressed: () {
-              login.login(User(password:password.text,username: userName.text ));
+              if (_formKey.currentState!.validate()) {
+                  login.login(User(password:password.text,username: userName.text ));
+              }
 
             },
           ),
         ],
       ),
+      )
     );
   }
 }
