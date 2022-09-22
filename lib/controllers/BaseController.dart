@@ -9,7 +9,6 @@ class BaseController extends GetxController{
   var client = getIt.get<http.Client>();
   String msg=String.fromCharCodes([]);
   var isDataLoading=false.obs;
-  //var di = dio.Dio();
 
   List<String>? error;
 

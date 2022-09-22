@@ -41,10 +41,13 @@ class ProductController extends BaseController implements IProduct {
 
   @override
   Future<String?> deleteProduct(int id)async{
+    print("object");
     var res = await delete("products", id.toString());
     if (res.statusCode == 200) {
       msg = "تم الحذف بنجاح";
+      update();
     }
+    print(msg);
     return msg;
   }
 

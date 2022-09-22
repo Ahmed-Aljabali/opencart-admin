@@ -2,17 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../controllers/porducts_controller.dart';
 import '../../../core/utils/math_utils.dart';
 import '../../../model/porducts/product.dart';
-
-
-
-
-
 class GridtrashItemWidget extends StatelessWidget {
  final List<Products> product;
   const GridtrashItemWidget({Key? key,required this.product}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return
@@ -49,7 +44,7 @@ class GridtrashItemWidget extends StatelessWidget {
                           blurRadius: getHorizontalSize(
                             0.1,
                           ),
-                          offset: Offset(
+                          offset:const Offset(
                             0,
                             1,
                           ), //shadow of the container
@@ -68,25 +63,30 @@ class GridtrashItemWidget extends StatelessWidget {
                             bottom: 15,
                           ),
                           child: Container(
-                            child: InkWell(
-                              onTap: () {
-                                Get.snackbar(
-                                  "Icon Action",
-                                  "Delet button was clicked",
-                                  icon: Icon(Icons.person, color: Colors.white),
-                                  snackPosition: SnackPosition.BOTTOM,
-                                );
-                              },
-                              child: Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ),
-                            ),
                             height: getVerticalSize(
                               20.00,
                             ),
                             width: getHorizontalSize(
                               20.00,
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                Get.snackbar(
+                                  "Icon Action",
+                                  "Delet button was clicked",
+                                  icon:const Icon(Icons.person, color: Colors.white),
+                                  snackPosition: SnackPosition.BOTTOM,
+                                );
+                              },
+                              child: IconButton(
+                                  onPressed: (){
+                                    final  products = Get.put(ProductController());
+                                    products.deleteProduct(product[index].id);
+                                  },
+                                icon:const Icon(Icons.delete) ,
+
+                                color: Colors.red,
+                              ),
                             ),
                           ),
                         ),

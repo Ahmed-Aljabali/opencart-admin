@@ -9,20 +9,21 @@ import '../model/cutomers/customer.dart';
 
 
 class CustomerController extends BaseController implements ICustomers{
-
+  dynamic _trx;
+  Customer get trx => _trx;
 
 @override
 void onInit(){
   error=List.empty();
-  fetchCustomer("10","3");
   super.onInit();
 }
 
   @override
   fetchCustomer(String limit,String page)async{
+  print("object");
     var res = await get("customers/limit/$limit/page/$page");
     if (res.statusCode == 200) {
-  //    _data=Product.fromJson(jsonDecode(res.body)).data;
+    _trx=Customer.fromJson(jsonDecode(res.body));
 
     }
   }

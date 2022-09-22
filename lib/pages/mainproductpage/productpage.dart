@@ -174,26 +174,14 @@ class ProductPage extends GetView<ProductController> {
                 )
               ],
             ),
+            controller.data.isEmpty?
+        const  CircularProgressIndicator():
             Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(top: 10, bottom: 4),
-              child:    GridtrashItemWidget(product: controller.data))
+                child: Container(
+                    margin: const EdgeInsets.only(top: 10, bottom: 4),
+                    child:  GridtrashItemWidget(product: controller.data))
 
-                // 4  child: GridView.count(
-              //
-              //     // Create a grid with 2 columns. If you change the scrollDirection to
-              //     // horizontal, this produces 2 rows.
-              //       crossAxisCount: 2,
-              //       padding: const EdgeInsets.only(top: 10, bottom: 4),
-              //
-              //       // Generate 100 widgets that display their index in the List.
-              //
-              //       children: List.generate(controller.data.length, ( index) {
-              //
-              //
-              //       })
-              //   ),
-              )
+            )
 
 
 

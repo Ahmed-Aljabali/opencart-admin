@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:opencart/pages/customers/customer_page.dart';
 import 'package:opencart/pages/dashboard/dashboard_binding.dart';
 import 'package:opencart/pages/loginpage.dart';
 import 'package:opencart/presentation/Login.dart';
@@ -13,8 +14,6 @@ import 'package:opencart/presentation/orders/order_detail.dart';
 import 'package:opencart/presentation/products/add_prodcts.dart';
 import 'package:opencart/presentation/products/product.dart';
 import 'package:opencart/presentation/products/update_product.dart';
-
-import 'Hepler/Base.dart';
 import 'model/dashboard.dart';
 
 
@@ -52,8 +51,8 @@ class MyApp extends StatelessWidget {
         // ),
         GetPage(name: "/Login", page:()=>AuthThreePage()),
         GetPage(name: "/Order", page:()=>const Order()),
-        GetPage(name: "/Customer", page:()=>const OrderDetail()),
-        GetPage(name: "/Customer", page:()=>const CustomerPage()),
+      //  GetPage(name: "/Customer", page:()=>const OrderDetail()),
+        GetPage(name: "/Customer", page:()=>CustomerPage()),
         GetPage(name: "/AddCustomer", page:()=>const AddCustomer()),
         GetPage(name: "/Product", page:()=>const Product()),
         GetPage(name: "/AddProduct", page:()=>const AddProduct()),

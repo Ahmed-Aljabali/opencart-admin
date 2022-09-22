@@ -1,4 +1,5 @@
 class Products{
+  dynamic id;
   dynamic model;
   dynamic quantity;
   dynamic price;
@@ -81,6 +82,7 @@ class Products{
         this.productOption});
 
   Products.fromJson(Map<String, dynamic> json) {
+    id=json['id'];
     model = json['model'];
     quantity = json['quantity'];
     price = json['price'];

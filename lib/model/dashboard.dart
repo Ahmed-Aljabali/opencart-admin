@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import '../controllers/dashboard_controller.dart';
 import '../navigation/custom_animated_bottom_bar.dart';
 
+import '../pages/customers/customer_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/mainproductpage/productpage.dart';
-import '../pages/messages/messages_page.dart';
 import '../pages/orders/orders_page.dart';
-import '../pages/users/users_page.dart';
+import '../pages/users/user_page.dart';
 
 class MyDashBoard extends StatefulWidget {
   @override
@@ -26,9 +26,9 @@ class _MyDashBoardState extends State<MyDashBoard> {
           child: IndexedStack(
             index: controller.tabIndex,
             children: [
-              UserPage(),
+            //  UserPage(),
               ProductPage(),
-              MessagesPage(),
+              CustomerPage(),
               OrderPage(),
               HomePage(),
             ],
