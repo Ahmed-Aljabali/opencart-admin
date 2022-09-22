@@ -69,20 +69,19 @@ class OptionsProductContainer extends StatelessWidget {
                                 itemCount: controller.optWidgetList.length,
                                 itemBuilder: (context, index) {
                                   print(controller.optWidgetList.value[index]);
-                                  if(controller.optWidgetList.value[index]=="Date") {
+                                  if(controller.optWidgetList[index].optType=="Date") {
                                     controller.currentOptionDateIndex = index;
-
-                                    return DateContainer(controller:controller);
+                                       return controller.optWidgetList[index].optModelList;
                                   } else if(controller.optWidgetList[index].optType=="Checkbox") {
                                     controller.currentOptioncheckIndex= index;
                                     return controller.optWidgetList[index].optModelList;
                                   }
-                                  else if(controller.optWidgetList.value[index]=="Date & Time") {
+                                  else if(controller.optWidgetList[index].optType=="Date & Time") {
                                     controller.currentOptionTimeDateIndex= index;
-                                    return TimeDateContainer(controller: controller,);
-                                  } else if(controller.optWidgetList.value[index]=="Delivery Date") {
+                                       return controller.optWidgetList[index].optModelList;
+                                  } else if(controller.optWidgetList[index].optType=="Delivery Date") {
                                     controller.currentDeliveryDateIndex= index;
-                                    return DeliveryDateContainer(controller: controller,);
+                                    return controller.optWidgetList[index].optModelList;
                                   }
                                   else {
                                     return Container();
@@ -134,9 +133,21 @@ class OptionsProductContainer extends StatelessWidget {
 
 
                                             controller.selectedOption.value = v!;
+                                            if(v=="Date") {
+                                              controller.addOptWidget(OptModel(controller.selectedOption.value!, DateContainer(controller: controller),"yes"));
 
-                                             // controller.addOptWidget(OptModel(controller.selectedOption.value!, CheckBoxContainer(controller: controller),"yes"));
-                                            controller.addCheckBx(v);
+                                            } else if(v=="Checkbox") {
+                                              controller.addOptWidget(OptModel(controller.selectedOption.value!, CheckBoxContainer(controller: controller),"yes"));
+
+                                            }
+                                            else if(v=="Date & Time") {
+                                              controller.addOptWidget(OptModel(controller.selectedOption.value!, TimeDateContainer(controller: controller),"yes"));
+
+                                            } else if(v=="Delivery Date") {
+                                              controller.addOptWidget(OptModel(controller.selectedOption.value!, DeliveryDateContainer(controller: controller),"yes"));
+
+                                            }
+                                             // controller.addCheckBx(v);
                                             // print(v);
                                           },
                                           items:controller.optionsproductlist.

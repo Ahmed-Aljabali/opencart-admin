@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/users_controller.dart';
-import '../model/user.dart';
-import '../../controllers/users_controller.dart';
+import '../../model/user.dart';
+import '../../../controllers/users_controller.dart';
 
 class AuthThreePage extends StatefulWidget {
   static  String path = "lib/src/pages/login/auth3.dart";
@@ -208,13 +208,13 @@ class _LoginForm extends State<LoginForm> {
           ),
           const SizedBox(height: 10.0),
           RaisedButton(
-            color: Colors.red,
-            textColor: Colors.white,
+            color: Colors.lightGreen,
+            textColor: Colors.black,
             elevation: 0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            child:const Text("Login"),
+            child:const Text("تسجيل دخول"),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                   login.login(User(password:password.text,username: userName.text ));

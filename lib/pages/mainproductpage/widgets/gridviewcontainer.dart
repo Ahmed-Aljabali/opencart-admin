@@ -171,30 +171,6 @@ class GridtrashItemWidget extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.centerLeft,
                       children: [
-                        /*  Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        height: getVerticalSize(
-                          109.00,
-                        ),
-                        width: getHorizontalSize(
-                          170.00,
-                        ),
-                        margin: getMargin(
-                          left: 2,
-                          top: 8,
-                          bottom: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          borderRadius: BorderRadius.circular(
-                            getHorizontalSize(
-                              7.00,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),*/
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
