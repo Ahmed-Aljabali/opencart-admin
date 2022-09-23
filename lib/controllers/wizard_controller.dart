@@ -9,6 +9,7 @@ import 'package:opencart/model/sub_model.dart';
 import '../core/constrants/widgetconstrant.dart';
 import '../model/ProductData.dart';
 import '../model/checkbox_data.dart';
+import '../model/discount.dart';
 
 class WizardController extends GetxController {
   var selectedTime = TimeOfDay.now().obs;
@@ -50,6 +51,8 @@ class WizardController extends GetxController {
 
   List<String> optionsproductlist = ["Checkbox", "Date", "Date & Time" ,"Delivery Date","File"];
   List<String> optioncheckchoose = ["small", "medium", "large",];
+  List<String> DiscountChooseOptionList = ["default"];
+
   List<String> CheckBoxPriceChooseOptionlist = ["+", "-"];
   List<String> CheckBoxPointsChooseOptionlist = ["+", "-"];
   List<String> CheckBoxWeightChooseOptionlist = ["+", "-"];
@@ -80,15 +83,24 @@ class WizardController extends GetxController {
  var isSelectedTimeDateOption=Rxn<String>();
  var selectedCheckBoxTaxOption= Rxn<String>();
  var selectedCheckBoxChooseOption= Rxn<String>();
+  var selectedDiscountChooseOption= Rxn<String>();
  var selectedCheckBoxPriceChooseOption= Rxn<String>();
  var CheckBoxPointsChooseOption= Rxn<String>();
  var CheckBoxWeightChooseOption=Rxn<String>();
 
-  dynamic  qty=0;
-  dynamic price= 50.0;
-    dynamic  point  = 0;
-  dynamic weight= 10.0;
+  dynamic checkBoxQty=0;
+  dynamic checkBoxPrice= 50.0;
+  dynamic  checkboxpoint  = 0;
+  dynamic checkboxweight= 10.0;
+
+
+  dynamic firstDiscountQty=0;
+  dynamic firstDiscountPrice;
+  dynamic firstDiscountPriority;
+  dynamic startDate;
+  dynamic endDate;
   RxList<CheckBoxDataModel> checkBoxDataList = RxList  <CheckBoxDataModel>([]);
+  RxList<DiscountDataModel> discountDataList = RxList  <DiscountDataModel>([]);
 
 
 
@@ -116,21 +128,41 @@ class WizardController extends GetxController {
     subscWidgetList.refresh();
     update();
   }
-
   void removeSubscrWidget(int value) {
     subscWidgetList.removeAt(value);
     subscWidgetList.refresh();
     update();
   }
-
   void addCheckBoxModel(CheckBoxDataModel value) {
     checkBoxDataList.add(value);
     checkBoxDataList.refresh();
     update();
   }
   void removeCheckBoxModel(int value) {
-    checkBoxDataList.removeAt(value);
-    checkBoxDataList.refresh();
+    if(checkBoxDataList.length ==1){checkBoxDataList.clear();}
+    else{ checkBoxDataList.removeAt(value);
+    checkBoxDataList.refresh();}
+    update();
+  }
+
+
+  void addDiscountModel(DiscountDataModel value) {
+    discountDataList.add(value);
+    discountDataList.refresh();
+
+    update();
+  }
+  void editDiscountModel(DiscountDataModel value,int index) {
+discountDataList.removeAt(index);
+discountDataList.insert(index,value);
+discountDataList.refresh();
+    update();
+  }
+  void removeDiscountModel(int value) {
+
+   if(discountDataList.length ==1){discountDataList.clear();}
+   else{ discountDataList.removeAt(value);
+   discountDataList.refresh();}
     update();
   }
   void changeValueSub(int index,var value) {
@@ -138,15 +170,12 @@ class WizardController extends GetxController {
    subscWidgetList.refresh();
     update();
   }
-
   void changeValueGrp(int index,var value) {
     subscWidgetList[index].grpSelected =value!;
    subscWidgetList.refresh();
     update();
   }
 
-  /*  Rx<List<String>> selectedOptionList = Rx<List<String>>([]);
-  var selectedOption = ''.obs;*/
 
   RxBool isSwitchedOn = false.obs;
   RxBool isSwitchedOn2 = false.obs;

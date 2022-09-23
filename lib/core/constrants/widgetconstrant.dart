@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class MyTextFieldWidget extends StatelessWidget {
   final String hintText ;
   final Function onChanged ;
-
-
-  MyTextFieldWidget({required this.hintText,required this.onChanged( value)});
+   /*Widget prefixIcon  =  Icon(Icons.date_range_rounded ,color:  Colors.blueAccent,);*/
+  MyTextFieldWidget({required this.hintText,required this.onChanged( value), });
   @override
   Widget build(BuildContext context) {
     return  DecoratedBox(
@@ -28,9 +27,11 @@ class MyTextFieldWidget extends StatelessWidget {
 
 
 
+
               onChanged: (dynamic value){onChanged(value);},
               textAlign: TextAlign.center,
               decoration: InputDecoration(
+
                 fillColor:Colors.transparent,
                 hintText:hintText,
 

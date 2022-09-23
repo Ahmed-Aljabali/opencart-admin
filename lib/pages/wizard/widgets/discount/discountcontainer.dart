@@ -3,6 +3,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/pages/wizard/widgets/discount/widgets/discountbuttomsheetcontainer.dart';
+import 'package:opencart/pages/wizard/widgets/discount/widgets/editdiscountbuttomsheetcontainert.dart';
 import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/buttomsheetcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/checkboxrequiredoptionpicker.dart';
 
@@ -26,11 +28,11 @@ class DiscountContainer extends StatelessWidget {
         dividerColor: Colors.blueAccent,
         children: controller.discount1.map<ExpansionPanel>((Product item) {
           return ExpansionPanel(
-              backgroundColor: Colors.grey[200],
+              backgroundColor: Colors.white,
               canTapOnHeader: true,
               headerBuilder: ((context, isExpanded) {
                 return ListTile(
-                    leading: InkWell(
+                  /*  leading: InkWell(
                       child: const Icon(
                         Icons.remove,
                       ),
@@ -38,7 +40,7 @@ class DiscountContainer extends StatelessWidget {
                         controller.removeOptWidget(
                             controller.currentOptioncheckIndex);
                       },
-                    ),
+                    ),*/// leading if you want to delete the expansion panle of the disount
                     title: Text(
                       item.header!,
                       style: const TextStyle(
@@ -63,7 +65,7 @@ class DiscountContainer extends StatelessWidget {
 
                           dataRowColor:MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,255, 255, 255);},),
                           horizontalMargin: 3,
-                          headingRowColor: MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(0,248, 248, 248);},),
+                          headingRowColor: MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,238, 238, 238);},),
 
                           headingTextStyle:  TextStyle(
                             color: const Color.fromARGB(255,30, 102, 160),
@@ -72,21 +74,23 @@ class DiscountContainer extends StatelessWidget {
                             ),
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.w900,
-                            height: 3.00,
+                            height: 2.00,
                           ),
                           dividerThickness: 1,
                           columnSpacing: 10,
 
                           border: TableBorder.all(color: Colors.black.withOpacity(0.05)),
-                          rows: controller.checkBoxDataList
+                          rows: controller.discountDataList
                               .map(((element) => DataRow(
                             cells: <DataCell>[
                               DataCell(
-                                InkWell(child: const Icon(Icons.edit),onTap: (){controller.removeCheckBoxModel(element.index);},),
+                                InkWell(child: const Icon(Icons.edit),onTap: ()
+
+                                {  }, ),
 
                               ),
                               DataCell(
-                                InkWell(child: const Icon(Icons.remove),onTap: (){controller.removeCheckBoxModel(element.index);},),
+                                InkWell(child: const Icon(Icons.remove),onTap: (){controller.removeDiscountModel(element.index);},),
                                 /*    RawMaterialButton(
                                             elevation: 1.0,
                                             shape: CircleBorder(),
@@ -106,12 +110,15 @@ class DiscountContainer extends StatelessWidget {
                                             ),
                                           ),*/
                               ),
-                              DataCell(Text(element.weight.toString())),
-                              DataCell(Text(element.qty.toString())),
-                              DataCell(Text(element.tax.toString())),
-                              DataCell(Text(element.price.toString())),
-                              DataCell(Text(element.point.toString())),
-                              DataCell(Text(element.optionValue.toString())),
+
+                              DataCell(Text(  element.endDate.toString()   )),
+                              DataCell(Text(  element.startDate.toString()  )),
+                              DataCell(Text(  element.price.toString()  )),
+                              DataCell(Text(  element.priority.toString()   )),
+                     DataCell(Text( element.qty.toString()   )),
+                          DataCell(Text(element.clintGroup.toString()   )),
+                              DataCell(Text( element.index.toString()  )),
+
 
                             ],
                           )),
@@ -120,12 +127,13 @@ class DiscountContainer extends StatelessWidget {
                           columns: const [
                             DataColumn(label: Text('نعديل',textAlign: TextAlign.center,)),
                             DataColumn(label:  Text('حذف',textAlign: TextAlign.center,)),
-                            DataColumn(label: Text('الوزن')),
-                            DataColumn(label: Text('الكمية')),
-                            DataColumn(label: Text('الضريبة')),
+                            DataColumn(label: Text('تاريخ\nالانتهاء')),
+                            DataColumn(label: Text('تاريخ\nالبدء')),
                             DataColumn(label: Text('السعر')),
-                            DataColumn(label: Text('النقاط')),
-                            DataColumn(label: Text(' الاختيار'))
+                            DataColumn(label: Text('الاولوية')),
+                            DataColumn(label: Text('الكمية')),
+                            DataColumn(label: Text('مجموعة\nالعملاء')),
+                            DataColumn(label: Text('vn'))
                           ],
                         ),
                       ),
@@ -147,7 +155,7 @@ class DiscountContainer extends StatelessWidget {
                             ),
                             context: context,
                             builder: (BuildContext context) {
-                              return  ButtomCheetCheckBoxContainer(
+                              return  ButtomCheetDiscountContainer(
 
 
                                   controller: controller);

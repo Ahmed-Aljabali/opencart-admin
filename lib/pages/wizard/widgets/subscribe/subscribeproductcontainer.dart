@@ -158,9 +158,7 @@ class FirstProductSubscribeContainer extends StatelessWidget {
                                             ),
                                           ),
                                           RawMaterialButton  (
-
                                             elevation: 1.0,
-
                                             shape: CircleBorder(),
                                             fillColor: Colors.blueAccent,
                                             onPressed: (){

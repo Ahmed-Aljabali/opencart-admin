@@ -1,5 +1,5 @@
 class CheckBoxDataModel {
-  var optionValue, qty, tax, price, point, weight;
+  var optionValue, qty , tax, price, point, weight;
   var index;
 
   CheckBoxDataModel(
