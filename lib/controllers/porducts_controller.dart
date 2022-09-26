@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:opencart/Interface/Iproduct.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import '../model/porducts/product.dart';
 
 class ProductController extends BaseController implements IProduct {
+  RxBool listTypeGrid = true.obs ;
   dynamic _data;
-  List<Products> get data => _data;
+  List<Products> get  data => _data;
   @override
   void onInit(){
     error=List.empty();

@@ -9,11 +9,9 @@ import 'package:intl/intl.dart';
 import 'package:opencart/model/sub_model.dart';
 
 import '../../../../controllers/wizard_controller.dart';
-import '../../../../core/constrants/text_constrants.dart';
-import '../../../../core/constrants/widgetconstrant.dart';
+
 import '../../../../model/ProductData.dart';
-import '../../../../model/attr_model.dart';
-import '../../../mainproductpage/widgets/custom_list_title.dart';
+
 
 
 class FirstProductSubscribeContainer extends StatelessWidget {

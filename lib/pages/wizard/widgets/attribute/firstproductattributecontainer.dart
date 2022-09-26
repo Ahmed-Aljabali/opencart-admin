@@ -12,7 +12,7 @@ import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/text_constrants.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
-import '../../../mainproductpage/widgets/custom_list_title.dart';
+
 
 
 class FirstProductAttributeContainer extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/pages/mainproductpage/widgets/listviewbuilder.dart';
 import 'package:opencart/pages/wizard/widgets/attribute/firstproductattributecontainer.dart';
 import 'package:opencart/pages/wizard/widgets/discount/discountcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/fifthproductscreen.dart';
@@ -11,6 +12,7 @@ import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/checkbox
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
+import '../../model/porducts/product.dart';
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
 
@@ -49,16 +51,11 @@ class WizardPage extends GetView<WizardController> {
                         title: new Text('Generl'),
                         content: Column(
                           children: [
-                            Firstproductcontainer(
-                              controller: controller,
-                            ),
-                            Secondproductcontainer(
-                              controller: controller,
-                            ),
+                            Firstproductcontainer(controller: controller,),
+                            Secondproductcontainer(controller: controller,),
                             ThirdProductContainer(controller: controller),
                             ForthProductContainer(controller: controller),
-                            FifhProductScreen(controller: controller),
-                          ],
+                            FifhProductScreen(controller: controller),],
                         ),
                         isActive: controller.currentStep.value >= 0,
                         state: controller.currentStep.value >= 0
@@ -66,6 +63,7 @@ class WizardPage extends GetView<WizardController> {
                             : StepState.disabled,
                       ),
                       Step(
+
                         title: new Text('Linke'),
                         content:FirstProductLinkeExpantionPanel(controller: controller,),
                         isActive: controller.currentStep.value >= 0,
@@ -146,6 +144,7 @@ class WizardPage extends GetView<WizardController> {
               ],
             ),
           ),
+
         ),
       ),
     );
