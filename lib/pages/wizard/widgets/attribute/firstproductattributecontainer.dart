@@ -74,13 +74,12 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                         children: [
                                           Expanded(
-                                            child: TextField(
-
+                                            child: MyTextFieldWidget(
 
 
                                               onChanged: (value) {controller.testofatrr.add(value);
                                               print(controller.testofatrr[index]);},
-
+                                              hintText: ' $index إضافة',
 
                                             ),
                                           ),

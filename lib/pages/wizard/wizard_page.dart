@@ -17,7 +17,7 @@ import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
 
 class WizardPage extends GetView<WizardController> {
-  StepperType stepperType = StepperType.horizontal;
+  StepperType stepperType = StepperType.vertical;
 
   List<bool> _expands = [true, true, true, true];
   @override
