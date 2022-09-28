@@ -6,6 +6,7 @@ import '../InterFace/Iorder.dart';
 import '../model/orders/order.dart';
 
 class OrderController extends BaseController implements IOrder {
+
   dynamic _trx;
   Orders get trx => _trx;
   @override

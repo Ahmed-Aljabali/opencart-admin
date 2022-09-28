@@ -69,9 +69,9 @@ class DiscountContainer extends StatelessWidget {
 
                           headingTextStyle:  TextStyle(
                             color: const Color.fromARGB(255,30, 102, 160),
-                            fontSize: getFontSize(
+                            fontSize:
                               12,
-                            ),
+
                             fontFamily: 'Cairo',
                             fontWeight: FontWeight.w900,
                             height: 2.00,
