@@ -6,6 +6,19 @@ import '../hepler/Base.dart';
 import '../main.dart';
 
 class BaseController extends GetxController{
+  late RxBool searchFormVisible;
+  late RxBool formVisible;
+  RxInt formsIndex = 1.obs;
+
+  @override
+  void onInit() {
+    searchFormVisible =false.obs;
+    formVisible = false.obs;
+    formsIndex = 1.obs;
+    super.onInit();
+  }
+
+    RxBool orderListTypeGrid = false.obs;
   var client = getIt.get<http.Client>();
   String msg=String.fromCharCodes([]);
   var isDataLoading=false.obs;

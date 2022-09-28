@@ -65,6 +65,7 @@ class WizardController extends GetxController {
 
   var selectedsubscrOptions = Rxn<String>();
   List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
+  List<String> testofatrr = ["مجموعة1", "مجموعة2", "مجموعة3",];
 
   var selectedcustmGroupOptions = Rxn<String>();
 

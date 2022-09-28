@@ -11,7 +11,7 @@ import '../wizard/wizard_page.dart';
 
 class ProductPage extends GetView<ProductController> {
   final myProducts = List<String>.generate(25, (i) => 'Product ${i+1}');
-  final product = Get.put(ProductController());
+
 
   @override
   Widget build(BuildContext context) {

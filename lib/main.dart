@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/pages/customers/customer_page.dart';
 import 'package:opencart/pages/dashboard/dashboard_binding.dart';
 import 'package:opencart/pages/loginpage/loginpage.dart';
@@ -32,9 +33,32 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: DashBoardBindings(),
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        textTheme:TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
+
+      inputDecorationTheme: const InputDecorationTheme(
+
+
+
+        fillColor:Colors.transparent,
+        hintStyle: TextStyle(
+          color: Colors.grey,
+
+            fontSize: 16, fontFamily: 'Cairo Regular',
+        ),
+
+
+      enabledBorder: OutlineInputBorder(
+
+    borderSide: BorderSide(width: 1, color: Colors.grey),
+    ),
+    focusedBorder: OutlineInputBorder(
+borderRadius:BorderRadius.all(Radius.circular(30.0)),
+    borderSide: BorderSide(width: 1, color: Colors.blue),
+    ),),
         primarySwatch: Colors.blue,
       ),
       initialRoute: "/Login",
@@ -49,7 +73,7 @@ class MyApp extends StatelessWidget {
         // name: "/login",
         // page: () => AuthThreePage(),
         // ),
-        GetPage(name: "/Login", page:()=>AuthThreePage()),
+        GetPage(name: "/Login", page:()=>AuthThreePage(),binding: DashBoardBindings()),
         GetPage(name: "/Order", page:()=>const Order()),
       //  GetPage(name: "/Customer", page:()=>const OrderDetail()),
         GetPage(name: "/Customer", page:()=>CustomerPage()),

@@ -16,7 +16,7 @@ import '../../../../model/ProductData.dart';
 
 
 class FirstProductAttributeContainer extends StatelessWidget {
-  const FirstProductAttributeContainer({
+   FirstProductAttributeContainer({
     Key? key,
     required this.controller,
   }) : super(key: key);
@@ -74,10 +74,14 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                         children: [
                                           Expanded(
-                                            child: MyTextFieldWidget(
+                                            child: TextField(
 
-                                              onChanged: (value) { },
-                                              hintText: ' $index إضافة',
+
+
+                                              onChanged: (value) {controller.testofatrr.add(value);
+                                              print(controller.testofatrr[index]);},
+
+
                                             ),
                                           ),
 
@@ -165,6 +169,7 @@ child: Icon(Icons.add,color: Colors.white,size: 35,),
                             color: Colors.blueAccent,
                             textColor: Colors.blueAccent,
                             onPressed: () {
+  print(controller.testofatrr);
 
                               controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"));
 
