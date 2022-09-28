@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/model/checkbox_data.dart';
+import 'package:opencart/model/porducts/product.dart';
 
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
@@ -64,23 +65,13 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                   hintText: 'الكمية',
                   onChanged: (value) {
 
-
-
-
                     controller.checkBoxQty = value ;
                   },
                 )),
                 const SizedBox(
                   width: 10,
                 ),
-                /* Expanded(
 
-                  child: Card(
-
-                    margin: EdgeInsets.only(right:39),
-                    child:
-                  ),
-                ),*/
                 Container(
                   padding: const EdgeInsets.only(right: 10),
                   child: Expanded(
@@ -93,15 +84,15 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                             //border of dropdown button
                             borderRadius: BorderRadius.circular(10),
                             //border raiuds of dropdown button
-                            boxShadow: <BoxShadow>[
+                            boxShadow: const <BoxShadow>[
                               //apply shadow on Dropdown button
-                              const BoxShadow(
-                                  color: const Color.fromRGBO(0, 0, 0, 0.1),
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.1),
                                   //shadow for button
                                   blurRadius: 3)
                               //blur radius of shadow
                             ]),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: Center(
                             child: DropdownButton<String>(
@@ -158,15 +149,15 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                             //border of dropdown button
                             borderRadius: BorderRadius.circular(10),
                             //border raiuds of dropdown button
-                            boxShadow: <BoxShadow>[
+                            boxShadow: const <BoxShadow>[
                               //apply shadow on Dropdown button
-                              const BoxShadow(
+                              BoxShadow(
                                   color: Color.fromRGBO(0, 0, 0, 0.1),
                                   //shadow for button
                                   blurRadius: 3)
                               //blur radius of shadow
                             ]),
-                        child: Container(
+                        child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.5,
                           child: Center(
                             child: DropdownButton<String>(
@@ -210,6 +201,7 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                   onChanged: (value) {
                     controller.checkBoxPrice= value;
                   },
+
                 )),
                 const SizedBox(
                   width: 10,
@@ -384,9 +376,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                             //border of dropdown button
                             borderRadius: BorderRadius.circular(10),
                             //border raiuds of dropdown button
-                            boxShadow: <BoxShadow>[
+                            boxShadow: const <BoxShadow>[
                               //apply shadow on Dropdown button
-                              const BoxShadow(
+                              BoxShadow(
                                   color: Color.fromRGBO(0, 0, 0, 0.1),
                                   //shadow for button
                                   blurRadius: 3)
@@ -450,7 +442,7 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                 MaterialButton(
                     child: const Text(
                       'حفظ',
-                      style: const TextStyle(fontSize: 25, color: Colors.white),
+                      style: TextStyle(fontSize: 25, color: Colors.white),
                     ),
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -470,6 +462,16 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                         weight: controller.CheckBoxWeightChooseOption.value.toString()+controller.checkboxweight.toString()   );
                       controller.addCheckBoxModel(checkedBoxModel);
                       Get.back();
+
+                      controller. productOptionValue.add(ProductOptionValue(
+                          price:checkedBoxModel.price,
+                          weight: checkedBoxModel.weight,
+                          quantity: checkedBoxModel.qty,
+                          points: checkedBoxModel.point  ));
+
+                    controller.productOptionValue=controller.productOptionValue;
+
+
                     })
               ],
             ),

@@ -5,180 +5,210 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:opencart/model/attr_model.dart';
+import 'package:opencart/model/porducts/attribute.dart';
 
 import '../../../../controllers/wizard_controller.dart';
-import '../../../../core/constrants/text_constrants.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
-import '../../../mainproductpage/widgets/custom_list_title.dart';
 
 
 class FirstProductAttributeContainer extends StatelessWidget {
-  const FirstProductAttributeContainer({
+   FirstProductAttributeContainer({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   final WizardController controller;
 
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+  var text;
+    List<TextEditingController> controllersText = [];
 
-      child: Obx(() => ExpansionPanelList(
-          expansionCallback: (panelIndex, isExpanded) {
-            controller.attributeproduct1[panelIndex].isExpanded!.value =
-            !isExpanded;
-          },
-          children: controller.attributeproduct1.map<ExpansionPanel>((Product item) {
-            return ExpansionPanel(
-                backgroundColor: Colors.grey[200],
-                canTapOnHeader: true,
-                headerBuilder: ((context, isExpanded) {
-                  return ListTile(
-                      title: Text(
-                        item.header!,
-                        style: TextStyle(fontSize: 20,),
-                        textAlign: TextAlign.center,
-                      ));
-                }),
-                body: Expanded(
+    return Obx(() => ExpansionPanelList(
 
-                  child: Container(
+        expansionCallback: (panelIndex, isExpanded) {
+          controller.attributeproduct1[panelIndex].isExpanded!.value =
+          !isExpanded;
+        },
+        children: controller.attributeproduct1.map<ExpansionPanel>((Product item) {
+          return ExpansionPanel(
+              backgroundColor: Colors.grey[200],
+              canTapOnHeader: true,
+              headerBuilder: ((context, isExpanded) {
+                return ListTile(
+                    title: Text(
+                      item.header!,
+                      style: const TextStyle(fontSize: 20,),
+                      textAlign: TextAlign.center,
+                    ));
+              }),
+              body: Expanded(
 
-                    padding: EdgeInsets.only(top: 5,bottom: 5),
-                    margin: EdgeInsets.only(bottom: 10, left: 5),
-                    width:  MediaQuery.of(context).size.width,
-                    child: Column(
+                child: Container(
 
-                      children: [
+                  padding:const EdgeInsets.only(top: 5,bottom: 5),
+                  margin:const EdgeInsets.only(bottom: 10, left: 5),
+                  width:  MediaQuery.of(context).size.width,
+                  child: Column(
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                              child: SizedBox(
-                                 height:controller.attrWidgetList.length.toDouble()*55 ,
+                    children: [
 
-                                child:  ListView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: controller.attrWidgetList.length,
-                                  itemBuilder: (context, index) {
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Expanded(
+                            child: SizedBox(
+                               height:controller.attrWidgetList.length.toDouble()*55 ,
 
-                                    return Container(
+                              child:  ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: controller.attrWidgetList.length,
+                                itemBuilder: (context, index) {
+                                  final controllers3 = TextEditingController();
 
-                                      padding: EdgeInsets.only(top: 1,bottom: 1),
-                                      child: Row(
+                                  return Container(
 
-                                        children: [
-                                          Expanded(
-                                            child: MyTextFieldWidget(
+                                    padding:const EdgeInsets.only(top: 1,bottom: 1),
+                                    child: Row(
 
-                                              onChanged: (value) { },
-                                              hintText: ' $index إضافة',
-                                            ),
-                                          ),
+                                      children: [
 
-                                          Container(
+                                        Expanded(
+                                          child:  DecoratedBox(
+                                              decoration: BoxDecoration(
 
-                                            height: 51,
-                                            alignment: Alignment.center,
-                                            child: Container(
-
-
-                                              padding: EdgeInsets.only(left: 1,right: 1),
-                                              child: DecoratedBox(
-                                                  decoration: BoxDecoration(
-
-                                                      color:Colors.white60, //background color of dropdown button
-                                                      border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                                      borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                                      boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
-                                                        BoxShadow(
-                                                            color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                                            blurRadius: 3) //blur radius of shadow
-                                                      ]
-                                                  ),
-                                                  child:Container(
-
-
-
-                                                    child: Center(
-                                                      child: DropdownButton<String>(
-                                                        hint:  Text("الميزة"),
-                                                        value: controller.attrWidgetList[index].attrSelected,
-                                                        onChanged:(v) {
-                                                          controller.attrWidgetList[index].attrSelected = v!;},
-                                                        items:controller.attrWidgetList[index].attrList.
-                                    map<DropdownMenuItem<String>>((String value) {
-                                                          return   DropdownMenuItem<String>(
-                                                            enabled: true,
-                                                            value: value,
-                                                            child: Text(value),
-                                                          );
-                                                        }).toList(),
-                                                      ),
-                                                    ),
-                                                  )
+                                                  color:Colors.white60, //background color of dropdown button
+                                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                                    //blur radius of shadow
+                                                  ]
                                               ),
+
+                                              child:Container(
+                                                margin: const EdgeInsets.only(left: 5),
+
+                                                child: Center(
+                                                  child: MyTextFieldWidget(
+                                                    onChanged: (value) {
+                                                      controller.textAttribute.add(value);
+                                                    },
+
+                                                    hintText: ' $index إضافة',
+                                                  )
+                                                ),
+                                              )
+                                          )
+                                          ,
+
+                                        ),
+
+                                        Container(
+
+                                          height: 51,
+                                          alignment: Alignment.center,
+                                          child: Container(
+
+
+                                            padding: const EdgeInsets.only(left: 1,right: 1),
+                                            child: DecoratedBox(
+                                                decoration: BoxDecoration(
+
+                                                    color:Colors.white60, //background color of dropdown button
+                                                    border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                                                    borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                                                    boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                                      BoxShadow(
+                                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                                          blurRadius: 3) //blur radius of shadow
+                                                    ]
+                                                ),
+                                                child:Center(
+                                                  child: FutureBuilder<List<Attribute>>(
+                                                    future:controller.initAttribute(),
+                                                    builder: (context, snapshot) {
+                                                      if (snapshot.hasData) {
+                                                        var data = snapshot.data!.obs.value;
+                                                        return DropdownButton<Attribute>(
+                                                          hint:  const Text("الميزه"),
+                                                          //value:controller.selectedAttribute.obs.value.,
+                                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                                          items:data.
+                                                          map<DropdownMenuItem<Attribute>>((Attribute value) {
+                                                            return   DropdownMenuItem<Attribute>(
+                                                              enabled: true,
+                                                              value: value,
+                                                              child: Text(value.name!),
+                                                            );
+                                                          }).toList(),
+
+                                                          onChanged:(v) {
+
+                                                          },
+
+                                                        );
+                                                      }
+                                                      else {
+                                                        return const CircularProgressIndicator();
+                                                      }
+                                                    },
+                                                  ),
+                                                )
                                             ),
                                           ),
-                                          RawMaterialButton  (
+                                        ),
+                                        RawMaterialButton  (
+                                          elevation: 1.0,
+                                          shape: const CircleBorder(),
+                                          fillColor: Colors.blueAccent,
+                                          onPressed: (){
+                                            String s = "$index ";
+                                            controller.removeAttribWidget(index);
+                                            String s2 = "$index ";
 
-                                            elevation: 1.0,
-
-                                            shape: CircleBorder(),
-                                            fillColor: Colors.blueAccent,
-                                            onPressed: (){
-                                              String s = "$index ";
-                                              print(s);
-                                              controller.removeAttribWidget(index);
-                                              String s2 = "$index ";
-                                              print(s2);
-
-                                              },
-                                            child: Icon(
-                                              Icons.close,
-                                              color: Colors.white,
-                                              size: 20.0,
-                                            ),
-                                            constraints: BoxConstraints.tightFor(
-                                              width: 30.0,
-                                              height: 30.0,
-                                            ),
+                                            },
+                                          child: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 20.0,
                                           ),
+                                          constraints: const BoxConstraints.tightFor(
+                                            width: 30.0,
+                                            height: 30.0,
+                                          ),
+                                        ),
 
-                                        ],),
-                                    ); ;
-                                      },
-                                ),
+                                      ],),
+                                  ); ;
+                                    },
                               ),
                             ),
-                          ],
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: MaterialButton(
-child: Icon(Icons.add,color: Colors.white,size: 35,),
-                            color: Colors.blueAccent,
-                            textColor: Colors.blueAccent,
-                            onPressed: () {
-
-                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"));
-
-
-                            },
                           ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: MaterialButton(
+                      child:  const Icon(Icons.add,color: Colors.white,size: 35,),
+                          color: Colors.blueAccent,
+                          textColor: Colors.blueAccent,
+                          onPressed: () {
+                           print(text);
+                            controller.addAttribWidget(AttrModel(text, "ميزة1"));
+
+
+                          },
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-                isExpanded: item.isExpanded!.value);
-          }).toList())),
-    );
+              ),
+              isExpanded: item.isExpanded!.value);
+        }).toList()));
   }
 }
 /*

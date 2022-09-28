@@ -84,14 +84,13 @@ late   File image;
                     }else{
                       print("11");
 
-                      productController.addProductWithImage(product,image);
+                      productController.addProduct(product);
 
                     }
 
                   }),
 
-              productController.error!.isEmpty==true?Text("تم الحفظ بنجاح "):
-              Text(productController.error.toString())
+
 
             ],)
 

@@ -9,8 +9,9 @@ class BaseController extends GetxController{
   var client = getIt.get<http.Client>();
   String msg=String.fromCharCodes([]);
   var isDataLoading=false.obs;
+  var erros=false.obs;
 
-  List<String>? error;
+  var  error = <String>[]; // Good
 
  Future<http.Response> get(String url) async{
     var perf= await Utilities.prefs;
@@ -24,6 +25,8 @@ class BaseController extends GetxController{
     {
       error=decodedResponse["error"].cast<String>();
       isDataLoading(true);
+      erros(true);
+      //error.refresh();
       update();
     }else if (response.statusCode==401)
     {
@@ -141,7 +144,6 @@ class BaseController extends GetxController{
   else if (response.statusCode==200)
     {
       isDataLoading(true);
-      msg="successfully saved";
       update();
     }
 

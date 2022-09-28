@@ -58,8 +58,6 @@ class ProductState extends State<Product>{
                     product.fetchProductById(69);
                   }),
 
-              product.error!.isEmpty==true?Text("تم الحفظ بنجاح "):
-              Text(product.error.toString())
 
             ],)
 

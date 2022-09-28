@@ -14,7 +14,7 @@ class CustomerController extends BaseController implements ICustomers{
 
 @override
 void onInit(){
-  error=List.empty();
+ // error=List.empty();
   super.onInit();
 }
 

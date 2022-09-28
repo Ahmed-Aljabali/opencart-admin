@@ -45,13 +45,9 @@ class MyApp extends StatelessWidget {
           page: () => MyDashBoard(),
           binding: DashBoardBindings(),
         ),
-        // GetPage(
-        // name: "/login",
-        // page: () => AuthThreePage(),
-        // ),
+
         GetPage(name: "/Login", page:()=>AuthThreePage()),
         GetPage(name: "/Order", page:()=>const Order()),
-      //  GetPage(name: "/Customer", page:()=>const OrderDetail()),
         GetPage(name: "/Customer", page:()=>CustomerPage()),
         GetPage(name: "/AddCustomer", page:()=>const AddCustomer()),
         GetPage(name: "/Product", page:()=>const Product()),

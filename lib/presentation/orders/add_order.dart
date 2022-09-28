@@ -42,8 +42,6 @@ class AddOrderState extends State<AddOrder>{
                     orderController.addOrder(order);
                   }),
 
-              orderController.error!.isEmpty==true?Text("تم الحفظ بنجاح "):
-              Text(orderController.error.toString())
 
             ],)
 
@@ -53,9 +51,4 @@ class AddOrderState extends State<AddOrder>{
   }
 
 
-}
-Widget cancelBtn() {
-  return ElevatedButton(onPressed: () {
-    Get.back();
-  }, child: Text("Cancel"));
 }

@@ -113,7 +113,7 @@ class ProductPage extends GetView<ProductController> {
                         Get.snackbar(
                           "Icon Action",
                           "List button was clicked",
-                          icon: Icon(Icons.check, color: Colors.blue),
+                          icon: const Icon(Icons.check, color: Colors.blue),
                           snackPosition: SnackPosition.BOTTOM,
                         );
                       },
@@ -174,12 +174,12 @@ class ProductPage extends GetView<ProductController> {
                 )
               ],
             ),
-            controller.data.isEmpty?
+            controller.dataProduct.isEmpty?
         const  CircularProgressIndicator():
             Expanded(
                 child: Container(
                     margin: const EdgeInsets.only(top: 10, bottom: 4),
-                    child:  GridtrashItemWidget(product: controller.data))
+                    child:  GridtrashItemWidget(product: controller.dataProduct))
 
             )
 

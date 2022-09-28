@@ -10,7 +10,7 @@ class OrderController extends BaseController implements IOrder {
   Orders get trx => _trx;
   @override
   void onInit(){
-    error=List.empty();
+    //error=List.empty();
     super.onInit();
   }
   @override

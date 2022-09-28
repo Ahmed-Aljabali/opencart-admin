@@ -38,7 +38,7 @@ class CheckBoxContainer extends StatelessWidget {
                         Icons.remove,
                       ),
                       onTap: () {
-                        controller.removeOptWidget(controller.currentOptioncheckIndex);
+                        controller.removeOptWidget(controller.currentOptionCheckIndex);
                       },
                     ),
                     title: Text(

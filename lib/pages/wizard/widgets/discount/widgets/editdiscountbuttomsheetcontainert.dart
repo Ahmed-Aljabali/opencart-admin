@@ -6,12 +6,13 @@ import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/discount.dart';
 
-class EditButtomCheetDiscountContainer extends GetView<WizardController> {
-  EditButtomCheetDiscountContainer({
-    required this.controller,
-  });
-
+class EditButtonCheatDiscountContainer extends GetView<WizardController> {
   final WizardController controller;
+
+  const EditButtonCheatDiscountContainer({Key? key,
+    required this.controller,
+  }) : super(key: key);
+
 
   @override
   Widget build(BuildContext context)  {
@@ -66,7 +67,8 @@ class EditButtomCheetDiscountContainer extends GetView<WizardController> {
                         onChanged: (value) {
 
                           controller.firstDiscountQty = value ;
-                        },
+                        }
+                   ,
                       )),
                   const SizedBox(
                     width: 10,
@@ -84,10 +86,10 @@ class EditButtomCheetDiscountContainer extends GetView<WizardController> {
                               //border of dropdown button
                               borderRadius: BorderRadius.circular(10),
                               //border raiuds of dropdown button
-                              boxShadow: <BoxShadow>[
+                              boxShadow: const <BoxShadow>[
                                 //apply shadow on Dropdown button
-                                const BoxShadow(
-                                    color: const Color.fromRGBO(0, 0, 0, 0.1),
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1),
                                     //shadow for button
                                     blurRadius: 3)
                                 //blur radius of shadow
@@ -175,7 +177,6 @@ class EditButtomCheetDiscountContainer extends GetView<WizardController> {
 
                         hintText:"تاريخ البدء",
                         onChanged: (value) {
-                          print(value);
 
                           controller.startDate =value;
                         },
