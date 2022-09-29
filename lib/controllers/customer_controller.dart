@@ -30,8 +30,8 @@ void onInit(){
 
 
  @override
-  Future<String?> deleteCustomer(String id)async{
-   var res = await delete("customers", id.toString());
+  Future<String?> deleteCustomer(int id)async{
+   var res = await delete("customers", id);
    if (res.statusCode == 200) {
      msg = "تم الحذف بنجاح";
    }

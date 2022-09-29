@@ -7,7 +7,7 @@ import 'package:opencart/controllers/users_controller.dart';
 import '../../model/user.dart';
 import '../../../controllers/users_controller.dart';
 
-class AuthThreePage extends GetView<BaseController> {
+class AuthThreePage extends GetView<UsersController> {
 
 
   @override

@@ -1,14 +1,18 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/controllers/porducts_controller.dart';
 import 'package:opencart/controllers/wizard_controller.dart';
+import 'package:opencart/model/porducts/product.dart';
 import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
 
 import '../../Controllers/order_controller.dart';
 import '../../core/utils/math_utils.dart';
+import '../../model/orders/add_order.dart';
 import '../loginpage/loginpage.dart';
 import '../mainproductpage/widgets/gridviewcontainer.dart';
 import '../mainproductpage/widgets/listviewbuilder.dart';
@@ -16,9 +20,9 @@ import '../wizard/wizard_page.dart';
 
 class OrderPage extends GetView<OrderController> {
 
-  final productController = Get.find<ProductController>();
+var productController =Get.put(ProductController());
 
-
+  OrderPage({Key? key}) : super(key: key);
   @override
   // TODO: implement controller
 
@@ -26,6 +30,7 @@ class OrderPage extends GetView<OrderController> {
   StatelessElement createElement() {
     // TODO: implement createElement
     controller.fetchOrder();
+
     return super.createElement();
   }
 
@@ -46,7 +51,7 @@ class OrderPage extends GetView<OrderController> {
                   padding: EdgeInsets.only(left: 30),
                   child: Center(
                       child: Text(
-                       "اضافة طلب",
+                        "اضافة طلب",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black,fontFamily: 'Cairo Regular',
                           fontWeight: FontWeight.w400,
@@ -110,11 +115,6 @@ class OrderPage extends GetView<OrderController> {
                           child: InkWell(
                             onTap: () {
                               controller.searchFormVisible.value = true;
-
-                              /*setState(() {
-                   formVisible.value = true;
-                   _formsIndex = 1;
-                  });*/
                             },
                             child: const Icon(
                               Icons.filter_list_alt,
@@ -152,7 +152,7 @@ class OrderPage extends GetView<OrderController> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: InkWell(
-                           /* onTap: () {
+                          /* onTap: () {
                              controller.orderListTypeGrid.value = true;
                               print(controller.orderListTypeGrid.value);
                             },*/ // to activate the gridviewlist
@@ -186,7 +186,6 @@ class OrderPage extends GetView<OrderController> {
                         child: InkWell(
                             onTap: () {
                               controller.orderListTypeGrid.value = false;
-                              print(controller.orderListTypeGrid.value);
                             },
                             child: controller.orderListTypeGrid.value
                                 ? const Icon(Icons.format_list_bulleted)
@@ -231,12 +230,15 @@ class OrderPage extends GetView<OrderController> {
                       )
                     ],
                   ),
-                  if (productController.data
-                      .isEmpty) const CircularProgressIndicator() else
-                    controller.orderListTypeGrid.value ? NewGridtrashItemWidget(
-                        product: productController.data) : Expanded(
-
-                      child: MyOrderListViewContainer(),
+                  // if (productController.dataProduct.isEmpty||productController.dataProduct.isEmpty)
+                  //   const CircularProgressIndicator() else
+                  //   controller.orderListTypeGrid.value ? NewGridtrashItemWidget(
+                  //       product: productController.dataProduct)
+                  //       :
+                  if (controller.isDataLoading.value==false)
+                    const CircularProgressIndicator() else
+                     Expanded(
+                      child: MyOrderListViewContainer(order: controller.data),
                     ),
 
 
@@ -250,10 +252,8 @@ class OrderPage extends GetView<OrderController> {
                   margin: getMargin(top: 60,bottom: 50),
                   decoration: BoxDecoration(
 
-                    borderRadius: BorderRadius.circular(30.0),
-                    /* border: Border(
-      left: BorderSide()
-    ),*/
+                      borderRadius: BorderRadius.circular(30.0),
+
                       color: Colors.white
                   ),
 
@@ -294,10 +294,10 @@ class OrderPage extends GetView<OrderController> {
                           endIndent: 15,
                         ),
                         AnimatedSwitcher(
-                            duration: Duration(milliseconds: 300),
-                            child:
+                          duration: const Duration(milliseconds: 300),
+                          child:
 
-                            OrderSearchForm(),
+                          OrderSearchForm(),
 
                         ),
                         Container(
@@ -348,37 +348,58 @@ class OrderPage extends GetView<OrderController> {
         ),
         floatingActionButton:(controller.searchFormVisible.value)
             ? null
-            :  Container(
+            :  SizedBox(
 
           height: 50.0,
           width: 50.0,
           child: FloatingActionButton(
 
 
- backgroundColor: Colors.green,
+            backgroundColor: Colors.green,
             onPressed: () {
-
+              var paymentaddress=PaymentAddress(firstname: "Ahmed",lastname: "Aljabali",zone: "0");
+              var method=ShippingMethod(code: "flat.flat",title: "test");
+              var customer =Customer(email: "ahmed@gmail.com",lastname: "Aljabali",firstname: "Ahmed",customerId: 1,telephone: "776816212",customerGroupId: 1);
+              List<ProductsOrder>? products=[];
+              products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
+            var shippingmethod=ShippingMethod(title: "tesr",code: "flat.flat");
+          //  var shippingaddress=PaymentAddress();
+              var order = AddOrders(
+                  affiliateId: "",
+                  comment: "",
+                  storeId: 0,
+                  coupon: "111",
+                  tracking: "",
+                  voucher: "demo-0000",
+                  shippingAddress:paymentaddress ,
+                  shippingMethod: shippingmethod ,
+                  paymentAddress: paymentaddress,
+                  customer:customer,
+                  paymentMethod: method,
+                  products:products  );
+            print(jsonEncode(order));
+              controller.addOrder(order);
               Get.snackbar(
                 "Icon Action",
                 "Search button was clicked",
-                icon:  Icon(Icons.check, color: Colors.green,),
+                icon:  const Icon(Icons.check, color: Colors.green,),
                 snackPosition: SnackPosition.TOP,
               );
             },
             tooltip: 'add a new product',
-highlightElevation: 1,
+            highlightElevation: 1,
 
             child:   Container(
 
               decoration: BoxDecoration(
 
                 color: Colors.transparent,
-                borderRadius: BorderRadius.all(
+                borderRadius: const BorderRadius.all(
                   Radius.circular(100),
                 ),
                 boxShadow: [
                   BoxShadow(
-                     blurStyle: BlurStyle.outer,
+                    blurStyle: BlurStyle.outer,
                     color: Colors.black.withOpacity(0.7),
                     spreadRadius: 7,
                     blurRadius: 27,
@@ -386,7 +407,7 @@ highlightElevation: 1,
                   ),
                 ],
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.add,size: 35,
               ),
             ),
@@ -398,4 +419,3 @@ highlightElevation: 1,
     });
   }
 }
-// Text(controller.trx.data.toString()),

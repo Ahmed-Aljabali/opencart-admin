@@ -1,39 +1,40 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:opencart/Controllers/order_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
+import 'package:opencart/model/orders/order.dart';
 
 
 class MyOrderListViewContainer extends StatelessWidget {
-
-
-
-  final myProducts = List<String>.generate(25, (i) => 'Product ${i+1}');
+  final List<Orders> order;
+  const MyOrderListViewContainer({Key? key,required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return
 
+    var orderController =Get.put(OrderController());
 
-      ListView.builder(
-
-          itemCount: myProducts.length,
-
-
+ return
+     ListView.builder(
+          itemCount: order.length,
           itemBuilder: (context, index) {
-            return Container(
+            print(order[index].orderid!.toString());
+
+            return SizedBox(
 
 
               height: getHorizontalSize(120),
               child: Card(
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(
+                  side: const BorderSide(
                     color: Colors.white54,
                   ),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
 
 
-                key: ValueKey(myProducts[index]),
+                key: ValueKey(order[index]),
                 margin: getMargin(bottom: 5, top: 5 ,left: 10,right: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -43,33 +44,22 @@ class MyOrderListViewContainer extends StatelessWidget {
                       alignment: Alignment.topLeft,
 
 
-                      child:/*PopupMenuButton(
-                            onSelected: (value) {
+                      child: InkWell(
+                        onTap: (){
 
-                            },
-
-
-                            itemBuilder: (ctx) => [
-                              _buildPopupMenuItem( Icons.search, ),
-                              _buildPopupMenuItem( Icons.upload),
-                              _buildPopupMenuItem(Icons.copy,),
-
-                            ],
-                          )*/ InkWell(onTap: (){
-
-                      },child: PopupMenuButton (
+                          },
+                        child: PopupMenuButton (
                         onSelected: (value) {
-                          print('ucsf');
 
                         },
 
 
                         itemBuilder: (ctx) => [
-                          _buildPopupMenuItem(Icons.visibility_outlined, ),
-                          _buildPopupMenuItem(   Icons.delete,),
-                          _buildPopupMenuItem(Icons.edit,),
-                          _buildPopupMenuItem(Icons.print,),
-                          _buildPopupMenuItem(Icons.share,),
+                       //   _buildPopupMenuItem(Icons.visibility_outlined ),
+                          _buildPopupMenuItem(Icons.delete,orderController.deleteOrder(order[index].orderid)),
+                         // _buildPopupMenuItem(Icons.edit,),
+                         // _buildPopupMenuItem(Icons.print),
+                          //_buildPopupMenuItem(Icons.share),
 
                         ],
                       ),),),
@@ -81,9 +71,6 @@ class MyOrderListViewContainer extends StatelessWidget {
                         children: [
 
                           Container(
-
-
-
                             margin: getMargin(
                               left: 5,
                               top: 2,
@@ -103,7 +90,7 @@ class MyOrderListViewContainer extends StatelessWidget {
                                       bottom: 4,
                                     ),
                                     child: Text(
-                                      "ريال",
+                                      order[index].currencycode!,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
@@ -125,7 +112,7 @@ class MyOrderListViewContainer extends StatelessWidget {
                                       bottom: 4,
                                     ),
                                     child: Text(
-                                      '1500',
+                                      order[index].total!,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.left,
                                       style: TextStyle(
@@ -172,11 +159,11 @@ class MyOrderListViewContainer extends StatelessWidget {
                                       right: 10,
                                       bottom: 4,
                                     ),
-                                    child: Text(
-                                     'غير مدفوع',
+                                    child:  Text(
+                                     order[index].status!,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.left,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize:
                                         9,
@@ -222,12 +209,12 @@ class MyOrderListViewContainer extends StatelessWidget {
                                 ),
                               ),
                               child:Text(
-                                'اسم العميل ان وجد',
+                                order[index].name!,
                                 overflow: TextOverflow.clip,
 
                                 style: TextStyle(
                                   color: Colors.black.withOpacity(0.5),
-                                  fontSize:getFontSize(18),
+                                  fontSize:getFontSize(12),
 
                                   fontFamily: 'Cairo Regular',
                                   fontWeight: FontWeight.bold,
@@ -242,37 +229,11 @@ class MyOrderListViewContainer extends StatelessWidget {
 
                                   children: [
                                     Expanded(child: Container()),
-                                    Container(child: Text('10-10-2010',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 15.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , )),
-                                    Container(child: Text('  -   #0001   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 15.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , )),
+                                    Text(order[index].dateadded!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                                    Text('  -   #${order[index].orderid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
                                   ],
                                 )
                             ),
-                            /* Expanded(
-
-
-                                child: Text('تلفون سامسونج اس 10 ذهبي فرايزون شريحتين',
-                                  maxLines: 4,
-
-
-
-
-                                        style: TextStyle(
-
-                                          color: Color.fromRGBO(0, 84, 143, 1),
-                                          fontSize: getFontSize(
-                                            14,
-                                          ),
-                                          fontFamily: 'Cairo',
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.00,
-                                        ),
-                                      ),
-
-
-
-
-                                ),*/
-
 
                           ],),
                       ),
@@ -288,18 +249,22 @@ class MyOrderListViewContainer extends StatelessWidget {
   }
 }
 
-PopupMenuItem _buildPopupMenuItem(
-    IconData iconData) {
+PopupMenuItem _buildPopupMenuItem(IconData iconData,Future function) {
   return PopupMenuItem(
 
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Icon(
+        IconButton(onPressed: ()
+    {
+      function;
+    },
+    icon:
+         Icon(
           iconData,
           color: Colors.black,
-        ),
-
+        )
+        )
       ],
     ),
   );

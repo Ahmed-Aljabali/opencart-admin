@@ -7,7 +7,7 @@ abstract class IProduct{
   fetchProduct();
   Future<String?> addProduct(Products product);
   Future<String?> addProductWithImage(Products products,File file);
-  Future<String?> deleteProduct(int id);
+   deleteProduct(int id);
   Future<String?> fetchProductById(int id);
   Future<String?> updateProductById(Products products,int id);
 

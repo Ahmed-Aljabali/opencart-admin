@@ -35,7 +35,7 @@ class AddOrders {
     coupon = json['coupon'];
     if (json['products'] != null) {
       products = <ProductsOrder>[];
-      json['products'].forEach((v) {
+      json['product'].forEach((v) {
         products!.add( ProductsOrder.fromJson(v));
       });
     }
@@ -68,19 +68,19 @@ class AddOrders {
       data['products'] = products!.map((v) => v.toJson()).toList();
     }
     if (shippingMethod != null) {
-      data['shipping_method'] = this.shippingMethod!.toJson();
+      data['shipping_method'] = shippingMethod!.toJson();
     }
     if (paymentMethod != null) {
-      data['payment_method'] = this.paymentMethod!.toJson();
+      data['payment_method'] = paymentMethod!.toJson();
     }
-    if (this.paymentAddress != null) {
-      data['payment_address'] = this.paymentAddress!.toJson();
+    if (paymentAddress != null) {
+      data['payment_address'] = paymentAddress!.toJson();
     }
-    if (this.shippingAddress != null) {
-      data['shipping_address'] = this.shippingAddress!.toJson();
+    if (shippingAddress != null) {
+      data['shipping_address'] = shippingAddress!.toJson();
     }
-    if (this.customer != null) {
-      data['customer'] = this.customer!.toJson();
+    if (customer != null) {
+      data['customer'] = customer!.toJson();
     }
     return data;
   }
@@ -121,8 +121,8 @@ class Option {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['227'] = this.i227;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['227'] = i227;
     return data;
   }
 }
@@ -139,9 +139,9 @@ class ShippingMethod {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['title'] = this.title;
-    data['code'] = this.code;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['code'] = code;
     return data;
   }
 }

@@ -1,5 +1,5 @@
-class OrderDetails {
-  int? orderid;
+class Orders {
+  dynamic? orderid;
   String? name;
   String? status;
   String? dateadded;
@@ -8,9 +8,9 @@ class OrderDetails {
   String? currencycode;
   String? currencyvalue;
 
-  OrderDetails({this.orderid, this.name, this.status, this.dateadded, this.products, this.total, this.currencycode, this.currencyvalue});
+  Orders({this.orderid, this.name, this.status, this.dateadded, this.products, this.total, this.currencycode, this.currencyvalue});
 
-  OrderDetails.fromJson(Map<String, dynamic> json) {
+  Orders.fromJson(Map<String, dynamic> json) {
     orderid = json['order_id'];
     name = json['name'];
     status = json['status'];
@@ -35,10 +35,10 @@ class OrderDetails {
   }
 }
 
-class Orders {
-  var data = <OrderDetails>[];
-  Orders.fromJson(Map<String, dynamic> json) {
-    (json['data'] as List).forEach((e) => data.add(OrderDetails.fromJson(e)));
+class OrdersData {
+  var data = <Orders>[];
+  OrdersData.fromJson(Map<String, dynamic> json) {
+    (json['data'] as List).forEach((e) => data.add(Orders.fromJson(e)));
 
   }
 

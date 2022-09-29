@@ -7,4 +7,5 @@ abstract class IOrder{
   addOrder(AddOrders  addOrder);
   updateStatusOrder(String id,String status);
   fetchOrderDetail(String id);
+  deleteOrder(int id);
 }

@@ -17,6 +17,7 @@ class ProductController extends BaseController implements IProduct {
   dynamic _dataCategory;
   dynamic _dataStores;
   dynamic _dataAttribute;
+  RxBool listTypeGrid = true.obs ;
 
   List<Products> get dataProduct => _data;
   List<ProductOption> get dataOption => _dataOption;
@@ -27,7 +28,6 @@ class ProductController extends BaseController implements IProduct {
 
   @override
   void onInit(){
-    fetchProduct();
     super.onInit();
   }
   @override
@@ -59,7 +59,6 @@ class ProductController extends BaseController implements IProduct {
 
     if (res.statusCode == 200) {
       _dataAttribute=  AttributeData.fromJson(jsonDecode(res.body)).data;
-      print(jsonDecode(res.body));
     }
     return dataAttribute;
   }
@@ -103,8 +102,8 @@ class ProductController extends BaseController implements IProduct {
   }
 
   @override
-  Future<String?> deleteProduct(int id)async{
-    var res = await delete("products", id.toString());
+   deleteProduct(int id)async{
+    var res = await delete("products", id);
     if (res.statusCode == 200) {
       msg = "تم الحذف بنجاح";
       update();
