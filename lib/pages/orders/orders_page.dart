@@ -357,6 +357,7 @@ var productController =Get.put(ProductController());
 
             backgroundColor: Colors.green,
             onPressed: () {
+              //Todo this code for add new order
           //     var paymentaddress=PaymentAddress(firstname: "Ahmed",lastname: "Aljabali",zone: "0");
           //     var method=ShippingMethod(code: "flat.flat",title: "test");
           //     var customer =Customer(email: "ahmed@gmail.com",lastname: "Aljabali",firstname: "Ahmed",customerId: 1,telephone: "776816212",customerGroupId: 1);
