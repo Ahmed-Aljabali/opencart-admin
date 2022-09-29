@@ -12,18 +12,11 @@ class MyOrderListViewContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var orderController =Get.put(OrderController());
-
- return
-     ListView.builder(
+ return ListView.builder(
           itemCount: order.length,
           itemBuilder: (context, index) {
-            print(order[index].orderid!.toString());
-
             return SizedBox(
-
-
               height: getHorizontalSize(120),
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -32,8 +25,6 @@ class MyOrderListViewContainer extends StatelessWidget {
                   ),
                   borderRadius: BorderRadius.circular(20.0),
                 ),
-
-
                 key: ValueKey(order[index]),
                 margin: getMargin(bottom: 5, top: 5 ,left: 10,right: 10),
                 child: Row(
@@ -49,17 +40,20 @@ class MyOrderListViewContainer extends StatelessWidget {
 
                           },
                         child: PopupMenuButton (
+
                         onSelected: (value) {
+                             if (value==2){
+                               orderController.deleteOrder(order[index].orderid);
+                             }
 
                         },
 
-
                         itemBuilder: (ctx) => [
-                       //   _buildPopupMenuItem(Icons.visibility_outlined ),
-                          _buildPopupMenuItem(Icons.delete,orderController.deleteOrder(order[index].orderid)),
-                         // _buildPopupMenuItem(Icons.edit,),
-                         // _buildPopupMenuItem(Icons.print),
-                          //_buildPopupMenuItem(Icons.share),
+                          _buildPopupMenuItem(Icons.visibility_outlined,1 ),
+                          _buildPopupMenuItem(Icons.delete,2),
+                          _buildPopupMenuItem(Icons.edit,3),
+                          _buildPopupMenuItem(Icons.print,4),
+                          _buildPopupMenuItem(Icons.share,5),
 
                         ],
                       ),),),
@@ -249,22 +243,20 @@ class MyOrderListViewContainer extends StatelessWidget {
   }
 }
 
-PopupMenuItem _buildPopupMenuItem(IconData iconData,Future function) {
+PopupMenuItem _buildPopupMenuItem(IconData iconData,int value) {
   return PopupMenuItem(
+    value: value,
+    onTap: (){
 
+    },
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        IconButton(onPressed: ()
-    {
-      function;
-    },
-    icon:
-         Icon(
+           Icon(
           iconData,
           color: Colors.black,
         )
-        )
+
       ],
     ),
   );

@@ -39,7 +39,7 @@ class OrderController extends BaseController implements IOrder {
   }
   @override
   deleteOrder(int id) async {
-    isDataLoading(false);
+  //  isDataLoading(false);
     var res = await delete("orders", id);
 
     if (res.statusCode == 200) {
