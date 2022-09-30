@@ -4,12 +4,17 @@ import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/model/orders/add_order.dart';
 import '../InterFace/Iorder.dart';
 import '../model/orders/order.dart';
+import '../pages/orders/widgets/orderslistviewcontainer.dart';
 
 class OrderController extends BaseController implements IOrder {
 
   dynamic _trx;
+  dynamic _listFilter;
   List<Orders> get data => _trx;
+  List<Orders>? get listFilter => _listFilter;
+  RxList<Orders>  listFilte = RxList<Orders>();
   RxBool orderListTypeGrid = false.obs;
+
 
   @override
   fetchOrder() async {
@@ -19,9 +24,17 @@ class OrderController extends BaseController implements IOrder {
     }
   }
 
+  filterOrderList(){
+    _listFilter= data.where((element) =>
+         element.name.toString().contains("Ahmed")
+    ).where((element) => element.status=="padding").toList();
+
+    update();
+  }
+
 
   @override
-  updateStatusOrder(String id, String status) async {
+  updateStatusOrder(int id, String status) async {
     var res = await Update("order_status", id, {"status": status});
     if (res.statusCode == 200) {
       msg = jsonDecode(res.body);
@@ -39,7 +52,7 @@ class OrderController extends BaseController implements IOrder {
   }
   @override
   deleteOrder(int id) async {
-  //  isDataLoading(false);
+    isDataLoading(false);
     var res = await delete("orders", id);
 
     if (res.statusCode == 200) {

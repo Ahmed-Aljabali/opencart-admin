@@ -30,7 +30,6 @@ class WizardController extends ProductController {
   dynamic  currentOptionTimeDateIndex ;
   dynamic currentOptionCheckIndex ;
 
-  List<String> relatedProdOptionsList = ["الكيمرات", "الساعات", "العطور", "المنتجات"];
   var selectedrelatedProdOptions = Rxn<String>();
   List<ProductOption>  optionsproductlist1= [];
   List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
