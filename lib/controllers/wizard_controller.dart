@@ -10,6 +10,7 @@ import '../core/constrants/widgetconstrant.dart';
 import '../model/ProductData.dart';
 import '../model/checkbox_data.dart';
 import '../model/discount.dart';
+import '../pages/wizard/widgets/attribute/firstproductattributecontainer.dart';
 
 class WizardController extends GetxController {
   var selectedTime = TimeOfDay.now().obs;
@@ -65,7 +66,14 @@ class WizardController extends GetxController {
 
   var selectedsubscrOptions = Rxn<String>();
   List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
-  List<String> testofatrr = ["مجموعة1", "مجموعة2", "مجموعة3",];
+  List<String> testofatrr = [];
+TextEditingController myController  = TextEditingController();
+
+
+
+
+
+
 
   var selectedcustmGroupOptions = Rxn<String>();
 
@@ -103,22 +111,34 @@ class WizardController extends GetxController {
   RxList<CheckBoxDataModel> checkBoxDataList = RxList  <CheckBoxDataModel>([]);
   RxList<DiscountDataModel> discountDataList = RxList  <DiscountDataModel>([]);
 
+int index = 0;
+void countingthindex(){
+  index++;
+}
+bool itemcountbool = false;
+  void addAttribWidget(AttrModel value,text) {
+  testofatrr.add(text);
 
 
-  void addAttribWidget(AttrModel value) {
     attrWidgetList.add(value);
     attrWidgetList.refresh();
+
+
     update();
   }
+
   void addOptWidget(OptModel value) {
     optWidgetList.add(value);
     optWidgetList.refresh();
     update();
   }
-  void removeAttribWidget(int index) {
+  void removeAttribWidget(index) {
     attrWidgetList.removeAt(index);
+    testofatrr.removeAt(index);
+
 
   }
+
   void removeOptWidget(int index) {
     optWidgetList.removeAt(index);
     optWidgetList.refresh();
@@ -248,7 +268,9 @@ discountDataList.refresh();
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+
+  }
 
   chooseGenerlDate() async {
     DateTime? pickedDate = await showDatePicker(

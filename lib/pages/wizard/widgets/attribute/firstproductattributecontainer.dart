@@ -15,6 +15,7 @@ import '../../../../model/ProductData.dart';
 
 
 
+
 class FirstProductAttributeContainer extends StatelessWidget {
    FirstProductAttributeContainer({
     Key? key,
@@ -40,7 +41,7 @@ class FirstProductAttributeContainer extends StatelessWidget {
                   return ListTile(
                       title: Text(
                         item.header!,
-                        style: TextStyle(fontSize: 20,),
+                        style: const TextStyle(fontSize: 20,),
                         textAlign: TextAlign.center,
                       ));
                 }),
@@ -48,8 +49,8 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                   child: Container(
 
-                    padding: EdgeInsets.only(top: 5,bottom: 5),
-                    margin: EdgeInsets.only(bottom: 10, left: 5),
+                    padding: const EdgeInsets.only(top: 5,bottom: 5),
+                    margin: const EdgeInsets.only(bottom: 10, left: 5),
                     width:  MediaQuery.of(context).size.width,
                     child: Column(
 
@@ -69,19 +70,44 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                     return Container(
 
-                                      padding: EdgeInsets.only(top: 1,bottom: 1),
+                                      padding: const EdgeInsets.only(top: 1,bottom: 1),
                                       child: Row(
 
                                         children: [
                                           Expanded(
-                                            child: MyTextFieldWidget(
+                                            child:
+                                            MyTryTextFieldWidget(
+                                              controller:  controller.myController,
+                                              onFieldSubmitted: (value)
+                                              {
+                                                print(value);
 
+                                                controller.myController.text = value;
+index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
 
-                                              onChanged: (value) {controller.testofatrr.add(value);
-                                              print(controller.testofatrr[index]);},
-                                              hintText: ' $index إضافة',
+                                                print(controller.testofatrr[index]);
+
+                                              },
+
+                                              hintText: 'add',
+                                                keyboardType: TextInputType.text
 
                                             ),
+                                            /* MyTextFieldWidget(
+
+
+
+                                              onChanged: (value)
+                                              {
+
+                                                myController.text = value;
+
+                                                controller.testofatrr.add(myController.text);
+                                              print(controller.testofatrr[index]);
+                                              },
+                                              hintText: ' $index إضافة',
+
+                                            ),*/
                                           ),
 
                                           Container(
@@ -91,7 +117,7 @@ class FirstProductAttributeContainer extends StatelessWidget {
                                             child: Container(
 
 
-                                              padding: EdgeInsets.only(left: 1,right: 1),
+                                              padding: const EdgeInsets.only(left: 1,right: 1),
                                               child: DecoratedBox(
                                                   decoration: BoxDecoration(
 
@@ -99,8 +125,8 @@ class FirstProductAttributeContainer extends StatelessWidget {
                                                       border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
                                                       borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
                                                       boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
-                                                        BoxShadow(
-                                                            color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                                        const BoxShadow(
+                                                            color: const Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
                                                             blurRadius: 3) //blur radius of shadow
                                                       ]
                                                   ),
@@ -110,7 +136,7 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                                     child: Center(
                                                       child: DropdownButton<String>(
-                                                        hint:  Text("الميزة"),
+                                                        hint:  const Text("الميزة"),
                                                         value: controller.attrWidgetList[index].attrSelected,
                                                         onChanged:(v) {
                                                           controller.attrWidgetList[index].attrSelected = v!;},
@@ -132,22 +158,26 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                             elevation: 1.0,
 
-                                            shape: CircleBorder(),
+                                            shape: const CircleBorder(),
                                             fillColor: Colors.blueAccent,
                                             onPressed: (){
                                               String s = "$index ";
                                               print(s);
-                                              controller.removeAttribWidget(index);
+                                              print(s);
+                                              print(controller.testofatrr);
+                                              /*controller.testofatrr.removeAt(index);*/
+                                              index==0?controller.removeAttribWidget(index+1):controller.removeAttribWidget(index);
+
                                               String s2 = "$index ";
                                               print(s2);
 
                                               },
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.close,
                                               color: Colors.white,
                                               size: 20.0,
                                             ),
-                                            constraints: BoxConstraints.tightFor(
+                                            constraints: const BoxConstraints.tightFor(
                                               width: 30.0,
                                               height: 30.0,
                                             ),
@@ -164,14 +194,27 @@ class FirstProductAttributeContainer extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: MaterialButton(
-child: Icon(Icons.add,color: Colors.white,size: 35,),
+child: const Icon(Icons.add,color: Colors.white,size: 35,),
                             color: Colors.blueAccent,
                             textColor: Colors.blueAccent,
                             onPressed: () {
-  print(controller.testofatrr);
-
-                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"));
-
+ /* print(controller.testofatrr);*/controller.countingthindex();
+                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.index==0?null:controller.myController.text);
+                              print(' + ${controller.index}');
+print(controller.testofatrr);
+                            },
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: MaterialButton(
+                            child: const Icon(Icons.add,color: Colors.white,size: 35,),
+                            color: Colors.blueAccent,
+                            textColor: Colors.blueAccent,
+                            onPressed: () {
+                        controller.testofatrr.clear();
+controller.index=0;
+                        controller.attrWidgetList.clear();
 
                             },
                           ),
