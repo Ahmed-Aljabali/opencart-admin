@@ -205,20 +205,7 @@ print(controller.testofatrr);
                             },
                           ),
                         ),
-                        Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: MaterialButton(
-                            child: const Icon(Icons.add,color: Colors.white,size: 35,),
-                            color: Colors.blueAccent,
-                            textColor: Colors.blueAccent,
-                            onPressed: () {
-                        controller.testofatrr.clear();
-controller.index=0;
-                        controller.attrWidgetList.clear();
 
-                            },
-                          ),
-                        ),
                       ],
                     ),
                   ),
