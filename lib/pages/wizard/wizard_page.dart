@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/pages/mainproductpage/widgets/listviewbuilder.dart';
+import 'package:opencart/model/porducts/product.dart';
 import 'package:opencart/pages/wizard/widgets/attribute/firstproductattributecontainer.dart';
 import 'package:opencart/pages/wizard/widgets/discount/discountcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/fifthproductscreen.dart';
@@ -12,14 +12,14 @@ import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/checkbox
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
-import '../../model/porducts/product.dart';
+import '../../controllers/porducts_controller.dart';
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
 
 class WizardPage extends GetView<WizardController> {
   StepperType stepperType = StepperType.vertical;
+  final  productController = Get.put(ProductController());
 
-  List<bool> _expands = [true, true, true, true];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,7 +28,7 @@ class WizardPage extends GetView<WizardController> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
-            title: Text(
+            title:const Text(
               'إضافة منتج',
               style: TextStyle(color: Colors.black, fontSize: 17),
             ),
@@ -38,9 +38,8 @@ class WizardPage extends GetView<WizardController> {
             children: [
               Expanded(
                 child: Stepper(
-                  margin: EdgeInsets.all(7),
                   type: stepperType,
-                  physics: ClampingScrollPhysics(),
+                  physics:const ClampingScrollPhysics(),
                   currentStep: controller.currentStep.value,
                   onStepTapped: (step) => controller.tapped(step),
                   onStepContinue:
@@ -48,14 +47,19 @@ class WizardPage extends GetView<WizardController> {
                   onStepCancel: controller.cancel,
                   steps: <Step>[
                     Step(
-                      title: new Text('Generl'),
+                      title: const Text('Generl'),
                       content: Column(
                         children: [
-                          Firstproductcontainer(controller: controller,),
-                          Secondproductcontainer(controller: controller,),
+                          FirstProductContainer(
+                            controller: controller,
+                          ),
+                          SecondProductContainer(
+                            controller: controller,
+                          ),
                           ThirdProductContainer(controller: controller),
                           ForthProductContainer(controller: controller),
-                          FifhProductScreen(controller: controller),],
+                          FifhProductScreen(controller: controller),
+                        ],
                       ),
                       isActive: controller.currentStep.value >= 0,
                       state: controller.currentStep.value >= 0
@@ -63,26 +67,24 @@ class WizardPage extends GetView<WizardController> {
                           : StepState.disabled,
                     ),
                     Step(
-
-                      title: new Text('Linke'),
+                      title:  const Text('Linke'),
                       content:FirstProductLinkeExpantionPanel(controller: controller,),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
-                    ),
+                    //   state: controller.currentStep.value >= 1
+                    //       ? StepState.complete
+                    //       : StepState.disabled,
+                     ),
                     Step(
 
-                      title: new Text('Attribute'),
+                      title:  const Text('Attribute'),
                       content:FirstProductAttributeContainer(controller: controller,),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
-
+                      // state: controller.currentStep.value >= 2
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                     ), //attripute
                     Step(
-                      title: new Text("Options"),
+                      title:  const Text("Options"),
                       content: Column(
                         children: <Widget>[
                           /*if(controller.selectedOption.value=='Date')
@@ -91,71 +93,93 @@ class WizardPage extends GetView<WizardController> {
                         ],
                       ),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
+                      // state: controller.currentStep.value >= 3
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                     ), // options
                     Step(
-                      title: new Text('الاشتراك'),
+                      title:  const Text('الاشتراك'),
                       content: FirstProductSubscribeContainer(controller: controller,),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
+                      // state: controller.currentStep.value >= 4
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                     ),// subscribe
                     Step(
-                      title: new Text('تخفيض'),
+                      title: const Text('تخفيض'),
                       content: DiscountContainer(controller: controller,),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
+                      state: controller.currentStep.value >= 5
                           ? StepState.complete
                           : StepState.disabled,
                     ),
                     Step(
-                      title: new Text('step7'),
+                      title:  const Text('step7'),
                       content: Column(
                         children: <Widget>[
                           TextFormField(
-                            decoration: InputDecoration(labelText: 'step7'),
+                            decoration: const InputDecoration(labelText: 'step7'),
                           ),
                         ],
                       ),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
+                      // state: controller.currentStep.value >= 6
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                     ),
                     Step(
-                      title: new Text('step8'),
+                      title:const Text('step8'),
                       content: Column(
                         children: <Widget>[
                           TextFormField(
-                            decoration: InputDecoration(labelText: 'step8'),
+                            decoration: const InputDecoration(labelText: 'step8'),
                           ),
                         ],
                       ),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
+                      // state: controller.currentStep.value >= 7
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                     ),
+
                   ],
                 ),
               ),
+
+              RaisedButton(
+                color: Colors.white,
+                textColor: Colors.white,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50.0),
+                ),
+                padding:
+                const  EdgeInsets.only(left: 40, top: 10, right: 40, bottom: 10),
+                child:const Text(
+                  "save",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black,
+                      fontFamily: 'FONTSrepo'),
+                ),
+
+                onPressed: () {
+                print(controller.categorieId.value);
+                print( controller.storesId.value);
+                print( controller.selectedrelatedProdOptions.value);
+                print( controller.manufacturersId.value);
+
+
+                 // print(controller.selectedAttribu.value!.attributeId);
+               //   controller.addNewProduct();
+                  },
+              ),
             ],
           ),
-
         ),
       ),
     );
   }
-
-/* switchStepsType() {
-    setState(() =>
-    stepperType == StepperType.vertical
-        ? stepperType = StepperType.horizontal
-        : stepperType = StepperType.vertical);
-  }
-*/
 
 }

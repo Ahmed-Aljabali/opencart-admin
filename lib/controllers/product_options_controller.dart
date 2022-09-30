@@ -4,7 +4,7 @@ import '../Interface/Iproduct_options.dart';
 class ProductOptionController extends BaseController implements IPorductOption {
   @override
   void onInit(){
-    error=List.empty();
+   // error=List.empty();
     super.onInit();
   }
   @override

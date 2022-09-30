@@ -26,7 +26,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
           child: IndexedStack(
             index: controller.tabIndex,
             children: [
-              // UserPage(),
+            //  UserPage(),
               ProductPage(),
               CustomerPage(),
               OrderPage(),
@@ -43,6 +43,13 @@ class _MyDashBoardState extends State<MyDashBoard> {
           curve: Curves.easeIn,
           onItemSelected: controller.changeTabIndex,
           items: <BottomNavyBarItem>[
+            // BottomNavyBarItem(
+            //   icon:const Icon(Icons.account_circle),
+            //   title:const Text('حسابي'),
+            //   activeColor: Colors.grey,
+            //   inactiveColor: _inactiveColor,
+            //   textAlign: TextAlign.center,
+            // ),
             BottomNavyBarItem(
               icon:const Icon(Icons.category_outlined),
               title:const Text('المنتجات'),
@@ -50,14 +57,6 @@ class _MyDashBoardState extends State<MyDashBoard> {
               inactiveColor: _inactiveColor,
               textAlign: TextAlign.center,
             ),
-           /* BottomNavyBarItem(
-              icon:const Icon(Icons.account_circle),
-              title:const Text('حسابي'),
-              activeColor: Colors.grey,
-              inactiveColor: _inactiveColor,
-              textAlign: TextAlign.center,
-            ),*/ // صفحة حسابي
-
             BottomNavyBarItem(
               icon:const Icon(Icons.people),
               title:const Text('ادارة العملاء'),

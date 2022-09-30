@@ -37,28 +37,28 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        textTheme:TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
+        textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
 
-      inputDecorationTheme: const InputDecorationTheme(
+        inputDecorationTheme: const InputDecorationTheme(
 
 
 
-        fillColor:Colors.transparent,
-        hintStyle: TextStyle(
-          color: Colors.grey,
+          fillColor:Colors.transparent,
+          hintStyle: TextStyle(
+            color: Colors.grey,
 
             fontSize: 16, fontFamily: 'Cairo Regular',
-        ),
+          ),
 
 
-      enabledBorder: OutlineInputBorder(
+          enabledBorder: OutlineInputBorder(
 
-    borderSide: BorderSide(width: 1, color: Colors.grey),
-    ),
-    focusedBorder: OutlineInputBorder(
-borderRadius:BorderRadius.all(Radius.circular(30.0)),
-    borderSide: BorderSide(width: 1, color: Colors.blue),
-    ),),
+            borderSide: BorderSide(width: 1, color: Colors.grey),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius:BorderRadius.all(Radius.circular(30.0)),
+            borderSide: BorderSide(width: 1, color: Colors.blue),
+          ),),
         primarySwatch: Colors.blue,
       ),
       initialRoute: "/Login",
@@ -74,8 +74,7 @@ borderRadius:BorderRadius.all(Radius.circular(30.0)),
         // page: () => AuthThreePage(),
         // ),
         GetPage(name: "/Login", page:()=>AuthThreePage(),binding: DashBoardBindings()),
-        GetPage(name: "/Order", page:()=>const Order()),
-      //  GetPage(name: "/Customer", page:()=>const OrderDetail()),
+        //  GetPage(name: "/Customer", page:()=>const OrderDetail()),
         GetPage(name: "/Customer", page:()=>CustomerPage()),
         GetPage(name: "/AddCustomer", page:()=>const AddCustomer()),
         GetPage(name: "/Product", page:()=>const Product()),
@@ -87,4 +86,3 @@ borderRadius:BorderRadius.all(Radius.circular(30.0)),
     );
   }
 }
-

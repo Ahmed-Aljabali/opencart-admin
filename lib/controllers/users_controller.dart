@@ -8,7 +8,7 @@ import '../model/user.dart';
 class UsersController extends BaseController{
  @override
 void  onInit() {
-   msg="sada";
+
     getToken();
   super.onInit();
 }
@@ -31,6 +31,7 @@ login(User user)async {
       var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
       var perf= await Utilities.prefs;
      perf.setString("token", decodedResponse["data"]["access_token"]);
+     print(decodedResponse["data"]["access_token"]);
     }
 
 

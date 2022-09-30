@@ -111,7 +111,7 @@ class DiscountContainer extends StatelessWidget {
                                           ),*/
                               ),
 
-                              DataCell(Text(  element.endDate.toString()   )),
+                              DataCell(Text( element.endDate.toString()   )),
                               DataCell(Text(  element.startDate.toString()  )),
                               DataCell(Text(  element.price.toString()  )),
                               DataCell(Text(  element.priority.toString()   )),

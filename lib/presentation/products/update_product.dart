@@ -45,8 +45,6 @@ class UpdateProductState extends State<UpdateProduct>{
                     productController.updateProductById(product,30);
                   }),
 
-              productController.error!.isEmpty==true?Text("تم الحفظ بنجاح "):
-              Text(productController.error.toString())
 
             ],)
 

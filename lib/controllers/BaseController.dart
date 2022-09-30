@@ -18,12 +18,12 @@ class BaseController extends GetxController{
     super.onInit();
   }
 
-    RxBool orderListTypeGrid = false.obs;
   var client = getIt.get<http.Client>();
   String msg=String.fromCharCodes([]);
   var isDataLoading=false.obs;
+  var erros=false.obs;
 
-  List<String>? error;
+  var  error = <String>[]; // Good
 
  Future<http.Response> get(String url) async{
     var perf= await Utilities.prefs;
@@ -37,6 +37,8 @@ class BaseController extends GetxController{
     {
       error=decodedResponse["error"].cast<String>();
       isDataLoading(true);
+      erros(true);
+      //error.refresh();
       update();
     }else if (response.statusCode==401)
     {
@@ -77,7 +79,8 @@ class BaseController extends GetxController{
     return response;
   }
 
-  Future<http.Response> delete(String url,String id) async{
+  Future<http.Response> delete(String url,int id) async{
+   isDataLoading(false);
     var perf= await Utilities.prefs;
     Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
     var response = await client.delete(
@@ -94,11 +97,7 @@ class BaseController extends GetxController{
     {
       Get.offAllNamed('/Login');
     }
-    else if (response.statusCode==200)
-    {
-      isDataLoading(true);
-      update();
-    }
+
     return response;
   }
 
@@ -132,13 +131,13 @@ class BaseController extends GetxController{
     return response;
   }
 
- Future<http.Response> post(Object user,String url)async {
+ Future<http.Response> post(Object object,String url)async {
    var perf= await Utilities.prefs;
     Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
     var response = await client.post(
         headers:Utilities.header,
         Uri.parse("${Utilities.baseURL}$url"),
-        body:jsonEncode(user)
+        body:jsonEncode(object)
     );
     var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
    if (response.statusCode==400)
@@ -150,12 +149,6 @@ class BaseController extends GetxController{
    else if (response.statusCode==401)
     {
       Get.offAllNamed('/Login');
-    }
-  else if (response.statusCode==200)
-    {
-      isDataLoading(true);
-      msg="successfully saved";
-      update();
     }
 
   return response;

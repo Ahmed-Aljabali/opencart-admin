@@ -1,4 +1,4 @@
-class   AttrModel {
+class AttrModel {
   var attrList;
   var attrSelected;
 

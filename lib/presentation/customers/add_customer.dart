@@ -43,8 +43,7 @@ class AddCustomerState extends State<AddCustomer>{
                     customerController.addNewCustomer(addCustomer);
                   }),
 
-              customerController.error!.isEmpty==true?Text("تم الحفظ بنجاح "):
-              Text(customerController.error.toString())
+
 
             ],)
 

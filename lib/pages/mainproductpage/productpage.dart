@@ -12,7 +12,12 @@ import '../wizard/wizard_page.dart';
 class ProductPage extends GetView<ProductController> {
   final myProducts = List<String>.generate(25, (i) => 'Product ${i+1}');
 
-
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    controller.fetchProduct();
+    return super.createElement();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -109,17 +114,16 @@ class ProductPage extends GetView<ProductController> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 20),
                     child: InkWell(
                         onTap: () {
-                         controller.listTypeGrid.value = true;
-                         print(controller.listTypeGrid.value);
+                          controller.listTypeGrid.value = true;
                         },
                         child: controller.listTypeGrid.value? Container(
                             decoration: BoxDecoration(
@@ -140,17 +144,16 @@ class ProductPage extends GetView<ProductController> {
                             margin: getMargin(all: 2),
                             child: const Icon(Icons.grid_view)):const Icon(Icons.grid_view) ),
                   ),
-                  SizedBox(
+                  const SizedBox(
 
                       width: 5
 
                   ),
                   Padding(
-                    padding: EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 5),
                     child: InkWell(
                         onTap: () {
                           controller.listTypeGrid.value = false;
-                          print(controller.listTypeGrid.value);
                         },
                         child:controller.listTypeGrid.value?const Icon(Icons.format_list_bulleted) :Container(
                             decoration: BoxDecoration(
@@ -175,7 +178,7 @@ class ProductPage extends GetView<ProductController> {
                     child: Container(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 25),
+                    padding: const EdgeInsets.only(right: 25),
                     child: TextButton(
                       onPressed: () {
                         Get.snackbar(
@@ -193,13 +196,14 @@ class ProductPage extends GetView<ProductController> {
                   )
                 ],
               ),
-              if (controller.data
-                  .isEmpty) const CircularProgressIndicator() else
-                controller.listTypeGrid.value ? NewGridtrashItemWidget(
-                    product: controller.data) : Expanded(
+              if (controller.isDataLoading.value==false)
+                const CircularProgressIndicator() else
 
-                      child: MyListViewContainer(),
-                    ),
+                controller.listTypeGrid.value ? NewGridtrashItemWidget(
+                    product: controller.dataProduct) : Expanded(
+
+                  child: MyListViewContainer(),
+                ),
 
 
             ],

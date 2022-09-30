@@ -38,12 +38,12 @@ class AddOrderState extends State<AddOrder>{
               FlatButton(
                   child:const Text("add Order"),
                   onPressed: (){
-                    var order = AddOrders();
+                    var paymentaddress=PaymentAddress(firstname: "Ahmed",lastname: "Aljabali",zone: "0");
+                    var customer =Customer(lastname: "Aljabali",firstname: "Ahmed",customerId: 5,telephone: "776816212");
+                    var order = AddOrders(paymentAddress: paymentaddress,customer:customer );
                     orderController.addOrder(order);
                   }),
 
-              orderController.error!.isEmpty==true?Text("تم الحفظ بنجاح "):
-              Text(orderController.error.toString())
 
             ],)
 
@@ -53,9 +53,4 @@ class AddOrderState extends State<AddOrder>{
   }
 
 
-}
-Widget cancelBtn() {
-  return ElevatedButton(onPressed: () {
-    Get.back();
-  }, child: Text("Cancel"));
 }

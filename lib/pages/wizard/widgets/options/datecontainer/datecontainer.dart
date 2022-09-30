@@ -46,17 +46,22 @@ class DateContainer extends StatelessWidget {
                 canTapOnHeader: true,
                 headerBuilder: ((context, isExpanded) {
                   return ListTile(
-                    leading: InkWell(child: Icon(Icons.remove), onTap: (){controller.removeOptWidget(controller.currentOptionDateIndex);},),
+                    leading: InkWell(child: const Icon(Icons.remove),
+                      onTap: ()
+                      {
+                        controller.removeOptWidget(controller.currentOptionDateIndex);
+                        },
+                    ),
 
                       title: Text(
                         item.header!,
-                        style: TextStyle(fontSize: 20,),
+                        style: const TextStyle(fontSize: 20,),
                         textAlign: TextAlign.center,
                       ));
                 }),
                 body: Container(
 
-                  margin: EdgeInsets.only(bottom: 10, left: 5),
+                  margin: const EdgeInsets.only(bottom: 10, left: 5),
 
 
                   child: Column(
@@ -88,18 +93,18 @@ class DateContainer extends StatelessWidget {
 
                           Expanded(
                               child:DateRequiredOptionPicker( controller: controller)),
-                          SizedBox(width: 2,),
+                          const SizedBox(width: 2,),
                           Container(
-                            padding: EdgeInsets.only(right:5,),
+                            padding: const EdgeInsets.only(right:5,),
 
 
-                            child:Text('مطلوب',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
+                            child:const Text('مطلوب',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
                           ),
 
 
                         ],
                       ),
-                      SizedBox(height: 5,),
+                      const SizedBox(height: 5,),
                        Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -136,28 +141,28 @@ class DateContainer extends StatelessWidget {
                                 decoration: InputDecoration(
                                   fillColor:Colors.white60, //background color of dropdown button
 
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.date_range_rounded,
                                     color: Colors.blueAccent,
                                   ),
                                   hintText: DateFormat("dd-MM-yyyy")
                                       .format(controller.selectedOptionDate.value)
                                       .toString(),
-                                  hintStyle: TextStyle(
+                                  hintStyle: const TextStyle(
                                     fontSize: 19,
                                   ),
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                       vertical: 10.0, horizontal: 40.0),
-                                  border: OutlineInputBorder(
+                                  border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(5)),
                                   ),
-                                  enabledBorder: OutlineInputBorder(
+                                  enabledBorder: const OutlineInputBorder(
                                     borderSide:
                                     BorderSide(color: Colors.grey, width: 0.5),
                                     borderRadius:
                                     BorderRadius.all(Radius.circular(5.0)),
                                   ),
-                                  focusedBorder: OutlineInputBorder(
+                                  focusedBorder: const OutlineInputBorder(
                                     borderSide:
                                     BorderSide(color: Colors.grey, width: 2.0),
                                     borderRadius:
@@ -165,12 +170,12 @@ class DateContainer extends StatelessWidget {
                                   ),
                                 ),
                               ),),
-                          SizedBox(width: 2,),
+                          const SizedBox(width: 2,),
                           Container(
-                            padding: EdgeInsets.only(right:5,),
+                            padding: const EdgeInsets.only(right:5,),
 
 
-                            child:Text('حدد التاريخ',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
+                            child:const Text('حدد التاريخ',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
                           ),
 
 

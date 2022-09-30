@@ -8,17 +8,14 @@ import '../model/orders/order.dart';
 class OrderController extends BaseController implements IOrder {
 
   dynamic _trx;
-  Orders get trx => _trx;
-  @override
-  void onInit(){
-    error=List.empty();
-    super.onInit();
-  }
+  List<Orders> get data => _trx;
+  RxBool orderListTypeGrid = false.obs;
+
   @override
   fetchOrder() async {
     var res = await get("orders");
     if (res.statusCode == 200) {
-      _trx = Orders.fromJson(jsonDecode(res.body));
+      _trx = OrdersData.fromJson(jsonDecode(res.body)).data;
     }
   }
 
@@ -33,19 +30,33 @@ class OrderController extends BaseController implements IOrder {
 
   @override
   fetchOrderDetail(String id) async {
+
     var res = await getById("orders", id);
     if (res.statusCode == 200) {
       Get.toNamed('/OrderDetails');
       msg = jsonDecode(res.body);
     }
   }
+  @override
+  deleteOrder(int id) async {
+  //  isDataLoading(false);
+    var res = await delete("orders", id);
 
+    if (res.statusCode == 200) {
+      msg ="تم الحذف بنجاح";
+      fetchOrder();
+      update();
 
+    }
+  }
 
   @override
   addOrder(AddOrders addOrder)async {
+    isDataLoading(false);
     var res = await post(addOrder,"orderadmin");
     if (res.statusCode== 200) {
+      fetchOrder();
+      update();
       msg="تم الحفط بنجاح";
     }
   }

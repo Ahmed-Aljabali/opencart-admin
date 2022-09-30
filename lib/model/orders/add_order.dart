@@ -5,7 +5,7 @@ class AddOrders {
   String? tracking;
   String? voucher;
   String? coupon;
-  List<Products>? products;
+  List<ProductsOrder>? products;
   ShippingMethod? shippingMethod;
   ShippingMethod? paymentMethod;
   PaymentAddress? paymentAddress;
@@ -34,78 +34,78 @@ class AddOrders {
     voucher = json['voucher'];
     coupon = json['coupon'];
     if (json['products'] != null) {
-      products = <Products>[];
-      json['products'].forEach((v) {
-        products!.add(new Products.fromJson(v));
+      products = <ProductsOrder>[];
+      json['product'].forEach((v) {
+        products!.add( ProductsOrder.fromJson(v));
       });
     }
     shippingMethod = json['shipping_method'] != null
-        ? new ShippingMethod.fromJson(json['shipping_method'])
+        ?  ShippingMethod.fromJson(json['shipping_method'])
         : null;
     paymentMethod = json['payment_method'] != null
-        ? new ShippingMethod.fromJson(json['payment_method'])
+        ?  ShippingMethod.fromJson(json['payment_method'])
         : null;
     paymentAddress = json['payment_address'] != null
-        ? new PaymentAddress.fromJson(json['payment_address'])
+        ?  PaymentAddress.fromJson(json['payment_address'])
         : null;
     shippingAddress = json['shipping_address'] != null
-        ? new PaymentAddress.fromJson(json['shipping_address'])
+        ?  PaymentAddress.fromJson(json['shipping_address'])
         : null;
     customer = json['customer'] != null
-        ? new Customer.fromJson(json['customer'])
+        ?  Customer.fromJson(json['customer'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['store_id'] = this.storeId;
-    data['comment'] = this.comment;
-    data['affiliate_id'] = this.affiliateId;
-    data['tracking'] = this.tracking;
-    data['voucher'] = this.voucher;
-    data['coupon'] = this.coupon;
-    if (this.products != null) {
-      data['products'] = this.products!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['store_id'] = storeId;
+    data['comment'] = comment;
+    data['affiliate_id'] = affiliateId;
+    data['tracking'] = tracking;
+    data['voucher'] = voucher;
+    data['coupon'] = coupon;
+    if (products != null) {
+      data['products'] = products!.map((v) => v.toJson()).toList();
     }
-    if (this.shippingMethod != null) {
-      data['shipping_method'] = this.shippingMethod!.toJson();
+    if (shippingMethod != null) {
+      data['shipping_method'] = shippingMethod!.toJson();
     }
-    if (this.paymentMethod != null) {
-      data['payment_method'] = this.paymentMethod!.toJson();
+    if (paymentMethod != null) {
+      data['payment_method'] = paymentMethod!.toJson();
     }
-    if (this.paymentAddress != null) {
-      data['payment_address'] = this.paymentAddress!.toJson();
+    if (paymentAddress != null) {
+      data['payment_address'] = paymentAddress!.toJson();
     }
-    if (this.shippingAddress != null) {
-      data['shipping_address'] = this.shippingAddress!.toJson();
+    if (shippingAddress != null) {
+      data['shipping_address'] = shippingAddress!.toJson();
     }
-    if (this.customer != null) {
-      data['customer'] = this.customer!.toJson();
+    if (customer != null) {
+      data['customer'] = customer!.toJson();
     }
     return data;
   }
 }
 
-class Products {
+class ProductsOrder {
   int? productId;
   int? quantity;
   Option? option;
 
-  Products({this.productId, this.quantity, this.option});
+  ProductsOrder({this.productId, this.quantity, this.option});
 
-  Products.fromJson(Map<String, dynamic> json) {
+  ProductsOrder.fromJson(Map<String, dynamic> json) {
     productId = json['product_id'];
     quantity = json['quantity'];
     option =
-    json['option'] != null ? new Option.fromJson(json['option']) : null;
+    json['option'] != null ?  Option.fromJson(json['option']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product_id'] = this.productId;
-    data['quantity'] = this.quantity;
-    if (this.option != null) {
-      data['option'] = this.option!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['product_id'] = productId;
+    data['quantity'] = quantity;
+    if (option != null) {
+      data['option'] = option!.toJson();
     }
     return data;
   }
@@ -121,8 +121,8 @@ class Option {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['227'] = this.i227;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['227'] = i227;
     return data;
   }
 }
@@ -139,9 +139,9 @@ class ShippingMethod {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['title'] = this.title;
-    data['code'] = this.code;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['title'] = title;
+    data['code'] = code;
     return data;
   }
 }
@@ -184,17 +184,17 @@ class PaymentAddress {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['firstname'] = this.firstname;
-    data['lastname'] = this.lastname;
-    data['city'] = this.city;
-    data['address_1'] = this.address1;
-    data['country_id'] = this.countryId;
-    data['postcode'] = this.postcode;
-    data['zone_id'] = this.zoneId;
-    data['zone'] = this.zone;
-    data['address_2'] = this.address2;
-    data['country'] = this.country;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['firstname'] = firstname;
+    data['lastname'] = lastname;
+    data['city'] = city;
+    data['address_1'] =address1;
+    data['country_id'] = countryId;
+    data['postcode'] = postcode;
+    data['zone_id'] = zoneId;
+    data['zone'] = zone;
+    data['address_2'] = address2;
+    data['country'] = country;
     return data;
   }
 }
@@ -228,14 +228,14 @@ class Customer {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['firstname'] = firstname;
     data['lastname'] = lastname;
     data['email'] = email;
     data['telephone'] = telephone;
-    data['fax'] = this.fax;
-    data['customer_id'] = this.customerId;
-    data['customer_group_id'] = this.customerGroupId;
+    data['fax'] = fax;
+    data['customer_id'] = customerId;
+    data['customer_group_id'] = customerGroupId;
     return data;
   }
 }

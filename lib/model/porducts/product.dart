@@ -188,7 +188,7 @@ class Products{
       data['product_description'] =
           productDescription!.map((v) => v.toJson()).toList();
     }
-    data['product_category'] = this.productCategory;
+    data['product_category'] = productCategory;
     if (productSpecial != null) {
       data['product_special'] =
           productSpecial!.map((v) => v.toJson()).toList();
@@ -238,14 +238,14 @@ class ProductDescription {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['language_id'] = this.languageId;
-    data['name'] = this.name;
-    data['description'] = this.description;
-    data['meta_title'] = this.metaTitle;
-    data['meta_description'] = this.metaDescription;
-    data['meta_keyword'] = this.metaKeyword;
-    data['tag'] = this.tag;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['language_id'] = languageId;
+    data['name'] = name;
+    data['description'] = description;
+    data['meta_title'] = metaTitle;
+    data['meta_description'] = metaDescription;
+    data['meta_keyword'] = metaKeyword;
+    data['tag'] = tag;
     return data;
   }
 }
@@ -273,12 +273,12 @@ class ProductSpecial {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['customer_group_id'] = this.customerGroupId;
-    data['price'] = this.price;
-    data['priority'] = this.priority;
-    data['date_start'] = this.dateStart;
-    data['date_end'] = this.dateEnd;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['customer_group_id'] = customerGroupId;
+    data['price'] = price;
+    data['priority'] = priority;
+    data['date_start'] = dateStart;
+    data['date_end'] = dateEnd;
     return data;
   }
 }
@@ -312,14 +312,14 @@ class ProductDiscount {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['customer_group_id'] = this.customerGroupId;
-    data['price'] = this.price;
-    data['priority'] = this.priority;
-    data['quantity'] = this.quantity;
-    data['date_start'] = this.dateStart;
-    data['date_end'] = this.dateEnd;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['customer_group_id'] = customerGroupId;
+    data['price'] = price;
+    data['priority'] = priority;
+    data['quantity'] = quantity;
+    data['date_start'] = dateStart;
+    data['date_end'] = dateEnd;
     return data;
   }
 }
@@ -336,17 +336,17 @@ class ProductAttribute {
       productAttributeDescription = <ProductAttributeDescription>[];
       json['product_attribute_description'].forEach((v) {
         productAttributeDescription!
-            .add(new ProductAttributeDescription.fromJson(v));
+            .add(ProductAttributeDescription.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['attribute_id'] = this.attributeId;
-    if (this.productAttributeDescription != null) {
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['attribute_id'] = attributeId;
+    if (productAttributeDescription != null) {
       data['product_attribute_description'] =
-          this.productAttributeDescription!.map((v) => v.toJson()).toList();
+          productAttributeDescription!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -364,9 +364,9 @@ class ProductAttributeDescription {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['text'] = this.text;
-    data['language_id'] = this.languageId;
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['text'] = text;
+    data['language_id'] = languageId;
     return data;
   }
 }
@@ -375,7 +375,7 @@ class ProductOption {
  dynamic type;
  dynamic optionId;
  dynamic required;
-  List<ProductOptionValue>? productOptionValue;
+ List<ProductOptionValue>? productOptionValue;
 
   ProductOption(
       {this.type, this.optionId, this.required, this.productOptionValue});
@@ -393,7 +393,7 @@ class ProductOption {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['type'] = type;
     data['option_id'] = optionId;
     data['required'] = required;
@@ -440,7 +440,7 @@ class ProductOptionValue {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  Map<String, dynamic>();
+    final Map<String, dynamic> data =  <String, dynamic>{};
     data['price'] = price;
     data['price_prefix'] = pricePrefix;
     data['subtract'] = subtract;
@@ -455,15 +455,25 @@ class ProductOptionValue {
 }
 
 
-class Product {
+class ProductData {
   var data = <Products>[];
 
-  Product.fromJson(Map<String, dynamic> json) {
-
-    (json['data'] as List).forEach((e) => data.add(Products.fromJson(e)));
-    print(data.length);
+  ProductData.fromJson(Map<String, dynamic> json) {
+    for (var e in (json['data'] as List)) {
+      data.add(Products.fromJson(e));
+    }
   }
+}
 
+class ProductOptionData {
+  var data = <ProductOption>[];
 
+  ProductOptionData.fromJson(Map<String, dynamic> json) {
+
+    for (var e in (json['data'] as List)) {
+      data.add(ProductOption.fromJson(e));
+
+    }
+  }
 
 }

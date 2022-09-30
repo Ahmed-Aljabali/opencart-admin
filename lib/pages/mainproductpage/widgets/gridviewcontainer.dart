@@ -416,17 +416,17 @@ class NewGridtrashItemWidget extends StatelessWidget {
       child: GridView.builder(
 
 
-        physics: ScrollPhysics(),
+        physics: const ScrollPhysics(),
 
         itemCount:product.length,
 
         itemBuilder: (context,index) {
           return Container(
-            constraints:  BoxConstraints(minHeight: 200,maxHeight: 200),
+            constraints:  const BoxConstraints(minHeight: 200,maxHeight: 200),
             padding:getPadding(bottom: 1, top: 10,right: 1),
 
             child: Container(
-              constraints:  BoxConstraints(minHeight: 200,maxHeight: 200),
+              constraints:  const BoxConstraints(minHeight: 200,maxHeight: 200),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(
@@ -539,7 +539,7 @@ class NewGridtrashItemWidget extends StatelessWidget {
                                   product[index].price.toString(),
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontSize:
                                     9,
@@ -633,7 +633,7 @@ class NewGridtrashItemWidget extends StatelessWidget {
                                 right: 5,
                                 bottom: 5,
                               ),
-                              child: Container(
+                              child: SizedBox(
                                 child: InkWell(
                                   onTap: () {
                                     Get.snackbar(
@@ -663,7 +663,7 @@ class NewGridtrashItemWidget extends StatelessWidget {
                                 right: 5,
                                 bottom: 5,
                               ),
-                              child: Container(
+                              child: SizedBox(
                                 child: InkWell(
                                   onTap: () {
                                     Get.snackbar(

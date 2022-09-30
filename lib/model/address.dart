@@ -33,7 +33,7 @@ class Address extends BaseAddress {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['address_id'] = addressid;
     data['customer_id'] = customerid;
     data['firstname'] = firstname;

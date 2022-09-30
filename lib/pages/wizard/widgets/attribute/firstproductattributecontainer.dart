@@ -15,7 +15,6 @@ import '../../../../model/ProductData.dart';
 
 
 
-
 class FirstProductAttributeContainer extends StatelessWidget {
    FirstProductAttributeContainer({
     Key? key,
@@ -41,7 +40,7 @@ class FirstProductAttributeContainer extends StatelessWidget {
                   return ListTile(
                       title: Text(
                         item.header!,
-                        style: const TextStyle(fontSize: 20,),
+                        style: TextStyle(fontSize: 20,),
                         textAlign: TextAlign.center,
                       ));
                 }),
@@ -49,8 +48,8 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                   child: Container(
 
-                    padding: const EdgeInsets.only(top: 5,bottom: 5),
-                    margin: const EdgeInsets.only(bottom: 10, left: 5),
+                    padding: EdgeInsets.only(top: 5,bottom: 5),
+                    margin: EdgeInsets.only(bottom: 10, left: 5),
                     width:  MediaQuery.of(context).size.width,
                     child: Column(
 
@@ -70,44 +69,19 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                     return Container(
 
-                                      padding: const EdgeInsets.only(top: 1,bottom: 1),
+                                      padding: EdgeInsets.only(top: 1,bottom: 1),
                                       child: Row(
 
                                         children: [
                                           Expanded(
-                                            child:
-                                            MyTryTextFieldWidget(
-                                              controller:  controller.myController,
-                                              onFieldSubmitted: (value)
-                                              {
-                                                print(value);
-
-                                                controller.myController.text = value;
-index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
-
-                                                print(controller.testofatrr[index]);
-
-                                              },
-
-                                              hintText: 'add',
-                                                keyboardType: TextInputType.text
-
-                                            ),
-                                            /* MyTextFieldWidget(
+                                            child: MyTextFieldWidget(
 
 
-
-                                              onChanged: (value)
-                                              {
-
-                                                myController.text = value;
-
-                                                controller.testofatrr.add(myController.text);
-                                              print(controller.testofatrr[index]);
-                                              },
+                                              onChanged: (value) {controller.testofatrr.add(value);
+                                              print(controller.testofatrr[index]);},
                                               hintText: ' $index إضافة',
 
-                                            ),*/
+                                            ),
                                           ),
 
                                           Container(
@@ -117,7 +91,7 @@ index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
                                             child: Container(
 
 
-                                              padding: const EdgeInsets.only(left: 1,right: 1),
+                                              padding: EdgeInsets.only(left: 1,right: 1),
                                               child: DecoratedBox(
                                                   decoration: BoxDecoration(
 
@@ -125,8 +99,8 @@ index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
                                                       border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
                                                       borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
                                                       boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
-                                                        const BoxShadow(
-                                                            color: const Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                                        BoxShadow(
+                                                            color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
                                                             blurRadius: 3) //blur radius of shadow
                                                       ]
                                                   ),
@@ -136,7 +110,7 @@ index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
 
                                                     child: Center(
                                                       child: DropdownButton<String>(
-                                                        hint:  const Text("الميزة"),
+                                                        hint:  Text("الميزة"),
                                                         value: controller.attrWidgetList[index].attrSelected,
                                                         onChanged:(v) {
                                                           controller.attrWidgetList[index].attrSelected = v!;},
@@ -158,26 +132,22 @@ index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
 
                                             elevation: 1.0,
 
-                                            shape: const CircleBorder(),
+                                            shape: CircleBorder(),
                                             fillColor: Colors.blueAccent,
                                             onPressed: (){
                                               String s = "$index ";
                                               print(s);
-                                              print(s);
-                                              print(controller.testofatrr);
-                                              /*controller.testofatrr.removeAt(index);*/
-                                              index==0?controller.removeAttribWidget(index+1):controller.removeAttribWidget(index);
-
+                                              controller.removeAttribWidget(index);
                                               String s2 = "$index ";
                                               print(s2);
 
                                               },
-                                            child: const Icon(
+                                            child: Icon(
                                               Icons.close,
                                               color: Colors.white,
                                               size: 20.0,
                                             ),
-                                            constraints: const BoxConstraints.tightFor(
+                                            constraints: BoxConstraints.tightFor(
                                               width: 30.0,
                                               height: 30.0,
                                             ),
@@ -194,18 +164,18 @@ index== 0?controller.itemcountbool= true: controller.itemcountbool= false;
                         Container(
                           width: MediaQuery.of(context).size.width,
                           child: MaterialButton(
-child: const Icon(Icons.add,color: Colors.white,size: 35,),
+child: Icon(Icons.add,color: Colors.white,size: 35,),
                             color: Colors.blueAccent,
                             textColor: Colors.blueAccent,
                             onPressed: () {
- /* print(controller.testofatrr);*/controller.countingthindex();
-                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.index==0?null:controller.myController.text);
-                              print(' + ${controller.index}');
-print(controller.testofatrr);
+  print(controller.testofatrr);
+
+                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"));
+
+
                             },
                           ),
                         ),
-
                       ],
                     ),
                   ),
