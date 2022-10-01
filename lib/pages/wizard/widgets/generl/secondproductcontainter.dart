@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
-
-import '../../../../controllers/productpagecontroller.dart';
 import '../../../../model/ProductData.dart';
 
 class SecondProductContainer extends StatelessWidget {

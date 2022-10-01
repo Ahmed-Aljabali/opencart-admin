@@ -1,22 +1,14 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/controllers/porducts_controller.dart';
-import 'package:opencart/controllers/wizard_controller.dart';
-import 'package:opencart/model/porducts/product.dart';
 import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
 
 import '../../Controllers/order_controller.dart';
 import '../../core/utils/math_utils.dart';
 import '../../model/orders/add_order.dart';
-import '../loginpage/loginpage.dart';
-import '../mainproductpage/widgets/gridviewcontainer.dart';
-import '../mainproductpage/widgets/listviewbuilder.dart';
-import '../wizard/wizard_page.dart';
 
 class OrderPage extends GetView<OrderController> {
 
@@ -33,6 +25,7 @@ var productController =Get.put(ProductController());
 
     return super.createElement();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -236,9 +229,13 @@ var productController =Get.put(ProductController());
                   //       product: productController.dataProduct)
                   //       :
                   if (controller.isDataLoading.value==false)
-                    const CircularProgressIndicator() else
-                     Expanded(
-                      child: MyOrderListViewContainer(order: controller.data),
+                    const CircularProgressIndicator()
+                  else
+
+                    if (controller.listFilter.obs.value==null)
+                     Expanded(child: MyOrderListViewContainer(order: controller.data))
+                     else
+                     Expanded(child: MyOrderListViewContainer(order: controller.listFilter!),
                     ),
 
 
@@ -293,11 +290,9 @@ var productController =Get.put(ProductController());
                           indent: 20,
                           endIndent: 15,
                         ),
-                        AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 300),
-                          child:
-
-                          OrderSearchForm(),
+                        const AnimatedSwitcher(
+                          duration: Duration(milliseconds: 300),
+                          child: OrderSearchForm(),
 
                         ),
                         Container(
@@ -332,8 +327,9 @@ var productController =Get.put(ProductController());
                                   height: 60,
                                   color: Colors.green,
                                   onPressed: () {
+                                   controller.filterOrderList();
 
-                                    controller.searchFormVisible.value = false;
+                                   controller.searchFormVisible.value = false;
                                   })
                             ],
                           ),
@@ -358,27 +354,27 @@ var productController =Get.put(ProductController());
             backgroundColor: Colors.green,
             onPressed: () {
               //Todo this code for add new order
-          //     var paymentaddress=PaymentAddress(firstname: "Ahmed",lastname: "Aljabali",zone: "0");
-          //     var method=ShippingMethod(code: "flat.flat",title: "test");
-          //     var customer =Customer(email: "ahmed@gmail.com",lastname: "Aljabali",firstname: "Ahmed",customerId: 1,telephone: "776816212",customerGroupId: 1);
-          //     List<ProductsOrder>? products=[];
-          //     products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
-          //   var shippingmethod=ShippingMethod(title: "tesr",code: "flat.flat");
-          // //  var shippingaddress=PaymentAddress();
-          //     var order = AddOrders(
-          //         affiliateId: "",
-          //         comment: "",
-          //         storeId: 0,
-          //         coupon: "111",
-          //         tracking: "",
-          //         voucher: "demo-0000",
-          //         shippingAddress:paymentaddress ,
-          //         shippingMethod: shippingmethod ,
-          //         paymentAddress: paymentaddress,
-          //         customer:customer,
-          //         paymentMethod: method,
-          //         products:products  );
-          //     controller.addOrder(order);
+              var paymentaddress=PaymentAddress(firstname: "ALi",lastname: "Mohammaed",zone: "0");
+              var method=ShippingMethod(code: "flat.flat",title: "test");
+              var customer =Customer(email: "ahmed@gmail.com",lastname: "Mohammaed",firstname: "ALi",customerId: 1,telephone: "776816212",customerGroupId: 1);
+              List<ProductsOrder>? products=[];
+              products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
+            var shippingmethod=ShippingMethod(title: "tesr",code: "flat.flat");
+          //  var shippingaddress=PaymentAddress();
+              var order = AddOrders(
+                  affiliateId: "",
+                  comment: "",
+                  storeId: 0,
+                  coupon: "111",
+                  tracking: "",
+                  voucher: "demo-0000",
+                  shippingAddress:paymentaddress ,
+                  shippingMethod: shippingmethod ,
+                  paymentAddress: paymentaddress,
+                  customer:customer,
+                  paymentMethod: method,
+                  products:products  );
+              controller.addOrder(order);
               Get.snackbar(
                 "Icon Action",
                 "Search button was clicked",

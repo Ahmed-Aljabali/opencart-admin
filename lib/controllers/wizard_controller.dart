@@ -30,7 +30,6 @@ class WizardController extends ProductController {
   var  currentOptionTimeDateIndex ;
   var currentOptioncheckIndex ;
 
-  List<String> relatedProdOptionsList = ["الكيمرات", "الساعات", "العطور", "المنتجات"];
   var selectedrelatedProdOptions = Rxn<String>();
   List<String> compOptionsList = ["apple", "HTC", "Samsung", "Fox"];
   // RxString selectedcompOptions= 'apple'.obs;

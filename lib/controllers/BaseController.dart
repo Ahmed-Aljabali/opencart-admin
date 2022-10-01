@@ -2,15 +2,16 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import '../hepler/Base.dart';
+import '../core/utils/utilities.dart';
 import '../main.dart';
 
 class BaseController extends GetxController{
   late RxBool searchFormVisible;
   late RxBool formVisible;
   RxInt formsIndex = 1.obs;
-
   @override
+
+@override
   void onInit() {
     searchFormVisible =false.obs;
     formVisible = false.obs;
@@ -53,7 +54,7 @@ class BaseController extends GetxController{
   }
 
 
- Future<http.Response>   Update(String url,String id,Object object) async{
+ Future<http.Response>   Update(String url,int id,Object object) async{
     var perf= await Utilities.prefs;
     Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
     var response = await client.put(
@@ -70,11 +71,6 @@ class BaseController extends GetxController{
     }else if (response.statusCode==401)
     {
       Get.offAllNamed('/Login');
-    }
-    else if (response.statusCode==200)
-    {
-      isDataLoading(true);
-      update();
     }
     return response;
   }

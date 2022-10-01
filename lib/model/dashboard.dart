@@ -11,6 +11,8 @@ import '../pages/orders/orders_page.dart';
 import '../pages/users/user_page.dart';
 
 class MyDashBoard extends StatefulWidget {
+  const MyDashBoard({Key? key}) : super(key: key);
+
   @override
   _MyDashBoardState createState() => _MyDashBoardState();
 }

@@ -8,11 +8,10 @@ import '../../../core/constrants/widgetconstrant.dart';
 import '../../../model/checkbox_data.dart';
 
 class OrderSearchForm extends GetView<OrderController> {
-
+  const OrderSearchForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
   return Column(
 
     children: <Widget>[
@@ -54,11 +53,7 @@ class OrderSearchForm extends GetView<OrderController> {
             Expanded(
                 child: MyTextFieldWidget(
                   hintText: 'الحالة',
-
                   onChanged: (value) {
-
-
-
 
                   },
                 )),

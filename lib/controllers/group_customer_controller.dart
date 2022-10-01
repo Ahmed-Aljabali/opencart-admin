@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:opencart/controllers/BaseController.dart';
-import 'package:opencart/model/cutomers/customer.dart';
 import 'package:opencart/model/cutomers/group_customer.dart';
 import '../Interface/Igroup_customer.dart';
 
