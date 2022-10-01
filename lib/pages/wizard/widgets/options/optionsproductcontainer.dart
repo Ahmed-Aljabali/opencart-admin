@@ -119,7 +119,7 @@ class OptionsProductContainer extends StatelessWidget {
                                               var data = snapshot.data!.obs.value;
                                               return DropdownButton<ProductOption>(
                                                 hint:  const Text("Add An  Option"),
-                                              value:controller.selectedOption.value,
+                                                value:controller.selectedOption.value,
                                               icon: const Icon(Icons.keyboard_arrow_down),
                                                 items:data.
                                                 map<DropdownMenuItem<ProductOption>>((ProductOption value) {

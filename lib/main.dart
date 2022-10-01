@@ -16,7 +16,6 @@ import 'package:opencart/presentation/products/add_prodcts.dart';
 import 'package:opencart/presentation/products/product.dart';
 import 'package:opencart/presentation/products/update_product.dart';
 import 'model/dashboard.dart';
-import 'pages/orders/widgets/orderslistviewcontainer.dart';
 
 
 final  getIt =GetIt.instance;
@@ -41,6 +40,9 @@ class MyApp extends StatelessWidget {
         textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
 
         inputDecorationTheme: const InputDecorationTheme(
+          contentPadding: const EdgeInsets.symmetric(
+              vertical: 10.0, horizontal: 40.0),
+
 
           fillColor:Colors.transparent,
           hintStyle: TextStyle(
@@ -65,10 +67,15 @@ class MyApp extends StatelessWidget {
 
         GetPage(
           name: "/",
-          page: () => const MyDashBoard(),
+          page: () => MyDashBoard(),
           binding: DashBoardBindings(),
         ),
+        // GetPage(
+        // name: "/login",
+        // page: () => AuthThreePage(),
+        // ),
         GetPage(name: "/Login", page:()=>AuthThreePage(),binding: DashBoardBindings()),
+        //  GetPage(name: "/Customer", page:()=>const OrderDetail()),
         GetPage(name: "/Customer", page:()=>CustomerPage()),
         GetPage(name: "/AddCustomer", page:()=>const AddCustomer()),
         GetPage(name: "/Product", page:()=>const Product()),

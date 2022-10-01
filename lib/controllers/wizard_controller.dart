@@ -3,37 +3,44 @@ import 'package:get/get.dart';
 import 'package:opencart/controllers/porducts_controller.dart';
 import 'package:opencart/model/attr_model.dart';
 import 'package:opencart/model/option_model.dart';
-import 'package:opencart/model/porducts/attribute.dart';
-import 'package:opencart/model/porducts/stores.dart';
 import 'package:opencart/model/sub_model.dart';
 import '../model/ProductData.dart';
 import '../model/checkbox_data.dart';
 import '../model/discount.dart';
 import '../model/porducts/category.dart';
-import '../model/porducts/manufacturers.dart';
 import '../model/porducts/product.dart';
-import '../model/porducts/product.dart';
+import '../model/porducts/stores.dart';
 
 class WizardController extends ProductController {
   var selectedTime = TimeOfDay.now().obs;
-  var prod =Products();
   var  productDescription= ProductDescription();
-  List<ProductOptionValue>  productOptionValue= [];
+  var prod =Products();
+  var selectedOption= Rxn<ProductOption>();
+  var selectedCategories= Rxn<Categories>();
+  var selectedStores= Rxn<Stores>();
 
+  List<ProductOptionValue>  productOptionValue= [];
   var selectedDate = DateTime.now().obs;
   var selectedOptionDate = DateTime.now().obs;
   var selectedDeliveryOptionDate = DateTime.now().obs;
-  var selectedOptionTimeDate =   DateTime.now().obs;
+  var selectedOptionTimeDate =  new DateTime.now().obs;
   var selectedCompany = ''.obs;
-  dynamic  currentOptionDateIndex ;
-  dynamic currentDeliveryDateIndex;
-  dynamic  currentOptionTimeDateIndex ;
-  dynamic currentOptionCheckIndex ;
+ var  currentOptionDateIndex ;
+ var currentDeliveryDateIndex;
+  var  currentOptionTimeDateIndex ;
+  var currentOptioncheckIndex ;
 
   var selectedrelatedProdOptions = Rxn<String>();
-  List<ProductOption>  optionsproductlist1= [];
+  List<String> compOptionsList = ["apple", "HTC", "Samsung", "Fox"];
+  // RxString selectedcompOptions= 'apple'.obs;
+  var selectedcompOptions = Rxn<String>();
   List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+/*  RxString selectedtaxCategOptions= 'فئة2'.obs;*/
   var selectedtaxCategOptions = Rxn<String>();
+  List<String> compCategOptionsList = ["الكيمرات", "الساعات", "العطور", "المنتجات"];
+  var selectedcompCategOptions = Rxn<String>();
+  List<String> marketsOptionsList = ["متجر1", "متجر2", "متجر3", "متجر4"];
+  var selectedmarketsOptions = Rxn<String>();
   List<String> statuesOptionsList = ["حالة1", "حالة2", "حالة3",];
   var selectedstatuesOptions = Rxn<String>();
   List<String> orderOptionsList = ["امر1", "امر2", "امر3",];
@@ -45,8 +52,10 @@ class WizardController extends ProductController {
   List<String> unintOptionsList = ["وحدة1", "وحدة2", "وحدة3",];
   var selectedunintOptions = Rxn<String>();
   List<String> featureOptionsList = ["ميزة1", "ميزة2", "ميزة3",];
+  var storesId= Rxn<int>();
+  var categorieId= Rxn<int>();
 
-
+  List<String> optionsproductlist = ["Checkbox", "Date", "Date & Time" ,"Delivery Date","File"];
   List<String> optioncheckchoose = ["small", "medium", "large",];
   List<String> DiscountChooseOptionList = ["default"];
 
@@ -60,11 +69,10 @@ class WizardController extends ProductController {
   List<String> optionsproductdeliverydatelist = ["yes", "no"];
   List<String> subscrOptionsList = ["خطة1", "خطة2", "خطة3",];
 
-  var textTest=RxnString();
   var selectedsubscrOptions = Rxn<String>();
   List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
-  List<String> testofatrr = ["مجموعة1", "مجموعة2", "مجموعة3",];
-
+  List<String> testofatrr = [];
+  TextEditingController myController =TextEditingController() ;
   var selectedcustmGroupOptions = Rxn<String>();
 
 
@@ -72,32 +80,9 @@ class WizardController extends ProductController {
   RxList<OptModel> optWidgetList = RxList  <OptModel>([]);
 
   RxList<SubModel> subscWidgetList = RxList  <SubModel>([]);
-
-
-
-  //var selectedOption= Rxn<String>();
-  var selectedOption= Rxn<ProductOption>();
-  var selectedManufacturers= Rxn<Manufacturers>();
   var manufacturersId= Rxn<int>();
-  var selectedAttribute= Rxn<ProductAttribute>();
-  var selectedAttributeId= RxList<int?>();
-  var selectedAttribu= Rxn<Attribute?>();
-  var selectAttributeDescription= Rxn<ProductAttributeDescription>();
-  var textAttribute= RxList<String>();
- // var controllersText= RxList<TextEditingController>();
-  List<TextEditingController> controllersText = [];
-  //final controllers = TextEditingController();
-  final controllers = TextEditingController().obs;
-  //final controller =TextEditingController();
 
-
-
-
-  var selectedCategories= Rxn<Categories>();
-  var Categorie= Rxn<String>();
-  var selectedStores= Rxn<Stores>();
-  var storesId= Rxn<int>();
-  var categorieId= Rxn<int>();
+  dynamic currentOptionCheckIndex ;
  var isselectedCheckBoxOption= Rxn<String>();
  var isSelectedDateOption= Rxn<String>();
  var isSelectedDeliveryDateOption=Rxn<String>();
@@ -124,20 +109,27 @@ class WizardController extends ProductController {
   RxList<DiscountDataModel> discountDataList = RxList  <DiscountDataModel>([]);
 
 
+  int index = 0;
+  void countingthindex(){
+    index++;
+  }
 
-  void addAttribWidget(AttrModel value) {
+
+  void addAttribWidget(AttrModel value,text) {
     attrWidgetList.add(value);
     attrWidgetList.refresh();
+    testofatrr.add(text);
     update();
   }
+
   void addOptWidget(OptModel value) {
-    print("object");
     optWidgetList.add(value);
     optWidgetList.refresh();
     update();
   }
   void removeAttribWidget(int index) {
     attrWidgetList.removeAt(index);
+    testofatrr.removeAt(index);
 
   }
   void removeOptWidget(int index) {
@@ -386,15 +378,4 @@ discountDataList.refresh();
       isExpanded: false.obs));
   update();
   }
-
-//call Add New Product By API
-  addNewProduct(){
-   ProductController().addProduct(prod);
-  }
-
-
-
-
-
 }
-

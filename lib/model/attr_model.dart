@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
 class AttrModel {
   var attrList;
   var attrSelected;
 
-  AttrModel(this.attrList, this.attrSelected,);
+  AttrModel(this.attrList, this.attrSelected);
 }
