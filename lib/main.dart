@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           hintStyle: TextStyle(
             color: Colors.grey,
 
-            fontSize: 16, fontFamily: 'Cairo Regular',
+            fontSize: 13, fontFamily: 'Cairo Regular',
           ),
 
 

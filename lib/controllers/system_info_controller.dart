@@ -11,10 +11,9 @@ class SystemINfoController extends BaseController{
   Future<List<OrderStatuses>> fetchOrderStatuses() async {
     var res = await get("init/order_statuses");
     if (res.statusCode == 200) {
-      print(jsonDecode(res.body)['data']);
-      _orderStatuses = OrderStatusesData.fromJson(jsonDecode(res.body)['data']).data;
+
+      _orderStatuses = OrderStatusesData.fromJson(jsonDecode(res.body)).data;
     }
-    print(_orderStatuses);
     return orderStatuses;
   }
 

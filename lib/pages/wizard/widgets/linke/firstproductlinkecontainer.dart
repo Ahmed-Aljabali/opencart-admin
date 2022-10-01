@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/controllers/porducts_controller.dart';
 import 'package:opencart/model/porducts/stores.dart';
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
@@ -24,12 +25,11 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.dataProduct[0].productDescription![0].name);
-    print("sasss");
+    var prodController =Get.put(ProductController());
+
     return Obx(() => ExpansionPanelList(
         expansionCallback: (panelIndex, isExpanded) {
-          controller.linkeproduct1[panelIndex].isExpanded!.value =
-          !isExpanded;
+          controller.linkeproduct1[panelIndex].isExpanded!.value = !isExpanded;
         },
         children: controller.linkeproduct1.map<ExpansionPanel>((Product item) {
           return ExpansionPanel(
@@ -101,23 +101,6 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                                 )
                               ))
 
-
-                          //       DropdownButton<String>(
-                          //         hint:const Text("الشركة المصنعة"),
-                          //         value: controller.selectedcompOptions.value,
-                          //         onChanged:(v) {
-                          //           controller.selectedcompOptions.value = v!;},
-                          //         items:controller.compOptionsList.
-                          //         map<DropdownMenuItem<String>>((String value) {
-                          //           return   DropdownMenuItem<String>(
-                          //             enabled: true,
-                          //             value: value,
-                          //             child: Text(value),
-                          //           );
-                          //         }).toList(),
-                          //       ),
-                          //     )
-                          // ),
                         ),
                       ),
                     ),
@@ -150,7 +133,7 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                                       var data = snapshot.data!.obs.value;
                                       return DropdownButton<Categories>(
                                         hint:  const Text("الفئات"),
-                                        value:controller.selectedCategories.value,
+                                       value:controller.selectedCategories.value,
                                         icon: const Icon(Icons.keyboard_arrow_down),
                                         items:data.
                                         map<DropdownMenuItem<Categories>>((Categories value) {
@@ -262,10 +245,12 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                               child:Center(
                                 child: DropdownButton<Products>(
                                   hint:  const Text("منتجات ذات صلة"),
+                               //   value:controller.selectProd.value,
+
                                   onChanged:(v) {
                                     controller.selectedrelatedProdOptions.value = v!.id.toString();
                                     },
-                                  items:controller.dataProduct.
+                                  items:prodController.dataProduct.
                                   map<DropdownMenuItem<Products>>((Products value) {
                                     return   DropdownMenuItem<Products>(
                                       enabled: true,

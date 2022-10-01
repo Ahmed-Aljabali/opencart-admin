@@ -13,26 +13,17 @@ class OrderStatuses {
 }
 class OrderStatusesData {
   List<OrderStatuses?>? data;
-  List<List<OrderStatuses>>? list;
-  List<List>? list2;
-
   OrderStatusesData({this.data});
 
   OrderStatusesData.fromJson(Map<String, dynamic> json) {
-    print(json);
 
-    if (json['data'] != null) {
-
+    json['data'].forEach((c){
       data = <OrderStatuses>[];
-      json['data'].forEach((v) {
-        for (var element in list!) {
-      element.forEach((i) {
-      data!.add(OrderStatuses.fromJson(v));
-         });
-
-        }
+      c.forEach((a){
+        data!.add(OrderStatuses.fromJson(a));
       });
-    }
+
+    });
   }
 
 }

@@ -26,15 +26,6 @@ class ProductController extends BaseController implements IProduct {
   List<Stores> get dataStores => _dataStores;
   List<Attribute> get dataAttribute => _dataAttribute;
 
-  @override
-  void onInit(){
-    super.onInit();
-  }
-  @override
-  void dispose() {
-  dataProduct.clear();
-    super.dispose();
-  }
 
   @override
  fetchProduct()async{

@@ -15,6 +15,7 @@ class WizardController extends ProductController {
   var selectedTime = TimeOfDay.now().obs;
   var  productDescription= ProductDescription();
   var prod =Products();
+  var selectProd =Rxn<Products>();
   var selectedOption= Rxn<ProductOption>();
   var selectedCategories= Rxn<Categories>();
   var selectedStores= Rxn<Stores>();

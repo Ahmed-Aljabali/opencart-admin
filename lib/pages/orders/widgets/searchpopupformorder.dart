@@ -70,7 +70,7 @@ class OrderSearchForm extends GetView<OrderController> {
                         var data = snapshot.data!.obs.value;
                         return DropdownButton<OrderStatuses>(
                           hint:  const Text("الحاله"),
-                         // value:controller.selectedCategories.value,
+                         // value:controller.selectedOrderStatuses.value,
                           icon: const Icon(Icons.keyboard_arrow_down),
                           items:data.
                           map<DropdownMenuItem<OrderStatuses>>((OrderStatuses value) {
@@ -84,7 +84,7 @@ class OrderSearchForm extends GetView<OrderController> {
 
                           onChanged:(v) {
 
-                        //    controller.categorieId.value=v?.categoryId;
+                            controller.selectedOrderStatuses.value=v;
 
                           },
                         );

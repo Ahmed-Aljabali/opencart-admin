@@ -8,7 +8,6 @@ import 'package:opencart/pages/wizard/widgets/generl/fothproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/secondproductcontainter.dart';
 import 'package:opencart/pages/wizard/widgets/generl/thirdproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/linke/firstproductlinkecontainer.dart';
-import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/checkboxcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
