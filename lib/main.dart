@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
         textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
 
         inputDecorationTheme: const InputDecorationTheme(
-
+          contentPadding: const EdgeInsets.symmetric(
+              vertical: 10.0, horizontal: 40.0),
 
 
           fillColor:Colors.transparent,

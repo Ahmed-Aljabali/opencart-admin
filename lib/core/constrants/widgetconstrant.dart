@@ -6,22 +6,20 @@ class MyTextFieldWidget extends StatelessWidget {
   const MyTextFieldWidget({Key? key, required this.hintText,required this.onChanged( value) }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  DecoratedBox(
-        decoration: BoxDecoration(
+    return  SizedBox(
+      height: 43,
+      child: DecoratedBox(
+          decoration: BoxDecoration(
 
-            color:Colors.white60,
-            border: Border.all(color: Colors.black38, width:0.5),
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: const <BoxShadow>[
+              color:Colors.white60,
 
-            ]
-        ),
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: const <BoxShadow>[
 
-        child:Container(
-          margin: const EdgeInsets.only(left: 5),
+              ]
+          ),
 
-
-          child: Center(
+          child:Center(
             child: TextField(
               //controller:  controller.controllers.value,
               onChanged: (dynamic value){onChanged(value);},
@@ -33,16 +31,15 @@ class MyTextFieldWidget extends StatelessWidget {
                 hintText:hintText,
 
                 hintStyle: const TextStyle(
-                  fontSize: 19,
+
                 ),
-                contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 40.0),
+
 
 
               ),
             ),
-          ),
-        )
+          )
+      ),
     );
 
 
