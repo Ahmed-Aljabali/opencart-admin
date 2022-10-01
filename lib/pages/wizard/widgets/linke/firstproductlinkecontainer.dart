@@ -1,16 +1,9 @@
 import 'dart:ui';
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:opencart/model/porducts/stores.dart';
-
-
-
 import '../../../../controllers/wizard_controller.dart';
-import '../../../../core/constrants/text_constrants.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
 import '../../../../model/porducts/category.dart';

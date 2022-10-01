@@ -33,7 +33,7 @@ class MyTextFieldWidget extends StatelessWidget {
                 hintText:hintText,
 
                 hintStyle: const TextStyle(
-                  fontSize: 19,
+                  fontSize: 13,
                 ),
                 contentPadding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 40.0),

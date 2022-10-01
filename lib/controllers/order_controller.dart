@@ -25,9 +25,19 @@ class OrderController extends BaseController implements IOrder {
   }
 
   filterOrderList(){
-    _listFilter= data.where((element) =>
-         element.name.toString().contains("Ahmed")
-    ).where((element) => element.status=="padding").toList();
+    List<Orders> tet=[];
+    for (var element in data) {
+      if (element.name.toString().contains("Ahmed")||element.status==""||
+          element.total==""||element.products.toString()==""||element.dateadded=="" ){
+        tet.add(element);
+
+      }
+      _listFilter=tet;
+
+    }
+    // _listFilter= data.where((element) =>
+    //      element.name.toString().contains("Ahmed")
+    // ).where((element) => element.status=="paddin").toList();
 
     update();
   }
