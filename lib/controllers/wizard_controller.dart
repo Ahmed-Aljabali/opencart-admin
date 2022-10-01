@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:meta/meta.dart';
+import 'package:opencart/controllers/porducts_controller.dart';
 import 'package:opencart/model/attr_model.dart';
 import 'package:opencart/model/option_model.dart';
 import 'package:opencart/model/sub_model.dart';
-
-import '../core/constrants/widgetconstrant.dart';
 import '../model/ProductData.dart';
 import '../model/checkbox_data.dart';
 import '../model/discount.dart';
+import '../model/porducts/category.dart';
+import '../model/porducts/product.dart';
+import '../model/porducts/stores.dart';
 
-class WizardController extends GetxController {
+class WizardController extends ProductController {
   var selectedTime = TimeOfDay.now().obs;
+  var  productDescription= ProductDescription();
+  var prod =Products();
+  var selectedOption= Rxn<ProductOption>();
+  var selectedCategories= Rxn<Categories>();
+  var selectedStores= Rxn<Stores>();
 
+  List<ProductOptionValue>  productOptionValue= [];
   var selectedDate = DateTime.now().obs;
   var selectedOptionDate = DateTime.now().obs;
   var selectedDeliveryOptionDate = DateTime.now().obs;
@@ -47,7 +53,8 @@ class WizardController extends GetxController {
   List<String> unintOptionsList = ["وحدة1", "وحدة2", "وحدة3",];
   var selectedunintOptions = Rxn<String>();
   List<String> featureOptionsList = ["ميزة1", "ميزة2", "ميزة3",];
-
+  var storesId= Rxn<int>();
+  var categorieId= Rxn<int>();
 
   List<String> optionsproductlist = ["Checkbox", "Date", "Date & Time" ,"Delivery Date","File"];
   List<String> optioncheckchoose = ["small", "medium", "large",];
@@ -65,8 +72,8 @@ class WizardController extends GetxController {
 
   var selectedsubscrOptions = Rxn<String>();
   List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
-  List<String> testofatrr = ["مجموعة1", "مجموعة2", "مجموعة3",];
-
+  List<String> testofatrr = [];
+  TextEditingController myController =TextEditingController() ;
   var selectedcustmGroupOptions = Rxn<String>();
 
 
@@ -74,10 +81,9 @@ class WizardController extends GetxController {
   RxList<OptModel> optWidgetList = RxList  <OptModel>([]);
 
   RxList<SubModel> subscWidgetList = RxList  <SubModel>([]);
+  var manufacturersId= Rxn<int>();
 
-
-
-  var selectedOption= Rxn<String>();
+  dynamic currentOptionCheckIndex ;
  var isselectedCheckBoxOption= Rxn<String>();
  var isSelectedDateOption= Rxn<String>();
  var isSelectedDeliveryDateOption=Rxn<String>();
@@ -104,12 +110,19 @@ class WizardController extends GetxController {
   RxList<DiscountDataModel> discountDataList = RxList  <DiscountDataModel>([]);
 
 
+  int index = 0;
+  void countingthindex(){
+    index++;
+  }
 
-  void addAttribWidget(AttrModel value) {
+
+  void addAttribWidget(AttrModel value,text) {
     attrWidgetList.add(value);
     attrWidgetList.refresh();
+    testofatrr.add(text);
     update();
   }
+
   void addOptWidget(OptModel value) {
     optWidgetList.add(value);
     optWidgetList.refresh();
@@ -117,6 +130,7 @@ class WizardController extends GetxController {
   }
   void removeAttribWidget(int index) {
     attrWidgetList.removeAt(index);
+    testofatrr.removeAt(index);
 
   }
   void removeOptWidget(int index) {
@@ -238,7 +252,6 @@ discountDataList.refresh();
     DeliveryDateContainerTitle = generateItems(1, 'Delivery Date');
     subscribeproduct1 = generateItems(1, 'اضافة خطة الاشتراك');
     discount1 = generateItems(1 , 'اضافة تخفيض');
-
 
   }
 

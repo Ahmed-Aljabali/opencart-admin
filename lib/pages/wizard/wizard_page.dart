@@ -146,37 +146,41 @@ class WizardPage extends GetView<WizardController> {
                 ),
               ),
 
-              RaisedButton(
-                color: Colors.white,
-                textColor: Colors.white,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50.0),
-                ),
-                padding:
-                const  EdgeInsets.only(left: 40, top: 10, right: 40, bottom: 10),
-                child:const Text(
-                  "save",
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.black,
-                      fontFamily: 'FONTSrepo'),
-                ),
 
-                onPressed: () {
-                print(controller.categorieId.value);
-                print( controller.storesId.value);
-                print( controller.selectedrelatedProdOptions.value);
-                print( controller.manufacturersId.value);
-
-
-                 // print(controller.selectedAttribu.value!.attributeId);
-               //   controller.addNewProduct();
-                  },
-              ),
             ],
           ),
+floatingActionButton: FloatingActionButton(
+
+
+  backgroundColor: Colors.green,
+  onPressed: () {
+    print(controller.categorieId.value);
+    print( controller.storesId.value);
+    print( controller.selectedrelatedProdOptions.value);
+    print( controller.manufacturersId.value);
+
+
+    // print(controller.selectedAttribu.value!.attributeId);
+    //   controller.addNewProduct();
+  },
+  tooltip: 'add a new product',
+  highlightElevation: 1,
+
+  child:   Container(
+
+    decoration: BoxDecoration(
+
+      color: Colors.transparent,
+      borderRadius: const BorderRadius.all(
+        Radius.circular(100),
+      ),
+
+    ),
+    child: const Text('Save')
+  ),
+
+
+),
         ),
       ),
     );

@@ -50,3 +50,34 @@ class MyTextFieldWidget extends StatelessWidget {
   }
 }
 
+
+class MyTryTextFieldWidget extends StatelessWidget {
+  final String hintText ;
+  final Function onFieldSubmitted ;
+  final controller;
+  final keyboardType;
+  /*Widget prefixIcon  =  Icon(Icons.date_range_rounded ,color:  Colors.blueAccent,);*/
+  MyTryTextFieldWidget({required this.hintText,required this.onFieldSubmitted( String value),required this.controller, required this.keyboardType });
+  @override
+  Widget build(BuildContext context) {
+    return  SizedBox(
+      height: 43,
+      child: TextFormField(
+
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+        ),
+keyboardType: keyboardType,
+
+        onFieldSubmitted: (value){onFieldSubmitted(value);},
+
+        textAlign: TextAlign.center,
+
+      ),
+    );
+
+
+
+  }
+}

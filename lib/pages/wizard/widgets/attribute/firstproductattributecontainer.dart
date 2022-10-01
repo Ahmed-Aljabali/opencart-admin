@@ -74,14 +74,20 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                         children: [
                                           Expanded(
-                                            child: MyTextFieldWidget(
+                                            child:MyTryTextFieldWidget(
+                                              hintText: "اضافة",
+                                              controller: controller.myController,
+
+                                              keyboardType: TextInputType.text, onFieldSubmitted: (String value) {  },
+
+                                            ), /*MyTextFieldWidget(
 
 
                                               onChanged: (value) {controller.testofatrr.add(value);
                                               print(controller.testofatrr[index]);},
                                               hintText: ' $index إضافة',
 
-                                            ),
+                                            ),*/
                                           ),
 
                                           Container(
@@ -137,9 +143,18 @@ class FirstProductAttributeContainer extends StatelessWidget {
                                             onPressed: (){
                                               String s = "$index ";
                                               print(s);
-                                              controller.removeAttribWidget(index);
-                                              String s2 = "$index ";
-                                              print(s2);
+                                              print(s);
+                                              print(controller.testofatrr);
+                                              /*controller.testofatrr.removeAt(index);*/
+
+controller.attrWidgetList.length==1 ? {
+                                                      controller.attrWidgetList
+                                                          .clear(),controller.testofatrr.clear(),
+  controller.index = 0,controller.myController.clear()
+
+                                                    }
+                                                  :index==0?controller.removeAttribWidget(index+1):controller.removeAttribWidget(index);
+
 
                                               },
                                             child: Icon(
@@ -168,12 +183,12 @@ child: Icon(Icons.add,color: Colors.white,size: 35,),
                             color: Colors.blueAccent,
                             textColor: Colors.blueAccent,
                             onPressed: () {
-  print(controller.testofatrr);
-
-                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"));
-
-
+ /* print(controller.testofatrr);*/
+                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.myController.text);
+                              print('${controller.index}');
+print(controller.testofatrr);
                             },
+
                           ),
                         ),
                       ],
