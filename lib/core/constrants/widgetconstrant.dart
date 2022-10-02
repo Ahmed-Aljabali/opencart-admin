@@ -1,17 +1,23 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class MyTextFieldWidget extends StatelessWidget {
   final String hintText ;
   final Function onChanged ;
-  const MyTextFieldWidget({Key? key, required this.hintText,required this.onChanged( value) }) : super(key: key);
+  final readOnly ;
+  final textAlign;
+  final prefixIcon ;
+final double  height  ;
+  const MyTextFieldWidget({Key? key, this.height  = 43,required this.hintText,required this.onChanged( value) ,this.readOnly = false,this.textAlign= TextAlign.center , this.prefixIcon = null}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-      height: 43,
+    return  Container(
+      height:height,
       child: DecoratedBox(
           decoration: BoxDecoration(
 
-              color:Colors.white60,
+              color:Colors.white,
 
               borderRadius: BorderRadius.circular(10),
               boxShadow: const <BoxShadow>[
@@ -21,12 +27,16 @@ class MyTextFieldWidget extends StatelessWidget {
 
           child:Center(
             child: TextField(
+
+
+              readOnly: readOnly,
+
               //controller:  controller.controllers.value,
               onChanged: (dynamic value){onChanged(value);},
-              textAlign: TextAlign.center,
+              textAlign: textAlign ,
 
               decoration: InputDecoration(
-
+                prefixIcon: prefixIcon,
                 fillColor:Colors.transparent,
                 hintText:hintText,
 
@@ -48,13 +58,13 @@ class MyTextFieldWidget extends StatelessWidget {
 }
 
 
-class MyTryTextFieldWidget extends StatelessWidget {
+class DynamicTextFieldWidget extends StatelessWidget {
   final String hintText ;
   final Function onFieldSubmitted ;
   final controller;
   final keyboardType;
   /*Widget prefixIcon  =  Icon(Icons.date_range_rounded ,color:  Colors.blueAccent,);*/
-  MyTryTextFieldWidget({required this.hintText,required this.onFieldSubmitted( String value),required this.controller, required this.keyboardType });
+  DynamicTextFieldWidget({required this.hintText,required this.onFieldSubmitted( String value),required this.controller, required this.keyboardType });
   @override
   Widget build(BuildContext context) {
     return  SizedBox(

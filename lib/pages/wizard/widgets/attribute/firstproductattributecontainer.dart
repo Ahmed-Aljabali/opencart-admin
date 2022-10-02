@@ -74,7 +74,7 @@ class FirstProductAttributeContainer extends StatelessWidget {
 
                                         children: [
                                           Expanded(
-                                            child:MyTryTextFieldWidget(
+                                            child:DynamicTextFieldWidget(
                                               hintText: "اضافة",
                                               controller: controller.myController,
 

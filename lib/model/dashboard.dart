@@ -7,7 +7,7 @@ import '../navigation/custom_animated_bottom_bar.dart';
 import '../pages/customers/customer_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/mainproductpage/productpage.dart';
-import '../pages/orders/orders_page.dart';
+import '../pages/orders/pages/orders_page.dart';
 import '../pages/users/user_page.dart';
 
 class MyDashBoard extends StatefulWidget {

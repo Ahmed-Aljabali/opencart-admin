@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/controllers/porducts_controller.dart';
+import 'package:opencart/pages/orders/pages/sales/sales.dart';
 import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
 
-import '../../Controllers/order_controller.dart';
-import '../../core/utils/math_utils.dart';
-import '../../model/orders/add_order.dart';
+import '../../../Controllers/order_controller.dart';
+import '../../../core/utils/math_utils.dart';
+import '../../../model/orders/add_order.dart';
 
 class OrderPage extends GetView<OrderController> {
 
-var productController =Get.put(ProductController());
 
-  OrderPage({Key? key}) : super(key: key);
+
+  const OrderPage({Key? key}) : super(key: key);
   @override
   // TODO: implement controller
 
@@ -374,13 +375,13 @@ var productController =Get.put(ProductController());
                   customer:customer,
                   paymentMethod: method,
                   products:products  );
-              controller.addOrder(order);
-              Get.snackbar(
+              controller.addOrder(order); /*         Get.snackbar(
                 "Icon Action",
                 "Search button was clicked",
                 icon:  const Icon(Icons.check, color: Colors.green,),
                 snackPosition: SnackPosition.TOP,
-              );
+              );*/
+              Get.to(Sales());
             },
             tooltip: 'add a new product',
             highlightElevation: 1,
