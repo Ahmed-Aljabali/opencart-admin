@@ -157,10 +157,11 @@ floatingActionButton: FloatingActionButton(
     print( controller.storesId.value);
     print( controller.selectedrelatedProdOptions.value);
     print( controller.manufacturersId.value);
+    controller.textEditingController.forEach((element) {
 
+      print(element.text);
+    });
 
-    // print(controller.selectedAttribu.value!.attributeId);
-    //   controller.addNewProduct();
   },
   tooltip: 'add a new product',
   highlightElevation: 1,
