@@ -41,15 +41,16 @@ final double  height  ;
                 hintText:hintText,
 
                 hintStyle: const TextStyle(
-
+                  fontSize: 13,
                 ),
-
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 10.0),
 
 
               ),
             ),
-          )
-      ),
+          ),
+        )
     );
 
 

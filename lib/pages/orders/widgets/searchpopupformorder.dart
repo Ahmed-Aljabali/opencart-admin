@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/order_controller.dart';
+import 'package:opencart/controllers/system_info_controller.dart';
+import 'package:opencart/model/system_info/order_statuses.dart';
 
 import '../../../controllers/wizard_controller.dart';
 import '../../../core/constrants/widgetconstrant.dart';
@@ -12,6 +14,7 @@ class OrderSearchForm extends GetView<OrderController> {
 
   @override
   Widget build(BuildContext context) {
+  var systemInfo=Get.put(SystemINfoController());
   return Column(
 
     children: <Widget>[
@@ -22,11 +25,14 @@ class OrderSearchForm extends GetView<OrderController> {
 
           children: [
             Expanded(
-              child: MyTextFieldWidget(hintText: "Product ID", onChanged: (value) {  },),
+              child: MyTextFieldWidget(hintText: "رقم الطلب",
+                onChanged: (value) {
+
+                },),
             ),
             Expanded(
                 child: MyTextFieldWidget(
-                  hintText: 'اسم المنتج',
+                  hintText: 'اسم العميل',
 
                   onChanged: (value) {
 
@@ -48,100 +54,134 @@ class OrderSearchForm extends GetView<OrderController> {
 
           children: [
             Expanded(
-              child: MyTextFieldWidget(hintText: "السعر", onChanged: (value) {  },),
+              child:
+              MyTextFieldWidget(hintText: "السعر",
+                onChanged: (value) {
+
+                },),
             ),
             Expanded(
-                child: MyTextFieldWidget(
-                  hintText: 'الحالة',
-                  onChanged: (value) {
+                child:Center(
+                  child:FutureBuilder<List<OrderStatuses>>(
+                    future:systemInfo.fetchOrderStatuses(),
+                    builder: (context, snapshot) {
+                      print(snapshot.data);
+                      if (snapshot.hasData) {
+                        var data = snapshot.data!.obs.value;
+                        return DropdownButton<OrderStatuses>(
+                          hint:  const Text("الحاله"),
+                         // value:controller.selectedOrderStatuses.value,
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          items:data.
+                          map<DropdownMenuItem<OrderStatuses>>((OrderStatuses value) {
 
-                  },
-                )),
+                            return   DropdownMenuItem<OrderStatuses>(
+                              enabled: true,
+                              value: value,
+                              child: Text(value.name!),
+                            );
+                          }).toList(),
+
+                          onChanged:(v) {
+
+                            controller.selectedOrderStatuses.value=v;
+
+                          },
+                        );
+                      }
+                      else {
+                        return const CircularProgressIndicator();
+                      }
+                    },
+                  ),
+                )
+
+            ),
 
 
 
           ],
         ),
       ),
-      Container(
-        padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          children: [
-            Expanded(
-              child: MyTextFieldWidget(hintText: "الوحدة", onChanged: (value) {  },),
-            ),
-            Expanded(
-                child: MyTextFieldWidget(
-                  hintText: 'الكمية',
-
-                  onChanged: (value) {
-
-
-
-
-                  },
-                )),
-
-
-
-          ],
-        ),
-      ),
-      Container(
-        padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          children: [
-            Expanded(
-              child: MyTextFieldWidget(hintText: "طريقة الدفع", onChanged: (value) {  },),
-            ),
-            Expanded(
-                child: MyTextFieldWidget(
-                  hintText: 'طريقة الشحن',
-
-                  onChanged: (value) {
-
-
-
-
-                  },
-                )),
-
-
-
-          ],
-        ),
-      ),
-
-      Container(
-        padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-          children: [
-            Expanded(
-              child: MyTextFieldWidget(hintText: "الوزن", onChanged: (value) {  },),
-            ),
-            Expanded(
-                child: MyTextFieldWidget(
-                  hintText: 'اللون',
-
-                  onChanged: (value) {
-
-
-
-
-                  },
-                )),
-
-
-
-          ],
-        ),
-      ),
+      // Container(
+      //   padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //
+      //     children: [
+      //       Expanded(
+      //         child: MyTextFieldWidget(hintText: "الوحدة", onChanged: (value) {  },),
+      //       ),
+      //       Expanded(
+      //           child: MyTextFieldWidget(
+      //             hintText: 'الكمية',
+      //
+      //             onChanged: (value) {
+      //
+      //
+      //
+      //
+      //             },
+      //           )),
+      //
+      //
+      //
+      //     ],
+      //   ),
+      // ),
+      // Container(
+      //   padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //
+      //     children: [
+      //       Expanded(
+      //         child: MyTextFieldWidget(hintText: "طريقة الدفع", onChanged: (value) {  },),
+      //       ),
+      //       Expanded(
+      //           child: MyTextFieldWidget(
+      //             hintText: 'طريقة الشحن',
+      //
+      //             onChanged: (value) {
+      //
+      //
+      //
+      //
+      //             },
+      //           )),
+      //
+      //
+      //
+      //     ],
+      //   ),
+      // ),
+      //
+      // Container(
+      //   padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      //
+      //     children: [
+      //       Expanded(
+      //         child: MyTextFieldWidget(hintText: "الوزن", onChanged: (value) {  },),
+      //       ),
+      //       Expanded(
+      //           child: MyTextFieldWidget(
+      //             hintText: 'اللون',
+      //
+      //             onChanged: (value) {
+      //
+      //
+      //
+      //
+      //             },
+      //           )),
+      //
+      //
+      //
+      //     ],
+      //   ),
+      // ),
       Container(
         padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
         child: Center(
@@ -150,11 +190,12 @@ class OrderSearchForm extends GetView<OrderController> {
 
             children: [
               Expanded(
-                child: MyTextFieldWidget(hintText: "التاريخ", onChanged: (value) {  },),
+                child: MyTextFieldWidget(hintText: "تاريخ الاضافة",
+                  onChanged: (value) {  },),
               ),
               Expanded(
                   child: MyTextFieldWidget(
-                    hintText: 'العروض',
+                    hintText: 'تاريخ التعديل',
 
                     onChanged: (value) {
 

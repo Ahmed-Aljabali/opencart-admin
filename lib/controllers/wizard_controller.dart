@@ -15,6 +15,7 @@ class WizardController extends ProductController {
   var selectedTime = TimeOfDay.now().obs;
   var  productDescription= ProductDescription();
   var prod =Products();
+  var selectProd =Rxn<Products>();
   var selectedOption= Rxn<ProductOption>();
   var selectedCategories= Rxn<Categories>();
   var selectedStores= Rxn<Stores>();
@@ -73,8 +74,7 @@ class WizardController extends ProductController {
   List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
   List<String> testofatrr = [];
   TextEditingController myController =TextEditingController() ;
-  var selectedcustmGroupOptions = Rxn<String>();
-
+  RxList<TextEditingController> textEditingController = RxList<TextEditingController>();
 
   RxList<AttrModel> attrWidgetList = RxList  <AttrModel>([]);
   RxList<OptModel> optWidgetList = RxList  <OptModel>([]);

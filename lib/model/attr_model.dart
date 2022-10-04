@@ -1,6 +1,6 @@
 class AttrModel {
   var attrList;
-  var attrSelected;
+  var  attrSelected;
 
   AttrModel(this.attrList, this.attrSelected);
 }

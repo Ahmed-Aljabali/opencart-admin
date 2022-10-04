@@ -8,7 +8,6 @@ import 'package:opencart/pages/wizard/widgets/generl/fothproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/generl/secondproductcontainter.dart';
 import 'package:opencart/pages/wizard/widgets/generl/thirdproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/linke/firstproductlinkecontainer.dart';
-import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/checkboxcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
@@ -158,10 +157,11 @@ floatingActionButton: FloatingActionButton(
     print( controller.storesId.value);
     print( controller.selectedrelatedProdOptions.value);
     print( controller.manufacturersId.value);
+    controller.textEditingController.forEach((element) {
 
+      print(element.text);
+    });
 
-    // print(controller.selectedAttribu.value!.attributeId);
-    //   controller.addNewProduct();
   },
   tooltip: 'add a new product',
   highlightElevation: 1,

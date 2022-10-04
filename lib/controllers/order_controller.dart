@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/model/orders/add_order.dart';
+import 'package:opencart/model/system_info/order_statuses.dart';
 import '../InterFace/Iorder.dart';
 import '../model/ProductData.dart';
 import '../model/orders/order.dart';
@@ -15,6 +16,7 @@ class OrderController extends BaseController implements IOrder {
   List<Orders>? get listFilter => _listFilter;
   RxList<Orders>  listFilte = RxList<Orders>();
   RxBool orderListTypeGrid = false.obs;
+  var selectedOrderStatuses= Rxn<OrderStatuses>();
 
 
   @override
@@ -26,9 +28,19 @@ class OrderController extends BaseController implements IOrder {
   }
 
   filterOrderList(){
-    _listFilter= data.where((element) =>
-         element.name.toString().contains("Ahmed")
-    ).where((element) => element.status=="padding").toList();
+    List<Orders> tet=[];
+    for (var element in data) {
+      if (element.name.toString().contains("Ahmed")||element.status==""||
+          element.total==""||element.products.toString()==""||element.dateadded=="" ){
+        tet.add(element);
+
+      }
+      _listFilter=tet;
+
+    }
+    // _listFilter= data.where((element) =>
+    //      element.name.toString().contains("Ahmed")
+    // ).where((element) => element.status=="paddin").toList();
 
     update();
   }

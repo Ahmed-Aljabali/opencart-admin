@@ -7,6 +7,7 @@ class StoresData {
     if (json['data'] != null) {
       data = <Stores>[];
       json['data'].forEach((v) {
+
         data!.add(Stores.fromJson(v));
       });
     }
