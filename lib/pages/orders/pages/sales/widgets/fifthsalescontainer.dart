@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/order_controller.dart';
+import '../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../core/utils/math_utils.dart';
@@ -11,7 +12,7 @@ import '../../../../wizard/widgets/generl/fothproductcontainer.dart';
 
 
 class FifthSalesContainer extends StatelessWidget {
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   const FifthSalesContainer ({
     Key? key,

@@ -6,8 +6,8 @@ class AddOrders {
   String? voucher;
   String? coupon;
   List<ProductsOrder>? products;
-  ShippingMethod? shippingMethod;
-  ShippingMethod? paymentMethod;
+  OrderShippingMethod? shippingMethod;
+  OrderShippingMethod? paymentMethod;
   PaymentAddress? paymentAddress;
   PaymentAddress? shippingAddress;
   Customer? customer;
@@ -40,10 +40,10 @@ class AddOrders {
       });
     }
     shippingMethod = json['shipping_method'] != null
-        ?  ShippingMethod.fromJson(json['shipping_method'])
+        ?  OrderShippingMethod.fromJson(json['shipping_method'])
         : null;
     paymentMethod = json['payment_method'] != null
-        ?  ShippingMethod.fromJson(json['payment_method'])
+        ?  OrderShippingMethod.fromJson(json['payment_method'])
         : null;
     paymentAddress = json['payment_address'] != null
         ?  PaymentAddress.fromJson(json['payment_address'])
@@ -127,13 +127,13 @@ class Option {
   }
 }
 
-class ShippingMethod {
+class OrderShippingMethod {
   String? title;
   String? code;
 
-  ShippingMethod({this.title, this.code});
+  OrderShippingMethod({this.title, this.code});
 
-  ShippingMethod.fromJson(Map<String, dynamic> json) {
+  OrderShippingMethod.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     code = json['code'];
   }

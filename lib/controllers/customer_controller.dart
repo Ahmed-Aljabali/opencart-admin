@@ -7,14 +7,14 @@ import '../model/cutomers/customer.dart';
 
 class CustomerController extends BaseController implements ICustomers{
   dynamic _trx;
-  Customer get trx => _trx;
-
+  List<Customers> get trx => _trx;
 
   @override
   fetchCustomer(String limit,String page)async{
     var res = await get("customers/limit/$limit/page/$page");
-    if (res.statusCode == 200) {
-    _trx=Customer.fromJson(jsonDecode(res.body));
+    if (res.statusCode == 200)
+    {
+      _trx=CustomerData.fromJson(jsonDecode(res.body)).data;
 
     }
   }

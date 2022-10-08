@@ -1,7 +1,7 @@
 import '../address.dart';
 import '../Bases/base_customer.dart';
 
-class CustomerDetails extends BaseCustomer{
+class Customers extends BaseCustomer{
   List<Address?>? addresses;
   int? customerid;
   int? customergroupid;
@@ -11,9 +11,9 @@ class CustomerDetails extends BaseCustomer{
   String? date_added;
 
 
-  CustomerDetails({this.addresses,this.customerid, this.customergroupid, this.name,this.ip, this.rewardpoints,this.date_added});
+  Customers({this.addresses,this.customerid, this.customergroupid, this.name,this.ip, this.rewardpoints,this.date_added});
 
-  CustomerDetails.fromJson(Map<String, dynamic> json) {
+  Customers.fromJson(Map<String, dynamic> json) {
     if (json['addresses'] != null) {
       addresses = <Address>[];
       json['addresses'].forEach((v) {
@@ -52,25 +52,22 @@ class CustomerDetails extends BaseCustomer{
   }
 }
 
-class Customer {
-  List<CustomerDetails?>? data;
+class CustomerData {
 
-  Customer({this.data});
-  Customer.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <CustomerDetails>[];
-      json['data'].forEach((v) {
-        data!.add(CustomerDetails.fromJson(v));
-      });
+  var data = <Customers>[];
+
+  CustomerData.fromJson(Map<String, dynamic> json) {
+    for (var e in (json['data'] as List)) {
+      data.add(Customers.fromJson(e));
     }
   }
+ }
   //
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
 
     return data;
   }
-}
 
 
 

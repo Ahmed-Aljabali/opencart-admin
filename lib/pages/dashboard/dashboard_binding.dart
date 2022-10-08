@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import '../../Controllers/customer_controller.dart';
 import '../../Controllers/order_controller.dart';
+import '../../controllers/Init_add_order_controller.dart';
 import '../../controllers/dashboard_controller.dart';
 import '../../controllers/home_controller.dart';
 import '../../controllers/porducts_controller.dart';
@@ -20,5 +21,6 @@ class DashBoardBindings extends Bindings {
     Get.lazyPut(() => UsersController());
     Get.lazyPut<ProductController>(() => ProductController());
     Get.lazyPut(() => WizardController(), fenix: true);
+    Get.lazyPut(() => InitAddOrderController(), fenix: true);
   }
 }

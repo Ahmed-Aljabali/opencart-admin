@@ -131,7 +131,7 @@ class FifhProductScreen extends StatelessWidget {
                                   value: controller.selectedweightOptions.value,
                                   onChanged:(v) {
                                     controller.selectedweightOptions.value = v!;
-                                    controller.prod.weightClassId=v!;
+                                    controller.prod.weightClassId=v;
                                     },
                                   items:controller.weightOptionsList.
                                   map<DropdownMenuItem<String>>((String value) {
@@ -217,7 +217,7 @@ class FifhProductScreen extends StatelessWidget {
                                   value: controller.selectedorderOptions.value,
                                   onChanged:(v) {
                                     controller.selectedorderOptions.value = v!;
-                                    controller.prod.sortOrder = v!;
+                                    controller.prod.sortOrder = v;
 
                                     },
                                   items:controller.orderOptionsList.

@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
-import 'package:opencart/controllers/order_controller.dart';
-import '../../../../../controllers/wizard_controller.dart';
+import 'package:opencart/model/orders/payment_metho.dart';
+import 'package:opencart/model/orders/shipping_methods.dart';
+import '../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../core/utils/math_utils.dart';
 import '../../../../../model/ProductData.dart';
 
 
 class ThirdSalesContainer extends StatelessWidget {
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   const ThirdSalesContainer   ({
     Key? key,
@@ -458,29 +459,64 @@ class ThirdSalesContainer extends StatelessWidget {
                                                   blurRadius: 3) //blur radius of shadow
                                             ]
                                         ),
-                                        child:Align(
+
+                                      child:  Align(
                                           alignment: Alignment.center,
-                                          child: DropdownButton<String>(
-                                            isExpanded: true,
+                                          child:FutureBuilder<List<ShippingMethods>>(
+                                            future:controller.initShippingMethods(),
+                                            builder: (context, snapshot) {
+                                              if (snapshot.hasData) {
+                                                var data = snapshot.data!.obs.value;
+                                                return DropdownButton<ShippingMethods>(
+                                                  hint:  const Text("طريقه الشحن"),
+                                               //   value:controller.shippingMethods.value,
+                                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                                  items:data.
+                                                  map<DropdownMenuItem<ShippingMethods>>((ShippingMethods value) {
+                                                    return   DropdownMenuItem<ShippingMethods>(
+                                                      enabled: true,
+                                                      value: value,
+                                                      child: Text(value.name!),
+                                                    );
+                                                  }).toList(),
+                                                  onChanged:(v) {
+                                                    controller.shippingMethods.value!.code=v!.code;
+                                                   // controller.shippingMethods.value!.title=v!.name;
+                                                    // controller.manufacturersId.value = v?.manufacturerId;
 
+                                                  },
 
-                                            icon: Icon(Icons.keyboard_arrow_down_outlined),
-
-                                            hint:  const Text("طريقة الشحن"),
-                                            value: controller.selectedShippingAddProduct.value,
-                                            onChanged:(v) {
-                                              controller.selectedShippingAddProduct.value = v!;},
-                                            items:controller.shippingAddProductList.
-                                            map<DropdownMenuItem<String>>((String value) {
-                                              return   DropdownMenuItem<String>(
-                                                alignment: AlignmentDirectional.center,
-                                                enabled: true,
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
-                                          ),
-                                        )
+                                                );
+                                              }
+                                              else {
+                                                return const CircularProgressIndicator();
+                                              }
+                                            },
+                                          )
+                                      ),
+                                        // child:Align(
+                                        //   alignment: Alignment.center,
+                                        //   child: DropdownButton<String>(
+                                        //     isExpanded: true,
+                                        //
+                                        //
+                                        //     icon: Icon(Icons.keyboard_arrow_down_outlined),
+                                        //
+                                        //     hint:  const Text("طريقة الشحن"),
+                                        //     value: controller.selectedShippingAddProduct.value,
+                                        //     onChanged:(v) {
+                                        //       controller.selectedShippingAddProduct.value = v!;},
+                                        //     items:controller.shippingAddProductList.
+                                        //     map<DropdownMenuItem<String>>((String value) {
+                                        //       return   DropdownMenuItem<String>(
+                                        //         alignment: AlignmentDirectional.center,
+                                        //         enabled: true,
+                                        //         value: value,
+                                        //         child: Text(value),
+                                        //       );
+                                        //     }).toList(),
+                                        //   ),
+                                        // )
                                     ),
                                   ),
                                 ),
@@ -508,29 +544,65 @@ class ThirdSalesContainer extends StatelessWidget {
                                                   blurRadius: 3) //blur radius of shadow
                                             ]
                                         ),
-                                        child:Align(
+                                        child:  Align(
                                           alignment: Alignment.center,
-                                          child: DropdownButton<String>(
-                                            isExpanded: true,
+                                            child:FutureBuilder<List<PaymentMethod>>(
+                                              future:controller.initPaymentMethod(),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.hasData) {
+                                                  var data = snapshot.data!.obs.value;
+                                                  return DropdownButton<PaymentMethod>(
+                                                    hint:  const Text("طريقه الدفع"),
+                                                    //value:controller.selectedManufacturers.value,
+                                                    icon: const Icon(Icons.keyboard_arrow_down),
+                                                    items:data.
+                                                    map<DropdownMenuItem<PaymentMethod>>((PaymentMethod value) {
+                                                      return   DropdownMenuItem<PaymentMethod>(
+                                                        enabled: true,
+                                                        value: value,
+                                                        child: Text(value.name!),
+                                                      );
+                                                    }).toList(),
+                                                    onChanged:(v) {
 
+                                                      controller.paymentMethod.value.code=v!.code;
+                                                      controller.paymentMethod.value.title=v!.name;
 
-                                            icon: Icon(Icons.keyboard_arrow_down_outlined),
+                                                     // controller.manufacturersId.value = v?.manufacturerId;
 
-                                            hint:  const Text("طريقة الدفع "),
-                                            value: controller.selectedpayMethodAddProduct.value,
-                                            onChanged:(v) {
-                                              controller.selectedpayMethodAddProduct.value = v!;},
-                                            items:controller.payMethodAddProductList.
-                                            map<DropdownMenuItem<String>>((String value) {
-                                              return   DropdownMenuItem<String>(
-                                                alignment: AlignmentDirectional.center,
-                                                enabled: true,
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
-                                          ),
-                                        )
+                                                    },
+
+                                                  );
+                                                }
+                                                else {
+                                                  return const CircularProgressIndicator();
+                                                }
+                                              },
+                                            )
+                                        ),
+                                        // child:Align(
+                                        //   alignment: Alignment.center,
+                                        //   child: DropdownButton<String>(
+                                        //     isExpanded: true,
+                                        //
+                                        //
+                                        //     icon: Icon(Icons.keyboard_arrow_down_outlined),
+                                        //
+                                        //     hint:  const Text("طريقة الدفع "),
+                                        //     value: controller.selectedpayMethodAddProduct.value,
+                                        //     onChanged:(v) {
+                                        //       controller.selectedpayMethodAddProduct.value = v!;},
+                                        //     items:controller.payMethodAddProductList.
+                                        //     map<DropdownMenuItem<String>>((String value) {
+                                        //       return   DropdownMenuItem<String>(
+                                        //         alignment: AlignmentDirectional.center,
+                                        //         enabled: true,
+                                        //         value: value,
+                                        //         child: Text(value),
+                                        //       );
+                                        //     }).toList(),
+                                        //   ),
+                                        // )
                                     ),
                                   ),
                                 ),

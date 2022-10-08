@@ -99,7 +99,8 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                                     }
                                   },
                                 )
-                              ))
+                              )
+                          )
 
                         ),
                       ),

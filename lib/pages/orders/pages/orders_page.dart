@@ -8,10 +8,11 @@ import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
 
 import '../../../Controllers/order_controller.dart';
+import '../../../controllers/Init_add_order_controller.dart';
 import '../../../core/utils/math_utils.dart';
 import '../../../model/orders/add_order.dart';
 
-class OrderPage extends GetView<OrderController> {
+class OrderPage extends GetView<InitAddOrderController> {
 
 
 
@@ -355,27 +356,7 @@ class OrderPage extends GetView<OrderController> {
             backgroundColor: Colors.green,
             onPressed: () {
               //Todo this code for add new order
-              var paymentaddress=PaymentAddress(firstname: "ALi",lastname: "Mohammaed",zone: "0");
-              var method=ShippingMethod(code: "flat.flat",title: "test");
-              var customer =Customer(email: "ahmed@gmail.com",lastname: "Mohammaed",firstname: "ALi",customerId: 1,telephone: "776816212",customerGroupId: 1);
-              List<ProductsOrder>? products=[];
-              products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
-            var shippingmethod=ShippingMethod(title: "tesr",code: "flat.flat");
-          //  var shippingaddress=PaymentAddress();
-              var order = AddOrders(
-                  affiliateId: "",
-                  comment: "",
-                  storeId: 0,
-                  coupon: "111",
-                  tracking: "",
-                  voucher: "demo-0000",
-                  shippingAddress:paymentaddress ,
-                  shippingMethod: shippingmethod ,
-                  paymentAddress: paymentaddress,
-                  customer:customer,
-                  paymentMethod: method,
-                  products:products  );
-              controller.addOrder(order); /*         Get.snackbar(
+               /*         Get.snackbar(
                 "Icon Action",
                 "Search button was clicked",
                 icon:  const Icon(Icons.check, color: Colors.green,),

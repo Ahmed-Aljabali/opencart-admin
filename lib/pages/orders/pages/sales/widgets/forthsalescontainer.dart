@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:opencart/controllers/BaseController.dart';
-import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import '../../../../../controllers/wizard_controller.dart';
-import '../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../model/ProductData.dart';
 
 
 class ForthSalesContainer extends StatelessWidget {
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   const ForthSalesContainer   ({
     Key? key,
