@@ -7,14 +7,15 @@ import 'package:opencart/presentation/products/add_prodcts.dart';
 
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../model/addproductmodel.dart';
 
-class ButtomCheetAddProductContainer extends GetView<BaseController> {
+class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
   ButtomCheetAddProductContainer({
     required this.controller,
   });
 
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   @override
   Widget build(BuildContext context) {

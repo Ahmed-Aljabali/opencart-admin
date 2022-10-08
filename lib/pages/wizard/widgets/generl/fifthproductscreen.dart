@@ -11,7 +11,7 @@ import 'fothproductcontainer.dart';
 
 
 class FifhProductScreen extends StatelessWidget {
-   FifhProductScreen({
+  const FifhProductScreen({
     required this.controller,
   });
 
@@ -48,14 +48,15 @@ class FifhProductScreen extends StatelessWidget {
                       isChecked: controller.isSwitchedOn2.value,
                       listSwitchFun: (b) {
                         controller.isSwitchedOn2.value = b;
+                        controller.prod.shipping=b;
                       },
                       listSwitchText: '1قابل للشحن',
                     ),
-                    MyTextFieldWidget(hintText: "الطول", keyboardType: TextInputType.number,onChanged: (v){print(v);}),
+                    MyTextFieldWidget(hintText: "الطول", onChanged: (v)=>controller.prod.length=v,keyboardType: TextInputType.number,),
                     const SizedBox(height: 10,),
-                    MyTextFieldWidget(hintText: "العرض",keyboardType: TextInputType.number, onChanged: (v){print(v);}),
+                    MyTextFieldWidget(hintText: "العرض", onChanged: (v)=>controller.prod.width=v,keyboardType: TextInputType.number,),
                     const SizedBox(height: 10,),
-                    MyTextFieldWidget(hintText: 'الارتفاع',keyboardType: TextInputType.number, onChanged: (v){}),
+                    MyTextFieldWidget(hintText: 'الارتفاع', onChanged: (v)=>controller.prod.height=v,keyboardType: TextInputType.number,),
                     const SizedBox(
                       height: 10,
                     ),
@@ -102,7 +103,8 @@ class FifhProductScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText: 'الوزن', onChanged: (v){print(v);},keyboardType: TextInputType.number,),
+                    MyTextFieldWidget(hintText: 'الوزن', onChanged: (v){controller.prod.weight=v;},keyboardType: TextInputType.number,),
+
                     const SizedBox(
                       height: 10,
                     ),
@@ -129,7 +131,9 @@ class FifhProductScreen extends StatelessWidget {
                                   hint:  const Text("فئة الوزن"),
                                   value: controller.selectedweightOptions.value,
                                   onChanged:(v) {
-                                    controller.selectedweightOptions.value = v!;},
+                                    controller.selectedweightOptions.value = v!;
+                                    controller.prod.weightClassId=v;
+                                    },
                                   items:controller.weightOptionsList.
                                   map<DropdownMenuItem<String>>((String value) {
                                     return   DropdownMenuItem<String>(
@@ -213,7 +217,10 @@ class FifhProductScreen extends StatelessWidget {
                                   hint:  const Text("امر الترتيب"),
                                   value: controller.selectedorderOptions.value,
                                   onChanged:(v) {
-                                    controller.selectedorderOptions.value = v!;},
+                                    controller.selectedorderOptions.value = v!;
+                                    controller.prod.sortOrder = v;
+
+                                    },
                                   items:controller.orderOptionsList.
                                   map<DropdownMenuItem<String>>((String value) {
                                     return   DropdownMenuItem<String>(

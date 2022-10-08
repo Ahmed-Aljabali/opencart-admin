@@ -40,7 +40,7 @@ class ThirdProductContainer extends StatelessWidget {
                 child: Column(
                   children: [
 
-                    MyTextFieldWidget(hintText: 'price', onChanged: (value)=>print(value), keyboardType: TextInputType.number,),
+                    MyTextFieldWidget(hintText: 'price', onChanged: (value)=>controller.prod.price==value),
 
                     const SizedBox(
                       height: 10,
@@ -74,6 +74,7 @@ class ThirdProductContainer extends StatelessWidget {
 
 
                                     controller.selectedtaxCategOptions.value = v!;
+                                    controller.prod.taxClassId = v!;
 
 
                                     // print(v);

@@ -155,7 +155,7 @@ class CustomerPage extends GetView<CustomerController> {
             Obx(
                   () => !controller.isDataLoading.value? const Center(
           child: CircularProgressIndicator(),
-                 ): Text(controller.trx.data.toString()),
+                 ): Text("controller.trx.data.toString()"),
             ),
           ],
         ),

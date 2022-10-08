@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/buttomsheetcontainer.dart';
+import '../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/ProductData.dart';
@@ -12,7 +13,7 @@ import 'addproductbottomsheet.dart';
 
 
 class SecondSalesContainer1 extends StatelessWidget {
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   const SecondSalesContainer1   ({
     Key? key,
@@ -88,7 +89,7 @@ class SecondSalesContainer extends StatelessWidget {
   });
 
 
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   @override
   Widget build(BuildContext context) {

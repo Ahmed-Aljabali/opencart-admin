@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:opencart/controllers/BaseController.dart';
-import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import '../../../../../controllers/wizard_controller.dart';
+import 'package:opencart/model/cutomers/customer.dart';
+import '../../../../../Controllers/customer_controller.dart';
+import '../../../../../Controllers/order_controller.dart';
+import '../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/ProductData.dart';
 
 
 class FirstSalesContainer extends StatelessWidget {
-  final BaseController controller;
+  final InitAddOrderController controller;
 
   const FirstSalesContainer ({
     Key? key,
@@ -21,9 +23,9 @@ class FirstSalesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+     // var orderController =Get.put(OrderController());
 
-
-
+    var customerController =Get.put(CustomerController());
     return  Obx(() {
   return ExpansionPanelList(
         expansionCallback: (panelIndex, isExpanded) {
@@ -50,14 +52,17 @@ class FirstSalesContainer extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    MyTextFieldWidget(hintText:  "فاتورة ", onChanged:(value)=>null,readOnly: true,textAlign: TextAlign.right,),
+                    MyTextFieldWidget(
+                      hintText:  "فاتورة ",
+                      onChanged:(value)=>null
+                      ,readOnly: true,textAlign: TextAlign.right,),
                     Container(color: Colors.white,
                       margin: getMargin(top: 10),
                       alignment: Alignment.center,
                       height: 44,
                       child: Expanded(
                         child: Container(
-color: Colors.white,
+                              color: Colors.white,
                                              child: DecoratedBox(
                               decoration: BoxDecoration(
 
@@ -70,24 +75,32 @@ color: Colors.white,
                                         blurRadius: 3) //blur radius of shadow
                                   ]
                               ),
-                              child:Align(
-                                alignment: Alignment.center,
-                                child: DropdownButton<String>(
-                                  isExpanded: true,
+                              child:Center(
+                                child: DropdownButton<Customers>(
+                                  hint:  const Text("اضافه عميل"),
+                                  //   value:controller.selectProd.value,
 
-                                  icon: Icon(Icons.keyboard_arrow_down_outlined),
-                                  alignment: AlignmentDirectional.bottomEnd,
-                                  hint:  const Text("اضافة عميل"),
-                                  value: controller.selectedClintOptions.value,
                                   onChanged:(v) {
-                                    controller.selectedClintOptions.value = v!;},
-                                  items:controller.clintOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
-                                      alignment: AlignmentDirectional.center,
+                                    var initName= v!.name.toString().indexOf(" ");
+                                    var firstName=v.name!.substring(0,initName);
+                                    var lastName=v.name!.substring(initName).trim();
+                                  print(firstName);
+                                   controller.addOrders.value.customer?.customerId=v!.customerid;
+                                   controller.customer.value.customerId=v?.customerid;
+                                   controller.customer.value.email=v?.email;
+                                   controller.customer.value.customerGroupId=v?.customergroupid;
+                                   controller.customer.value.telephone=v!.telephone;
+                                   controller.customer.value.firstname=firstName;
+                                   controller.customer.value.lastname=lastName;
+
+
+                                  },
+                                  items:customerController.trx.
+                                  map<DropdownMenuItem<Customers>>((Customers value) {
+                                    return   DropdownMenuItem<Customers>(
                                       enabled: true,
                                       value: value,
-                                      child: Text(value),
+                                      child: Text(value.name!),
                                     );
                                   }).toList(),
                                 ),
