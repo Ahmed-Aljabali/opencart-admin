@@ -4,16 +4,17 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../core/utils/utilities.dart';
 import '../main.dart';
+import 'order_controller.dart';
 
 class BaseController extends GetxController{
   late RxBool searchFormVisible;
   late RxBool formVisible;
   RxInt formsIndex = 1.obs;
-  @override
 
 @override
   void onInit() {
-    searchFormVisible =false.obs;
+
+  searchFormVisible =false.obs;
     formVisible = false.obs;
     formsIndex = 1.obs;
     super.onInit();

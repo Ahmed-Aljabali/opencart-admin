@@ -153,15 +153,29 @@ floatingActionButton: FloatingActionButton(
 
   backgroundColor: Colors.green,
   onPressed: () {
-    print(controller.categorieId.value);
-    print( controller.storesId.value);
-    print( controller.selectedrelatedProdOptions.value);
-    print( controller.manufacturersId.value);
-    controller.textEditingController.forEach((element) {
+   //  controller.productDescriptionlist.add(controller.productDescription);
+   // controller.prod.productDescription=controller.productDescriptionlist;
+   //  controller.addProduct(controller.prod);
 
-      print(element.text);
-    });
+     var index=0 ;
+     for (var element in controller.attrWidgetList) {
+       print(element.attrSelected);
 
+       controller.textEditingController[index].text;
+      // controller.selectedProductAttribute.obs.value.value?.attributeId=="5";
+     //  print(controller.selectedProductAttribute.obs.value.value?.attributeId);
+
+       controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
+
+       //controller.selectedProductAttribute.value!.productAttributeDescription!.add(controller.productAttributeDescription.value!);
+       //controller.productAttribute.add(controller.selectedProductAttribute.value!);
+       index++;
+
+     }
+    // controller.prod.productAttribute=controller.productAttribute;
+   //  print(controller.productAttributeDescription.value!.languageId);
+
+     print(controller.productAttributeDescription.value?.languageId);
   },
   tooltip: 'add a new product',
   highlightElevation: 1,

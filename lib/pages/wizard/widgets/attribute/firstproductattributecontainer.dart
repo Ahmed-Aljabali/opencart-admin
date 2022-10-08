@@ -12,6 +12,7 @@ import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/text_constrants.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
+import '../../../../model/porducts/attribute.dart';
 
 
 
@@ -113,27 +114,56 @@ class FirstProductAttributeContainer extends StatelessWidget {
                                                           blurRadius: 3) //blur radius of shadow
                                                     ]
                                                 ),
-                                                child:Container(
+                                                child:Center(
+                                                  child:FutureBuilder<List<Attribute>>(
+                                                    future:controller.initAttribute(),
+                                                    builder: (context, snapshot) {
+                                                      if (snapshot.hasData) {
+                                                        var data = snapshot.data!.obs.value;
+                                                        return DropdownButton<Attribute>(
+                                                          hint:  const Text("الفئات"),
+                                                          value:controller.attribute.value,
+                                                          icon: const Icon(Icons.keyboard_arrow_down),
+                                                          items:data.
+                                                          map<DropdownMenuItem<Attribute>>((Attribute value) {
+                                                            return   DropdownMenuItem<Attribute>(
+                                                              enabled: true,
+                                                              value: value,
+                                                              child: Text(value.name!),
+                                                            );
+                                                          }).toList(),
 
+                                                          onChanged:(v) {
+                                                            controller.productAttributeDescription.value?.languageId=22;
+                                                           // .attrSelected = v!.attributeId;
 
-
-                                                  child: Center(
-                                                    child: DropdownButton<String>(
-                                                      hint:  const Text("الميزة"),
-                                                      value: controller.attrWidgetList[index].attrSelected,
-                                                      onChanged:(v) {
-                                                        controller.attrWidgetList[index].attrSelected = v!;},
-                                                      items:controller.attrWidgetList[index].attrList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                                        return   DropdownMenuItem<String>(
-                                                          enabled: true,
-                                                          value: value,
-                                                          child: Text(value),
+                                                          },
                                                         );
-                                                      }).toList(),
-                                                    ),
+                                                      }
+                                                      else {
+                                                        return const CircularProgressIndicator();
+                                                      }
+                                                    },
                                                   ),
                                                 )
+
+                                  //
+                                  // Center(
+                                  // child: DropdownButton<String>(
+                                  // hint:  const Text("الميزة"),
+                                  // value: controller.attrWidgetList[index].attrSelected,
+                                  // onChanged:(v) {
+                                  // controller.attrWidgetList[index].attrSelected = v!;},
+                                  // items:controller.attrWidgetList[index].attrList.
+                                  // map<DropdownMenuItem<String>>((String value) {
+                                  // return   DropdownMenuItem<String>(
+                                  // enabled: true,
+                                  // value: value,
+                                  // child: Text(value),
+                                  // );
+                                  // }).toList(),
+                                  // ),
+                                  // )
                                             ),
                                           ),
                                         ),
@@ -144,8 +174,7 @@ class FirstProductAttributeContainer extends StatelessWidget {
                                           shape: const CircleBorder(),
                                           fillColor: Colors.blueAccent,
                                           onPressed: (){
-                                            String s = "$index ";
-
+                                            controller.textEditingController.removeLast();
                                          controller.attrWidgetList.length==1 ? {
                                                     controller.attrWidgetList
                                                         .clear(),controller.testofatrr.clear(),

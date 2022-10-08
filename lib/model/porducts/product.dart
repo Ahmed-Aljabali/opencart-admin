@@ -353,8 +353,8 @@ class ProductAttribute {
 }
 
 class ProductAttributeDescription {
-  dynamic text;
-  dynamic languageId;
+  String? text;
+  int? languageId;
 
   ProductAttributeDescription({this.text, this.languageId});
 

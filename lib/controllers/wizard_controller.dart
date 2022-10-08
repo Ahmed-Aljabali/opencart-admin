@@ -7,6 +7,7 @@ import 'package:opencart/model/sub_model.dart';
 import '../model/ProductData.dart';
 import '../model/checkbox_data.dart';
 import '../model/discount.dart';
+import '../model/porducts/attribute.dart';
 import '../model/porducts/category.dart';
 import '../model/porducts/product.dart';
 import '../model/porducts/stores.dart';
@@ -19,8 +20,14 @@ class WizardController extends ProductController {
   var selectedOption= Rxn<ProductOption>();
   var selectedCategories= Rxn<Categories>();
   var selectedStores= Rxn<Stores>();
+  var selectedProductAttribute= Rxn<ProductAttribute>();
+  var ss= Rxn<String>();
+  var productAttributeDescription= Rxn<ProductAttributeDescription>();
+  var attribute= Rxn<Attribute>();
 
   List<ProductOptionValue>  productOptionValue= [];
+  List<ProductDescription>  productDescriptionlist= [];
+  List<ProductAttribute>  productAttribute= [];
   var selectedDate = DateTime.now().obs;
   var selectedOptionDate = DateTime.now().obs;
   var selectedDeliveryOptionDate = DateTime.now().obs;

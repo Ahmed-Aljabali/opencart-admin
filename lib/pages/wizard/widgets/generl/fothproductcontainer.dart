@@ -46,19 +46,19 @@ class ForthProductContainer extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    MyTextFieldWidget(hintText:  "الكمية", onChanged: (v){print(v);}),
+                    MyTextFieldWidget(hintText:  "الكمية", onChanged: (v)=>controller.prod.quantity==v),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText: "الحد الادنى للكمية", onChanged:  (v){print(v);}),
+                    MyTextFieldWidget(hintText: "الحد الادنى للكمية", onChanged:  (v)=>controller.prod.minimum=v),
                     LSwitchListTile(
                       isChecked: controller.isSwitchedOn.value,
                       listSwitchFun: (b) {
-                        controller.isSwitchedOn.value = b;
+                        controller.prod.subtract = b;
                       },
                       listSwitchText: 'Subact Stoc',
                     ),
-                    Divider(thickness: 1,),
+                    const Divider(thickness: 1,),
 
                     Container(
                       alignment: Alignment.center,

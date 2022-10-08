@@ -18,6 +18,34 @@ class OrderController extends BaseController implements IOrder {
   var selectedOrderStatuses= Rxn<OrderStatuses>();
 
 
+
+  @override
+  void onInit() {
+
+    super.onInit();
+  }
+
+  @override
+  void onReady() {
+    print("000000000000");
+    super.onReady();
+  }
+
+  @override
+  void dispose() {
+
+    listFilter!.clear();
+    super.dispose();
+  }
+
+
+  @override
+  void onClose() {
+   listFilter!.clear();
+    super.onClose();
+  }
+
+
   @override
   fetchOrder() async {
     var res = await get("orders");
@@ -37,9 +65,6 @@ class OrderController extends BaseController implements IOrder {
       _listFilter=tet;
 
     }
-    // _listFilter= data.where((element) =>
-    //      element.name.toString().contains("Ahmed")
-    // ).where((element) => element.status=="paddin").toList();
 
     update();
   }

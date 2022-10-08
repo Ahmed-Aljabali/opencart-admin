@@ -30,7 +30,7 @@ class SecondProductContainer extends StatelessWidget {
                 return ListTile(
                     title: Text(
                   item.header!,
-                  style: TextStyle(fontSize: 20, ),
+                  style: const TextStyle(fontSize: 20, ),
                   textAlign: TextAlign.center,
                 ));
               }),
@@ -41,35 +41,35 @@ class SecondProductContainer extends StatelessWidget {
                     const EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 10),
                 child: Column(
                   children: [
-                    MyTextFieldWidget(hintText:"Model" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"Model" ,onChanged: (value)=>controller.prod.model==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"SKU" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"SKU" ,onChanged: (value)=>controller.prod.sku==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"Universal Product Code",onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"Universal Product Code",onChanged: (value)=>controller.prod.upc==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"EAN" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"EAN" ,onChanged: (value)=>controller.prod.ean==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"JAN" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"JAN" ,onChanged: (value)=>controller.prod.jan==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"ISBN" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"ISBN" ,onChanged: (value)=>controller.prod.isbn==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"MPN" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"MPN" ,onChanged: (value)=>controller.prod.mpn==value),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText:"Location" ,onChanged: (value){print(value);},),
+                    MyTextFieldWidget(hintText:"Location" ,onChanged: (value)=>controller.prod.location==value),
 
                   ],
                 ),
