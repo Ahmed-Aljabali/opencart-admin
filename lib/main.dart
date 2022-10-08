@@ -37,11 +37,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+
         textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
 
         inputDecorationTheme: const InputDecorationTheme(
           contentPadding: const EdgeInsets.symmetric(
-              vertical: 10.0, horizontal: 40.0),
+              vertical: 10.0, ),
 
 
           fillColor:Colors.transparent,

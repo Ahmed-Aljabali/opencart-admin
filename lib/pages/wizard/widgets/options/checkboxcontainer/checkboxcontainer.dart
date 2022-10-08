@@ -84,7 +84,7 @@ class CheckBoxContainer extends StatelessWidget {
 
                       child: Center(
 
-                        child: DataTable(
+                        child: DataTable  (
 
 
                           dataRowColor:MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,255, 255, 255);},),
