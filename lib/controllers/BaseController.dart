@@ -8,6 +8,8 @@ import '../main.dart';
 import '../model/ProductData.dart';
 import '../model/addproductmodel.dart';
 import '../model/checkbox_data.dart';
+import '../model/porducts/category.dart';
+import '../model/porducts/manufacturers.dart';
 
 class BaseController extends GetxController{
   var selectedOptionDate = DateTime.now().obs;
@@ -32,6 +34,8 @@ class BaseController extends GetxController{
   var selectedShippingAddProduct= Rxn<String>();
   List<String>payMethodAddProductList = ["نقد ", "حوالة مالية" , " شيك ", " عند الاستلام"];
   var selectedpayMethodAddProduct= Rxn<String>();
+  List<String> customerList = ["عميل1", "عميل2", "عميل3",];
+
   var selectedClintOptions = Rxn<String>();
   late List<Product> salesExpansionTitle2;
   late List<Product> salesExpansionTitle1;
@@ -49,10 +53,18 @@ class BaseController extends GetxController{
   late RxBool searchFormVisible;
   late RxBool formVisible;
   RxInt formsIndex = 1.obs;
+  late List<Product> customer;
+  var selectedCustomer= Rxn<Categories>();
+  dynamic _dataManufacturers;
+  dynamic _dataCategory;
+  List<Categories> get dataCategory => _dataCategory;
+  List<Manufacturers> get dataManufacturers => _dataManufacturers;
+  var manufacturersId= Rxn<int>();
+  var categorieId= Rxn<int>();
+  var selectedCategories= Rxn<Categories>();
   @override
-
-@override
   void onInit() {
+  customer = generateItems(1, 'العميل');
     salesExpansionTitle1 = generateItems(1, 'اضف طلب');
     salesExpansionTitle2 = generateItems(1, 'اضافة منتجات');
     salesExpansionTitle3 = generateItems(1, 'معلومات اكثر');
@@ -290,4 +302,43 @@ Future<int> put(Object object,String url,int id)async {
 }
     update();
   }
+
+  RxBool _isvaild = true.obs;
+
+  RxBool get isvaild => _isvaild;
+  RxInt _currentStep = 0.obs;
+
+  RxInt get currentStep => _currentStep;
+
+  set currentStep(RxInt value) => _currentStep = value;
+
+  tapped(int step) {
+    _currentStep.value = step;
+  }
+
+  continued() {
+    _currentStep.value < 7 ? _currentStep += 1 : null;
+  }
+
+  cancel() {
+    _currentStep > 0 ? _currentStep -= 1 : null;
+  }
+  Future<List<Manufacturers>> initManufacturers()async {
+
+    var res = await get("manufacturers/limit/10/page/1");
+    if (res.statusCode == 200) {
+      _dataManufacturers=  ManufacturersData.fromJson(jsonDecode(res.body)).data;
+    }
+    return dataManufacturers;
+  }
+  Future<List<Categories>> initCategory()async {
+
+    var res = await get("categories/extended/limit/10/page/1");
+    if (res.statusCode == 200) {
+      _dataCategory=  CategoryData.fromJson(jsonDecode(res.body)).data;
+    }
+    return dataCategory;
+  }
+
+
 }

@@ -9,7 +9,8 @@ class MyTextFieldWidget extends StatelessWidget {
   final textAlign;
   final prefixIcon ;
 final double  height  ;
-  const MyTextFieldWidget({Key? key, this.height  = 43,required this.hintText,required this.onChanged( value) ,this.readOnly = false,this.textAlign= TextAlign.center , this.prefixIcon = null}) : super(key: key);
+final keyboardType ;
+  const MyTextFieldWidget({Key? key,this.keyboardType, this.height  = 43,required this.hintText,required this.onChanged( value) ,this.readOnly = false,this.textAlign= TextAlign.center , this.prefixIcon = null}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -34,8 +35,9 @@ final double  height  ;
               //controller:  controller.controllers.value,
               onChanged: (dynamic value){onChanged(value);},
               textAlign: textAlign ,
-
+keyboardType:  keyboardType,
               decoration: InputDecoration(
+
                 prefixIcon: prefixIcon,
                 fillColor:Colors.transparent,
                 hintText:hintText,

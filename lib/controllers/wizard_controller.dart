@@ -229,11 +229,9 @@ discountDataList.refresh();
   late List<Product> DeliveryDateContainerTitle;
   late List<Product> subscribeproduct1;
   late List<Product> discount1;
+  late List<Product> discount2;
+  late List<Product>  discount3;
 
-// getUsers(){
-//   repository.getUsers().then( (data){ this._userList.value = data; } );
-//
-// }
   @override
   void onInit() {
     super.onInit();
@@ -251,6 +249,8 @@ discountDataList.refresh();
     DeliveryDateContainerTitle = generateItems(1, 'Delivery Date');
     subscribeproduct1 = generateItems(1, 'اضافة خطة الاشتراك');
     discount1 = generateItems(1 , 'اضافة تخفيض');
+    discount2 = generateItems(1 , 'اضافة خصم');
+    discount3 = generateItems(1 , 'نقاط ومكافئات');
 
   }
 

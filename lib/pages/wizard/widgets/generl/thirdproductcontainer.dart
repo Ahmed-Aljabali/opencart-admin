@@ -40,7 +40,7 @@ class ThirdProductContainer extends StatelessWidget {
                 child: Column(
                   children: [
 
-                    MyTextFieldWidget(hintText: 'price', onChanged: (value)=>print(value),),
+                    MyTextFieldWidget(hintText: 'price', onChanged: (value)=>print(value), keyboardType: TextInputType.number,),
 
                     const SizedBox(
                       height: 10,

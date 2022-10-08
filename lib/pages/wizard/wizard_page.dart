@@ -17,7 +17,7 @@ import '../../controllers/wizard_controller.dart';
 
 class WizardPage extends GetView<WizardController> {
   StepperType stepperType = StepperType.vertical;
-  final  productController = Get.put(ProductController());
+  
 
   @override
   Widget build(BuildContext context) {

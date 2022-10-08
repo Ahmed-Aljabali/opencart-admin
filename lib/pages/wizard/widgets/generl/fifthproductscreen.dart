@@ -11,7 +11,7 @@ import 'fothproductcontainer.dart';
 
 
 class FifhProductScreen extends StatelessWidget {
-  const FifhProductScreen({
+   FifhProductScreen({
     required this.controller,
   });
 
@@ -51,11 +51,11 @@ class FifhProductScreen extends StatelessWidget {
                       },
                       listSwitchText: '1قابل للشحن',
                     ),
-                    MyTextFieldWidget(hintText: "الطول", onChanged: (v){print(v);}),
+                    MyTextFieldWidget(hintText: "الطول", keyboardType: TextInputType.number,onChanged: (v){print(v);}),
                     const SizedBox(height: 10,),
-                    MyTextFieldWidget(hintText: "العرض", onChanged: (v){print(v);}),
+                    MyTextFieldWidget(hintText: "العرض",keyboardType: TextInputType.number, onChanged: (v){print(v);}),
                     const SizedBox(height: 10,),
-                    MyTextFieldWidget(hintText: 'الارتفاع', onChanged: (v){}),
+                    MyTextFieldWidget(hintText: 'الارتفاع',keyboardType: TextInputType.number, onChanged: (v){}),
                     const SizedBox(
                       height: 10,
                     ),
@@ -102,7 +102,7 @@ class FifhProductScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText: 'الوزن', onChanged: (v){print(v);}),
+                    MyTextFieldWidget(hintText: 'الوزن', onChanged: (v){print(v);},keyboardType: TextInputType.number,),
                     const SizedBox(
                       height: 10,
                     ),
