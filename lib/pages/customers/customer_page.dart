@@ -13,7 +13,7 @@ class CustomerPage extends GetView<CustomerController> {
   const CustomerPage({Key? key}) : super(key: key);
   @override
   StatelessElement createElement() {
-    // TODO: implement createElement
+
     controller.fetchCustomer("10","3");
 
     return super.createElement();
@@ -22,7 +22,7 @@ class CustomerPage extends GetView<CustomerController> {
 
   @override
   Widget build(BuildContext context) {
-    final wizzardController =Get.put(WizardController());
+
     return  SafeArea(
       child: Obx(
             () => Scaffold(
@@ -44,7 +44,7 @@ class CustomerPage extends GetView<CustomerController> {
                   currentStep: controller.currentStep.value,
                   onStepTapped: (step) => controller.tapped(step),
                   onStepContinue:
-                  controller.isvaild.value ? controller.continued : null,
+                  controller.isVaild.value ? controller.continued : null,
                   onStepCancel: controller.cancel,
                   steps: <Step>[
                     Step(

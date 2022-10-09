@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/model/checkbox_data.dart';
+
 
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/discount.dart';
 
-class EditButtonCheatDiscountContainer extends GetView<WizardController> {
-  final WizardController controller;
+class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
+  const SecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
-  const EditButtonCheatDiscountContainer({Key? key,
-    required this.controller,
-  }) : super(key: key);
 
 
   @override
@@ -41,13 +38,12 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                     child: Container(
                         padding: const EdgeInsets.only(top: 10),
                         child: const Text(
-                          'اضافة تخفيض',
+                          'اضافة خصم',
                           style: TextStyle(color: Colors.grey, fontSize: 22),
                           textAlign: TextAlign.center,
                         ))),
               ],
             ),
-            //the title top
             const Divider(
               thickness: 1,
               color: Colors.grey,
@@ -61,15 +57,7 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                   const SizedBox(
                     width: 10,
                   ),
-                  Expanded(
-                      child: MyTextFieldWidget(
-                        hintText: 'الكمية',
-                        onChanged: (value) {
 
-                          controller.firstDiscountQty = value ;
-                        }
-                   ,
-                      )),
                   const SizedBox(
                     width: 10,
                   ),
@@ -83,13 +71,10 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                               //background color of dropdown button
                               border:
                               Border.all(color: Colors.black38, width: 0.5),
-                              //border of dropdown button
                               borderRadius: BorderRadius.circular(10),
-                              //border raiuds of dropdown button
-                              boxShadow: const <BoxShadow>[
-                                //apply shadow on Dropdown button
-                                BoxShadow(
-                                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                              boxShadow: <BoxShadow>[
+                                const  BoxShadow(
+                                    color: const Color.fromRGBO(0, 0, 0, 0.1),
                                     //shadow for button
                                     blurRadius: 3)
                                 //blur radius of shadow
@@ -103,14 +88,14 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
 
                                 hint: const Text("مجموعة العملاء"),
                                 value:
-                                controller.selectedDiscountChooseOption.value,
+                                controller.secondSelectedDiscountChooseOption.value,
                                 onChanged: (v) {
-                                  controller.selectedDiscountChooseOption.value =
+                                  controller.secondSelectedDiscountChooseOption.value =
                                   v!;
 
                                   // print(v);
                                 },
-                                items: controller.DiscountChooseOptionList
+                                items: controller.SecondDiscountChooseOptionList
                                     .map<DropdownMenuItem<String>>(
                                         (String value) {
                                       return DropdownMenuItem<String>(
@@ -126,7 +111,7 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                 ],
               ),
             ),
-            //first row the amount and small medium large
+
 
 
             Container(
@@ -140,7 +125,7 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                       child: MyTextFieldWidget(
                         hintText: 'السعر',
                         onChanged: (value) {
-                          controller.firstDiscountPrice= value;
+                          controller.secondDiscountPrice= value;
                         },
                       )),
                   const SizedBox(
@@ -158,7 +143,8 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                       child: MyTextFieldWidget(
                         hintText: 'الاولوية',
                         onChanged: (value) {
-                          controller.firstDiscountPriority= value;
+
+                          controller.secondDiscountPriority= value;
                         },
                       )),
                 ],
@@ -177,8 +163,9 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
 
                         hintText:"تاريخ البدء",
                         onChanged: (value) {
+                          print(value);
 
-                          controller.startDate =value;
+                          controller.startDate2 =value;
                         },
                       )),
                   const SizedBox(
@@ -199,15 +186,12 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                         hintText:"تاريخ الانتهاء",
                         onChanged: (value) {
 
-                          controller.endDate =value;
+                          controller.endDate2 =value;
                         },
                       )),
                 ],
               ),
             ),
-            //the third  price and method of pricing                              //the taxable container
-
-            //the forth row the weight and the method of weight
             Container(
               padding: const EdgeInsets.only(top: 20),
               child: Row(
@@ -241,16 +225,16 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
                       color: Colors.green,
                       onPressed: () {
                         discountDataModel = DiscountDataModel(
-                            index: (controller.discountDataList.length),
-                            clintGroup:controller.selectedDiscountChooseOption.toString() ,
-                            priority: controller.firstDiscountPriority.toString(),
+                            index: (controller.seconddiscountDataList.length),
+                            clintGroup:controller.secondSelectedDiscountChooseOption.toString() ,
+                            priority: controller.secondDiscountPriority.toString(),
 
-                            price:controller.firstDiscountPrice.toString(),
-                            qty: controller.firstDiscountQty.toString(),
+                            price:controller.secondDiscountPrice.toString(),
 
-                            startDate: controller.startDate.toString() ,
-                            endDate:  controller.endDate . toString());
-                        controller.addDiscountModel(discountDataModel);
+
+                            startDate: controller.startDate2.toString() ,
+                            endDate:  controller.endDate2 . toString());
+                        controller.addSecondDiscountModel(discountDataModel);
                         Get.back();
                       })
                 ],
@@ -263,3 +247,4 @@ class EditButtonCheatDiscountContainer extends GetView<WizardController> {
     });
   }
 }
+//my idiea is to clone this class and try to use the index somehow to get into a

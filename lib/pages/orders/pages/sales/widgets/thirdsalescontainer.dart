@@ -480,7 +480,7 @@ class ThirdSalesContainer extends StatelessWidget {
                                                     );
                                                   }).toList(),
                                                   onChanged:(v) {
-                                                    controller.shippingMethods.value!.code=v!.code;
+                                                    controller.shippingMethods.value.code=v!.code;
                                                    // controller.shippingMethods.value!.title=v!.name;
                                                     // controller.manufacturersId.value = v?.manufacturerId;
 

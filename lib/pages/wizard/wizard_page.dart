@@ -113,14 +113,8 @@ class WizardPage extends GetView<WizardController> {
                           : StepState.disabled,
                     ),
                     Step(
-                      title:  const Text('step7'),
-                      content: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            decoration: const InputDecoration(labelText: 'step7'),
-                          ),
-                        ],
-                      ),
+                      title:  const Text('SEO'),
+                      content: DiscountContainer(controller: controller,) ,
                       isActive: controller.currentStep.value >= 0,
                       // state: controller.currentStep.value >= 6
                       //     ? StepState.complete

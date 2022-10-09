@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
+import 'package:opencart/controllers/porducts_controller.dart';
+import 'package:opencart/controllers/wizard_controller.dart';
 
 
+import '../../../Controllers/customer_controller.dart';
 import '../../../model/ProductData.dart';
 import '../../../model/porducts/category.dart';
 import '../../../model/porducts/manufacturers.dart';
@@ -14,16 +17,16 @@ class GeneralFirstCustomerExpantionPanel extends StatelessWidget {
     Key? key,
     required this.controller,
   }) : super(key: key);
-  final BaseController controller ;
+  final CustomerController controller ;
   @override
   Widget build(BuildContext context) {
-    var baseController =Get.put(BaseController());
+
 
     return Obx(() => ExpansionPanelList(
         expansionCallback: (panelIndex, isExpanded) {
-          baseController.customer[panelIndex].isExpanded!.value = !isExpanded;
+          controller.customer[panelIndex].isExpanded!.value = !isExpanded;
         },
-        children:  baseController.customer.map<ExpansionPanel>((Product item) {
+        children:  controller.customer.map<ExpansionPanel>((Product item) {
           return ExpansionPanel(
               backgroundColor: Colors.grey[200],
               canTapOnHeader: true,
@@ -63,7 +66,7 @@ class GeneralFirstCustomerExpantionPanel extends StatelessWidget {
                                 ),
                                 child: Center(
                                     child:FutureBuilder<List<Manufacturers>>(
-                                      future:controller.initManufacturers(),
+                                      future:ProductController().initManufacturers(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
                                           var data = snapshot.data!.obs;
@@ -80,7 +83,7 @@ class GeneralFirstCustomerExpantionPanel extends StatelessWidget {
                                               );
                                             }).toList(),
                                             onChanged:(v) {
-                                              controller.manufacturersId.value = v?.manufacturerId;
+                                              WizardController().manufacturersId.value = v?.manufacturerId;
 
                                             },
 
@@ -117,13 +120,13 @@ class GeneralFirstCustomerExpantionPanel extends StatelessWidget {
                               ),
                               child:Center(
                                 child:FutureBuilder<List<Categories>>(
-                                  future:controller.initCategory(),
+                                  future:ProductController().initCategory(),
                                   builder: (context, snapshot) {
                                     if (snapshot.hasData) {
                                       var data = snapshot.data!.obs;
                                       return DropdownButton<Categories>(
                                         hint:  const Text("مجموعة العميل"),
-                                        value:controller.selectedCategories.value,
+                                        value:WizardController().selectedCategories.value,
                                         icon: const Icon(Icons.keyboard_arrow_down),
                                         items:data.
                                         map<DropdownMenuItem<Categories>>((Categories value) {
@@ -136,7 +139,7 @@ class GeneralFirstCustomerExpantionPanel extends StatelessWidget {
 
                                         onChanged:(v) {
 
-                                          controller.categorieId.value=v?.categoryId;
+                                          WizardController().categorieId.value=v?.categoryId;
 
                                         },
                                       );

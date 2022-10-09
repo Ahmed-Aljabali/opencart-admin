@@ -1,11 +1,45 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import '../InterFace/ICustomer.dart';
+import '../model/ProductData.dart';
 import '../model/cutomers/add_customer.dart';
+
 import '../model/cutomers/customer.dart';
 
 
 class CustomerController extends BaseController implements ICustomers{
+  RxInt _currentStep = 0.obs;
+  late List<Product> customer;
+  RxInt get currentStep => _currentStep;
+
+  set currentStep(RxInt value) => _currentStep = value;
+  RxBool _isVaild = true.obs;
+
+  RxBool get isVaild => _isVaild;
+
+
+  tapped(int step) {
+    _currentStep.value = step;
+  }
+
+  continued() {
+    _currentStep.value < 7 ? _currentStep += 1 : null;
+  }
+
+  cancel() {
+    _currentStep > 0 ? _currentStep -= 1 : null;
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    customer = generateItems(1, 'العملاء1');
+
+
+  }
+
+
   dynamic _trx;
   List<Customers> get trx => _trx;
 

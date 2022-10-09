@@ -74,7 +74,7 @@ class ThirdProductContainer extends StatelessWidget {
 
 
                                     controller.selectedtaxCategOptions.value = v!;
-                                    controller.prod.taxClassId = v!;
+                                    controller.prod.taxClassId = v;
 
 
                                     // print(v);

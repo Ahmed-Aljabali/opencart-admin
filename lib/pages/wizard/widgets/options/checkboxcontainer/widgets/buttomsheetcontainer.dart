@@ -323,9 +323,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                               disabledHint: const Text('required'),
                               hint: const Text("Required"),
                               value:
-                                  controller.CheckBoxPointsChooseOption.value,
+                                  controller.checkBoxPointsChooseOption.value,
                               onChanged: (v) {
-                                controller.CheckBoxPointsChooseOption.value =
+                                controller.checkBoxPointsChooseOption.value =
                                     v!;
 
                                 // print(v);
@@ -394,9 +394,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                               hint: const Text("Required"),
                               value:
 
-                                  controller.CheckBoxWeightChooseOption.value,
+                                  controller.checkBoxWeightChooseOption.value,
                               onChanged: (v) {
-                                controller.CheckBoxWeightChooseOption.value =
+                                controller.checkBoxWeightChooseOption.value =
                                     v!;
 
                                 // print(v);
@@ -453,13 +453,13 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                       checkedBoxModel = CheckBoxDataModel(
                         index: (controller.checkBoxDataList.length),
                           optionValue:controller.selectedCheckBoxChooseOption.value.toString() ,
-                             point: controller.CheckBoxPointsChooseOption.value.toString()+ controller.checkboxpoint,
+                             point: controller.checkBoxPointsChooseOption.value.toString()+ controller.checkboxpoint,
                           tax:controller.selectedCheckBoxTaxOption.value.toString(),
                           price:controller.selectedCheckBoxPriceChooseOption
                               .value.toString()+ controller.checkBoxPrice.toString(),
                         qty: controller.checkBoxQty.toString(),
 
-                        weight: controller.CheckBoxWeightChooseOption.value.toString()+controller.checkboxweight.toString()   );
+                        weight: controller.checkBoxWeightChooseOption.value.toString()+controller.checkboxweight.toString()   );
                       controller.addCheckBoxModel(checkedBoxModel);
                       Get.back();
 

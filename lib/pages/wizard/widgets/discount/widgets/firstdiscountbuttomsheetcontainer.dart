@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/model/checkbox_data.dart';
+
 
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/discount.dart';
 
-class ButtomCheetDiscountContainer extends GetView<WizardController> {
+class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
+  const FirstButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
 
-  ButtomCheetDiscountContainer({
-    required this.controller,
-  });
-
-  final WizardController controller;
 
   @override
   Widget build(BuildContext context)  {
@@ -24,6 +20,7 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
       height: MediaQuery.of(context).size.height * 0.7,
       child: Column(
         children: <Widget>[
+
           Row(
             children: [
               Container(
@@ -66,6 +63,7 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                   hintText: 'الكمية',
                   onChanged: (value) {
 
+
                     controller.firstDiscountQty = value ;
                   },
                 )),
@@ -82,12 +80,9 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                             //background color of dropdown button
                             border:
                                 Border.all(color: Colors.black38, width: 0.5),
-                            //border of dropdown button
                             borderRadius: BorderRadius.circular(10),
-                            //border raiuds of dropdown button
                             boxShadow: <BoxShadow>[
-                              //apply shadow on Dropdown button
-                              const BoxShadow(
+                              const  BoxShadow(
                                   color: const Color.fromRGBO(0, 0, 0, 0.1),
                                   //shadow for button
                                   blurRadius: 3)
@@ -102,14 +97,14 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
 
                               hint: const Text("مجموعة العملاء"),
                               value:
-                                  controller.selectedDiscountChooseOption.value,
+                                  controller.firstSelectedDiscountChooseOption.value,
                               onChanged: (v) {
-                                controller.selectedDiscountChooseOption.value =
+                                controller.firstSelectedDiscountChooseOption.value =
                                     v!;
 
                                 // print(v);
                               },
-                              items: controller.DiscountChooseOptionList
+                              items: controller.FirstDiscountChooseOptionList
                                   .map<DropdownMenuItem<String>>(
                                       (String value) {
                                 return DropdownMenuItem<String>(
@@ -125,7 +120,7 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
               ],
             ),
           ),
-          //first row the amount and small medium large
+
 
 
           Container(
@@ -157,6 +152,7 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                     child: MyTextFieldWidget(
                       hintText: 'الاولوية',
                       onChanged: (value) {
+
                         controller.firstDiscountPriority= value;
                       },
                     )),
@@ -178,7 +174,7 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                   onChanged: (value) {
                     print(value);
 
-                    controller.startDate =value;
+                    controller.startDate1 =value;
                   },
                 )),
                 const SizedBox(
@@ -199,7 +195,7 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                       hintText:"تاريخ الانتهاء",
                       onChanged: (value) {
 
-                        controller.endDate =value;
+                        controller.endDate1 =value;
                       },
                     )),
               ],
@@ -238,16 +234,16 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                     color: Colors.green,
                     onPressed: () {
                       discountDataModel = DiscountDataModel(
-                        index: (controller.discountDataList.length),
-                          clintGroup:controller.selectedDiscountChooseOption.toString() ,
+                        index: (controller.firstdiscountDataList.length),
+                          clintGroup:controller.firstSelectedDiscountChooseOption.toString() ,
                              priority: controller.firstDiscountPriority.toString(),
 
                           price:controller.firstDiscountPrice.toString(),
                         qty: controller.firstDiscountQty.toString(),
 
-                        startDate: controller.startDate.toString() ,
-                      endDate:  controller.endDate . toString());
-                      controller.addDiscountModel(discountDataModel);
+                        startDate: controller.startDate1.toString() ,
+                      endDate:  controller.endDate1 . toString());
+                      controller.addFirstDiscountModel(discountDataModel);
                       Get.back();
                     })
               ],

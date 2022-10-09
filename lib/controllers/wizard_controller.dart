@@ -57,6 +57,7 @@ class WizardController extends ProductController {
   List<String> statues2OptionsList = ["حالة1", "حالة2", "حالة3",];
   List<String> weightOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
   var selectedweightOptions = Rxn<String>();
+  var selectedGroupOptions = Rxn<String>();
   List<String> unintOptionsList = ["وحدة1", "وحدة2", "وحدة3",];
   var selectedunintOptions = Rxn<String>();
   List<String> featureOptionsList = ["ميزة1", "ميزة2", "ميزة3",];
@@ -65,7 +66,8 @@ class WizardController extends ProductController {
 
   List<String> optionsproductlist = ["Checkbox", "Date", "Date & Time" ,"Delivery Date","File"];
   List<String> optioncheckchoose = ["small", "medium", "large",];
-  List<String> DiscountChooseOptionList = ["default"];
+  List<String> FirstDiscountChooseOptionList = ["default"];
+  List<String> SecondDiscountChooseOptionList = ["default"];
 
   List<String> CheckBoxPriceChooseOptionlist = ["+", "-"];
   List<String> CheckBoxPointsChooseOptionlist = ["+", "-"];
@@ -96,10 +98,11 @@ class WizardController extends ProductController {
  var isSelectedTimeDateOption=Rxn<String>();
  var selectedCheckBoxTaxOption= Rxn<String>();
  var selectedCheckBoxChooseOption= Rxn<String>();
-  var selectedDiscountChooseOption= Rxn<String>();
+  var firstSelectedDiscountChooseOption= Rxn<String>();
+  var secondSelectedDiscountChooseOption= Rxn<String>();
  var selectedCheckBoxPriceChooseOption= Rxn<String>();
- var CheckBoxPointsChooseOption= Rxn<String>();
- var CheckBoxWeightChooseOption=Rxn<String>();
+ var checkBoxPointsChooseOption= Rxn<String>();
+ var checkBoxWeightChooseOption=Rxn<String>();
 
   dynamic checkBoxQty=0;
   dynamic checkBoxPrice= 50.0;
@@ -108,12 +111,19 @@ class WizardController extends ProductController {
 
 
   dynamic firstDiscountQty=0;
+
+
   dynamic firstDiscountPrice;
+  dynamic secondDiscountPrice;
   dynamic firstDiscountPriority;
-  dynamic startDate;
-  dynamic endDate;
+  dynamic secondDiscountPriority;
+  dynamic startDate1;
+  dynamic startDate2;
+  dynamic endDate1;
+  dynamic endDate2;
   RxList<CheckBoxDataModel> checkBoxDataList = RxList  <CheckBoxDataModel>([]);
-  RxList<DiscountDataModel> discountDataList = RxList  <DiscountDataModel>([]);
+  RxList<DiscountDataModel> firstdiscountDataList = RxList  <DiscountDataModel>([]);
+  RxList<DiscountDataModel> seconddiscountDataList = RxList  <DiscountDataModel>([]);
 
 
   int index = 0;
@@ -167,25 +177,33 @@ class WizardController extends ProductController {
   }
 
 
-  void addDiscountModel(DiscountDataModel value) {
-    discountDataList.add(value);
-    discountDataList.refresh();
+  void addFirstDiscountModel(DiscountDataModel value) {
+    firstdiscountDataList.add(value);
+    firstdiscountDataList.refresh();
 
     update();
   }
-  void editDiscountModel(DiscountDataModel value,int index) {
-discountDataList.removeAt(index);
-discountDataList.insert(index,value);
-discountDataList.refresh();
-    update();
-  }
-  void removeDiscountModel(int value) {
+  void removeFirstDiscountModel(int value) {
 
-   if(discountDataList.length ==1){discountDataList.clear();}
-   else{ discountDataList.removeAt(value);
-   discountDataList.refresh();}
+   if(firstdiscountDataList.length ==1){firstdiscountDataList.clear();}
+   else{ firstdiscountDataList.removeAt(value);
+   firstdiscountDataList.refresh();}
     update();
   }
+  void addSecondDiscountModel(DiscountDataModel value) {
+    seconddiscountDataList.add(value);
+   seconddiscountDataList.refresh();
+
+    update();
+  }
+  void removeSecondDiscountModel(int value) {
+
+    if(seconddiscountDataList.length ==1){seconddiscountDataList.clear();}
+    else{ seconddiscountDataList.removeAt(value);
+    seconddiscountDataList.refresh();}
+    update();
+  }
+
   void changeValueSub(int index,var value) {
    subscWidgetList[index].subSelected = value!;
    subscWidgetList.refresh();
