@@ -49,7 +49,6 @@ class CustomerController extends BaseController implements ICustomers{
     if (res.statusCode == 200)
     {
       _trx=CustomerData.fromJson(jsonDecode(res.body)).data;
-
     }
   }
 

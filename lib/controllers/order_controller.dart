@@ -6,6 +6,7 @@ import 'package:opencart/model/orders/payment_metho.dart';
 import 'package:opencart/model/system_info/order_statuses.dart';
 import '../InterFace/Iorder.dart';
 import '../model/ProductData.dart';
+import '../model/orders/filter_order.dart';
 import '../model/orders/order.dart';
 import '../model/orders/shipping_methods.dart';
 import '../pages/orders/widgets/orderslistviewcontainer.dart';
@@ -27,19 +28,8 @@ class OrderController extends BaseController implements IOrder {
   var customer =Customer().obs;
   var paymentMethod =OrderShippingMethod().obs;
   var shippingMethods =OrderShippingMethod().obs;
+  var filterOrder = FilterOrder();
 
-
-
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void dispose() {
@@ -81,15 +71,26 @@ class OrderController extends BaseController implements IOrder {
   filterOrderList(){
     List<Orders> tet=[];
     for (var element in data) {
-      if (element.name.toString().contains("Ahmed")||element.status==""||
-          element.total==""||element.products.toString()==""||element.dateadded=="" ){
+      if (element.name.toString().contains(filterOrder.name.toString())||
+          element.status==filterOrder.status||
+          element.total==filterOrder.total ||
+          element.products.toString()==filterOrder.prodName||
+          element.dateadded==filterOrder.date||
+          element.orderid==filterOrder.idOrder
+      )
+      {
         tet.add(element);
 
       }
       _listFilter=tet;
 
     }
-
+    filterOrder.idOrder=0;
+    filterOrder.name="";
+    filterOrder.status="";
+    filterOrder.date="";
+    filterOrder.total="";
+    filterOrder.prodName="";
     update();
   }
 

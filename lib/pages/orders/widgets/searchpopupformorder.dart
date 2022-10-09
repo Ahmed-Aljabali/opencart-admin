@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
+import 'package:opencart/controllers/Init_add_order_controller.dart';
 import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/controllers/system_info_controller.dart';
 import 'package:opencart/model/system_info/order_statuses.dart';
@@ -9,7 +10,7 @@ import '../../../controllers/wizard_controller.dart';
 import '../../../core/constrants/widgetconstrant.dart';
 import '../../../model/checkbox_data.dart';
 
-class OrderSearchForm extends GetView<OrderController> {
+class OrderSearchForm extends GetView<InitAddOrderController> {
   const OrderSearchForm({Key? key}) : super(key: key);
 
   @override
@@ -27,23 +28,18 @@ class OrderSearchForm extends GetView<OrderController> {
             Expanded(
               child: MyTextFieldWidget(hintText: "رقم الطلب",
                 onChanged: (value) {
-
-                },),
+                  controller.filterOrder.idOrder=int.parse(value);
+                },
+              ),
             ),
             Expanded(
                 child: MyTextFieldWidget(
                   hintText: 'اسم العميل',
-
                   onChanged: (value) {
 
-
-
-
+                    controller.filterOrder.name=value;
                   },
                 )),
-
-
-
           ],
         ),
       ),
@@ -55,9 +51,10 @@ class OrderSearchForm extends GetView<OrderController> {
           children: [
             Expanded(
               child:
-              MyTextFieldWidget(hintText: "السعر",
+              MyTextFieldWidget(
+                hintText: "السعر",
                 onChanged: (value) {
-
+                  controller.filterOrder.total=value;
                 },),
             ),
             Expanded(
@@ -85,7 +82,7 @@ class OrderSearchForm extends GetView<OrderController> {
                           onChanged:(v) {
 
                             controller.selectedOrderStatuses.value=v;
-
+                          controller.filterOrder.status=v!.name.toString();
                           },
                         );
                       }
@@ -191,7 +188,11 @@ class OrderSearchForm extends GetView<OrderController> {
             children: [
               Expanded(
                 child: MyTextFieldWidget(hintText: "تاريخ الاضافة",
-                  onChanged: (value) {  },),
+                  onChanged: (value) {
+                   // controller.filterOrder.value!.date=value;
+
+
+                  },),
               ),
               Expanded(
                   child: MyTextFieldWidget(
