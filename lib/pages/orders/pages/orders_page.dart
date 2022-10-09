@@ -13,9 +13,6 @@ import '../../../core/utils/math_utils.dart';
 import '../../../model/orders/add_order.dart';
 
 class OrderPage extends GetView<InitAddOrderController> {
-
-
-
   const OrderPage({Key? key}) : super(key: key);
   @override
   // TODO: implement controller
@@ -24,11 +21,8 @@ class OrderPage extends GetView<InitAddOrderController> {
   StatelessElement createElement() {
     // TODO: implement createElement
     controller.fetchOrder();
-
     return super.createElement();
   }
-
-
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -331,6 +325,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                                   onPressed: () {
                                    controller.filterOrderList();
 
+                                   controller.filterOrder.idOrder==1;
                                    controller.searchFormVisible.value = false;
                                   })
                             ],
@@ -355,13 +350,7 @@ class OrderPage extends GetView<InitAddOrderController> {
 
             backgroundColor: Colors.green,
             onPressed: () {
-              //Todo this code for add new order
-               /*         Get.snackbar(
-                "Icon Action",
-                "Search button was clicked",
-                icon:  const Icon(Icons.check, color: Colors.green,),
-                snackPosition: SnackPosition.TOP,
-              );*/
+
               Get.to(Sales());
             },
             tooltip: 'add a new product',
