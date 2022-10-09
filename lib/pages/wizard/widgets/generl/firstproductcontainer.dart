@@ -35,8 +35,6 @@ class FirstProductContainer extends StatelessWidget {
                 ));
               }),
               body: Container(
-                /* padding: EdgeInsets.only(
-                      top: 10, bottom: 10, right: 10, left: 10),*/
                 margin:
                     const EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 10),
                 width: MediaQuery.of(context).size.width * 0.9,

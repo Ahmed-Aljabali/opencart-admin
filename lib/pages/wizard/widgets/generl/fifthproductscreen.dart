@@ -52,11 +52,11 @@ class FifhProductScreen extends StatelessWidget {
                       },
                       listSwitchText: '1قابل للشحن',
                     ),
-                    MyTextFieldWidget(hintText: "الطول", onChanged: (v)=>controller.prod.length=v),
+                    MyTextFieldWidget(hintText: "الطول", onChanged: (v)=>controller.prod.length=v,keyboardType: TextInputType.number,),
                     const SizedBox(height: 10,),
-                    MyTextFieldWidget(hintText: "العرض", onChanged: (v)=>controller.prod.width=v),
+                    MyTextFieldWidget(hintText: "العرض", onChanged: (v)=>controller.prod.width=v,keyboardType: TextInputType.number,),
                     const SizedBox(height: 10,),
-                    MyTextFieldWidget(hintText: 'الارتفاع', onChanged: (v)=>controller.prod.height=v),
+                    MyTextFieldWidget(hintText: 'الارتفاع', onChanged: (v)=>controller.prod.height=v,keyboardType: TextInputType.number,),
                     const SizedBox(
                       height: 10,
                     ),
@@ -103,7 +103,8 @@ class FifhProductScreen extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText: 'الوزن', onChanged: (v)=>controller.prod.weight=v),
+                    MyTextFieldWidget(hintText: 'الوزن', onChanged: (v){controller.prod.weight=v;},keyboardType: TextInputType.number,),
+
                     const SizedBox(
                       height: 10,
                     ),

@@ -7,6 +7,8 @@ import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/discount.dart';
 
 class ButtomCheetDiscountContainer extends GetView<WizardController> {
+
+
   ButtomCheetDiscountContainer({
     required this.controller,
   });
@@ -46,7 +48,6 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
                       ))),
             ],
           ),
-          //the title top
           const Divider(
             thickness: 1,
             color: Colors.grey,
@@ -204,9 +205,6 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
               ],
             ),
           ),
-          //the third  price and method of pricing                              //the taxable container
-
-          //the forth row the weight and the method of weight
           Container(
             padding: const EdgeInsets.only(top: 20),
             child: Row(
@@ -262,3 +260,4 @@ class ButtomCheetDiscountContainer extends GetView<WizardController> {
 });
   }
 }
+//my idiea is to clone this class and try to use the index somehow to get into a
