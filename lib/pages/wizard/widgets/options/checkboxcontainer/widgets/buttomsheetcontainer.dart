@@ -9,9 +9,11 @@ import '../../../../../../core/constrants/widgetconstrant.dart';
 class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
    ButtomCheetCheckBoxContainer({
     required this.controller,
+    required this.index,
   });
 
   final WizardController controller;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -451,7 +453,7 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                     color: Colors.green,
                     onPressed: () {
                       checkedBoxModel = CheckBoxDataModel(
-                        index: (controller.checkBoxDataList.length),
+                        index: (controller.optWidgetList[index].chbInnerModel.length),
                           optionValue:controller.selectedCheckBoxChooseOption.value.toString() ,
                              point: controller.checkBoxPointsChooseOption.value.toString()+ controller.checkboxpoint,
                           tax:controller.selectedCheckBoxTaxOption.value.toString(),
@@ -460,7 +462,7 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                         qty: controller.checkBoxQty.toString(),
 
                         weight: controller.checkBoxWeightChooseOption.value.toString()+controller.checkboxweight.toString()   );
-                      controller.addCheckBoxModel(checkedBoxModel);
+                      controller.addCheckBoxModel(checkedBoxModel,index);
                       Get.back();
 
                       controller. productOptionValue.add(ProductOptionValue(

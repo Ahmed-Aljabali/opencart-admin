@@ -127,7 +127,7 @@ class FirstSalesContainer extends StatelessWidget {
 
 
                                   onTap: () {
-                                    controller.chooseOptionDate();
+                                    // controller.chooseOptionDate();
                                   },
                                   textAlign: TextAlign.center,
                                   readOnly: true,

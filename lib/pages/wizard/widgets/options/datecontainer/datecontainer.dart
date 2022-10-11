@@ -23,43 +23,15 @@ class DateContainer extends StatelessWidget {
   const DateContainer({
 
     required this.controller,
+    required this.index,
   }) ;
 
   final WizardController controller;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-
-      child:  Obx(() =>ExpansionPanelList(
-
-          expansionCallback: (panelIndex, isExpanded) {
-            controller.datecontainertitle[panelIndex].isExpanded!.value =
-            !isExpanded;
-          },
-          dividerColor: Colors.blueAccent,
-          children: controller.datecontainertitle.map<ExpansionPanel>((Product item) {
-            return ExpansionPanel(
-
-                backgroundColor: Colors.grey[200],
-                canTapOnHeader: true,
-                headerBuilder: ((context, isExpanded) {
-                  return ListTile(
-                    leading: InkWell(child: const Icon(Icons.remove),
-                      onTap: ()
-                      {
-                        controller.removeOptWidget(controller.currentOptionDateIndex);
-                        },
-                    ),
-
-                      title: Text(
-                        item.header!,
-                        style: const TextStyle(fontSize: 20,),
-                        textAlign: TextAlign.center,
-                      ));
-                }),
-                body: Container(
+   return Container(
 
                   margin: const EdgeInsets.only(bottom: 10, left: 5),
 
@@ -70,29 +42,10 @@ class DateContainer extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          /*RawMaterialButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                            elevation: 1.0,
-
-
-                            fillColor: Colors.blueAccent,
-                            onPressed: (){},
-                            child: Icon(
-
-                              Icons.close,
-                              color: Colors.white,
-                              size: 20.0,
-                            ),
-
-                            constraints: BoxConstraints.tightFor(
-                              width: 25.0,
-                              height: 25.0,
-                            ),
-                          ),*/
 
 
                           Expanded(
-                              child:DateRequiredOptionPicker( controller: controller)),
+                              child:DateRequiredOptionPicker( controller: controller, index: index,)),
                           const SizedBox(width: 2,),
                           Container(
                             padding: const EdgeInsets.only(right:5,),
@@ -134,7 +87,7 @@ class DateContainer extends StatelessWidget {
 
 
                                 onTap: () {
-                                  controller.chooseOptionDate();
+                                  controller.chooseOptionDate(index);
                                 },
                                 textAlign: TextAlign.center,
                                 readOnly: true,
@@ -146,7 +99,7 @@ class DateContainer extends StatelessWidget {
                                     color: Colors.blueAccent,
                                   ),
                                   hintText: DateFormat("dd-MM-yyyy")
-                                      .format(controller.selectedOptionDate.value)
+                                      .format(controller.optWidgetList[index].selectedOptionDate.value)
                                       .toString(),
                                   hintStyle: const TextStyle(
                                     fontSize: 19,
@@ -178,27 +131,12 @@ class DateContainer extends StatelessWidget {
                             child:const Text('حدد التاريخ',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
                           ),
 
-
                         ],
                       ),
 
 
-                       //date
-            // add material button
-
-
-
                     ],
                   ),
-                ),
-                isExpanded: item.isExpanded!.value);
-          }).toList())
-
-
-
-      ),
-
-
     );
   }
 }

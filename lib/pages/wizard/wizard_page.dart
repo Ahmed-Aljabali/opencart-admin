@@ -9,6 +9,7 @@ import 'package:opencart/pages/wizard/widgets/generl/secondproductcontainter.dar
 import 'package:opencart/pages/wizard/widgets/generl/thirdproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/linke/firstproductlinkecontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
+import 'package:opencart/pages/wizard/widgets/seo/seopage.dart';
 import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
 import '../../controllers/porducts_controller.dart';
@@ -114,26 +115,13 @@ class WizardPage extends GetView<WizardController> {
                     ),
                     Step(
                       title:  const Text('SEO'),
-                      content: DiscountContainer(controller: controller,) ,
+                      content: Seo(),
                       isActive: controller.currentStep.value >= 0,
                       // state: controller.currentStep.value >= 6
                       //     ? StepState.complete
                       //     : StepState.disabled,
                     ),
-                    Step(
-                      title:const Text('step8'),
-                      content: Column(
-                        children: <Widget>[
-                          TextFormField(
-                            decoration: const InputDecoration(labelText: 'step8'),
-                          ),
-                        ],
-                      ),
-                      isActive: controller.currentStep.value >= 0,
-                      // state: controller.currentStep.value >= 7
-                      //     ? StepState.complete
-                      //     : StepState.disabled,
-                    ),
+
 
                   ],
                 ),

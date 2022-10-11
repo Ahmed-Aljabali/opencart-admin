@@ -56,6 +56,7 @@ class CheckBoxRequiredOptionPicker extends StatelessWidget {
                         value: controller.optWidgetList[index].isselectedCheckBoxOption,
                         onChanged: (v) {
                           controller.optWidgetList[index].isselectedCheckBoxOption = v!;
+                          controller.optWidgetList.refresh();
 
 
                           // print(v);

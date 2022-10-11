@@ -11,61 +11,99 @@ import '../model/porducts/attribute.dart';
 import '../model/porducts/category.dart';
 import '../model/porducts/product.dart';
 import '../model/porducts/stores.dart';
+import '../pages/wizard/widgets/options/checkboxcontainer/checkboxcontainer.dart';
 
 class WizardController extends ProductController {
-  var selectedTime = TimeOfDay.now().obs;
-  var  productDescription= ProductDescription();
-  var prod =Products();
-  var selectProd =Rxn<Products>();
-  var selectedOption= Rxn<ProductOption>();
-  var selectedCategories= Rxn<Categories>();
-  var selectedStores= Rxn<Stores>();
-  var selectedProductAttribute= Rxn<ProductAttribute>();
-  var ss= Rxn<String>();
-  var productAttributeDescription= Rxn<ProductAttributeDescription>();
-  var attribute= Rxn<Attribute>();
+  var productDescription = ProductDescription();
+  var prod = Products();
+  var selectProd = Rxn<Products>();
+  var selectedOption = Rxn<ProductOption>();
+  var selectedCategories = Rxn<Categories>();
+  var selectedStores = Rxn<Stores>();
+  var selectedProductAttribute = Rxn<ProductAttribute>();
+  var ss = Rxn<String>();
+  var productAttributeDescription = Rxn<ProductAttributeDescription>();
+  var attribute = Rxn<Attribute>();
 
-  List<ProductOptionValue>  productOptionValue= [];
-  List<ProductDescription>  productDescriptionlist= [];
-  List<ProductAttribute>  productAttribute= [];
+  List<ProductOptionValue> productOptionValue = [];
+  List<ProductDescription> productDescriptionlist = [];
+  List<ProductAttribute> productAttribute = [];
   var selectedDate = DateTime.now().obs;
-  var selectedOptionDate = DateTime.now().obs;
+
   var selectedDeliveryOptionDate = DateTime.now().obs;
-  var selectedOptionTimeDate =  new DateTime.now().obs;
+
   var selectedCompany = ''.obs;
- var  currentOptionDateIndex ;
- var currentDeliveryDateIndex;
-  var  currentOptionTimeDateIndex ;
-  var currentOptioncheckIndex ;
+  var currentOptionDateIndex;
+
+  var currentDeliveryDateIndex;
+  var currentOptionTimeDateIndex;
 
   var selectedrelatedProdOptions = Rxn<String>();
   List<String> compOptionsList = ["apple", "HTC", "Samsung", "Fox"];
+
   // RxString selectedcompOptions= 'apple'.obs;
   var selectedcompOptions = Rxn<String>();
   List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
+
 /*  RxString selectedtaxCategOptions= 'فئة2'.obs;*/
   var selectedtaxCategOptions = Rxn<String>();
-  List<String> compCategOptionsList = ["الكيمرات", "الساعات", "العطور", "المنتجات"];
+  List<String> compCategOptionsList = [
+    "الكيمرات",
+    "الساعات",
+    "العطور",
+    "المنتجات"
+  ];
   var selectedcompCategOptions = Rxn<String>();
   List<String> marketsOptionsList = ["متجر1", "متجر2", "متجر3", "متجر4"];
   var selectedmarketsOptions = Rxn<String>();
-  List<String> statuesOptionsList = ["حالة1", "حالة2", "حالة3",];
+  var selectedmarketsSeo = Rxn<String>();
+  List<String> statuesOptionsList = [
+    "حالة1",
+    "حالة2",
+    "حالة3",
+  ];
   var selectedstatuesOptions = Rxn<String>();
-  List<String> orderOptionsList = ["امر1", "امر2", "امر3",];
+  List<String> orderOptionsList = [
+    "امر1",
+    "امر2",
+    "امر3",
+  ];
 
   var selectedorderOptions = Rxn<String>();
-  List<String> statues2OptionsList = ["حالة1", "حالة2", "حالة3",];
+  List<String> statues2OptionsList = [
+    "حالة1",
+    "حالة2",
+    "حالة3",
+  ];
   List<String> weightOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
   var selectedweightOptions = Rxn<String>();
   var selectedGroupOptions = Rxn<String>();
-  List<String> unintOptionsList = ["وحدة1", "وحدة2", "وحدة3",];
+  List<String> unintOptionsList = [
+    "وحدة1",
+    "وحدة2",
+    "وحدة3",
+  ];
   var selectedunintOptions = Rxn<String>();
-  List<String> featureOptionsList = ["ميزة1", "ميزة2", "ميزة3",];
-  var storesId= Rxn<int>();
-  var categorieId= Rxn<int>();
+  List<String> featureOptionsList = [
+    "ميزة1",
+    "ميزة2",
+    "ميزة3",
+  ];
+  var storesId = Rxn<int>();
+  var categorieId = Rxn<int>();
 
-  List<String> optionsproductlist = ["Checkbox", "Date", "Date & Time" ,"Delivery Date","File"];
-  List<String> optioncheckchoose = ["small", "medium", "large",];
+  List<String> optionsproductlist = [
+    "Checkbox",
+    "Date",
+    "Date & Time",
+    "Delivery Date",
+    "File"
+  ];
+  List<String> optioncheckchoose = [
+    "small",
+    "medium",
+    "large",
+  ];
   List<String> FirstDiscountChooseOptionList = ["default"];
   List<String> SecondDiscountChooseOptionList = ["default"];
 
@@ -77,41 +115,50 @@ class WizardController extends ProductController {
   List<String> optionsproductdatelist = ["yes", "no"];
   List<String> SelectedTimeDateOption = ["yes", "no"];
   List<String> optionsproductdeliverydatelist = ["yes", "no"];
-  List<String> subscrOptionsList = ["خطة1", "خطة2", "خطة3",];
+  List<String> subscrOptionsList = [
+    "خطة1",
+    "خطة2",
+    "خطة3",
+  ];
 
   var selectedsubscrOptions = Rxn<String>();
-  List<String> custmGroupOptionsList = ["مجموعة1", "مجموعة2", "مجموعة3",];
+  List<String> custmGroupOptionsList = [
+    "مجموعة1",
+    "مجموعة2",
+    "مجموعة3",
+  ];
   List<String> testofatrr = [];
-  TextEditingController myController =TextEditingController() ;
-  RxList<TextEditingController> textEditingController = RxList<TextEditingController>();
+  TextEditingController myController = TextEditingController();
 
-  RxList<AttrModel> attrWidgetList = RxList  <AttrModel>([]);
-  RxList<OptModel> optWidgetList = RxList  <OptModel>([]);
+  RxList<TextEditingController> textEditingController =
+      RxList<TextEditingController>();
 
-  RxList<SubModel> subscWidgetList = RxList  <SubModel>([]);
-  var manufacturersId= Rxn<int>();
+  RxList<AttrModel> attrWidgetList = RxList<AttrModel>([]);
+  RxList<OptModel> optWidgetList = RxList<OptModel>([]);
 
-  dynamic currentOptionCheckIndex ;
- var isselectedCheckBoxOption= Rxn<String>();
- var isSelectedDateOption= Rxn<String>();
- var isSelectedDeliveryDateOption=Rxn<String>();
- var isSelectedTimeDateOption=Rxn<String>();
- var selectedCheckBoxTaxOption= Rxn<String>();
- var selectedCheckBoxChooseOption= Rxn<String>();
-  var firstSelectedDiscountChooseOption= Rxn<String>();
-  var secondSelectedDiscountChooseOption= Rxn<String>();
- var selectedCheckBoxPriceChooseOption= Rxn<String>();
- var checkBoxPointsChooseOption= Rxn<String>();
- var checkBoxWeightChooseOption=Rxn<String>();
+  RxList<SubModel> subscWidgetList = RxList<SubModel>([]);
+  var manufacturersId = Rxn<int>();
 
-  dynamic checkBoxQty=0;
-  dynamic checkBoxPrice= 50.0;
-  dynamic  checkboxpoint  = 0;
-  dynamic checkboxweight= 10.0;
+  RxInt currentOptionCheckIndex = 0.obs;
 
+  var isselectedCheckBoxOption = Rxn<String>();
 
-  dynamic firstDiscountQty=0;
+  var isSelectedDeliveryDateOption = Rxn<String>();
+  var isSelectedTimeDateOption = Rxn<String>();
+  var selectedCheckBoxTaxOption = Rxn<String>();
+  var selectedCheckBoxChooseOption = Rxn<String>();
+  var firstSelectedDiscountChooseOption = Rxn<String>();
+  var secondSelectedDiscountChooseOption = Rxn<String>();
+  var selectedCheckBoxPriceChooseOption = Rxn<String>();
+  var checkBoxPointsChooseOption = Rxn<String>();
+  var checkBoxWeightChooseOption = Rxn<String>();
 
+  dynamic checkBoxQty = 0;
+  dynamic checkBoxPrice = 50.0;
+  dynamic checkboxpoint = 0;
+  dynamic checkboxweight = 10.0;
+
+  dynamic firstDiscountQty = 0;
 
   dynamic firstDiscountPrice;
   dynamic secondDiscountPrice;
@@ -121,18 +168,19 @@ class WizardController extends ProductController {
   dynamic startDate2;
   dynamic endDate1;
   dynamic endDate2;
-  RxList<CheckBoxDataModel> checkBoxDataList = RxList  <CheckBoxDataModel>([]);
-  RxList<DiscountDataModel> firstdiscountDataList = RxList  <DiscountDataModel>([]);
-  RxList<DiscountDataModel> seconddiscountDataList = RxList  <DiscountDataModel>([]);
-
+  RxList<CheckBoxDataModel> checkBoxDataList = RxList<CheckBoxDataModel>([]);
+  RxList<DiscountDataModel> firstdiscountDataList =
+      RxList<DiscountDataModel>([]);
+  RxList<DiscountDataModel> seconddiscountDataList =
+      RxList<DiscountDataModel>([]);
 
   int index = 0;
-  void countingthindex(){
+
+  void countingthindex() {
     index++;
   }
 
-
-  void addAttribWidget(AttrModel value,text) {
+  void addAttribWidget(AttrModel value, text) {
     attrWidgetList.add(value);
     attrWidgetList.refresh();
     testofatrr.add(text);
@@ -142,40 +190,57 @@ class WizardController extends ProductController {
   void addOptWidget(OptModel value) {
     optWidgetList.add(value);
     optWidgetList.refresh();
+
     update();
   }
+
   void removeAttribWidget(int index) {
     attrWidgetList.removeAt(index);
     testofatrr.removeAt(index);
-
   }
-  void removeOptWidget(int index) {
-    optWidgetList.removeAt(index);
-    optWidgetList.refresh();
+
+  void  removeOptWidget(int index) {
+    if (optWidgetList.length == 1) {
+      optWidgetList.clear();
+    } else {
+      optWidgetList.removeAt(index);
+      optWidgetList.refresh();
+    }
+
     update();
   }
+
   void addSubscrWidget(SubModel value) {
     subscWidgetList.add(value);
     subscWidgetList.refresh();
     update();
   }
+
   void removeSubscrWidget(int value) {
     subscWidgetList.removeAt(value);
     subscWidgetList.refresh();
     update();
   }
-  void addCheckBoxModel(CheckBoxDataModel value) {
+
+  void addCheckBoxModel(CheckBoxDataModel value, int index) {
     checkBoxDataList.add(value);
     checkBoxDataList.refresh();
-    update();
-  }
-  void removeCheckBoxModel(int value) {
-    if(checkBoxDataList.length ==1){checkBoxDataList.clear();}
-    else{ checkBoxDataList.removeAt(value);
-    checkBoxDataList.refresh();}
+    optWidgetList[index].chbInnerModel.add(value);
+    optWidgetList.refresh();
     update();
   }
 
+  void removeCheckBoxModel(int value, int index) {
+    if (optWidgetList[index].chbInnerModel.length == 1) {
+      optWidgetList[index].chbInnerModel.clear();
+      optWidgetList.refresh();
+    } else {
+      optWidgetList[index].chbInnerModel.removeAt(value);
+      optWidgetList.refresh();
+      optWidgetList[index].chbInnerModel.refresh();
+    }
+    update();
+  }
 
   void addFirstDiscountModel(DiscountDataModel value) {
     firstdiscountDataList.add(value);
@@ -183,38 +248,45 @@ class WizardController extends ProductController {
 
     update();
   }
-  void removeFirstDiscountModel(int value) {
 
-   if(firstdiscountDataList.length ==1){firstdiscountDataList.clear();}
-   else{ firstdiscountDataList.removeAt(value);
-   firstdiscountDataList.refresh();}
+  void removeFirstDiscountModel(int value) {
+    if (firstdiscountDataList.length == 1) {
+      firstdiscountDataList.clear();
+    } else {
+      firstdiscountDataList.removeAt(value);
+      firstdiscountDataList.refresh();
+    }
     update();
   }
+
   void addSecondDiscountModel(DiscountDataModel value) {
     seconddiscountDataList.add(value);
-   seconddiscountDataList.refresh();
+    seconddiscountDataList.refresh();
 
     update();
   }
+
   void removeSecondDiscountModel(int value) {
-
-    if(seconddiscountDataList.length ==1){seconddiscountDataList.clear();}
-    else{ seconddiscountDataList.removeAt(value);
-    seconddiscountDataList.refresh();}
+    if (seconddiscountDataList.length == 1) {
+      seconddiscountDataList.clear();
+    } else {
+      seconddiscountDataList.removeAt(value);
+      seconddiscountDataList.refresh();
+    }
     update();
   }
 
-  void changeValueSub(int index,var value) {
-   subscWidgetList[index].subSelected = value!;
-   subscWidgetList.refresh();
-    update();
-  }
-  void changeValueGrp(int index,var value) {
-    subscWidgetList[index].grpSelected =value!;
-   subscWidgetList.refresh();
+  void changeValueSub(int index, var value) {
+    subscWidgetList[index].subSelected = value!;
+    subscWidgetList.refresh();
     update();
   }
 
+  void changeValueGrp(int index, var value) {
+    subscWidgetList[index].grpSelected = value!;
+    subscWidgetList.refresh();
+    update();
+  }
 
   RxBool isSwitchedOn = false.obs;
   RxBool isSwitchedOn2 = false.obs;
@@ -248,14 +320,19 @@ class WizardController extends ProductController {
   late List<Product> attributeproduct1;
   late List<Product> optionsproduct1;
   late List<Product> optionsproduct2;
-  late List<Product> checkBox;
+  late List<OptModel> checkBox;
+  late List<Product> checkBoxInner;
   late List<Product> datecontainertitle;
   late List<Product> timeDateContainerTitele;
   late List<Product> DeliveryDateContainerTitle;
   late List<Product> subscribeproduct1;
   late List<Product> discount1;
   late List<Product> discount2;
-  late List<Product>  discount3;
+  late List<Product> discount3;
+  late List<Product> seo1;
+  late List<Product> seo2;
+  late List<Product> seo3;
+
 
   @override
   void onInit() {
@@ -268,15 +345,18 @@ class WizardController extends ProductController {
     linkeproduct1 = generateItems(1, 'معلومات الصنع');
     attributeproduct1 = generateItems(1, 'خصائص مميزات');
     optionsproduct1 = generateItems(1, 'Add Option');
-    checkBox = generateItems(1,'CheckBox');
-    datecontainertitle=  generateItems(1,'Date');
-    timeDateContainerTitele= generateItems(1, ' Date & Time');
-    DeliveryDateContainerTitle = generateItems(1, 'Delivery Date');
-    subscribeproduct1 = generateItems(1, 'اضافة خطة الاشتراك');
-    discount1 = generateItems(1 , 'اضافة تخفيض');
-    discount2 = generateItems(1 , 'اضافة خصم');
-    discount3 = generateItems(1 , 'نقاط ومكافئات');
+    // checkBox = generateItems(1,'CheckBox');
 
+    // datecontainertitle=  generateItems(1,'Date');
+    // timeDateContainerTitele = generateItems(1, ' Date & Time');
+    // DeliveryDateContainerTitle = generateItems(1, 'Delivery Date');
+    subscribeproduct1 = generateItems(1, 'اضافة خطة الاشتراك');
+    discount1 = generateItems(1, 'اضافة تخفيض');
+    discount2 = generateItems(1, 'اضافة خصم');
+    discount3 = generateItems(1, 'نقاط ومكافئات');
+    seo1 = generateItems(1, 'SEO');
+    seo2 = generateItems(1, 'التصميم');
+    seo3 = generateItems(1, 'التقرير');
   }
 
   @override
@@ -289,7 +369,6 @@ class WizardController extends ProductController {
 
   chooseGenerlDate() async {
     DateTime? pickedDate = await showDatePicker(
-
       context: Get.context!,
       initialDate: selectedDate.value,
       firstDate: DateTime(2000),
@@ -308,29 +387,33 @@ class WizardController extends ProductController {
       selectedDate.value = pickedDate;
     }
   }
-  chooseTime() async {
+
+  chooseTime(var index) async {
     TimeOfDay? pickedTime = await showTimePicker(
         context: Get.context!,
-        initialTime: selectedTime.value,
+        initialTime: optWidgetList[index].selectedTime.value,
         builder: (context, child) {
           return Theme(data: ThemeData.light(), child: child!);
         },
         initialEntryMode: TimePickerEntryMode.input,
         helpText: 'اختر وقت',
-
         cancelText: 'الغاء',
         confirmText: 'تأكيد',
         errorInvalidText: 'الرجاء ادخال وقت صحيح',
         hourLabelText: ' الساعة',
         minuteLabelText: 'الدقيقة');
-    if (pickedTime != null && pickedTime != selectedTime.value) {
-      selectedTime.value = pickedTime;
+    if (pickedTime != null &&
+        pickedTime != optWidgetList[index].selectedTime.value) {
+      optWidgetList[index].selectedTime.value = pickedTime;
+      optWidgetList.refresh();
+      update();
     }
   }
-  chooseOptionDate() async {
+
+  chooseOptionDate(var index) async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
-      initialDate: selectedOptionDate.value,
+      initialDate: optWidgetList[index].selectedOptionDate.value,
       firstDate: DateTime(2000),
       lastDate: DateTime(2024),
       //initialEntryMode: DatePickerEntryMode.input,
@@ -343,14 +426,17 @@ class WizardController extends ProductController {
       fieldLabelText: 'DOB',
       fieldHintText: 'Month/Date/Year',
     );
-    if (pickedDate != null && pickedDate != selectedOptionDate.value) {
-      selectedOptionDate.value = pickedDate;
+    if (pickedDate != null &&
+        pickedDate != optWidgetList[index].selectedOptionDate.value) {
+      optWidgetList[index].selectedOptionDate.value = pickedDate;
+      optWidgetList.refresh();
     }
   }
-  chooseOptionTimeDate() async {
+
+  chooseOptionTimeDate(var index) async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
-      initialDate: selectedOptionTimeDate.value,
+      initialDate: optWidgetList[index].selectedOptionTimeDate.value,
       firstDate: DateTime(2000),
       lastDate: DateTime(2024),
       //initialEntryMode: DatePickerEntryMode.input,
@@ -363,10 +449,14 @@ class WizardController extends ProductController {
       fieldLabelText: 'DOB',
       fieldHintText: 'Month/Date/Year',
     );
-    if (pickedDate != null && pickedDate != selectedOptionTimeDate.value) {
-      selectedOptionTimeDate.value = pickedDate;
+    if (pickedDate != null &&
+        pickedDate != optWidgetList[index].selectedOptionTimeDate.value) {
+      optWidgetList[index].selectedOptionTimeDate.value = pickedDate;
+      optWidgetList.refresh();
+      update();
     }
   }
+
   chooseDeliveryDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
@@ -391,16 +481,13 @@ class WizardController extends ProductController {
   List<Product> generateItems(int numberOfItems, String header) {
     return List.generate(numberOfItems, (int index) {
       return Product(
-          header: header,
-          body: ' - $index Details',
-          isExpanded: false.obs);
+          header: header, body: ' - $index Details', isExpanded: false.obs);
     });
   }
- void addCheckBx(String header) {
-  checkBox.add(Product(
-      header: header,
-      body: ' Details',
-      isExpanded: false.obs));
-  update();
+
+  List<OptModel> generateOptModel(int numberOfItems, OptModel optModel) {
+    return List<OptModel>.generate(numberOfItems, (int index) {
+      return optModel;
+    });
   }
 }

@@ -25,38 +25,15 @@ class TimeDateContainer extends StatelessWidget {
   const TimeDateContainer({
 
     required this.controller,
+    required this.index,
   }) ;
 
   final WizardController controller;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-
-
-      child:  Obx(() =>ExpansionPanelList(
-
-          expansionCallback: (panelIndex, isExpanded) {
-            controller.timeDateContainerTitele[panelIndex].isExpanded!.value =
-            !isExpanded;
-          },
-          dividerColor: Colors.blueAccent,
-          children: controller.timeDateContainerTitele.map<ExpansionPanel>((Product item) {
-            return ExpansionPanel(
-
-                backgroundColor: Colors.grey[200],
-                canTapOnHeader: true,
-                headerBuilder: ((context, isExpanded) {
-                  return ListTile(
-                      leading: InkWell(child: Icon(Icons.remove), onTap: (){controller.removeOptWidget(controller.currentOptionTimeDateIndex);},),
-
-                      title: Text(
-                        item.header!,
-                        style: TextStyle(fontSize: 20,),
-                        textAlign: TextAlign.center,
-                      ));
-                }),
-                body: Container(
 
                   margin: EdgeInsets.only(bottom: 10, left: 5),
 
@@ -67,38 +44,13 @@ class TimeDateContainer extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          /*RawMaterialButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                            elevation: 1.0,
-
-
-                            fillColor: Colors.blueAccent,
-                            onPressed: (){},
-                            child: Icon(
-
-                              Icons.close,
-                              color: Colors.white,
-                              size: 20.0,
-                            ),
-
-                            constraints: BoxConstraints.tightFor(
-                              width: 25.0,
-                              height: 25.0,
-                            ),
-                          ),*/
-
-
                           Expanded(
-                              child:TimeDateRequiredOptionPicker( controller: controller)),
+                              child:TimeDateRequiredOptionPicker( controller: controller, index: index,)),
                           SizedBox(width: 2,),
                           Container(
                             padding: EdgeInsets.only(right:5,),
-
-
                             child:Text('مطلوب',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
                           ),
-
-
                         ],
                       ),
                       SizedBox(height: 5,),
@@ -132,8 +84,8 @@ class TimeDateContainer extends StatelessWidget {
 
                               onTap: () {
 
-                                controller.chooseTime();
-                                controller.chooseOptionTimeDate();
+                                controller.chooseTime(index);
+                                controller.chooseOptionTimeDate(index);
                               },
                               textAlign: TextAlign.left,
                               readOnly: true,
@@ -146,9 +98,10 @@ class TimeDateContainer extends StatelessWidget {
                                 ),
                                 hintText:
                                   "${DateFormat("dd-MM-yyyy")
-                                      .format(controller.selectedOptionTimeDate.value)
+                                      .format(controller.optWidgetList[index].selectedOptionTimeDate.value)
                                       .toString()
-                                  }    ${controller.selectedTime.value.hour}:${controller.selectedTime.value.minute}",
+                                  }    ${controller.optWidgetList[index].selectedTime.value.hour}:"
+                                      "${controller.optWidgetList[index].selectedTime.value.minute}",
 
 
                                 hintStyle: TextStyle(
@@ -190,18 +143,9 @@ class TimeDateContainer extends StatelessWidget {
                       // add material button
 
 
-
                     ],
-                  ),
-                ),
-                isExpanded: item.isExpanded!.value);
-          }).toList())
-
-
 
       ),
-
-
     );
   }
 }

@@ -10,12 +10,12 @@ import '../../../../../../core/constrants/widgetconstrant.dart';
 class DateRequiredOptionPicker extends StatelessWidget{
   WizardController controller;
 
-
+var index;
 
 
 
   DateRequiredOptionPicker(
-      {required this.controller,});
+      {required this.controller,this.index});
 
 
   @override
@@ -49,10 +49,10 @@ class DateRequiredOptionPicker extends StatelessWidget{
                   child: Center(
                     child: DropdownButton<String>(
                       hint:  Text("Required"),
-                      value: controller.isSelectedDateOption.value,
+                      value: controller.optWidgetList[index].isSelectedDateOption.value,
                       onChanged:(v) {
-                        controller.isSelectedDateOption.value = v! ;
-
+                        controller.optWidgetList[index].isSelectedDateOption.value = v! ;
+                        controller.optWidgetList.refresh();
 
                         // print(v);
                       },

@@ -30,32 +30,7 @@ class DeliveryDateContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-
-
-      child:  Obx(() =>ExpansionPanelList(
-
-          expansionCallback: (panelIndex, isExpanded) {
-            controller.DeliveryDateContainerTitle[panelIndex].isExpanded!.value =
-            !isExpanded;
-          },
-          dividerColor: Colors.blueAccent,
-          children: controller.DeliveryDateContainerTitle.map<ExpansionPanel>((Product item) {
-            return ExpansionPanel(
-
-                backgroundColor: Colors.grey[200],
-                canTapOnHeader: true,
-                headerBuilder: ((context, isExpanded) {
-                  return ListTile(
-                      leading: InkWell(child: Icon(Icons.remove), onTap: (){controller.removeOptWidget(controller.currentDeliveryDateIndex);},),
-
-                      title: Text(
-                        item.header!,
-                        style: TextStyle(fontSize: 20,),
-                        textAlign: TextAlign.center,
-                      ));
-                }),
-                body: Container(
+    return  Container(
 
                   margin: EdgeInsets.only(bottom: 10, left: 5),
 
@@ -66,27 +41,6 @@ class DeliveryDateContainer extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          /*RawMaterialButton(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                            elevation: 1.0,
-
-
-                            fillColor: Colors.blueAccent,
-                            onPressed: (){},
-                            child: Icon(
-
-                              Icons.close,
-                              color: Colors.white,
-                              size: 20.0,
-                            ),
-
-                            constraints: BoxConstraints.tightFor(
-                              width: 25.0,
-                              height: 25.0,
-                            ),
-                          ),*/
-
-
                           Expanded(
                               child:DeliveryDateRequiredOptionPicker( controller: controller)),
                           SizedBox(width: 2,),
@@ -186,13 +140,6 @@ class DeliveryDateContainer extends StatelessWidget {
 
                     ],
                   ),
-                ),
-                isExpanded: item.isExpanded!.value);
-          }).toList())
-
-
-
-      ),
 
 
     );

@@ -56,7 +56,7 @@ class PointsAndRewards extends GetView<WizardController> {
                       )),
                 ],
               ),
-            ), // price and priority
+            ),
             Container(padding: getPadding(all: 10 ),
               alignment: Alignment.center,
               height: 63,

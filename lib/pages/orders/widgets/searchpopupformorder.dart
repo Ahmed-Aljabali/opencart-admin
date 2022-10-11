@@ -65,26 +65,48 @@ class OrderSearchForm extends GetView<InitAddOrderController> {
                       print(snapshot.data);
                       if (snapshot.hasData) {
                         var data = snapshot.data!.obs.value;
-                        return DropdownButton<OrderStatuses>(
-                          hint:  const Text("الحاله"),
-                         // value:controller.selectedOrderStatuses.value,
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items:data.
-                          map<DropdownMenuItem<OrderStatuses>>((OrderStatuses value) {
+                        return Expanded(
+                          child: Container(
+                          height: 43 ,
+                            child: DecoratedBox(
+                                decoration: BoxDecoration(
 
-                            return   DropdownMenuItem<OrderStatuses>(
-                              enabled: true,
-                              value: value,
-                              child: Text(value.name!),
-                            );
-                          }).toList(),
+                                    color:Colors.white, //background color of dropdown button
+                                    border: Border.all(color: Colors.black38, width:1), //border of dropdown button
+                                    borderRadius: BorderRadius.circular(4), //border raiuds of dropdown button
+                                    boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                      BoxShadow(
+                                          color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                          blurRadius: 3) //blur radius of shadow
+                                    ]
+                                ),
+                                child:Center(
+                                  child:   DropdownButton<OrderStatuses>(
+                                    hint:  const Text("الحاله"),
+                                    // value:controller.selectedOrderStatuses.value,
+                                    icon: const Icon(Icons.keyboard_arrow_down),
+                                    items:data.
+                                    map<DropdownMenuItem<OrderStatuses>>((OrderStatuses value) {
 
-                          onChanged:(v) {
+                                      return   DropdownMenuItem<OrderStatuses>(
+                                        enabled: true,
+                                        value: value,
+                                        child: Text(value.name!),
+                                      );
+                                    }).toList(),
 
-                            controller.selectedOrderStatuses.value=v;
-                          controller.filterOrder.status=v!.name.toString();
-                          },
+                                    onChanged:(v) {
+
+                                      controller.selectedOrderStatuses.value=v;
+                                      controller.filterOrder.status=v!.name.toString();
+                                    },
+                                  ),
+                                )
+                            ),
+                          ),
                         );
+
+
                       }
                       else {
                         return const CircularProgressIndicator();

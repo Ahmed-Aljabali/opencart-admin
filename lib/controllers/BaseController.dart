@@ -10,7 +10,7 @@ import '../model/addproductmodel.dart';
 import '../model/checkbox_data.dart';
 
 class BaseController extends GetxController{
-  var selectedOptionDate = DateTime.now().obs;
+
   List<String> clintOptionsList = ["عميل 1", "عميل 2", "عميل 3",];
   List<AddProductDataModel> addProductDataList = [];
 
@@ -259,7 +259,7 @@ Future<int> put(Object object,String url,int id)async {
 
   return response.statusCode;
 }
-  chooseOptionDate() async {
+/*  chooseOptionDate() async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
       initialDate: selectedOptionDate.value,
@@ -278,7 +278,7 @@ Future<int> put(Object object,String url,int id)async {
     if (pickedDate != null && pickedDate != selectedOptionDate.value) {
       selectedOptionDate.value = pickedDate;
     }
-  }
+  }*/
 
   void addProductModel(AddProductDataModel value) {
     addProductDataList.add(value);

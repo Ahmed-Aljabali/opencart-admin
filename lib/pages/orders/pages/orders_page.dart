@@ -76,40 +76,17 @@ class OrderPage extends GetView<InitAddOrderController> {
                   Padding(
                     padding: const EdgeInsets.only(right: 11, left: 11),
                     child: TextField(
+                      readOnly:  true,
+                      onTap: (){     controller.searchFormVisible.value = true; },
                       textAlign: TextAlign.right,
                       decoration: InputDecoration(
-                        suffixIcon: InkWell(
-                          onTap: () {
-                            Get.snackbar(
-                              "Icon Action",
-                              "Search button was clicked",
-                              icon: const Icon(Icons.check, color: Colors.blue),
-                              snackPosition: SnackPosition.TOP,
-                            );
-                          },
-                          child: const Icon(
-                            Icons.search,
-                            color: Colors.grey,
-                          ),
+                        suffixIcon: const Icon(
+                          Icons.search,
+                          color: Colors.grey,
                         ),
-                        prefixIcon: InkWell(
-                          onTap: () {
-                            Get.snackbar(
-                              "Icon Action",
-                              "Settings button was clicked",
-                              icon: const Icon(Icons.check, color: Colors.blue),
-                              snackPosition: SnackPosition.TOP,
-                            );
-                          },
-                          child: InkWell(
-                            onTap: () {
-                              controller.searchFormVisible.value = true;
-                            },
-                            child: const Icon(
-                              Icons.filter_list_alt,
-                              color: Colors.grey,
-                            ),
-                          ),
+                        prefixIcon: const Icon(
+                          Icons.filter_list_alt,
+                          color: Colors.grey,
                         ),
                         hintText: 'ابحث من هنا ',
                         hintStyle: const TextStyle(

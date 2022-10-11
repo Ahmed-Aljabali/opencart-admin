@@ -10,7 +10,7 @@ import '../model/porducts/attribute.dart';
 import '../model/porducts/manufacturers.dart';
 import '../model/porducts/product.dart';
 
-class ProductController extends BaseController implements IProduct {
+class  ProductController extends BaseController implements IProduct {
   dynamic _data;
   dynamic _dataOption;
   dynamic _dataManufacturers;
@@ -37,7 +37,7 @@ class ProductController extends BaseController implements IProduct {
    }
 
 
-  Future<List<ProductOption>> initProductOptions()async {
+  Future<List<ProductOption>> initProductOptions() async {
     var res = await get("product_options/limit/10/page/1");
     if (res.statusCode == 200) {
       _dataOption=  ProductOptionData.fromJson(jsonDecode(res.body)).data;
