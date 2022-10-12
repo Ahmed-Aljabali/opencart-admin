@@ -1,24 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/Controllers/customer_controller.dart';
-import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/Init_add_order_controller.dart';
-import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/fifthsalescontainer.dart';
-import 'package:opencart/pages/orders/pages/sales/widgets/firstsalescontainer.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/firstsalescontainer/firstsalescontainer.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/forthsalescontainer.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/secontsalescontainter.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer.dart';
 
-import '../../../../controllers/porducts_controller.dart';
-import '../../../../controllers/wizard_controller.dart';
-
-import '../../../wizard/widgets/generl/fifthproductscreen.dart';
-
-import '../../../wizard/widgets/generl/fothproductcontainer.dart';
-import '../../../wizard/widgets/generl/secondproductcontainter.dart';
-import '../../../wizard/widgets/generl/thirdproductcontainer.dart';
 
 
 class Sales extends GetView<InitAddOrderController> {

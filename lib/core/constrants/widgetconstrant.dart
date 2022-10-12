@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class MyTextFieldWidget extends StatelessWidget {
   final String hintText ;
   final Function onChanged ;
+
   final readOnly ;
   final textAlign;
   final prefixIcon ;
 final double  height  ;
 final keyboardType ;
+
   const MyTextFieldWidget({Key? key,this.keyboardType, this.height  = 43,required this.hintText,required this.onChanged( value) ,this.readOnly = false,this.textAlign= TextAlign.center , this.prefixIcon = null}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,8 @@ final keyboardType ;
 
           child:Center(
             child: TextField(
+
+
 
 
               readOnly: readOnly,

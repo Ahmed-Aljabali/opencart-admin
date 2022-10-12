@@ -7,10 +7,10 @@ import 'package:opencart/pages/orders/pages/sales/sales.dart';
 import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
 
-import '../../../Controllers/order_controller.dart';
-import '../../../controllers/Init_add_order_controller.dart';
-import '../../../core/utils/math_utils.dart';
-import '../../../model/orders/add_order.dart';
+import '../../Controllers/order_controller.dart';
+import '../../controllers/Init_add_order_controller.dart';
+import '../../core/utils/math_utils.dart';
+import '../../model/orders/add_order.dart';
 
 class OrderPage extends GetView<InitAddOrderController> {
   const OrderPage({Key? key}) : super(key: key);
@@ -181,12 +181,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                         padding: const EdgeInsets.only(right: 25),
                         child: TextButton(
                           onPressed: () {
-                            Get.snackbar(
-                              "TextBotton Action",
-                              "Text button was clicked",
-                              icon: const Icon(Icons.check, color: Colors.blue),
-                              snackPosition: SnackPosition.BOTTOM,
-                            );
+
                           },
                           child: const Text(
                             'تحديد الكل',

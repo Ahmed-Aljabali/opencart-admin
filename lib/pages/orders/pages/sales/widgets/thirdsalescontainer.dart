@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:opencart/controllers/BaseController.dart';
+
 import 'package:opencart/model/orders/payment_metho.dart';
 import 'package:opencart/model/orders/shipping_methods.dart';
 import '../../../../../controllers/Init_add_order_controller.dart';
@@ -9,55 +10,54 @@ import '../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../core/utils/math_utils.dart';
 import '../../../../../model/ProductData.dart';
 
-
 class ThirdSalesContainer extends StatelessWidget {
   final InitAddOrderController controller;
 
-  const ThirdSalesContainer   ({
+  const ThirdSalesContainer({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
-    return  Obx(() {
+    return Obx(() {
       return ExpansionPanelList(
           expansionCallback: (panelIndex, isExpanded) {
             controller.salesExpansionTitle3[panelIndex].isExpanded!.value =
-            !isExpanded;
+                !isExpanded;
           },
-          children: controller.salesExpansionTitle3.map<ExpansionPanel>((Product item) {
+          children: controller.salesExpansionTitle3
+              .map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
                 backgroundColor: Colors.grey[200],
                 canTapOnHeader: true,
                 headerBuilder: ((context, isExpanded) {
                   return ListTile(
                       title: Text(
-                        item.header!,
-                        style: const TextStyle(fontSize: 20, ),
-                        textAlign: TextAlign.center,
-                      ));
+                    item.header!,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                    textAlign: TextAlign.center,
+                  ));
                 }),
                 body: Column(
                   children: [
                     Container(
-                color: Colors.blueGrey.withOpacity(0.16),
-                       padding: EdgeInsets.only(
+                      color: Colors.blueGrey.withOpacity(0.16),
+                      padding: EdgeInsets.only(
                           top: 10, bottom: 10, right: 10, left: 10),
-                      margin:
-                      const EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 10),
+                      margin: const EdgeInsets.only(
+                          top: 10, bottom: 10, right: 10, left: 10),
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: Column(
                         children: [
                           Row(
                             children: [
                               Expanded(
-                                child: Container(color: Colors.white,
-                                  margin: getMargin(top: 10,bottom: 10),
+                                child: Container(
+                                  color: Colors.white,
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
@@ -65,139 +65,70 @@ class ThirdSalesContainer extends StatelessWidget {
                                       color: Colors.white,
                                       child: DecoratedBox(
                                           decoration: BoxDecoration(
-
-                                              color:Colors.white, //background color of dropdown button
-                                              border: Border.all(color: Colors.black38, width:1), //border of dropdown button
-                                              borderRadius: BorderRadius.circular(5), //border raiuds of dropdown button
-                                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                              color: Colors
+                                                  .white, //background color of dropdown button
+                                              border: Border.all(
+                                                  color: Colors.black38,
+                                                  width:
+                                                      1), //border of dropdown button
+                                              borderRadius: BorderRadius.circular(
+                                                  5), //border raiuds of dropdown button
+                                              boxShadow: const <BoxShadow>[
+                                                //apply shadow on Dropdown button
                                                 BoxShadow(
-                                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                                    blurRadius: 3) //blur radius of shadow
-                                              ]
-                                          ),
-                                          child:Align(
+                                                    color: Color.fromRGBO(
+                                                        0,
+                                                        0,
+                                                        0,
+                                                        0.1), //shadow for button
+                                                    blurRadius:
+                                                        3) //blur radius of shadow
+                                              ]),
+                                          child: Align(
                                             alignment: Alignment.center,
                                             child: DropdownButton<String>(
                                               isExpanded: true,
-
-                                              icon: Icon(Icons.keyboard_arrow_down_outlined),
-                                                alignment: AlignmentDirectional.center,
-                                              hint:  const Text("متجر"),
-                                              value: controller.selectedmarketsAddProduct.value,
-                                              onChanged:(v) {
-                                                controller.selectedmarketsAddProduct.value = v!;},
-                                              items:controller.marketsAddProductList.
-                                              map<DropdownMenuItem<String>>((String value) {
-                                                return   DropdownMenuItem<String>(
-                                                  alignment: AlignmentDirectional.center,
+                                              icon: Icon(Icons
+                                                  .keyboard_arrow_down_outlined),
+                                              alignment:
+                                                  AlignmentDirectional.center,
+                                              hint: const Text("متجر"),
+                                              value: controller
+                                                  .selectedmarketsAddProduct
+                                                  .value,
+                                              onChanged: (v) {
+                                                controller
+                                                    .selectedmarketsAddProduct
+                                                    .value = v!;
+                                              },
+                                              items: controller
+                                                  .marketsAddProductList
+                                                  .map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  alignment:
+                                                      AlignmentDirectional
+                                                          .center,
                                                   enabled: true,
                                                   value: value,
                                                   child: Text(value),
                                                 );
                                               }).toList(),
                                             ),
-                                          )
-                                      ),
+                                          )),
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 4,),
-                              Expanded(
-                                child: Container(color: Colors.white,
-                                  margin: getMargin(top: 10,bottom: 10),
-                                  alignment: Alignment.center,
-                                  height: 44,
-                                  child: Expanded(
-                                    child: Container(
-                                      color: Colors.white,
-                                      child: DecoratedBox(
-                                          decoration: BoxDecoration(
-
-                                              color:Colors.white, //background color of dropdown button
-                                              border: Border.all(color: Colors.black38, width:1), //border of dropdown button
-                                              borderRadius: BorderRadius.circular(5), //border raiuds of dropdown button
-                                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                                BoxShadow(
-                                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                                    blurRadius: 3) //blur radius of shadow
-                                              ]
-                                          ),
-                                          child:Align(
-                                            alignment: Alignment.center,
-                                            child: DropdownButton<String>(
-                                              isExpanded: true,
-
-                                              icon: Icon(Icons.keyboard_arrow_down_outlined),
-
-                                              hint:  const Text("اللغة"),
-                                              value: controller.selectedLanguageAddProduct.value,
-                                              onChanged:(v) {
-                                                controller.selectedLanguageAddProduct.value = v!;},
-                                              items:controller.languageAddProductList.
-                                              map<DropdownMenuItem<String>>((String value) {
-                                                return   DropdownMenuItem<String>(
-                                                  alignment: AlignmentDirectional.center,
-                                                  enabled: true,
-                                                  value: value,
-                                                  child: Text(value),
-                                                );
-                                              }).toList(),
-                                            ),
-                                          )
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                              SizedBox(
+                                width: 4,
                               ),
-
-                            ],
-                          ),
-
-                          Row(
-                            children: [
                               Expanded(
                                 child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
-                                  alignment: Alignment.center,
-                                  height: 44,
-                                  child: Expanded(
-                                    child: Row(
-                                      children: [
-                                       Container(color: Colors.transparent,
-                                            margin: getMargin(top: 1,bottom: 2 ),
-                                            alignment: Alignment.center,
-                                            child:   Container(
-                                              color: Colors.white,
-                                              height: 40,
-                                              child: Checkbox(
-                                                checkColor: Colors.green,
-                                                activeColor: Colors.white54,
-                                                hoverColor: Colors.blue,
-
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(2.0),
-                                                ),
-
-                                                onChanged: (v ) {
-                                                  v = false;
-                                                }, value: true,
-                                              ),
-                                            ),
-                                          ),
-
-
-                                        Expanded(child: MyTextFieldWidget(hintText:" اضافة قسيمة" ,readOnly: true , onChanged:(value)=>null,),),
-
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(width: 4,),
-                              Expanded(
-                                child: Container(color: Colors.white,
-                                  margin: getMargin(top: 10,bottom: 10),
+                                  color: Colors.white,
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
@@ -205,198 +136,343 @@ class ThirdSalesContainer extends StatelessWidget {
                                       color: Colors.white,
                                       child: DecoratedBox(
                                           decoration: BoxDecoration(
-
-                                              color:Colors.white, //background color of dropdown button
-                                              border: Border.all(color: Colors.black38, width:1), //border of dropdown button
-                                              borderRadius: BorderRadius.circular(5), //border raiuds of dropdown button
-                                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                              color: Colors
+                                                  .white, //background color of dropdown button
+                                              border: Border.all(
+                                                  color: Colors.black38,
+                                                  width:
+                                                      1), //border of dropdown button
+                                              borderRadius: BorderRadius.circular(
+                                                  5), //border raiuds of dropdown button
+                                              boxShadow: const <BoxShadow>[
+                                                //apply shadow on Dropdown button
                                                 BoxShadow(
-                                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                                    blurRadius: 3) //blur radius of shadow
-                                              ]
-                                          ),
-                                          child:Align(
+                                                    color: Color.fromRGBO(
+                                                        0,
+                                                        0,
+                                                        0,
+                                                        0.1), //shadow for button
+                                                    blurRadius:
+                                                        3) //blur radius of shadow
+                                              ]),
+                                          child: Align(
                                             alignment: Alignment.center,
                                             child: DropdownButton<String>(
                                               isExpanded: true,
-
-                                              icon: Icon(Icons.keyboard_arrow_down_outlined),
-
-                                              hint:  const Text("العملة"),
-                                              value: controller.selectedCurrenctAddProduct.value,
-                                              onChanged:(v) {
-                                                controller.selectedCurrenctAddProduct.value = v!;},
-                                              items:controller.currencyAddProductList.
-                                              map<DropdownMenuItem<String>>((String value) {
-                                                return   DropdownMenuItem<String>(
-                                                  alignment: AlignmentDirectional.center,
+                                              icon: Icon(Icons
+                                                  .keyboard_arrow_down_outlined),
+                                              hint: const Text("اللغة"),
+                                              value: controller
+                                                  .selectedLanguageAddProduct
+                                                  .value,
+                                              onChanged: (v) {
+                                                controller
+                                                    .selectedLanguageAddProduct
+                                                    .value = v!;
+                                              },
+                                              items: controller
+                                                  .languageAddProductList
+                                                  .map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  alignment:
+                                                      AlignmentDirectional
+                                                          .center,
                                                   enabled: true,
                                                   value: value,
                                                   child: Text(value),
                                                 );
                                               }).toList(),
                                             ),
-                                          )
-                                      ),
+                                          )),
                                     ),
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                           Row(
                             children: [
                               Expanded(
                                 child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
                                     child: Row(
                                       children: [
-                                        Container(color: Colors.transparent,
-                                          margin: getMargin(top: 1,bottom: 2 ),
+                                        Container(
+                                          color: Colors.transparent,
+                                          margin: getMargin(top: 1, bottom: 2),
                                           alignment: Alignment.center,
-                                          child:   Container(
+                                          child: Container(
                                             color: Colors.white,
                                             height: 40,
                                             child: Checkbox(
                                               checkColor: Colors.green,
                                               activeColor: Colors.white54,
                                               hoverColor: Colors.blue,
-
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(2.0),
+                                                borderRadius:
+                                                    BorderRadius.circular(2.0),
                                               ),
-
-                                              onChanged: (v ) {
+                                              onChanged: (v) {
                                                 v = false;
-                                              }, value: true,
+                                              },
+                                              value: true,
                                             ),
                                           ),
                                         ),
-
-
-                                        Expanded(child: MyTextFieldWidget(hintText:"نقاط المكافئة" ,readOnly: true , onChanged:(value)=>null,),),
-
+                                        Expanded(
+                                          child: MyTextFieldWidget(
+                                            hintText: " اضافة قسيمة",
+                                            readOnly: true,
+                                            onChanged: (value) => null,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 4,),
+                              SizedBox(
+                                width: 4,
+                              ),
                               Expanded(
                                 child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
+                                  color: Colors.white,
+                                  margin: getMargin(top: 10, bottom: 10),
+                                  alignment: Alignment.center,
+                                  height: 44,
+                                  child: Expanded(
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                              color: Colors
+                                                  .white, //background color of dropdown button
+                                              border: Border.all(
+                                                  color: Colors.black38,
+                                                  width:
+                                                      1), //border of dropdown button
+                                              borderRadius: BorderRadius.circular(
+                                                  5), //border raiuds of dropdown button
+                                              boxShadow: const <BoxShadow>[
+                                                //apply shadow on Dropdown button
+                                                BoxShadow(
+                                                    color: Color.fromRGBO(
+                                                        0,
+                                                        0,
+                                                        0,
+                                                        0.1), //shadow for button
+                                                    blurRadius:
+                                                        3) //blur radius of shadow
+                                              ]),
+                                          child: Align(
+                                            alignment: Alignment.center,
+                                            child: DropdownButton<String>(
+                                              isExpanded: true,
+                                              icon: Icon(Icons
+                                                  .keyboard_arrow_down_outlined),
+                                              hint: const Text("العملة"),
+                                              value: controller
+                                                  .selectedCurrenctAddProduct
+                                                  .value,
+                                              onChanged: (v) {
+                                                controller
+                                                    .selectedCurrenctAddProduct
+                                                    .value = v!;
+                                              },
+                                              items: controller
+                                                  .currencyAddProductList
+                                                  .map<
+                                                          DropdownMenuItem<
+                                                              String>>(
+                                                      (String value) {
+                                                return DropdownMenuItem<String>(
+                                                  alignment:
+                                                      AlignmentDirectional
+                                                          .center,
+                                                  enabled: true,
+                                                  value: value,
+                                                  child: Text(value),
+                                                );
+                                              }).toList(),
+                                            ),
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Container(
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
                                     child: Row(
                                       children: [
-                                        Container(color: Colors.transparent,
-                                          margin: getMargin(top: 1,bottom: 2 ),
+                                        Container(
+                                          color: Colors.transparent,
+                                          margin: getMargin(top: 1, bottom: 2),
                                           alignment: Alignment.center,
-                                          child:   Container(
+                                          child: Container(
                                             color: Colors.white,
                                             height: 40,
                                             child: Checkbox(
                                               checkColor: Colors.green,
                                               activeColor: Colors.white54,
                                               hoverColor: Colors.blue,
-
                                               shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.circular(2.0),
+                                                borderRadius:
+                                                    BorderRadius.circular(2.0),
                                               ),
-
-                                              onChanged: (v ) {
+                                              onChanged: (v) {
                                                 v = false;
-                                              }, value: true,
+                                              },
+                                              value: true,
                                             ),
                                           ),
                                         ),
-
-
-                                        Expanded(child: MyTextFieldWidget(hintText:"فاتورة" ,readOnly: true , onChanged:(value)=>null,),),
-
+                                        Expanded(
+                                          child: MyTextFieldWidget(
+                                            hintText: "نقاط المكافئة",
+                                            readOnly: true,
+                                            onChanged: (value) => null,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-
-
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  margin: getMargin(top: 10, bottom: 10),
+                                  alignment: Alignment.center,
+                                  height: 44,
+                                  child: Expanded(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          color: Colors.transparent,
+                                          margin: getMargin(top: 1, bottom: 2),
+                                          alignment: Alignment.center,
+                                          child: Container(
+                                            color: Colors.white,
+                                            height: 40,
+                                            child: Checkbox(
+                                              checkColor: Colors.green,
+                                              activeColor: Colors.white54,
+                                              hoverColor: Colors.blue,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(2.0),
+                                              ),
+                                              onChanged: (v) {
+                                                v = false;
+                                              },
+                                              value: true,
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: MyTextFieldWidget(
+                                            hintText: "فاتورة",
+                                            readOnly: true,
+                                            onChanged: (value) => null,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                           Row(
                             children: [
                               Expanded(
                                 child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
                                     child: Row(
                                       children: [
-
-
-
-                                        Expanded(child: MyTextFieldWidget(prefixIcon: Icon(Icons.add),hintText:"عمولة" ,readOnly: true , onChanged:(value)=>null,),),
-
+                                        Expanded(
+                                          child: MyTextFieldWidget(
+                                            prefixIcon: Icon(Icons.add),
+                                            hintText: "عمولة",
+                                            readOnly: true,
+                                            onChanged: (value) => null,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(width: 4,),
+                              SizedBox(
+                                width: 4,
+                              ),
                               Expanded(
                                 child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
                                     child: Row(
                                       children: [
-
-
-
-                                        Expanded(child: MyTextFieldWidget(prefixIcon: Icon(Icons.add),hintText:"نقاط المكافئة" ,readOnly: true , onChanged:(value)=>null,),),
-
+                                        Expanded(
+                                          child: MyTextFieldWidget(
+                                            prefixIcon: Icon(Icons.add),
+                                            hintText: "نقاط المكافئة",
+                                            readOnly: true,
+                                            onChanged: (value) => null,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-
-
                             ],
                           ),
                           Row(
                             children: [
                               Expanded(
                                 child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
+                                  margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
                                   height: 44,
                                   child: Expanded(
                                     child: Row(
                                       children: [
-
-
-
-                                        Expanded(child: MyTextFieldWidget(prefixIcon: Icon(Icons.add),hintText:"شركة تابعة" ,readOnly: true , onChanged:(value)=>null,),),
-
+                                        Expanded(
+                                          child: MyTextFieldWidget(
+                                            prefixIcon: Icon(Icons.add),
+                                            hintText: "شركة تابعة",
+                                            readOnly: true,
+                                            onChanged: (value) => null,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
                               ),
-
-
-
                             ],
                           )
-
                         ],
                       ),
                     ),
@@ -404,119 +480,135 @@ class ThirdSalesContainer extends StatelessWidget {
                       color: Colors.blueGrey.withOpacity(0.16),
                       padding: EdgeInsets.only(
                           top: 10, bottom: 10, right: 10, left: 10),
-                      margin:
-                      const EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 10),
+                      margin: const EdgeInsets.only(
+                          top: 10, bottom: 10, right: 10, left: 10),
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: Column(
                         children: [
                           SizedBox(
-
-                           child:    Expanded(
-                                child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
-                                  alignment: Alignment.center,
-                                  height: 44,
-                                  child: Expanded(child: MyTextFieldWidget(prefixIcon: Icon(Icons.add),hintText:"شركة تابعة" ,readOnly: true , onChanged:(value)=>null,),),
+                            child: Expanded(
+                              child: Container(
+                                margin: getMargin(top: 10, bottom: 10),
+                                alignment: Alignment.center,
+                                height: 44,
+                                child: Expanded(
+                                  child: MyTextFieldWidget(
+                                    prefixIcon: Icon(Icons.add),
+                                    hintText: "شركة تابعة",
+                                    readOnly: true,
+                                    onChanged: (value) => null,
+                                  ),
                                 ),
                               ),
-
-
-
-                          ),
-                          SizedBox(
-                            child:
-                              Expanded(
-                                child: Container(
-                                  margin: getMargin(top: 10,bottom: 10),
-                                  alignment: Alignment.center,
-                                  height: 44,
-                                  child: Expanded(child: MyTextFieldWidget(prefixIcon: Icon(Icons.add),hintText:"عنوان الشحن" ,readOnly: true , onChanged:(value)=>null,),),
-                                ),
-                              ),
-
-
-
-
+                            ),
                           ),
                           SizedBox(
                             child: Expanded(
-                              child: Container(color: Colors.white,
-                                margin: getMargin(top: 10,bottom: 10),
+                              child: Container(
+                                margin: getMargin(top: 10, bottom: 10),
+                                alignment: Alignment.center,
+                                height: 44,
+                                child: Expanded(
+                                  child: MyTextFieldWidget(
+                                    prefixIcon: Icon(Icons.add),
+                                    hintText: "عنوان الشحن",
+                                    readOnly: true,
+                                    onChanged: (value) => null,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            child: Expanded(
+                              child: Container(
+                                color: Colors.white,
+                                margin: getMargin(top: 10, bottom: 10),
                                 alignment: Alignment.center,
                                 height: 44,
                                 child: Expanded(
                                   child: Container(
                                     color: Colors.white,
                                     child: DecoratedBox(
-                                        decoration: BoxDecoration(
-
-                                            color:Colors.white, //background color of dropdown button
-                                            border: Border.all(color: Colors.black38, width:1), //border of dropdown button
-                                            borderRadius: BorderRadius.circular(5), //border raiuds of dropdown button
-                                            boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                              BoxShadow(
-                                                  color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                                  blurRadius: 3) //blur radius of shadow
-                                            ]
-                                        ),
-
-                                      child:  Align(
+                                      decoration: BoxDecoration(
+                                          color: Colors
+                                              .white, //background color of dropdown button
+                                          border: Border.all(
+                                              color: Colors.black38,
+                                              width:
+                                                  1), //border of dropdown button
+                                          borderRadius: BorderRadius.circular(
+                                              5), //border raiuds of dropdown button
+                                          boxShadow: const <BoxShadow>[
+                                            //apply shadow on Dropdown button
+                                            BoxShadow(
+                                                color: Color.fromRGBO(0, 0, 0,
+                                                    0.1), //shadow for button
+                                                blurRadius:
+                                                    3) //blur radius of shadow
+                                          ]),
+                                      child: Align(
                                           alignment: Alignment.center,
-                                          child:FutureBuilder<List<ShippingMethods>>(
-                                            future:controller.initShippingMethods(),
+                                          child: FutureBuilder<
+                                              List<ShippingMethods>>(
+                                            future: controller
+                                                .initShippingMethods(),
                                             builder: (context, snapshot) {
                                               if (snapshot.hasData) {
-                                                var data = snapshot.data!.obs.value;
-                                                return DropdownButton<ShippingMethods>(
-                                                  hint:  const Text("طريقه الشحن"),
-                                               //   value:controller.shippingMethods.value,
-                                                  icon: const Icon(Icons.keyboard_arrow_down),
-                                                  items:data.
-                                                  map<DropdownMenuItem<ShippingMethods>>((ShippingMethods value) {
-                                                    return   DropdownMenuItem<ShippingMethods>(
+                                                var data =
+                                                    snapshot.data!.obs.value;
+                                                return DropdownButton<
+                                                    ShippingMethods>(
+                                                  hint:
+                                                      const Text("طريقه الشحن"),
+                                                  //   value:controller.shippingMethods.value,
+                                                  icon: const Icon(Icons
+                                                      .keyboard_arrow_down),
+                                                  items: data.map<
+                                                          DropdownMenuItem<
+                                                              ShippingMethods>>(
+                                                      (ShippingMethods value) {
+                                                    return DropdownMenuItem<
+                                                        ShippingMethods>(
                                                       enabled: true,
                                                       value: value,
                                                       child: Text(value.name!),
                                                     );
                                                   }).toList(),
-                                                  onChanged:(v) {
-                                                    controller.shippingMethods.value.code=v!.code;
-                                                   // controller.shippingMethods.value!.title=v!.name;
+                                                  onChanged: (v) {
+                                                    controller.shippingMethods
+                                                        .value.code = v!.code;
+                                                    // controller.shippingMethods.value!.title=v!.name;
                                                     // controller.manufacturersId.value = v?.manufacturerId;
-
                                                   },
-
                                                 );
-                                              }
-                                              else {
+                                              } else {
                                                 return const CircularProgressIndicator();
                                               }
                                             },
-                                          )
-                                      ),
-                                        // child:Align(
-                                        //   alignment: Alignment.center,
-                                        //   child: DropdownButton<String>(
-                                        //     isExpanded: true,
-                                        //
-                                        //
-                                        //     icon: Icon(Icons.keyboard_arrow_down_outlined),
-                                        //
-                                        //     hint:  const Text("طريقة الشحن"),
-                                        //     value: controller.selectedShippingAddProduct.value,
-                                        //     onChanged:(v) {
-                                        //       controller.selectedShippingAddProduct.value = v!;},
-                                        //     items:controller.shippingAddProductList.
-                                        //     map<DropdownMenuItem<String>>((String value) {
-                                        //       return   DropdownMenuItem<String>(
-                                        //         alignment: AlignmentDirectional.center,
-                                        //         enabled: true,
-                                        //         value: value,
-                                        //         child: Text(value),
-                                        //       );
-                                        //     }).toList(),
-                                        //   ),
-                                        // )
+                                          )), /*  child:Align(
+                                          alignment: Alignment.center,
+                                          child: DropdownButton<String>(
+                                            isExpanded: true,
+
+
+                                            icon: Icon(Icons.keyboard_arrow_down_outlined),
+
+                                            hint:  const Text("طريقة الشحن"),
+                                            value: controller.selectedShippingAddProduct.value,
+                                            onChanged:(v) {
+                                              controller.selectedShippingAddProduct.value = v!;},
+                                            items:controller.shippingAddProductList.
+                                            map<DropdownMenuItem<String>>((String value) {
+                                              return   DropdownMenuItem<String>(
+                                                alignment: AlignmentDirectional.center,
+                                                enabled: true,
+                                                value: value,
+                                                child: Text(value),
+                                              );
+                                            }).toList(),
+                                          ),
+                                        )*/
                                     ),
                                   ),
                                 ),
@@ -525,84 +617,81 @@ class ThirdSalesContainer extends StatelessWidget {
                           ),
                           SizedBox(
                             child: Expanded(
-                              child: Container(color: Colors.white,
-                                margin: getMargin(top: 10,bottom: 10),
+                              child: Container(
+                                color: Colors.white,
+                                margin: getMargin(top: 10, bottom: 10),
                                 alignment: Alignment.center,
                                 height: 44,
                                 child: Expanded(
                                   child: Container(
                                     color: Colors.white,
                                     child: DecoratedBox(
-                                        decoration: BoxDecoration(
+                                      decoration: BoxDecoration(
+                                          color: Colors
+                                              .white, //background color of dropdown button
+                                          border: Border.all(
+                                              color: Colors.black38,
+                                              width:
+                                                  1), //border of dropdown button
+                                          borderRadius: BorderRadius.circular(
+                                              5), //border raiuds of dropdown button
+                                          boxShadow: const <BoxShadow>[
+                                            //apply shadow on Dropdown button
+                                            BoxShadow(
+                                                color: Color.fromRGBO(0, 0, 0,
+                                                    0.1), //shadow for button
+                                                blurRadius:
+                                                    3) //blur radius of shadow
+                                          ]),
+                                      child: Expanded(
 
-                                            color:Colors.white, //background color of dropdown button
-                                            border: Border.all(color: Colors.black38, width:1), //border of dropdown button
-                                            borderRadius: BorderRadius.circular(5), //border raiuds of dropdown button
-                                            boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                              BoxShadow(
-                                                  color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                                  blurRadius: 3) //blur radius of shadow
-                                            ]
-                                        ),
-                                        child:  Align(
-                                          alignment: Alignment.center,
-                                            child:FutureBuilder<List<PaymentMethod>>(
-                                              future:controller.initPaymentMethod(),
-                                              builder: (context, snapshot) {
-                                                if (snapshot.hasData) {
-                                                  var data = snapshot.data!.obs.value;
-                                                  return DropdownButton<PaymentMethod>(
-                                                    hint:  const Text("طريقه الدفع"),
-                                                    //value:controller.selectedManufacturers.value,
-                                                    icon: const Icon(Icons.keyboard_arrow_down),
-                                                    items:data.
-                                                    map<DropdownMenuItem<PaymentMethod>>((PaymentMethod value) {
-                                                      return   DropdownMenuItem<PaymentMethod>(
-                                                        enabled: true,
-                                                        value: value,
-                                                        child: Text(value.name!),
-                                                      );
-                                                    }).toList(),
-                                                    onChanged:(v) {
 
-                                                      controller.paymentMethod.value.code=v!.code;
-                                                      controller.paymentMethod.value.title=v!.name;
+                                        child:
+                                            FutureBuilder<List<PaymentMethod>>(
 
-                                                     // controller.manufacturersId.value = v?.manufacturerId;
+                                          future:
+                                              controller.initPaymentMethod(),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.hasData) {
+                                              var data =
+                                                  snapshot.data!.obs.value;
+                                              return DropdownButton<PaymentMethod>(
+                                                isExpanded: true,
+                                                alignment: Alignment.center,
+                                                hint: const Text("طريقه الدفع"),
+                                                //value:controller.selectedManufacturers.value,
+                                                icon: const Icon(
+                                                    Icons.keyboard_arrow_down),
+                                                items: data.map<
+                                                        DropdownMenuItem<
+                                                            PaymentMethod>>(
+                                                    (PaymentMethod value) {
+                                                  return DropdownMenuItem<
 
-                                                    },
 
+                                                      PaymentMethod>(
+                                                    alignment: AlignmentDirectional.center,
+                                                    enabled: true,
+                                                    value: value,
+                                                    child: Text(value.name!),
                                                   );
-                                                }
-                                                else {
-                                                  return const CircularProgressIndicator();
-                                                }
-                                              },
-                                            )
+                                                }).toList(),
+                                                onChanged: (v) {
+                                                  controller.paymentMethod.value
+                                                      .code = v!.code;
+                                                  controller.paymentMethod.value
+                                                      .title = v!.name;
+
+                                                  // controller.manufacturersId.value = v?.manufacturerId;
+                                                },
+                                              );
+                                            } else {
+                                              return const CircularProgressIndicator();
+                                            }
+                                          },
                                         ),
-                                        // child:Align(
-                                        //   alignment: Alignment.center,
-                                        //   child: DropdownButton<String>(
-                                        //     isExpanded: true,
-                                        //
-                                        //
-                                        //     icon: Icon(Icons.keyboard_arrow_down_outlined),
-                                        //
-                                        //     hint:  const Text("طريقة الدفع "),
-                                        //     value: controller.selectedpayMethodAddProduct.value,
-                                        //     onChanged:(v) {
-                                        //       controller.selectedpayMethodAddProduct.value = v!;},
-                                        //     items:controller.payMethodAddProductList.
-                                        //     map<DropdownMenuItem<String>>((String value) {
-                                        //       return   DropdownMenuItem<String>(
-                                        //         alignment: AlignmentDirectional.center,
-                                        //         enabled: true,
-                                        //         value: value,
-                                        //         child: Text(value),
-                                        //       );
-                                        //     }).toList(),
-                                        //   ),
-                                        // )
+                                      ),
+
                                     ),
                                   ),
                                 ),
@@ -610,139 +699,228 @@ class ThirdSalesContainer extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            child:
-                            Expanded(
+                            child: Expanded(
                               child: Container(
-                                margin: getMargin(top: 10,bottom: 10),
+                                margin: getMargin(top: 10, bottom: 10),
                                 alignment: Alignment.center,
                                 height: 44,
-                                child: Expanded(child: MyTextFieldWidget(prefixIcon: Icon(Icons.add),hintText:"تعليق" ,readOnly: true , onChanged:(value)=>null,),),
+                                child: Expanded(
+                                  child: MyTextFieldWidget(
+                                    prefixIcon: Icon(Icons.add),
+                                    hintText: "تعليق",
+                                    readOnly: true,
+                                    onChanged: (value) => null,
+                                  ),
+                                ),
                               ),
                             ),
-
-
-
-
                           ),
-                  SizedBox(child:         Expanded(
-                    child: Center(
-                        child: Column(children: <Widget>[
-                          Container(
-
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blue.shade400),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Table(
-                                    border: TableBorder(
-                                        horizontalInside: BorderSide(color: Colors.blue.shade400),
-                                        right: BorderSide(color: Colors.blue.shade400)
-                                    ),
+                          SizedBox(
+                            child: Expanded(
+                              child: Center(
+                                  child: Column(children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border:
+                                        Border.all(color: Colors.blue.shade400),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      TableRow(
-                                          decoration: BoxDecoration(
-                                              color: Colors.blueGrey.withOpacity(0.16),
-                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0))
-                                          ),
+                                      Expanded(
+                                        child: Table(
+                                          border: TableBorder(
+                                              horizontalInside: BorderSide(
+                                                  color: Colors.blue.shade400),
+                                              right: BorderSide(
+                                                  color: Colors.blue.shade400)),
                                           children: [
-                                            SizedBox(
-                                                height: 40.0,
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-
-                                                  children: const [
-                                                    Text('ريال',style:TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo Regular')),
-                                                    SizedBox(width: 10,),
-                                                    Text('2500',style :TextStyle(fontFamily: 'Cairo Regular') ),
-                                                  ],
-                                                )),
-                                          ]),
-                                      TableRow(
-                                          decoration: BoxDecoration(
-                                              color: Colors.blueGrey.withOpacity(0.16),
-                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0))
-                                          ),
+                                            TableRow(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blueGrey
+                                                        .withOpacity(0.16),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    10.0))),
+                                                children: [
+                                                  SizedBox(
+                                                      height: 40.0,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Text('ريال',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontFamily:
+                                                                      'Cairo Regular')),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text('2500',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Cairo Regular')),
+                                                        ],
+                                                      )),
+                                                ]),
+                                            TableRow(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blueGrey
+                                                        .withOpacity(0.16),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    10.0))),
+                                                children: [
+                                                  SizedBox(
+                                                      height: 40.0,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Text('ريال',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontFamily:
+                                                                      'Cairo Regular')),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text('150',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Cairo Regular')),
+                                                        ],
+                                                      )),
+                                                ]),
+                                            TableRow(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blueGrey
+                                                        .withOpacity(0.16),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    10.0))),
+                                                children: [
+                                                  SizedBox(
+                                                      height: 40.0,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: const [
+                                                          Text('ريال',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontFamily:
+                                                                      'Cairo Regular')),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                          Text('150',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      'Cairo Regular')),
+                                                        ],
+                                                      )),
+                                                ]),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Table(
+                                          border: TableBorder.symmetric(
+                                              inside: BorderSide(
+                                                  color: Colors.blue.shade400)),
                                           children: [
-                                            SizedBox(
-                                                height: 40.0,
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-
-                                                  children: const [
-                                                    Text('ريال',style:TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo Regular')),
-                                                    SizedBox(width: 10,),
-                                                    Text('150',style :TextStyle(fontFamily: 'Cairo Regular') ),
-                                                  ],
-                                                )),
-                                          ]), TableRow(
-                                          decoration: BoxDecoration(
-                                              color: Colors.blueGrey.withOpacity(0.16),
-                                              borderRadius: BorderRadius.only(topLeft: Radius.circular(10.0))
-                                          ),
-                                          children: [
-                                            SizedBox(
-                                                height: 40.0,
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-
-                                                  children: const [
-                                                    Text('ريال',style:TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo Regular')),
-                                                    SizedBox(width: 10,),
-                                                    Text('150',style :TextStyle(fontFamily: 'Cairo Regular') ),
-                                                  ],
-                                                )),
-                                          ]),
-
+                                            TableRow(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blueGrey
+                                                        .withOpacity(0.16),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    10.0))),
+                                                children: [
+                                                  Container(
+                                                      height: 40.0,
+                                                      child: Center(
+                                                          child: Text(
+                                                              'المجموع الفرعي',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontFamily:
+                                                                      'Cairo Regular'))))
+                                                ]),
+                                            TableRow(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blueGrey
+                                                        .withOpacity(0.16),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    10.0))),
+                                                children: [
+                                                  Container(
+                                                      height: 40.0,
+                                                      child: Center(
+                                                          child: Text('الضرايب',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontFamily:
+                                                                      'Cairo Regular'))))
+                                                ]),
+                                            TableRow(
+                                                decoration: BoxDecoration(
+                                                    color: Colors.blueGrey
+                                                        .withOpacity(0.16),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    10.0))),
+                                                children: [
+                                                  Container(
+                                                      height: 40.0,
+                                                      child: Center(
+                                                          child: Text(
+                                                              'المجموع الكلي',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontFamily:
+                                                                      'Cairo Regular'))))
+                                                ]),
+                                          ],
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Table(
-                                    border: TableBorder.symmetric(inside: BorderSide(color: Colors.blue.shade400)),
-                                    children: [
-                                      TableRow(
-                                          decoration: BoxDecoration(
-                                              color:Colors.blueGrey.withOpacity(0.16),
-                                              borderRadius: BorderRadius.only(topRight: Radius.circular(10.0))
-                                          ),
-                                          children: [
-                                            Container(
-                                                height: 40.0,
-                                                child: Center(child: Text('المجموع الفرعي',style:TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo Regular'))))
-                                          ]),
-                                      TableRow(
-                                          decoration: BoxDecoration(
-                                              color:Colors.blueGrey.withOpacity(0.16),
-                                              borderRadius: BorderRadius.only(topRight: Radius.circular(10.0))
-                                          ),
-                                          children: [
-                                            Container(
-                                                height: 40.0,
-                                                child: Center(child: Text('الضرايب',style:TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo Regular'))))
-                                          ]),
-                                      TableRow(
-                                          decoration: BoxDecoration(
-                                              color: Colors.blueGrey.withOpacity(0.16),
-                                              borderRadius: BorderRadius.only(topRight: Radius.circular(10.0))
-                                          ),
-                                          children: [
-                                            Container(
-                                                height: 40.0,
-                                                child: Center(child: Text('المجموع الكلي',style:TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Cairo Regular'))))
-                                          ]),
-
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ])),
-                    /*Row(
+                              ])),
+                              /*Row(
                         children:[Expanded(
 
                           child: DataTable(
@@ -792,9 +970,8 @@ class ThirdSalesContainer extends StatelessWidget {
                           ),
                         ),]
                     ),*/
-                  ),
-                       )
-
+                            ),
+                          )
                         ],
                       ),
                     ),
@@ -805,4 +982,3 @@ class ThirdSalesContainer extends StatelessWidget {
     });
   }
 }
-

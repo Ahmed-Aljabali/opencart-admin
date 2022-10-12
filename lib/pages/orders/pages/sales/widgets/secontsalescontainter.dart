@@ -180,37 +180,41 @@ class SecondSalesContainer extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(right: 5),
-                      child: RawMaterialButton(
-                        shape: const RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.all( Radius.circular(10.0))),
-                        elevation: 1.0,
-                        fillColor: Colors.grey.withOpacity(0.5),
-                        onPressed: () {
-                          showModalBottomSheet<void>(
-                            shape:  const RoundedRectangleBorder(
-                                borderRadius:  BorderRadius.only(
-                                    topLeft: Radius.circular(20.0),
-                                    topRight: Radius.circular(20))
-                            ),
-                            context: context,
-                            builder: (BuildContext context) {
-                              return  ButtomCheetAddProductContainer(
+                    SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                      child: Container(
+                        padding: const EdgeInsets.only(right: 5),
+                        child: RawMaterialButton(
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.all( Radius.circular(10.0))),
+                          elevation: 1.0,
+                          fillColor: Colors.grey.withOpacity(0.5),
+                          onPressed: () {
+                            showModalBottomSheet<void>(
+                              isScrollControlled: true,
+                              shape:  const RoundedRectangleBorder(
+                                  borderRadius:  BorderRadius.only(
+                                      topLeft: Radius.circular(20.0),
+                                      topRight: Radius.circular(20))
+                              ),
+                              context: context,
+                              builder: (BuildContext context) {
+                                return  ButtomCheetAddProductContainer(
 
 
-                                  controller: controller);
-                            },
-                          );
-                        },
-                        child: const Icon(
-                          Icons.add,
-                          color: const Color.fromARGB(255,30, 102, 160),
-                        ),
-                        constraints: BoxConstraints.tightFor(
-                          width: MediaQuery.of(context).size.width,
-                          height: 40.0,
+                                    controller: controller);
+                              },
+                            );
+                          },
+                          child: const Icon(
+                            Icons.add,
+                            color: const Color.fromARGB(255,30, 102, 160),
+                          ),
+                          constraints: BoxConstraints.tightFor(
+                            width: MediaQuery.of(context).size.width,
+                            height: 40.0,
+                          ),
                         ),
                       ),
                     ), // add material button

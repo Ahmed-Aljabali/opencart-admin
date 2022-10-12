@@ -13,10 +13,32 @@ import '../model/orders/order.dart';
 import '../pages/orders/widgets/orderslistviewcontainer.dart';
 
 class InitAddOrderController extends OrderController {
+  RxInt _currentStep = 0.obs;
+
+  RxInt get currentStep => _currentStep;
+
+  set currentStep(RxInt value) => _currentStep = value;
+  RxBool _isVaild = true.obs;
+
+  RxBool get isVaild => _isVaild;
+
+
+  tapped(int step) {
+    _currentStep.value = step;
+  }
+
+  continued() {
+    _currentStep.value < 1 ? _currentStep += 1 : null;
+  }
+
+  cancel() {
+    _currentStep > 0 ? _currentStep -= 1 : null;
+  }
+
   List<String> marketsAddProductList = ["متجر1", "متجر2", "متجر3", "متجر4"];
   RxBool isSwitchedOn = false.obs;
   RxBool isSwitchedOn2 = false.obs;
-  RxBool _isVaild = true.obs;
+
   var selectedmarketsAddProduct = Rxn<String>();
   List<String> languageAddProductList = ["عربي", "انجليزي", "فرنسي"];
   var selectedLanguageAddProduct= Rxn<String>();
@@ -49,6 +71,7 @@ class InitAddOrderController extends OrderController {
     });
   }
   late RxBool searchFormVisible;
+
   late RxBool formVisible;
   RxInt formsIndex = 1.obs;
 
@@ -64,6 +87,7 @@ class InitAddOrderController extends OrderController {
     searchFormVisible =false.obs;
     formVisible = false.obs;
     formsIndex = 1.obs;
+
 
     super.onInit();
   }

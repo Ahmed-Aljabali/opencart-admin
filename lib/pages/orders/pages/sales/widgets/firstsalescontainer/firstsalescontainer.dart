@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/model/cutomers/customer.dart';
-import '../../../../../Controllers/customer_controller.dart';
-import '../../../../../Controllers/order_controller.dart';
-import '../../../../../controllers/Init_add_order_controller.dart';
-import '../../../../../core/constrants/widgetconstrant.dart';
-import '../../../../../model/ProductData.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/firstsalescontainer/widgets/addclintbottomsheet.dart';
+import '../../../../../../Controllers/customer_controller.dart';
+import '../../../../../../controllers/Init_add_order_controller.dart';
+import '../../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../../model/ProductData.dart';
 
 
 class FirstSalesContainer extends StatelessWidget {
@@ -55,7 +53,63 @@ class FirstSalesContainer extends StatelessWidget {
                     MyTextFieldWidget(
                       hintText:  "فاتورة ",
                       onChanged:(value)=>null
-                      ,readOnly: true,textAlign: TextAlign.right,),
+                      ,readOnly: true,textAlign: TextAlign.center,),
+                    Container(
+                        padding: getPadding(top: 8),
+                        height: 51,
+                         child: Expanded(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+
+                            color:Colors.white,
+
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const <BoxShadow>[
+
+                            ]
+                        ),
+
+                        child:  Center(
+                          child: TextField(
+
+
+                            readOnly: true,
+                            onTap: (){     showModalBottomSheet<void>(
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(30.0),
+                                      topRight: Radius.circular(30))),
+                              context: context,
+                              builder: (BuildContext context) {
+                                return    Expanded(
+                                  child: Padding(
+                                    padding: getPadding(all: 10),
+                                    child: AddClintForm(),
+                                  ),
+                                );
+                              },
+                            );},
+
+                            //controller:  controller.controllers.value,
+                            textAlign: TextAlign.center,
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.add),
+                              fillColor:Colors.transparent,
+                              hintText:'العميل',
+                              hintStyle:  TextStyle(
+                                fontSize: 13,
+                              ),
+                              contentPadding:  EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 10.0),
+
+
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                ),
+
                     Container(color: Colors.white,
                       margin: getMargin(top: 10),
                       alignment: Alignment.center,
@@ -175,6 +229,7 @@ class FirstSalesContainer extends StatelessWidget {
                         ],
                       ),
                     ),
+
 
 
                   ],
