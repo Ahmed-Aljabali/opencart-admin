@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/Init_add_order_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import 'package:opencart/pages/orders/pages/sales/widgets/fifthsalescontainer.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/fifthsalescontainer/fifthsalescontainer.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/firstsalescontainer/firstsalescontainer.dart';
-import 'package:opencart/pages/orders/pages/sales/widgets/forthsalescontainer.dart';
-import 'package:opencart/pages/orders/pages/sales/widgets/secontsalescontainter.dart';
-import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/forthsalescontainer/forthsalescontainer.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/secontsalescontainter/secontsalescontainter.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/thirdsalescontainer.dart';
 
 
 
@@ -40,15 +40,12 @@ class Sales extends GetView<InitAddOrderController> {
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
-
                           children: [
-                            FirstSalesContainer(
-                              controller: controller,
-                            ),
-                            SecondSalesContainer(controller: controller),
-                            ThirdSalesContainer(controller: controller),
-                            ForthSalesContainer(controller: controller),
-                            FifthSalesContainer(controller: controller)
+                            FirstSalesContainer(),
+                            SecondSalesContainer(),
+                            ThirdSalesContainer(),
+                            ForthSalesContainer(),
+                            FifthSalesContainer()
                             /*SecondProductContainer(
                               controller: controller,
                             ),

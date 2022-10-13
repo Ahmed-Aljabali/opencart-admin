@@ -43,7 +43,10 @@ class InitAddOrderController extends OrderController {
   List<String> languageAddProductList = ["عربي", "انجليزي", "فرنسي"];
   var selectedLanguageAddProduct= Rxn<String>();
   List<String> currencyAddProductList = ["ريال", "دولار"];
+
   var selectedCurrenctAddProduct= Rxn<String>();
+  List<String> recieverNameAddProductList = ["اسم المستلم1", "اسم المستلم2"];
+  var selectedRecieverNameAddProduct= Rxn<String>();
   var selectedShippingAddProduct= Rxn<String>();
   var selectedpayMethodAddProduct= Rxn<String>();
   var selectedClintOptions = Rxn<String>();

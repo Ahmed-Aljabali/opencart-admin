@@ -62,17 +62,17 @@ class WizardPage extends GetView<WizardController> {
                         ],
                       ),
                       isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
+                      // state: controller.currentStep.value >= 0
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                     ),
                     Step(
                       title:  const Text('Linke'),
                       content:FirstProductLinkeExpantionPanel(controller: controller,),
                       isActive: controller.currentStep.value >= 0,
-                    //   state: controller.currentStep.value >= 1
-                    //       ? StepState.complete
-                    //       : StepState.disabled,
+                      // state: controller.currentStep.value >= 1
+                      //     ? StepState.complete
+                      //     : StepState.disabled,
                      ),
                     Step(
 
@@ -121,8 +121,6 @@ class WizardPage extends GetView<WizardController> {
                       //     ? StepState.complete
                       //     : StepState.disabled,
                     ),
-
-
                   ],
                 ),
               ),

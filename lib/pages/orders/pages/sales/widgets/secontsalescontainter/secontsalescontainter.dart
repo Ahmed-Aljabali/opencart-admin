@@ -1,95 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:opencart/controllers/BaseController.dart';
-import 'package:opencart/controllers/order_controller.dart';
-import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/buttomsheetcontainer.dart';
-import '../../../../../controllers/Init_add_order_controller.dart';
-import '../../../../../controllers/wizard_controller.dart';
-import '../../../../../core/constrants/widgetconstrant.dart';
-import '../../../../../model/ProductData.dart';
-import '../../../../wizard/widgets/options/checkboxcontainer/widgets/checkboxrequiredoptionpicker.dart';
-import 'addproductbottomsheet.dart';
+import '../../../../../../controllers/Init_add_order_controller.dart';
+import '../../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../../model/ProductData.dart';
+import 'widgets/addproductbottomsheet/addproductbottomsheet.dart';
 
-
-class SecondSalesContainer1 extends StatelessWidget {
-  final InitAddOrderController controller;
-
-  const SecondSalesContainer1   ({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-
-  @override
-  Widget build(BuildContext context) {
-
-
-
-    return  Obx(() {
-      return ExpansionPanelList(
-          expansionCallback: (panelIndex, isExpanded) {
-            controller.salesExpansionTitle2[panelIndex].isExpanded!.value =
-            !isExpanded;
-          },
-          children: controller.salesExpansionTitle2.map<ExpansionPanel>((Product item) {
-            return ExpansionPanel(
-                backgroundColor: Colors.grey[200],
-                canTapOnHeader: true,
-                headerBuilder: ((context, isExpanded) {
-                  return ListTile(
-                      title: Text(
-                        item.header!,
-                        style: const TextStyle(fontSize: 20, ),
-                        textAlign: TextAlign.center,
-                      ));
-                }),
-                body: Container(
-                  /* padding: EdgeInsets.only(
-                      top: 10, bottom: 10, right: 10, left: 10),*/
-                  margin:
-                  const EdgeInsets.only(top: 10, bottom: 10, right: 10, left: 10),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: Column(
-                    children: [
-                      MyTextFieldWidget(hintText:  "اسم المنتج", onChanged:(value)=>null),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      MyTextFieldWidget(hintText:"وصف المنتج" ,onChanged: (value)=>null,),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      MyTextFieldWidget(hintText:"MetaTagTitle" ,onChanged:(value)=>null,),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      MyTextFieldWidget(hintText:"Meta Tag Description" ,onChanged:(value)=>null,),
-                      const SizedBox(height: 10,),
-                      MyTextFieldWidget(hintText:"Meta Tag KeyWord" ,onChanged:(value)=>null,),
-                      const SizedBox(height: 10,),
-                      MyTextFieldWidget(hintText:"Product Tags" ,onChanged:(value)=>null,),
-
-                    ],
-                  ),
-                ),
-                isExpanded: item.isExpanded!.value);
-          }).toList());
-    });
-  }
-}
-
-
-
-
-
-class SecondSalesContainer extends StatelessWidget {
-  const SecondSalesContainer({
-    required this.controller,
-  });
-
-
-  final InitAddOrderController controller;
+class SecondSalesContainer extends GetView<InitAddOrderController> {
 
   @override
   Widget build(BuildContext context) {
@@ -124,12 +40,9 @@ class SecondSalesContainer extends StatelessWidget {
                       child: Center(
 
                         child: DataTable(
-
-
                           dataRowColor:MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,255, 255, 255);},),
                           horizontalMargin: 3,
                           headingRowColor: MaterialStateColor.resolveWith((states) {return Colors.blueGrey.withOpacity(0.16);},),
-
                           headingTextStyle:  TextStyle(
                             color: const Color.fromARGB(255,30, 102, 160),
                             fontSize:
@@ -154,7 +67,6 @@ class SecondSalesContainer extends StatelessWidget {
                               DataCell(
                                 InkWell(child: const Icon(Icons.remove),onTap: (){controller.removeProductModel(element.index);},),
 
-
                               ),
 
                               DataCell(Text(element.total.toString())),
@@ -170,7 +82,6 @@ class SecondSalesContainer extends StatelessWidget {
                           columns: const [
                             DataColumn(label: Text('نعديل',textAlign: TextAlign.center,)),
                             DataColumn(label:  Text('حذف',textAlign: TextAlign.center,)),
-
                             DataColumn(label: Text('المجموع')),
                             DataColumn(label: Text('سعر الوحدة')),
                             DataColumn(label: Text('الموديل')),
@@ -200,10 +111,7 @@ class SecondSalesContainer extends StatelessWidget {
                               ),
                               context: context,
                               builder: (BuildContext context) {
-                                return  ButtomCheetAddProductContainer(
-
-
-                                    controller: controller);
+                                return  ButtomCheetAddProductContainer();
                               },
                             );
                           },
@@ -225,6 +133,11 @@ class SecondSalesContainer extends StatelessWidget {
         }).toList()));
   }
 }
+
+
+
+
+
 
 /*
 Expanded(

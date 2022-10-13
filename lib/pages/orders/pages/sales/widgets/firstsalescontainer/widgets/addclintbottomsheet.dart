@@ -26,7 +26,6 @@ class AddClintForm extends GetView<InitAddOrderController> {
           Row(
             children: [
               Container(
-
                   padding: const EdgeInsets.only(left: 20, top: 10),
                   child: InkWell(
                       onTap: () {
@@ -68,7 +67,7 @@ class AddClintForm extends GetView<InitAddOrderController> {
             child: Expanded(
                 child:     Container(color: Colors.white,
                   margin: getMargin(top: 10),
-                  alignment: Alignment.center,
+
                   height: 44,
                   child: Expanded(
                     child: Container(
@@ -87,7 +86,13 @@ class AddClintForm extends GetView<InitAddOrderController> {
                           ),
                           child:Center(
                             child: DropdownButton<Customers>(
-                              hint:  const Text("حدد عميل"),
+                              hint:   const Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "العميل",
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
                               //   value:controller.selectProd.value,
 
                               onChanged:(v) {
@@ -125,7 +130,7 @@ class AddClintForm extends GetView<InitAddOrderController> {
             child: Expanded(
               child:     Container(color: Colors.white,
                 margin: getMargin(top: 10),
-                alignment: Alignment.center,
+
                 height: 44,
                 child: Expanded(
                   child: Container(
@@ -144,7 +149,14 @@ class AddClintForm extends GetView<InitAddOrderController> {
                         ),
                         child:Center(
                           child: DropdownButton<Customers>(
-                            hint:  const Text("حدد عميل"),
+
+                            hint:   const Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "مجموعة العميل",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
                             //   value:controller.selectProd.value,
 
                             onChanged:(v) {

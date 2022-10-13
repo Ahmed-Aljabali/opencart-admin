@@ -10,13 +10,7 @@ import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../model/ProductData.dart';
 
 
-class FirstSalesContainer extends StatelessWidget {
-  final InitAddOrderController controller;
-
-  const FirstSalesContainer ({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+class FirstSalesContainer extends GetView<InitAddOrderController> {
 
 
   @override
@@ -110,59 +104,7 @@ class FirstSalesContainer extends StatelessWidget {
                     )
                 ),
 
-                    Container(color: Colors.white,
-                      margin: getMargin(top: 10),
-                      alignment: Alignment.center,
-                      height: 44,
-                      child: Expanded(
-                        child: Container(
-                              color: Colors.white,
-                                             child: DecoratedBox(
-                              decoration: BoxDecoration(
 
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:1), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(5), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
-                              child:Center(
-                                child: DropdownButton<Customers>(
-                                  hint:  const Text("اضافه عميل"),
-                                  //   value:controller.selectProd.value,
-
-                                  onChanged:(v) {
-                                    var initName= v!.name.toString().indexOf(" ");
-                                    var firstName=v.name!.substring(0,initName);
-                                    var lastName=v.name!.substring(initName).trim();
-                                  print(firstName);
-                                   controller.addOrders.value.customer?.customerId=v!.customerid;
-                                   controller.customer.value.customerId=v?.customerid;
-                                   controller.customer.value.email=v?.email;
-                                   controller.customer.value.customerGroupId=v?.customergroupid;
-                                   controller.customer.value.telephone=v!.telephone;
-                                   controller.customer.value.firstname=firstName;
-                                   controller.customer.value.lastname=lastName;
-
-
-                                  },
-                                  items:customerController.trx.
-                                  map<DropdownMenuItem<Customers>>((Customers value) {
-                                    return   DropdownMenuItem<Customers>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value.name!),
-                                    );
-                                  }).toList(),
-                                ),
-                              )
-                          ),
-                        ),
-                      ),
-                    ),
                     Container(
                       padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
                       child: Row(

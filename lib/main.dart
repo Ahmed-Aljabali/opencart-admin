@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        unselectedWidgetColor: Colors.green,
+primaryColor: Colors.green,
 
         textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
 
@@ -61,7 +63,7 @@ class MyApp extends StatelessWidget {
             borderRadius:BorderRadius.all(Radius.circular(30.0)),
             borderSide: BorderSide(width: 1, color: Colors.blue),
           ),),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       initialRoute: "/Login",
       getPages: [

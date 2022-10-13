@@ -5,18 +5,15 @@ import 'package:get/get.dart';
 
 import 'package:opencart/model/orders/payment_metho.dart';
 import 'package:opencart/model/orders/shipping_methods.dart';
-import '../../../../../controllers/Init_add_order_controller.dart';
-import '../../../../../core/constrants/widgetconstrant.dart';
-import '../../../../../core/utils/math_utils.dart';
-import '../../../../../model/ProductData.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/shippingaddress.dart';
+import '../../../../../../controllers/Init_add_order_controller.dart';
+import '../../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../../core/utils/math_utils.dart';
+import '../../../../../../model/ProductData.dart';
+import '../firstsalescontainer/widgets/addclintbottomsheet.dart';
 
-class ThirdSalesContainer extends StatelessWidget {
-  final InitAddOrderController controller;
+class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
-  const ThirdSalesContainer({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +89,13 @@ class ThirdSalesContainer extends StatelessWidget {
                                                   .keyboard_arrow_down_outlined),
                                               alignment:
                                                   AlignmentDirectional.center,
-                                              hint: const Text("متجر"),
+                                              hint:  const Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "متجر",
+                                                  style: TextStyle(color: Colors.grey),
+                                                ),
+                                              ),
                                               value: controller
                                                   .selectedmarketsAddProduct
                                                   .value,
@@ -161,7 +164,13 @@ class ThirdSalesContainer extends StatelessWidget {
                                               isExpanded: true,
                                               icon: Icon(Icons
                                                   .keyboard_arrow_down_outlined),
-                                              hint: const Text("اللغة"),
+                                              hint:  const Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "اللغة",
+                                                  style: TextStyle(color: Colors.grey),
+                                                ),
+                                              ),
                                               value: controller
                                                   .selectedLanguageAddProduct
                                                   .value,
@@ -276,7 +285,13 @@ class ThirdSalesContainer extends StatelessWidget {
                                               isExpanded: true,
                                               icon: Icon(Icons
                                                   .keyboard_arrow_down_outlined),
-                                              hint: const Text("العملة"),
+                                              hint:   const Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "العملة",
+                                                  style: TextStyle(color: Colors.grey),
+                                                ),
+                                              ),
                                               value: controller
                                                   .selectedCurrenctAddProduct
                                                   .value,
@@ -310,7 +325,7 @@ class ThirdSalesContainer extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              Expanded(
+                              Expanded (
                                 child: Container(
                                   margin: getMargin(top: 10, bottom: 10),
                                   alignment: Alignment.center,
@@ -477,7 +492,7 @@ class ThirdSalesContainer extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      color: Colors.blueGrey.withOpacity(0.16),
+
                       padding: EdgeInsets.only(
                           top: 10, bottom: 10, right: 10, left: 10),
                       margin: const EdgeInsets.only(
@@ -502,23 +517,63 @@ class ThirdSalesContainer extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
-                            child: Expanded(
-                              child: Container(
-                                margin: getMargin(top: 10, bottom: 10),
-                                alignment: Alignment.center,
-                                height: 44,
-                                child: Expanded(
-                                  child: MyTextFieldWidget(
-                                    prefixIcon: Icon(Icons.add),
-                                    hintText: "عنوان الشحن",
-                                    readOnly: true,
-                                    onChanged: (value) => null,
+                          Container(
+                              padding: getPadding(top: 8),
+                              height: 51,
+                              child: Expanded(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+
+                                      color:Colors.white,
+
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: const <BoxShadow>[
+
+                                      ]
+                                  ),
+
+                                  child:  Center(
+                                    child: TextField(
+
+
+                                      readOnly: true,
+                                      onTap: (){     showModalBottomSheet<void>(
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(30.0),
+                                                topRight: Radius.circular(30))),
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return    Container(
+                                            height:800,
+                                            child: Padding(
+                                              padding: getPadding(all: 10),
+                                              child: ShippinAddressForm(),
+                                            ),
+                                          );
+                                        },
+                                      );},
+
+                                      //controller:  controller.controllers.value,
+                                      textAlign: TextAlign.center,
+                                      decoration: const InputDecoration(
+                                        prefixIcon: Icon(Icons.add),
+                                        fillColor:Colors.transparent,
+                                        hintText:'عنوان الشحن',
+                                        hintStyle:  TextStyle(
+                                          fontSize: 16,color: Colors.grey
+                                        ),
+                                        contentPadding:  EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 10.0),
+
+
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
+                              )
                           ),
+
                           SizedBox(
                             child: Expanded(
                               child: Container(
@@ -548,7 +603,7 @@ class ThirdSalesContainer extends StatelessWidget {
                                                     3) //blur radius of shadow
                                           ]),
                                       child: Align(
-                                          alignment: Alignment.center,
+
                                           child: FutureBuilder<
                                               List<ShippingMethods>>(
                                             future: controller
@@ -560,7 +615,13 @@ class ThirdSalesContainer extends StatelessWidget {
                                                 return DropdownButton<
                                                     ShippingMethods>(
                                                   hint:
-                                                      const Text("طريقه الشحن"),
+                                                  const Align(
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      "طريقة الشحن",
+                                                      style: TextStyle(color: Colors.grey),
+                                                    ),
+                                                  ),
                                                   //   value:controller.shippingMethods.value,
                                                   icon: const Icon(Icons
                                                       .keyboard_arrow_down),
@@ -658,7 +719,13 @@ class ThirdSalesContainer extends StatelessWidget {
                                               return DropdownButton<PaymentMethod>(
                                                 isExpanded: true,
                                                 alignment: Alignment.center,
-                                                hint: const Text("طريقه الدفع"),
+                                                hint:   const Align(
+                                                  alignment: Alignment.center,
+                                                  child: Text(
+                                                    "طريقة الدفع",
+                                                    style: TextStyle(color: Colors.grey),
+                                                  ),
+                                                ),
                                                 //value:controller.selectedManufacturers.value,
                                                 icon: const Icon(
                                                     Icons.keyboard_arrow_down),

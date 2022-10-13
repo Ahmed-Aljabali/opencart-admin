@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import '../../../../../controllers/Init_add_order_controller.dart';
-import '../../../../../model/ProductData.dart';
+import '../../../../../../controllers/Init_add_order_controller.dart';
+import '../../../../../../model/ProductData.dart';
 
 
-class ForthSalesContainer extends StatelessWidget {
-  final InitAddOrderController controller;
-
-  const ForthSalesContainer   ({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+class ForthSalesContainer extends GetView<InitAddOrderController> {
 
 
   @override
