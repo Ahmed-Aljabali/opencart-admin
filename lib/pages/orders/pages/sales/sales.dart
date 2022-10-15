@@ -19,6 +19,8 @@ class Sales extends GetView<InitAddOrderController> {
 
     return SafeArea(
       child: Scaffold(
+
+
           appBar: AppBar(
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,

@@ -100,11 +100,11 @@ class AddClintForm extends GetView<InitAddOrderController> {
                                 var firstName=v.name!.substring(0,initName);
                                 var lastName=v.name!.substring(initName).trim();
                                 print(firstName);
-                                controller.addOrders.value.customer?.customerId=v!.customerid;
-                                controller.customer.value.customerId=v?.customerid;
-                                controller.customer.value.email=v?.email;
-                                controller.customer.value.customerGroupId=v?.customergroupid;
-                                controller.customer.value.telephone=v!.telephone;
+                                controller.addOrders.value.customer?.customerId=v.customerid;
+                                controller.customer.value.customerId=v.customerid;
+                                controller.customer.value.email=v.email;
+                                controller.customer.value.customerGroupId=v.customergroupid;
+                                controller.customer.value.telephone=v.telephone;
                                 controller.customer.value.firstname=firstName;
                                 controller.customer.value.lastname=lastName;
 
@@ -164,11 +164,11 @@ class AddClintForm extends GetView<InitAddOrderController> {
                               var firstName=v.name!.substring(0,initName);
                               var lastName=v.name!.substring(initName).trim();
                               print(firstName);
-                              controller.addOrders.value.customer?.customerId=v!.customerid;
-                              controller.customer.value.customerId=v?.customerid;
-                              controller.customer.value.email=v?.email;
-                              controller.customer.value.customerGroupId=v?.customergroupid;
-                              controller.customer.value.telephone=v!.telephone;
+                              controller.addOrders.value.customer?.customerId=v.customerid;
+                              controller.customer.value.customerId=v.customerid;
+                              controller.customer.value.email=v.email;
+                              controller.customer.value.customerGroupId=v.customergroupid;
+                              controller.customer.value.telephone=v.telephone;
                               controller.customer.value.firstname=firstName;
                               controller.customer.value.lastname=lastName;
 

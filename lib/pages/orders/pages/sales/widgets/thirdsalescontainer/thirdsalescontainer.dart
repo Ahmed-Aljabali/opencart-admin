@@ -5,12 +5,15 @@ import 'package:get/get.dart';
 
 import 'package:opencart/model/orders/payment_metho.dart';
 import 'package:opencart/model/orders/shipping_methods.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/comment.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/companyfollow.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/shippingaddress.dart';
 import '../../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../core/utils/math_utils.dart';
 import '../../../../../../model/ProductData.dart';
 import '../firstsalescontainer/widgets/addclintbottomsheet.dart';
+import '../secontsalescontainter/widgets/addproductbottomsheet/addproductbottomsheet.dart';
 
 class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
@@ -41,8 +44,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                 body: Column(
                   children: [
                     Container(
-                      color: Colors.blueGrey.withOpacity(0.16),
-                      padding: EdgeInsets.only(
+      padding: EdgeInsets.only(
                           top: 10, bottom: 10, right: 10, left: 10),
                       margin: const EdgeInsets.only(
                           top: 10, bottom: 10, right: 10, left: 10),
@@ -67,9 +69,9 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                               border: Border.all(
                                                   color: Colors.black38,
                                                   width:
-                                                      1), //border of dropdown button
+                                                      1),
                                               borderRadius: BorderRadius.circular(
-                                                  5), //border raiuds of dropdown button
+                                                  5),
                                               boxShadow: const <BoxShadow>[
                                                 //apply shadow on Dropdown button
                                                 BoxShadow(
@@ -77,7 +79,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                         0,
                                                         0,
                                                         0,
-                                                        0.1), //shadow for button
+                                                        0.1),
                                                     blurRadius:
                                                         3) //blur radius of shadow
                                               ]),
@@ -144,19 +146,19 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                               border: Border.all(
                                                   color: Colors.black38,
                                                   width:
-                                                      1), //border of dropdown button
+                                                      1),
                                               borderRadius: BorderRadius.circular(
-                                                  5), //border raiuds of dropdown button
+                                                  5),
                                               boxShadow: const <BoxShadow>[
-                                                //apply shadow on Dropdown button
+
                                                 BoxShadow(
                                                     color: Color.fromRGBO(
                                                         0,
                                                         0,
                                                         0,
-                                                        0.1), //shadow for button
+                                                        0.1),
                                                     blurRadius:
-                                                        3) //blur radius of shadow
+                                                        3)
                                               ]),
                                           child: Align(
                                             alignment: Alignment.center,
@@ -463,31 +465,62 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                               ),
                             ],
                           ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  margin: getMargin(top: 10, bottom: 10),
-                                  alignment: Alignment.center,
-                                  height: 44,
-                                  child: Expanded(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: MyTextFieldWidget(
-                                            prefixIcon: Icon(Icons.add),
-                                            hintText: "شركة تابعة",
-                                            readOnly: true,
-                                            onChanged: (value) => null,
-                                          ),
+                          Container(
+                              padding: getPadding(top: 8),
+                              height: 50,
+                              child: Expanded(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+
+                                    color:Colors.white,
+
+                                    borderRadius: BorderRadius.circular(10),
+
+                                  ),
+
+                                  child:  Center(
+                                    child: TextField(
+
+
+
+                                      readOnly: true,
+                                      onTap: (){     showModalBottomSheet<void>(
+                                        isScrollControlled: true,
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(30.0),
+                                                topRight: Radius.circular(30))),
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return    SizedBox(
+
+                                            child: Padding(
+                                              padding: getPadding(all: 10),
+                                              child: ComopanyFollow(),
+                                            ),
+                                          );
+                                        },
+                                      );},
+
+                                      //controller:  controller.controllers.value,
+                                      textAlign: TextAlign.center,
+                                      decoration: const InputDecoration(
+                                        prefixIcon: Icon(Icons.add),
+                                        fillColor:Colors.transparent,
+                                        hintText:'شركة تابعة',
+                                        hintStyle:  TextStyle(
+                                            fontSize: 16,color: Colors.grey
                                         ),
-                                      ],
+                                        contentPadding:  EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 10.0),
+
+
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )
+                              )
+                          ),
                         ],
                       ),
                     ),
@@ -498,23 +531,65 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                       margin: const EdgeInsets.only(
                           top: 10, bottom: 10, right: 10, left: 10),
                       width: MediaQuery.of(context).size.width * 0.9,
+
                       child: Column(
                         children: [
-                          SizedBox(
-                            child: Expanded(
-                              child: Container(
-                                margin: getMargin(top: 10, bottom: 10),
-                                alignment: Alignment.center,
-                                height: 44,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Container(
+                                padding: getPadding(top: 8),
+                                height: 51,
                                 child: Expanded(
-                                  child: MyTextFieldWidget(
-                                    prefixIcon: Icon(Icons.add),
-                                    hintText: "شركة تابعة",
-                                    readOnly: true,
-                                    onChanged: (value) => null,
+                                  child: DecoratedBox(
+                                    decoration: BoxDecoration(
+
+                                        color:Colors.white,
+
+                                        borderRadius: BorderRadius.circular(10),
+
+                                    ),
+
+                                    child:  Center(
+                                      child: TextField(
+
+
+                                        readOnly: true,
+                                        onTap: (){     showModalBottomSheet<void>(
+                                          isScrollControlled: true,
+                                          shape: const RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(30.0),
+                                                  topRight: Radius.circular(30))),
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return    SizedBox(
+
+                                              child: Padding(
+                                                padding: getPadding(all: 10),
+                                                child:Container(child: Center(child: Text('1')),),
+                                              ),
+                                            );
+                                          },
+                                        );},
+
+                                        //controller:  controller.controllers.value,
+                                        textAlign: TextAlign.center,
+                                        decoration: const InputDecoration(
+                                          prefixIcon: Icon(Icons.add),
+                                          fillColor:Colors.transparent,
+                                          hintText:'عنوان الدفع',
+                                          hintStyle:  TextStyle(
+                                              fontSize: 16,color: Colors.grey
+                                          ),
+                                          contentPadding:  EdgeInsets.symmetric(
+                                              vertical: 10.0, horizontal: 10.0),
+
+
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                )
                             ),
                           ),
                           Container(
@@ -524,12 +599,10 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
 
-                                      color:Colors.white,
+                                    color:Colors.white,
 
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: const <BoxShadow>[
+                                    borderRadius: BorderRadius.circular(10),
 
-                                      ]
                                   ),
 
                                   child:  Center(
@@ -538,14 +611,15 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
                                       readOnly: true,
                                       onTap: (){     showModalBottomSheet<void>(
+                                        isScrollControlled: true,
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(30.0),
                                                 topRight: Radius.circular(30))),
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return    Container(
-                                            height:800,
+                                          return    SizedBox(
+
                                             child: Padding(
                                               padding: getPadding(all: 10),
                                               child: ShippinAddressForm(),
@@ -561,7 +635,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                         fillColor:Colors.transparent,
                                         hintText:'عنوان الشحن',
                                         hintStyle:  TextStyle(
-                                          fontSize: 16,color: Colors.grey
+                                            fontSize: 16,color: Colors.grey
                                         ),
                                         contentPadding:  EdgeInsets.symmetric(
                                             vertical: 10.0, horizontal: 10.0),
@@ -573,6 +647,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                 ),
                               )
                           ),
+
 
                           SizedBox(
                             child: Expanded(
@@ -680,7 +755,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                             child: Expanded(
                               child: Container(
                                 color: Colors.white,
-                                margin: getMargin(top: 10, bottom: 10),
+                                margin: getMargin( bottom: 10),
                                 alignment: Alignment.center,
                                 height: 44,
                                 child: Expanded(
@@ -747,7 +822,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                   controller.paymentMethod.value
                                                       .code = v!.code;
                                                   controller.paymentMethod.value
-                                                      .title = v!.name;
+                                                      .title = v.name;
 
                                                   // controller.manufacturersId.value = v?.manufacturerId;
                                                 },
@@ -766,277 +841,321 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                             ),
                           ),
                           SizedBox(
-                            child: Expanded(
-                              child: Container(
-                                margin: getMargin(top: 10, bottom: 10),
-                                alignment: Alignment.center,
-                                height: 44,
-                                child: Expanded(
-                                  child: MyTextFieldWidget(
-                                    prefixIcon: Icon(Icons.add),
-                                    hintText: "تعليق",
-                                    readOnly: true,
-                                    onChanged: (value) => null,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            child: Expanded(
-                              child: Center(
-                                  child: Column(children: <Widget>[
-                                Container(
+
+                              height: 42,
+                              child: Expanded(
+                                child: DecoratedBox(
                                   decoration: BoxDecoration(
-                                    border:
-                                        Border.all(color: Colors.blue.shade400),
-                                    borderRadius: BorderRadius.circular(10.0),
+
+                                    color:Colors.white,
+
+                                    borderRadius: BorderRadius.circular(10),
+
                                   ),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: Table(
-                                          border: TableBorder(
-                                              horizontalInside: BorderSide(
-                                                  color: Colors.blue.shade400),
-                                              right: BorderSide(
-                                                  color: Colors.blue.shade400)),
-                                          children: [
-                                            TableRow(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.blueGrey
-                                                        .withOpacity(0.16),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    10.0))),
-                                                children: [
-                                                  SizedBox(
-                                                      height: 40.0,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Text('ريال',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontFamily:
-                                                                      'Cairo Regular')),
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text('2500',
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Cairo Regular')),
-                                                        ],
-                                                      )),
-                                                ]),
-                                            TableRow(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.blueGrey
-                                                        .withOpacity(0.16),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    10.0))),
-                                                children: [
-                                                  SizedBox(
-                                                      height: 40.0,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Text('ريال',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontFamily:
-                                                                      'Cairo Regular')),
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text('150',
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Cairo Regular')),
-                                                        ],
-                                                      )),
-                                                ]),
-                                            TableRow(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.blueGrey
-                                                        .withOpacity(0.16),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft:
-                                                                Radius.circular(
-                                                                    10.0))),
-                                                children: [
-                                                  SizedBox(
-                                                      height: 40.0,
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: const [
-                                                          Text('ريال',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontFamily:
-                                                                      'Cairo Regular')),
-                                                          SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                          Text('150',
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'Cairo Regular')),
-                                                        ],
-                                                      )),
-                                                ]),
-                                          ],
+
+                                  child:  Center(
+                                    child: TextField(
+
+
+
+
+                                      readOnly: true,
+                                      onTap: (){     showModalBottomSheet<void>(
+                                        isScrollControlled: true,
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(30.0),
+                                                topRight: Radius.circular(30))),
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return    SizedBox(
+
+                                            child: Padding(
+                                              padding: getPadding(all: 10),
+                                              child: Comment(),
+                                            ),
+                                          );
+                                        },
+                                      );},
+
+                                      //controller:  controller.controllers.value,
+                                      textAlign: TextAlign.center,
+                                      decoration: const InputDecoration(
+                                        prefixIcon: Icon(Icons.add),
+                                        fillColor:Colors.transparent,
+                                        hintText:'تعليق',
+                                        hintStyle:  TextStyle(
+                                            fontSize: 16,color: Colors.grey
                                         ),
+                                        contentPadding:  EdgeInsets.symmetric(
+                                            vertical: 10.0, horizontal: 10.0),
+
+
                                       ),
-                                      Expanded(
-                                        child: Table(
-                                          border: TableBorder.symmetric(
-                                              inside: BorderSide(
-                                                  color: Colors.blue.shade400)),
-                                          children: [
-                                            TableRow(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.blueGrey
-                                                        .withOpacity(0.16),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    10.0))),
-                                                children: [
-                                                  Container(
-                                                      height: 40.0,
-                                                      child: Center(
-                                                          child: Text(
-                                                              'المجموع الفرعي',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontFamily:
-                                                                      'Cairo Regular'))))
-                                                ]),
-                                            TableRow(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.blueGrey
-                                                        .withOpacity(0.16),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    10.0))),
-                                                children: [
-                                                  Container(
-                                                      height: 40.0,
-                                                      child: Center(
-                                                          child: Text('الضرايب',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontFamily:
-                                                                      'Cairo Regular'))))
-                                                ]),
-                                            TableRow(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.blueGrey
-                                                        .withOpacity(0.16),
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    10.0))),
-                                                children: [
-                                                  Container(
-                                                      height: 40.0,
-                                                      child: Center(
-                                                          child: Text(
-                                                              'المجموع الكلي',
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontFamily:
-                                                                      'Cairo Regular'))))
-                                                ]),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
-                              ])),
-                              /*Row(
+                              )
+                          ),
+                          Padding(
+                            
+                            padding: getPadding(top: 15),
+                            child: SizedBox(
+                              child: Expanded(
+                                child: Center(
+                                    child: Column(children: <Widget>[
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border:
+                                          Border.all(color: Colors.blue.shade400),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: Table(
+                                            border: TableBorder(
+                                                horizontalInside: BorderSide(
+                                                    color: Colors.blue.shade400),
+                                                right: BorderSide(
+                                                    color: Colors.blue.shade400)),
+                                            children: [
+                                              TableRow(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.blueGrey
+                                                          .withOpacity(0.16),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topLeft:
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  children: [
+                                                    SizedBox(
+                                                        height: 40.0,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: const [
+                                                            Text('ريال',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Cairo Regular')),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Text('2500',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo Regular')),
+                                                          ],
+                                                        )),
+                                                  ]),
+                                              TableRow(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.blueGrey
+                                                          .withOpacity(0.16),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topLeft:
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  children: [
+                                                    SizedBox(
+                                                        height: 40.0,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: const [
+                                                            Text('ريال',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Cairo Regular')),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Text('150',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo Regular')),
+                                                          ],
+                                                        )),
+                                                  ]),
+                                              TableRow(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.blueGrey
+                                                          .withOpacity(0.16),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topLeft:
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  children: [
+                                                    SizedBox(
+                                                        height: 40.0,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: const [
+                                                            Text('ريال',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Cairo Regular')),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Text('150',
+                                                                style: TextStyle(
+                                                                    fontFamily:
+                                                                        'Cairo Regular')),
+                                                          ],
+                                                        )),
+                                                  ]),
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Table(
+                                            border: TableBorder.symmetric(
+                                                inside: BorderSide(
+                                                    color: Colors.blue.shade400)),
+                                            children: [
+                                              TableRow(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.blueGrey
+                                                          .withOpacity(0.16),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topRight:
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  children: [
+                                                    Container(
+                                                        height: 40.0,
+                                                        child: Center(
+                                                            child: Text(
+                                                                'المجموع الفرعي',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Cairo Regular'))))
+                                                  ]),
+                                              TableRow(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.blueGrey
+                                                          .withOpacity(0.16),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topRight:
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  children: [
+                                                    Container(
+                                                        height: 40.0,
+                                                        child: Center(
+                                                            child: Text('الضرايب',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Cairo Regular'))))
+                                                  ]),
+                                              TableRow(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.blueGrey
+                                                          .withOpacity(0.16),
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                              topRight:
+                                                                  Radius.circular(
+                                                                      10.0))),
+                                                  children: [
+                                                    Container(
+                                                        height: 40.0,
+                                                        child: Center(
+                                                            child: Text(
+                                                                'المجموع الكلي',
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontFamily:
+                                                                        'Cairo Regular'))))
+                                                  ]),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ])),
+                                /*Row(
                         children:[Expanded(
 
-                          child: DataTable(
+                            child: DataTable(
 
 
-                            dataRowColor:MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,255, 255, 255);},),
-                            horizontalMargin: 3,
-                            headingRowColor: MaterialStateColor.resolveWith((states) {return Colors.blueGrey.withOpacity(0.16);},),
+                              dataRowColor:MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,255, 255, 255);},),
+                              horizontalMargin: 3,
+                              headingRowColor: MaterialStateColor.resolveWith((states) {return Colors.blueGrey.withOpacity(0.16);},),
 
-                            headingTextStyle:  TextStyle(
-                              color: const Color.fromARGB(255,30, 102, 160),
-                              fontSize:
-                              12,
+                              headingTextStyle:  TextStyle(
+                                color: const Color.fromARGB(255,30, 102, 160),
+                                fontSize:
+                                12,
 
-                              fontFamily: 'Cairo',
-                              fontWeight: FontWeight.w900,
-                              height: 3.00,
-                            ),
+                                fontFamily: 'Cairo',
+                                fontWeight: FontWeight.w900,
+                                height: 3.00,
+                              ),
 
-                            dividerThickness: 1,
-                            columnSpacing: 10,
-                            border: TableBorder.all(color: Colors.black.withOpacity(0.05)),
-                            rows: controller.addProductDataList
-                                .map(((element) => DataRow(
-                              cells: <DataCell>[
+                              dividerThickness: 1,
+                              columnSpacing: 10,
+                              border: TableBorder.all(color: Colors.black.withOpacity(0.05)),
+                              rows: controller.addProductDataList
+                                  .map(((element) => DataRow(
+                                cells: <DataCell>[
 
 
-                                DataCell(Text('125')),
-                                DataCell(Text('125')),
-                                DataCell(Text('125')),
-                                DataCell(Text('125')),
-                                DataCell(Text('125')),
+                                  DataCell(Text('125')),
+                                  DataCell(Text('125')),
+                                  DataCell(Text('125')),
+                                  DataCell(Text('125')),
+                                  DataCell(Text('125')),
 
+                                ],
+                              )),
+                              )
+                                  .toList(),
+                              columns: const [
+
+
+                                DataColumn(label: Text('المجموع')),
+                                DataColumn(label: Text('سعر الوحدة')),
+                                DataColumn(label: Text('الموديل')),
+                                DataColumn(label: Text('الكمية')),
+                                DataColumn(label: Text('المنتج'))
                               ],
-                            )),
-                            )
-                                .toList(),
-                            columns: const [
-
-
-                              DataColumn(label: Text('المجموع')),
-                              DataColumn(label: Text('سعر الوحدة')),
-                              DataColumn(label: Text('الموديل')),
-                              DataColumn(label: Text('الكمية')),
-                              DataColumn(label: Text('المنتج'))
-                            ],
-                          ),
+                            ),
                         ),]
                     ),*/
+                              ),
                             ),
                           )
                         ],

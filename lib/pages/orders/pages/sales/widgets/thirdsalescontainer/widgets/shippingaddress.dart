@@ -1,25 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/Init_add_order_controller.dart';
-import 'package:opencart/controllers/order_controller.dart';
-import 'package:opencart/controllers/system_info_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import 'package:opencart/model/system_info/order_statuses.dart';
-
 import '../../../../../../../Controllers/customer_controller.dart';
 import '../../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../../model/cutomers/customer.dart';
 
 class ShippinAddressForm extends GetView<InitAddOrderController> {
 
-  const ShippinAddressForm({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     var customerController =Get.put(CustomerController());
 
-    return SingleChildScrollView(
+    return      SizedBox(
+      height: MediaQuery.of(context).size.height*0.7,
       child: Column(
 
         children: <Widget>[
@@ -86,11 +82,11 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                               var firstName=v.name!.substring(0,initName);
                               var lastName=v.name!.substring(initName).trim();
                               print(firstName);
-                              controller.addOrders.value.customer?.customerId=v!.customerid;
-                              controller.customer.value.customerId=v?.customerid;
-                              controller.customer.value.email=v?.email;
-                              controller.customer.value.customerGroupId=v?.customergroupid;
-                              controller.customer.value.telephone=v!.telephone;
+                              controller.addOrders.value.customer?.customerId=v.customerid;
+                              controller.customer.value.customerId=v.customerid;
+                              controller.customer.value.email=v.email;
+                              controller.customer.value.customerGroupId=v.customergroupid;
+                              controller.customer.value.telephone=v.telephone;
                               controller.customer.value.firstname=firstName;
                               controller.customer.value.lastname=lastName;
 
