@@ -16,12 +16,7 @@ import '../../../../model/ProductData.dart';
 import 'checkboxcontainer/checkboxcontainer.dart';
 import 'timeanddateconainer/timedatecontainer.dart';
 
-class OptionsProductContainer extends StatelessWidget {
-  const OptionsProductContainer({
-    required this.controller,
-  });
-
-  final WizardController controller;
+class OptionsProductContainer extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context) {

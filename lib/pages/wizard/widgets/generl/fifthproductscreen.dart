@@ -10,12 +10,7 @@ import '../../../../model/ProductData.dart';
 import 'fothproductcontainer.dart';
 
 
-class FifhProductScreen extends StatelessWidget {
-  const FifhProductScreen({
-    required this.controller,
-  });
-
-  final WizardController controller;
+class FifhProductScreen extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context) {

@@ -7,12 +7,8 @@ import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
 import '../../../../model/porducts/product.dart';
 
-class FirstProductContainer extends StatelessWidget {
-  final WizardController controller;
-   const FirstProductContainer({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+class FirstProductContainer extends GetView<WizardController> {
+
 
 
   @override

@@ -14,13 +14,9 @@ import '../../../../model/ProductData.dart';
 
 
 
-class FirstProductSubscribeContainer extends StatelessWidget {
-  const FirstProductSubscribeContainer({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+class FirstProductSubscribeContainer extends GetView<WizardController> {
 
-  final WizardController controller;
+
 
   @override
   Widget build(BuildContext context) {

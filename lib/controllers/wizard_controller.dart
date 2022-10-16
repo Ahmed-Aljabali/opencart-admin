@@ -287,7 +287,6 @@ class WizardController extends ProductController {
     subscWidgetList.refresh();
     update();
   }
-
   RxBool isSwitchedOn = false.obs;
   RxBool isSwitchedOn2 = false.obs;
       RxBool _isVaild = true.obs;
@@ -301,8 +300,21 @@ class WizardController extends ProductController {
 
       tapped(int step) {
         _currentStep.value = step;
+
       }
 
+
+  Widget SingleStep(int index,Widget item){
+    return currentStep.value==index?item:SizedBox();
+
+  }
+  Widget stepheader(int current_step,int index,IconData iconData){
+    return InkWell(
+        onTap: () {
+         tapped(index);
+        },
+        child: Icon(iconData,color: current_step==index?Colors.blue:Colors.green,));
+  }
       continued() {
         _currentStep.value < 7 ? _currentStep += 1 : null;
       }
@@ -490,4 +502,7 @@ class WizardController extends ProductController {
       return optModel;
     });
   }
+
+
+
 }

@@ -7,6 +7,9 @@ import '../../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../../model/cutomers/customer.dart';
 
 class ShippinAddressForm extends GetView<InitAddOrderController> {
+    String title ;
+
+  ShippinAddressForm({this.title = "عنوان الشحن"});
 
 
 
@@ -35,8 +38,8 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
               Expanded(
                   child: Container(
                       padding: const EdgeInsets.only(top: 10),
-                      child: const Text(
-                        'عنوان الشحن',
+                      child:  Text(
+                        '$title',
                         style: TextStyle(color: Colors.grey, fontSize: 22,fontFamily: 'Cairo Regular'),
                         textAlign: TextAlign.center,
                       ))),
@@ -401,7 +404,8 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                     height: 60,
                     color: Colors.green,
                     onPressed: () {
-                      Get.back();
+
+                      Get.back(result:TestData("zaid",28));
                     })
               ],
             ),
@@ -413,4 +417,9 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
     );
 
   }
+}
+class TestData{
+  String name;
+  int age;
+  TestData(this.name,this.age);
 }

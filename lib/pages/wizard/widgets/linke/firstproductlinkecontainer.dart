@@ -15,13 +15,8 @@ import '../../../../model/porducts/product.dart';
 
 
 
-class FirstProductLinkeExpantionPanel extends StatelessWidget {
-  const FirstProductLinkeExpantionPanel({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
+class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
 
-  final WizardController controller;
 
   @override
   Widget build(BuildContext context) {

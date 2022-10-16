@@ -1,8 +1,5 @@
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:opencart/model/orders/payment_metho.dart';
 import 'package:opencart/model/orders/shipping_methods.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/comment.dart';
@@ -12,8 +9,6 @@ import '../../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../core/utils/math_utils.dart';
 import '../../../../../../model/ProductData.dart';
-import '../firstsalescontainer/widgets/addclintbottomsheet.dart';
-import '../secontsalescontainter/widgets/addproductbottomsheet/addproductbottomsheet.dart';
 
 class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
@@ -566,7 +561,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
                                               child: Padding(
                                                 padding: getPadding(all: 10),
-                                                child:Container(child: Center(child: Text('1')),),
+                                                child:ShippinAddressForm(title: "عنوان الدفع",)
                                               ),
                                             );
                                           },
@@ -610,8 +605,9 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
 
                                       readOnly: true,
-                                      onTap: (){     showModalBottomSheet<void>(
+                                      onTap: (){     showModalBottomSheet<TestData>(
                                         isScrollControlled: true,
+
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(30.0),
@@ -622,11 +618,20 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
                                             child: Padding(
                                               padding: getPadding(all: 10),
-                                              child: ShippinAddressForm(),
+                                              child: ShippinAddressForm(title: "عنوان الشحن",),
                                             ),
                                           );
                                         },
-                                      );},
+                                      ).then((value) {
+
+                                        Get.snackbar(
+                                          value!.name,
+                                          value.age.toString(),
+                                          icon:const Icon(Icons.person, color: Colors.white),
+                                          snackPosition: SnackPosition.BOTTOM,
+                                        );
+
+                                      });},
 
                                       //controller:  controller.controllers.value,
                                       textAlign: TextAlign.center,
@@ -770,18 +775,16 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                               width:
                                                   1), //border of dropdown button
                                           borderRadius: BorderRadius.circular(
-                                              5), //border raiuds of dropdown button
+                                              5),
                                           boxShadow: const <BoxShadow>[
                                             //apply shadow on Dropdown button
                                             BoxShadow(
                                                 color: Color.fromRGBO(0, 0, 0,
-                                                    0.1), //shadow for button
+                                                    0.1),
                                                 blurRadius:
-                                                    3) //blur radius of shadow
+                                                    3)
                                           ]),
                                       child: Expanded(
-
-
                                         child:
                                             FutureBuilder<List<PaymentMethod>>(
 
@@ -792,6 +795,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                               var data =
                                                   snapshot.data!.obs.value;
                                               return DropdownButton<PaymentMethod>(
+
                                                 isExpanded: true,
                                                 alignment: Alignment.center,
                                                 hint:   const Align(
@@ -801,6 +805,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                     style: TextStyle(color: Colors.grey),
                                                   ),
                                                 ),
+                                            value:   snapshot.data![5],
                                                 //value:controller.selectedManufacturers.value,
                                                 icon: const Icon(
                                                     Icons.keyboard_arrow_down),

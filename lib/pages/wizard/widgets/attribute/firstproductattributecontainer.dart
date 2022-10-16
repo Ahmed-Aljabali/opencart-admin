@@ -15,13 +15,7 @@ import '../../../../model/ProductData.dart';
 
 
 
-class FirstProductAttributeContainer extends StatelessWidget {
-   FirstProductAttributeContainer({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final WizardController controller;
+class FirstProductAttributeContainer extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context) {

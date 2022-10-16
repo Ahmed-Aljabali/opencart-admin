@@ -11,14 +11,7 @@ import '../../../../model/ProductData.dart';
 
 
 
-class ForthProductContainer extends StatelessWidget {
-  final WizardController controller;
-
-  const ForthProductContainer({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
+class ForthProductContainer extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context) {

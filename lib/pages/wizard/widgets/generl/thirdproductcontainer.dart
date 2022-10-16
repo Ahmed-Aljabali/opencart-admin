@@ -9,10 +9,10 @@ import '../../../../model/ProductData.dart';
 
 
 
-class ThirdProductContainer extends StatelessWidget {
-  final WizardController controller;
+class ThirdProductContainer extends GetView<WizardController> {
 
-   const ThirdProductContainer({Key? key, required this.controller}):super(key: key) ;
+
+
 
   @override
   Widget build(BuildContext context) {

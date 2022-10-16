@@ -5,12 +5,8 @@ import 'package:opencart/pages/wizard/widgets/discount/widgets/pointsandrawards.
 import 'package:opencart/pages/wizard/widgets/discount/widgets/seconddiscountbuttonsheetcontainer.dart';
 import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../model/ProductData.dart';
-class DiscountContainer extends StatelessWidget {
-   const DiscountContainer({Key? key,
-    required this.controller,
-  }) : super(key: key);
+class DiscountContainer extends GetView<WizardController> {
 
-  final WizardController controller;
 
   @override
   Widget build(BuildContext context) {

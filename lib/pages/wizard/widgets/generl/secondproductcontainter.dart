@@ -6,14 +6,7 @@ import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
 
-class SecondProductContainer extends StatelessWidget {
-  final WizardController controller;
-
-  const SecondProductContainer({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
+class SecondProductContainer extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context) {

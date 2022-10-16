@@ -142,6 +142,8 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    userName.text="admin";
+    password.text="admin";
     return Container(
         margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(

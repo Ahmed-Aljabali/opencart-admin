@@ -41,6 +41,7 @@ dependencies:
   deep_menu:
   multiselect:
   intl:
+  timelines: ^0.1.0
 
 
 
