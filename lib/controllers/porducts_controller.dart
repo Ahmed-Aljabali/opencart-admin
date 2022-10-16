@@ -33,7 +33,6 @@ class  ProductController extends BaseController implements IProduct {
    if (res.statusCode == 200) {
      _data=ProductData.fromJson(jsonDecode(res.body)).data;
    }
-
    }
 
 

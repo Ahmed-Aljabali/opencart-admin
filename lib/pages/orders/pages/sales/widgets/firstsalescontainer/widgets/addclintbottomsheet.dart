@@ -18,7 +18,6 @@ class AddClintForm extends GetView<InitAddOrderController> {
   @override
   Widget build(BuildContext context) {
     var customerController =Get.put(CustomerController());
-
     return SingleChildScrollView(
       child: Column(
 
@@ -59,7 +58,7 @@ class AddClintForm extends GetView<InitAddOrderController> {
                 child: Expanded(child:Container()),
               ),
             ),
-            Text('العميل', style: TextStyle(fontFamily: 'Cairo Regular'),)
+       const Text('العميل', style: TextStyle(fontFamily: 'Cairo Regular'),)
           ],),
 
           Container(
@@ -93,13 +92,10 @@ class AddClintForm extends GetView<InitAddOrderController> {
                                   style: TextStyle(color: Colors.grey),
                                 ),
                               ),
-                              //   value:controller.selectProd.value,
-
                               onChanged:(v) {
                                 var initName= v!.name.toString().indexOf(" ");
                                 var firstName=v.name!.substring(0,initName);
                                 var lastName=v.name!.substring(initName).trim();
-                                print(firstName);
                                 controller.addOrders.value.customer?.customerId=v.customerid;
                                 controller.customer.value.customerId=v.customerid;
                                 controller.customer.value.email=v.email;
@@ -107,7 +103,6 @@ class AddClintForm extends GetView<InitAddOrderController> {
                                 controller.customer.value.telephone=v.telephone;
                                 controller.customer.value.firstname=firstName;
                                 controller.customer.value.lastname=lastName;
-
 
                               },
                               items:customerController.trx.
@@ -163,7 +158,6 @@ class AddClintForm extends GetView<InitAddOrderController> {
                               var initName= v!.name.toString().indexOf(" ");
                               var firstName=v.name!.substring(0,initName);
                               var lastName=v.name!.substring(initName).trim();
-                              print(firstName);
                               controller.addOrders.value.customer?.customerId=v.customerid;
                               controller.customer.value.customerId=v.customerid;
                               controller.customer.value.email=v.email;
@@ -171,7 +165,6 @@ class AddClintForm extends GetView<InitAddOrderController> {
                               controller.customer.value.telephone=v.telephone;
                               controller.customer.value.firstname=firstName;
                               controller.customer.value.lastname=lastName;
-
 
                             },
                             items:customerController.trx.
@@ -190,67 +183,71 @@ class AddClintForm extends GetView<InitAddOrderController> {
               ),),
           ),
 
-
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: Row(children: [
-              Expanded(
-                child: Padding(
-                  padding:getPadding(top: 15),
-                  child: Expanded(child:Container()),
-                ),
-              ),
-              Text('معلومات العميل', style: TextStyle(fontFamily: 'Cairo Regular'),)
-            ],),
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  Expanded(
-                    child: MyTextFieldWidget(hintText: "اللقب",
-                      onChanged: (value) {
-                        // controller.filterOrder.value!.date=value;
-                      },),
-                  ),
-                  Expanded(
-                      child: MyTextFieldWidget(
-                        hintText: 'الاسم الاول',
-
-                        onChanged: (value) {
-
-                          },
-                      ),),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
-                children: [
-                  Expanded(
-                    child: MyTextFieldWidget(hintText: "الايميل",
-                      onChanged: (value) {
-                        // controller.filterOrder.value!.date=value;
-                      },),
-                  ),
-                  Expanded(
-                      child: MyTextFieldWidget(
-                        hintText: 'رقم التلفون',
-
-                        onChanged: (value) {},
-                      ),),
-                ],
-              ),
-            ),
-          ),
+          //
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 15),
+          //   child: Row(children: [
+          //     Expanded(
+          //       child: Padding(
+          //         padding:getPadding(top: 15),
+          //         child: Expanded(child:Container()),
+          //       ),
+          //     ),
+          //     Text('معلومات العميل', style: TextStyle(fontFamily: 'Cairo Regular'),)
+          //   ],),
+          // ),
+          // Container(
+          //   padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
+          //   child: Center(
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //
+          //       children: [
+          //         Expanded(
+          //           child: MyTextFieldWidget(hintText: "اللقب",
+          //             onChanged: (value) {
+          //               // controller.filterOrder.value!.date=value;
+          //             },),
+          //         ),
+          //         Expanded(
+          //             child: MyTextFieldWidget(
+          //               hintText: 'الاسم الاول',
+          //
+          //               onChanged: (value) {
+          //
+          //                 },
+          //             ),),
+          //       ],
+          //     ),
+          //   ),
+          // ),
+          // Container(
+          //   padding: const EdgeInsets.only(left: 3,right: 3, top: 15),
+          //   child: Center(
+          //     child: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //
+          //       children: [
+          //         Expanded(
+          //           child: MyTextFieldWidget(hintText: "الايميل",
+          //             onChanged: (value) {
+          //                controller.customer.value!.email=value;
+          //             },
+          //           ),
+          //         ),
+          //         Expanded(
+          //             child: MyTextFieldWidget(
+          //               hintText: 'رقم التلفون',
+          //
+          //             keyboardType: TextInputType.number,
+          //               onChanged: (value) {
+          //                 controller.customer.value.telephone=value;
+          //               },
+          //             ),),
+          //       ],
+          //     ),
+          //   ),
+          // ),
           Container(
             padding: const EdgeInsets.only(top: 20),
             child: Row(

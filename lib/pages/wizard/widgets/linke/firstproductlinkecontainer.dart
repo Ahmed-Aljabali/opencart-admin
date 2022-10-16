@@ -113,7 +113,7 @@ class FirstProductLinkeExpantionPanel extends StatelessWidget {
                       height: 50,
                       child: Expanded(
                         child: Container(
-                          padding: EdgeInsets.only(left: 1,right: 1),
+                          padding: const EdgeInsets.only(left: 1,right: 1),
                           child: DecoratedBox(
                               decoration: BoxDecoration(
 

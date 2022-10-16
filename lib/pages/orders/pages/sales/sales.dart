@@ -8,6 +8,8 @@ import 'package:opencart/pages/orders/pages/sales/widgets/forthsalescontainer/fo
 import 'package:opencart/pages/orders/pages/sales/widgets/secontsalescontainter/secontsalescontainter.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/thirdsalescontainer.dart';
 
+import '../../../../model/orders/add_order.dart';
+
 
 
 class Sales extends GetView<InitAddOrderController> {
@@ -73,34 +75,33 @@ class Sales extends GetView<InitAddOrderController> {
               // var paymentaddress=PaymentAddress(firstname: "ALi",lastname: "Mohammaed",zone: "0");
               // var method=ShippingMethod(code: "flat.flat",title: "test");
               // var customer =Customer(email: "ahmed@gmail.com",lastname: "Mohammaed",firstname: "ALi",customerId: 1,telephone: "776816212",customerGroupId: 1);
-              // List<ProductsOrder>? products=[];
-              // products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
+               List<ProductsOrder>? products=[];
+              products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
               // var shippingmethod=ShippingMethod(title: "tesr",code: "flat.flat");
               // //  var shippingaddress=PaymentAddress();
-              // var order = AddOrders(
-              //     affiliateId: "",
-              //     comment: "",
-              //     storeId: 0,
-              //     coupon: "111",
-              //     tracking: "",
-              //     voucher: "demo-0000",
-              //     shippingAddress:paymentaddress ,
-              //     shippingMethod: shippingmethod ,
-              //     paymentAddress: paymentaddress,
-              //     customer:customer,
-              //     paymentMethod: method,
-              //     products:products);
-              //
-           print(controller.customer.value.customerId);
-           print(controller.customer.value.firstname);
-           print(controller.customer.value.lastname);
-           print(controller.customer.value.telephone);
-           print(controller.paymentMethod.value.code);
-           print(controller.paymentMethod.value.title);
-            //  controller.addOrder(controller.addOrders);
+               controller.shippingPayment.value.address1=controller.addressController.text;
+               controller.shippingPayment.value.address2=controller.address2Controller.text;
+               controller.shippingPayment.value.lastname=controller.lastNameController.text;
+               controller.shippingPayment.value.firstname=controller.firstNameController.text;
+               controller.shippingPayment.value.city=controller.cityController.text;
+               controller.shippingPayment.value.zone=controller.codeZoneController.text;
+               controller.shippingPayment.value.address1=controller.addressController.text;
 
-              // print(controller.selectedAttribu.value!.attributeId);
-              //   controller.addNewProduct();
+              var order = AddOrders(
+                  affiliateId: "",
+                  comment: "",
+                  storeId: 0,
+                  coupon: "111",
+                  tracking: "",
+                  voucher: "demo-0000",
+                  shippingAddress:controller.shippingPayment.value ,
+                  shippingMethod: controller.shippingMethods.value ,
+                  paymentAddress: controller.shippingPayment.value,
+                  customer:controller.customer.value,
+                  paymentMethod: controller.paymentMethod.value,
+                  products:products);
+
+                controller.addOrder(order);
             },
             tooltip: 'add a new product',
             highlightElevation: 1,

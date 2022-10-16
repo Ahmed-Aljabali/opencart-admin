@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/model/orders/add_order.dart';
@@ -28,7 +29,17 @@ class OrderController extends BaseController implements IOrder {
   var customer =Customer().obs;
   var paymentMethod =OrderShippingMethod().obs;
   var shippingMethods =OrderShippingMethod().obs;
+  var shippingPayment =PaymentAddress().obs;
   var filterOrder = FilterOrder();
+  var productsOrder = ProductsOrder();
+  var listProductsOrder = RxList<ProductsOrder>();
+
+  TextEditingController  lastNameController = TextEditingController();
+  var  firstNameController = TextEditingController();
+  var  addressController = TextEditingController();
+  var  address2Controller = TextEditingController();
+  var  codeZoneController = TextEditingController();
+  var  cityController = TextEditingController();
 
 
   @override
@@ -127,8 +138,13 @@ class OrderController extends BaseController implements IOrder {
 
   @override
   addOrder(AddOrders addOrder)async {
+    print("aaaaaaaaaaa");
+
+    print(addOrder.toJson());
     isDataLoading(false);
     var res = await post(addOrder,"orderadmin");
+    print("aaaaaaaaaaa");
+    print(res.body);
     if (res.statusCode== 200) {
       fetchOrder();
       update();

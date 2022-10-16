@@ -43,7 +43,7 @@ primaryColor: Colors.green,
         textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
 
         inputDecorationTheme: const InputDecorationTheme(
-          contentPadding: const EdgeInsets.symmetric(
+          contentPadding: EdgeInsets.symmetric(
               vertical: 10.0, ),
 
 
@@ -70,7 +70,7 @@ primaryColor: Colors.green,
 
         GetPage(
           name: "/",
-          page: () => MyDashBoard(),
+          page: () => const MyDashBoard(),
           binding: DashBoardBindings(),
         ),
         // GetPage(

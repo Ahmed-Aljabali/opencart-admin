@@ -19,7 +19,6 @@ login(User user)async {
   }
   return msg;
 
-
  }
 
   getToken() async{

@@ -162,10 +162,10 @@ floatingActionButton: FloatingActionButton(
 
   child:   Container(
 
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
 
       color: Colors.transparent,
-      borderRadius: const BorderRadius.all(
+      borderRadius: BorderRadius.all(
         Radius.circular(100),
       ),
 

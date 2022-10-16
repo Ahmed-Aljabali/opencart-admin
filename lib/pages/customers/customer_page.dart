@@ -1,21 +1,15 @@
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:opencart/Controllers/customer_controller.dart';
-
-
-import '../../controllers/wizard_controller.dart';
-import '../wizard/widgets/generl/firstproductcontainer.dart';
 import 'widgets/general.dart';
 
 class CustomerPage extends GetView<CustomerController> {
   const CustomerPage({Key? key}) : super(key: key);
+
+
   @override
   StatelessElement createElement() {
-
     controller.fetchCustomer("10","3");
-
     return super.createElement();
   }
  final StepperType stepperType = StepperType.vertical;
