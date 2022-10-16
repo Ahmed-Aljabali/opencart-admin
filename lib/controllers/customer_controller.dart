@@ -13,6 +13,9 @@ class CustomerController extends BaseController implements ICustomers{
   late List<Product> customer;
   RxInt get currentStep => _currentStep;
 
+  dynamic _trx;
+  List<Customers> get trx => _trx;
+
   set currentStep(RxInt value) => _currentStep = value;
   RxBool _isVaild = true.obs;
 
@@ -38,10 +41,6 @@ class CustomerController extends BaseController implements ICustomers{
 
 
   }
-
-
-  dynamic _trx;
-  List<Customers> get trx => _trx;
 
   @override
   fetchCustomer(String limit,String page)async{

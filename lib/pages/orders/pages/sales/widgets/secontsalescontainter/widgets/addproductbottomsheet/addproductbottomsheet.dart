@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/controllers/porducts_controller.dart';
 
 import 'package:opencart/core/utils/math_utils.dart';
+import 'package:opencart/model/porducts/product.dart';
 
 
 import '../../../../../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../../../../Controllers/customer_controller.dart';
 import '../../../../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../../../../model/addproductmodel.dart';
+import '../../../../../../../../model/cutomers/customer.dart';
+import '../../../../../../../../model/orders/add_order.dart';
 
 class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
 
@@ -14,7 +19,8 @@ class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
   @override
   Widget build(BuildContext context) {
    AddProductDataModel addProductModel;
-   final StepperType stepperType = StepperType.horizontal;
+   var customerController =Get.put(ProductController());
+   const StepperType stepperType = StepperType.horizontal;
       return Obx(() {
   return SizedBox(
 
@@ -89,44 +95,34 @@ class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
                                               blurRadius:
                                               3)
                                         ]),
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: DropdownButton<String>(
-                                        isExpanded: true,
-                                        icon: Icon(Icons
-                                            .keyboard_arrow_down_outlined),
-                                        hint: Align(
+                                    child:Center(
+                                      child: DropdownButton<Products>(
+
+                                        hint:   const Align(
                                           alignment: Alignment.center,
                                           child: Text(
                                             "حدد المنتج",
                                             style: TextStyle(color: Colors.grey),
                                           ),
                                         ),
-                                        value: controller
-                                            .selectedRecieverNameAddProduct
-                                            .value,
-                                        onChanged: (v) {
-                                          controller
-                                              .selectedRecieverNameAddProduct
-                                              .value = v!;
+                                        //   value:controller.selectProd.value,
+
+                                        onChanged:(v) {
+                                          controller.productsOrder.productId=v!.id;
+                                          controller.productsOrder.quantity=v.quantity;
+
                                         },
-                                        items: controller
-                                            .recieverNameAddProductList
-                                            .map<
-                                            DropdownMenuItem<
-                                                String>>(
-                                                (String value) {
-                                              return DropdownMenuItem<String>(
-                                                alignment:
-                                                AlignmentDirectional
-                                                    .center,
-                                                enabled: true,
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
+                                        items:customerController.dataProduct.
+                                        map<DropdownMenuItem<Products>>((Products value) {
+                                          return   DropdownMenuItem<Products>(
+                                            enabled: true,
+                                            value: value,
+                                            child: Text(value.id.toString()),
+                                          );
+                                        }).toList(),
                                       ),
-                                    )),
+                                    )
+                                ),
                               ),
                             ),
                           ),
@@ -216,7 +212,9 @@ class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
                                     child: MyTextFieldWidget(
                                       hintText: " الكمية",
                                       readOnly: true,
-                                      onChanged: (value) => null,
+                                      onChanged: (value) => (){
+
+                                      },
                                     ),
                                   ),
                                 ),
@@ -889,6 +887,8 @@ class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
                       color: Colors.green,
                       onPressed: () {
                         Get.back();
+                       controller.productsOrder.option= Option(i227: 17);
+                       controller.listProductsOrder.add(controller.productsOrder);
                         addProductModel = AddProductDataModel(
                             index: (controller.addProductDataList.length),
                             // optionValue:controller.prodcut.value.toString() ,

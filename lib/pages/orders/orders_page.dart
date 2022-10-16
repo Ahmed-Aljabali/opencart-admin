@@ -79,31 +79,31 @@ class OrderPage extends GetView<InitAddOrderController> {
                       readOnly:  true,
                       onTap: (){     controller.searchFormVisible.value = true; },
                       textAlign: TextAlign.right,
-                      decoration: InputDecoration(
-                        suffixIcon: const Icon(
+                      decoration: const InputDecoration(
+                        suffixIcon: Icon(
                           Icons.search,
                           color: Colors.grey,
                         ),
-                        prefixIcon: const Icon(
+                        prefixIcon: Icon(
                           Icons.filter_list_alt,
                           color: Colors.grey,
                         ),
                         hintText: 'ابحث من هنا ',
-                        hintStyle: const TextStyle(
+                        hintStyle: TextStyle(
                           fontSize: 19,
                           fontFamily: 'Cairo Regular',
                         ),
                         contentPadding:
-                        const EdgeInsets.symmetric(
+                        EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 40.0),
-                        border: const OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                         ),
-                        enabledBorder: const OutlineInputBorder(
+                        enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey, width: 0.5),
                           borderRadius: BorderRadius.all(Radius.circular(5.0)),
                         ),
-                        focusedBorder: const OutlineInputBorder(
+                        focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(32.0)),
                         ),

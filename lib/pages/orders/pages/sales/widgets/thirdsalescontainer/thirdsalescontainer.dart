@@ -546,8 +546,6 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
                                     child:  Center(
                                       child: TextField(
-
-
                                         readOnly: true,
                                         onTap: (){     showModalBottomSheet<void>(
                                           isScrollControlled: true,
@@ -645,7 +643,6 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                         contentPadding:  EdgeInsets.symmetric(
                                             vertical: 10.0, horizontal: 10.0),
 
-
                                       ),
                                     ),
                                   ),
@@ -717,9 +714,8 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                     );
                                                   }).toList(),
                                                   onChanged: (v) {
-                                                    controller.shippingMethods
-                                                        .value.code = v!.code;
-                                                    // controller.shippingMethods.value!.title=v!.name;
+                                                    controller.shippingMethods.value.code = "flat.flat";
+                                                     controller.shippingMethods.value.title=v!.name;
                                                     // controller.manufacturersId.value = v?.manufacturerId;
                                                   },
                                                 );
@@ -727,29 +723,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                 return const CircularProgressIndicator();
                                               }
                                             },
-                                          )), /*  child:Align(
-                                          alignment: Alignment.center,
-                                          child: DropdownButton<String>(
-                                            isExpanded: true,
-
-
-                                            icon: Icon(Icons.keyboard_arrow_down_outlined),
-
-                                            hint:  const Text("طريقة الشحن"),
-                                            value: controller.selectedShippingAddProduct.value,
-                                            onChanged:(v) {
-                                              controller.selectedShippingAddProduct.value = v!;},
-                                            items:controller.shippingAddProductList.
-                                            map<DropdownMenuItem<String>>((String value) {
-                                              return   DropdownMenuItem<String>(
-                                                alignment: AlignmentDirectional.center,
-                                                enabled: true,
-                                                value: value,
-                                                child: Text(value),
-                                              );
-                                            }).toList(),
-                                          ),
-                                        )*/
+                                          )),
                                     ),
                                   ),
                                 ),
@@ -824,8 +798,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                   );
                                                 }).toList(),
                                                 onChanged: (v) {
-                                                  controller.paymentMethod.value
-                                                      .code = v!.code;
+                                                  controller.paymentMethod.value.code = v!.code;
                                                   controller.paymentMethod.value
                                                       .title = v.name;
 

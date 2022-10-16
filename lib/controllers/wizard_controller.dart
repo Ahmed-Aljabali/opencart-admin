@@ -11,7 +11,6 @@ import '../model/porducts/attribute.dart';
 import '../model/porducts/category.dart';
 import '../model/porducts/product.dart';
 import '../model/porducts/stores.dart';
-import '../pages/wizard/widgets/options/checkboxcontainer/checkboxcontainer.dart';
 
 class WizardController extends ProductController {
   var productDescription = ProductDescription();
@@ -39,20 +38,12 @@ class WizardController extends ProductController {
   var currentOptionTimeDateIndex;
 
   var selectedrelatedProdOptions = Rxn<String>();
-  List<String> compOptionsList = ["apple", "HTC", "Samsung", "Fox"];
 
-  // RxString selectedcompOptions= 'apple'.obs;
   var selectedcompOptions = Rxn<String>();
   List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
 
-/*  RxString selectedtaxCategOptions= 'فئة2'.obs;*/
   var selectedtaxCategOptions = Rxn<String>();
-  List<String> compCategOptionsList = [
-    "الكيمرات",
-    "الساعات",
-    "العطور",
-    "المنتجات"
-  ];
+
   var selectedcompCategOptions = Rxn<String>();
   List<String> marketsOptionsList = ["متجر1", "متجر2", "متجر3", "متجر4"];
   var selectedmarketsOptions = Rxn<String>();

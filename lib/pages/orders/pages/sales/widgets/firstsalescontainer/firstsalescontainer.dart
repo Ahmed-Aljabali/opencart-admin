@@ -15,8 +15,6 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
 
   @override
   Widget build(BuildContext context) {
-     // var orderController =Get.put(OrderController());
-
     var customerController =Get.put(CustomerController());
     return  Obx(() {
   return ExpansionPanelList(
@@ -68,7 +66,8 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
 
 
                             readOnly: true,
-                            onTap: (){     showModalBottomSheet<void>(
+                            onTap: (){
+                              showModalBottomSheet<void>(
                               shape: const RoundedRectangleBorder(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(30.0),
@@ -78,12 +77,11 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
                                 return    Expanded(
                                   child: Padding(
                                     padding: getPadding(all: 10),
-                                    child: AddClintForm(),
+                                    child: const AddClintForm(),
                                   ),
                                 );
                               },
                             );},
-
                             //controller:  controller.controllers.value,
                             textAlign: TextAlign.center,
                             decoration: const InputDecoration(
@@ -95,7 +93,6 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
                               ),
                               contentPadding:  EdgeInsets.symmetric(
                                   vertical: 10.0, horizontal: 10.0),
-
 
                             ),
                           ),
@@ -119,8 +116,6 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
                               child: Container(
                                 color: Colors.white,
                                 child: TextField(
-
-
 
                                   onTap: () {
                                     // controller.chooseOptionDate();
@@ -164,9 +159,6 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
                           Expanded(
                             child: MyTextFieldWidget(hintText: "رقم الفاتورة", onChanged: (value) {  },),
                           ),
-
-
-
 
                         ],
                       ),

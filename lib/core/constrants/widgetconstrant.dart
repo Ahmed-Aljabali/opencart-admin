@@ -65,20 +65,18 @@ class DynamicTextFieldWidget extends StatelessWidget {
   final controller;
   final keyboardType;
   final height ;
-  /*Widget prefixIcon  =  Icon(Icons.date_range_rounded ,color:  Colors.blueAccent,);*/
   DynamicTextFieldWidget({required this.hintText,this.height = 43,required this.onFieldSubmitted( String value),required this.controller, required this.keyboardType });
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
-      height: height,
+     // height: height,
       child: TextFormField(
 
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
         ),
-keyboardType: keyboardType,
-
+        keyboardType: keyboardType,
         onFieldSubmitted: (value){onFieldSubmitted(value);},
 
         textAlign: TextAlign.center,

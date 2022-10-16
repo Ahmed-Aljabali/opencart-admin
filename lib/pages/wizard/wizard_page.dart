@@ -22,7 +22,7 @@ import '../../controllers/wizard_controller.dart';
 class WizardPage extends GetView<WizardController> {
 
 
-int first_step=0,second_step=1,third_step=2,fourth_step=3;
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -40,22 +40,22 @@ int first_step=0,second_step=1,third_step=2,fourth_step=3;
           body: Column(
             children: [
               Expanded(
-                  flex: 1,
-                  child: Container(
+                flex: 1,
+                child: Container(
 
-                    decoration: const BoxDecoration(
+                  decoration: const BoxDecoration(
 
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-
+                    color: Colors.green,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(20),
                     ),
 
-                    margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
-                    padding:getPadding(all: 10),
-                    child: Text(get_title(controller.currentStep.value),style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
-                  ),),
+                  ),
+
+                  margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
+                  padding:getPadding(all: 10),
+                  child: Text(get_title(controller.currentStep.value),style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
+                ),),
 
               Expanded(
                 flex: 8,
@@ -122,29 +122,29 @@ int first_step=0,second_step=1,third_step=2,fourth_step=3;
                 padding: getPadding(bottom: 50),
                 child: Expanded(
 
-                  flex: 1,
+                    flex: 1,
                     child:  InkWell(
-                  onTap: (){
-                    if(controller.currentStep.value!=6) {
-                      controller.tapped(controller.currentStep.value + 1);
-                    }
-                  },
-                  child:  Container(
+                      onTap: (){
+                        if(controller.currentStep.value!=6) {
+                          controller.tapped(controller.currentStep.value + 1);
+                        }
+                      },
+                      child:  Container(
 
 
-                    decoration: const BoxDecoration(
+                        decoration: const BoxDecoration(
 
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(20),
-                      ),
+                          color: Colors.green,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
 
-                    ),
+                        ),
 
-                    margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
-                    padding:getPadding(all: 10),
-                    child: Text('NextStep',style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
-                  ),)),
+                        margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
+                        padding:getPadding(all: 10),
+                        child: Text('NextStep',style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
+                      ),)),
               )
             ],
           ),
@@ -244,12 +244,12 @@ int first_step=0,second_step=1,third_step=2,fourth_step=3;
 
 
             backgroundColor: Colors.green,
-            onPressed: () {
+            onPressed: ()  {
               //  controller.productDescriptionlist.add(controller.productDescription);
               // controller.prod.productDescription=controller.productDescriptionlist;
               //  controller.addProduct(controller.prod);
 
-              var index = 0;
+              var index=0 ;
               for (var element in controller.attrWidgetList) {
                 print(element.attrSelected);
 
@@ -257,12 +257,12 @@ int first_step=0,second_step=1,third_step=2,fourth_step=3;
                 // controller.selectedProductAttribute.obs.value.value?.attributeId=="5";
                 //  print(controller.selectedProductAttribute.obs.value.value?.attributeId);
 
-                controller.productAttributeDescription.value?.text =
-                    controller.textEditingController[index].text;
+                controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
 
                 //controller.selectedProductAttribute.value!.productAttributeDescription!.add(controller.productAttributeDescription.value!);
                 //controller.productAttribute.add(controller.selectedProductAttribute.value!);
                 index++;
+
               }
               // controller.prod.productAttribute=controller.productAttribute;
               //  print(controller.productAttributeDescription.value!.languageId);

@@ -22,7 +22,6 @@ class InitAddOrderController extends OrderController {
 
   RxBool get isVaild => _isVaild;
 
-
   tapped(int step) {
     _currentStep.value = step;
   }
@@ -90,8 +89,6 @@ class InitAddOrderController extends OrderController {
     searchFormVisible =false.obs;
     formVisible = false.obs;
     formsIndex = 1.obs;
-
-
     super.onInit();
   }
 

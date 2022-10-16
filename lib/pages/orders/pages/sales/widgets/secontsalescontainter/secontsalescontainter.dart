@@ -43,8 +43,8 @@ class SecondSalesContainer extends GetView<InitAddOrderController> {
                           dataRowColor:MaterialStateColor.resolveWith((states) {return  const Color.fromARGB(255,255, 255, 255);},),
                           horizontalMargin: 3,
                           headingRowColor: MaterialStateColor.resolveWith((states) {return Colors.blueGrey.withOpacity(0.16);},),
-                          headingTextStyle:  TextStyle(
-                            color: const Color.fromARGB(255,30, 102, 160),
+                          headingTextStyle:  const TextStyle(
+                            color: Color.fromARGB(255,30, 102, 160),
                             fontSize:
                             12,
 

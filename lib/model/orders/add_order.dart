@@ -113,7 +113,6 @@ class ProductsOrder {
 
 class Option {
   int? i227;
-
   Option({this.i227});
 
   Option.fromJson(Map<String, dynamic> json) {
