@@ -150,7 +150,6 @@ class WizardController extends ProductController {
   dynamic checkboxweight = 10.0;
 
   dynamic firstDiscountQty = 0;
-
   dynamic firstDiscountPrice;
   dynamic secondDiscountPrice;
   dynamic firstDiscountPriority;
@@ -278,17 +277,13 @@ class WizardController extends ProductController {
     subscWidgetList.refresh();
     update();
   }
-  RxBool isSwitchedOn = false.obs;
-  RxBool isSwitchedOn2 = false.obs;
+      RxBool isSwitchedOn = false.obs;
+      RxBool isSwitchedOn2 = false.obs;
       RxBool _isVaild = true.obs;
-
       RxBool get isVaild => _isVaild;
       RxInt _currentStep = 0.obs;
-
       RxInt get currentStep => _currentStep;
-
       set currentStep(RxInt value) => _currentStep = value;
-
       tapped(int step) {
         _currentStep.value = step;
 

@@ -32,7 +32,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
               ProductPage(),
               CustomerPage(),
               OrderPage(),
-              HomePage(),
+
             ],
           ),
         ),
@@ -75,13 +75,13 @@ class _MyDashBoardState extends State<MyDashBoard> {
               inactiveColor: _inactiveColor,
               textAlign: TextAlign.center,
             ),
-            BottomNavyBarItem(
-              icon:const Icon(Icons.home),
-              title:const Text('الرئيسية'),
-              activeColor: Colors.grey,
-              inactiveColor: _inactiveColor,
-              textAlign: TextAlign.center,
-            ),
+            // BottomNavyBarItem(
+            //   icon:const Icon(Icons.home),
+            //   title:const Text('الرئيسية'),
+            //   activeColor: Colors.grey,
+            //   inactiveColor: _inactiveColor,
+            //   textAlign: TextAlign.center,
+            // ),
           ],
         ),
       );

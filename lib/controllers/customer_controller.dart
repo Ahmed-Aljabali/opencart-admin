@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
+import 'package:opencart/controllers/wizard_controller.dart';
 import '../InterFace/ICustomer.dart';
 import '../model/ProductData.dart';
 import '../model/cutomers/add_customer.dart';
@@ -11,6 +12,7 @@ import '../model/cutomers/customer.dart';
 class CustomerController extends BaseController implements ICustomers{
   RxInt _currentStep = 0.obs;
   late List<Product> customer;
+  late List<Product> custInfo;
   RxInt get currentStep => _currentStep;
 
   dynamic _trx;
@@ -21,13 +23,13 @@ class CustomerController extends BaseController implements ICustomers{
 
   RxBool get isVaild => _isVaild;
 
+  RxBool _isActive = false.obs;
+
+  RxBool get isActive => _isActive;
+
 
   tapped(int step) {
     _currentStep.value = step;
-  }
-
-  continued() {
-    _currentStep.value < 7 ? _currentStep += 1 : null;
   }
 
   cancel() {
@@ -36,8 +38,10 @@ class CustomerController extends BaseController implements ICustomers{
 
   @override
   void onInit() {
+
     super.onInit();
-    customer = generateItems(1, 'العملاء1');
+    customer = generateItems(1, 'العميل');
+    custInfo = generateItems(1, 'معلومات العميل');
 
 
   }

@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:opencart/model/option_model.dart';
 import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/buttomsheetcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/checkboxrequiredoptionpicker.dart';
-
 import '../../../../../controllers/wizard_controller.dart';
-import '../../../../../core/utils/math_utils.dart';
-import '../../../../../model/ProductData.dart';
 
 class CheckBoxContainer extends StatelessWidget {
   const CheckBoxContainer({
@@ -28,7 +23,7 @@ class CheckBoxContainer extends StatelessWidget {
             children: [
               Expanded(
                   child: CheckBoxRequiredOptionPicker(
-                      controller: controller, index: index)),
+                     index: index)),
               const SizedBox(
                 width: 2,
               ),

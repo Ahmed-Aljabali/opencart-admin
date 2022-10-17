@@ -216,3 +216,20 @@ String get_title(int current_index){
     }
   }
 }
+String get_title2(int current_index){
+  switch(current_index) {
+    case 0: {
+      return "عام"   ;
+    }
+
+    case 1: {
+      return "عناوين"   ;
+    }
+
+    default: {
+      return "العنوان الافتراضي"   ;
+    }
+  }
+}
+
+

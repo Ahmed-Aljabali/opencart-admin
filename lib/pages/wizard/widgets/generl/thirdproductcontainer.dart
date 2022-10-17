@@ -23,7 +23,7 @@ class ThirdProductContainer extends GetView<WizardController> {
         },
         children: controller.genrlproduct3.map<ExpansionPanel>((Product item) {
           return ExpansionPanel(
-              backgroundColor: Colors.grey[200],
+              backgroundColor: Colors.white,
               canTapOnHeader: true,
               headerBuilder: ((context, isExpanded) {
                 return ListTile(

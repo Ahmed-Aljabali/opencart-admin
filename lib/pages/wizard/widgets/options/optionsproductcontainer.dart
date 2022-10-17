@@ -30,7 +30,7 @@ class OptionsProductContainer extends GetView<WizardController> {
             children:
             controller.optionsproduct1.map<ExpansionPanel>((Product item) {
               return ExpansionPanel(
-                  backgroundColor: Colors.grey[200],
+                  backgroundColor: Colors.white,
                   canTapOnHeader: true,
                   headerBuilder: ((context, isExpanded) {
                     return ListTile(
@@ -70,7 +70,7 @@ class OptionsProductContainer extends GetView<WizardController> {
                                       children: controller.optWidgetList
                                           .map<ExpansionPanel>((OptModel item) {
                                         return ExpansionPanel(
-                                            backgroundColor: Colors.grey[200],
+                                            backgroundColor: Colors.white,
                                             canTapOnHeader: true,
                                             isExpanded: item.isExpanded!.value,
                                             headerBuilder: ((context,

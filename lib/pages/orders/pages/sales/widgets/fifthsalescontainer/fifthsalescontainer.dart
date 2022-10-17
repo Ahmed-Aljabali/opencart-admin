@@ -26,7 +26,7 @@ class FifthSalesContainer extends GetView<InitAddOrderController> {
           },
           children: controller.salesExpansionTitle5.map<ExpansionPanel>((Product item) {
             return ExpansionPanel(
-                backgroundColor: Colors.grey[200],
+                backgroundColor: Colors.white,
                 canTapOnHeader: true,
                 headerBuilder: ((context, isExpanded) {
                   return ListTile(

@@ -1,26 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:opencart/controllers/wizard_controller.dart';
 
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../model/ProductData.dart';
 
-class CheckBoxRequiredOptionPicker extends StatelessWidget {
-  WizardController controller;
+class CheckBoxRequiredOptionPicker extends GetView<WizardController> {
 
   var index;
 
-  CheckBoxRequiredOptionPicker({required this.controller,this.index});
+  CheckBoxRequiredOptionPicker({this.index});
 
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return Row(
-
         children: [
-
           Container(
 
             child: Expanded(

@@ -38,25 +38,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         unselectedWidgetColor: Colors.green,
-primaryColor: Colors.green,
-
+        primaryColor: Colors.green,
         textTheme:const TextTheme( subtitle1: TextStyle(fontFamily: 'Cairo Regular'),) ,
-
         inputDecorationTheme: const InputDecorationTheme(
           contentPadding: EdgeInsets.symmetric(
-              vertical: 10.0, ),
-
-
+             vertical: 10.0,),
           fillColor:Colors.transparent,
           hintStyle: TextStyle(
             color: Colors.grey,
-
             fontSize: 13, fontFamily: 'Cairo Regular',
           ),
-
-
           enabledBorder: OutlineInputBorder(
-
             borderSide: BorderSide(width: 1, color: Colors.grey),
           ),
           focusedBorder: OutlineInputBorder(
@@ -68,11 +60,7 @@ primaryColor: Colors.green,
       initialRoute: "/Login",
       getPages: [
 
-        GetPage(
-          name: "/",
-          page: () => const MyDashBoard(),
-          binding: DashBoardBindings(),
-        ),
+        GetPage(name: "/", page: () => const MyDashBoard(), binding: DashBoardBindings(),),
         // GetPage(
         // name: "/login",
         // page: () => AuthThreePage(),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/Init_add_order_controller.dart';
+import 'package:opencart/controllers/system_info_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import '../../../../../../../Controllers/customer_controller.dart';
 import '../../../../../../../core/constrants/widgetconstrant.dart';
-import '../../../../../../../model/cutomers/customer.dart';
+import '../../../../../../../model/system_info/contries.dart';
 
 class ShippinAddressForm extends GetView<InitAddOrderController> {
   String title ;
@@ -15,7 +15,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
 
   @override
   Widget build(BuildContext context) {
-    var customerController =Get.put(CustomerController());
+
     var systemINfoController =Get.put(SystemINfoController());
     return      SizedBox(
       height: MediaQuery.of(context).size.height*0.7,
@@ -105,7 +105,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                                       }).toList(),
                                   onChanged: (v) {
                                     controller.shippingPayment.value.countryId = v!.countryId;
-                                    controller.shippingPayment.value!.country=v!.name;
+                                    controller.shippingPayment.value.country=v.name;
 
                                     // controller.manufacturersId.value = v?.manufacturerId;
                                   },
@@ -147,12 +147,8 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                       controller:controller.firstNameController ,
                       keyboardType: TextInputType.text,
                       hintText: "الاسم الاول",
-                      onFieldSubmitted: (val){
-
-                      onChanged: (value) {
-
-                      },
-                       ),),
+                      onFieldSubmitted: (val){},
+                    ),),
                 ],
               ),
             ),

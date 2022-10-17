@@ -12,7 +12,8 @@ class MyTextFieldWidget extends StatelessWidget {
   final keyboardType ;
 final color ;
   final double  fontSize  ;
-   MyTextFieldWidget({Key? key,this.color = Colors.grey,this.fontSize =15,this.keyboardType, this.height  = 43,required this.hintText,required this.onChanged( value) ,this.readOnly = false,this.textAlign= TextAlign.center , this.prefixIcon = null}) : super(key: key);
+  final bool obscureText;
+   MyTextFieldWidget({Key? key,this.obscureText = false,this.color = Colors.grey,this.fontSize =15,this.keyboardType, this.height  = 43,required this.hintText,required this.onChanged( value) ,this.readOnly = false,this.textAlign= TextAlign.center , this.prefixIcon = null}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -29,6 +30,8 @@ final color ;
           ),
         child:Center(
             child: TextField(
+              obscureText: obscureText,
+
               readOnly: readOnly,
               //controller:  controller.controllers.value,
               onChanged: (dynamic value){onChanged(value);},
