@@ -122,10 +122,7 @@ class DiscountContainer extends GetView<WizardController> {
                                 ),
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return  FirstButtomCheetDiscountContainer(
-
-
-                                    );
+                                  return  FirstButtomCheetDiscountContainer();
                                 },
                               );
                             },

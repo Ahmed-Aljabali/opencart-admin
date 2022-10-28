@@ -762,12 +762,10 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                         child:
                                             FutureBuilder<List<PaymentMethod>>(
 
-                                          future:
-                                              controller.initPaymentMethod(),
+                                          future: controller.initPaymentMethod(),
                                           builder: (context, snapshot) {
                                             if (snapshot.hasData) {
-                                              var data =
-                                                  snapshot.data!.obs.value;
+                                              var data = snapshot.data!.obs.value;
                                               return DropdownButton<PaymentMethod>(
 
                                                 isExpanded: true,
@@ -783,8 +781,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                 //value:controller.selectedManufacturers.value,
                                                 icon: const Icon(
                                                     Icons.keyboard_arrow_down),
-                                                items: data.map<
-                                                        DropdownMenuItem<
+                                                items: data.map<  DropdownMenuItem<
                                                             PaymentMethod>>(
                                                     (PaymentMethod value) {
                                                   return DropdownMenuItem<

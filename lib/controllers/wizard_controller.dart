@@ -27,6 +27,8 @@ class WizardController extends ProductController {
   List<ProductOptionValue> productOptionValue = [];
   List<ProductDescription> productDescriptionlist = [];
   List<ProductAttribute> productAttribute = [];
+  List<ProductOption> productOption = [];
+  List<ProductDiscount> productDiscount=[];
   var selectedDate = DateTime.now().obs;
 
   var selectedDeliveryOptionDate = DateTime.now().obs;
@@ -61,11 +63,7 @@ class WizardController extends ProductController {
   ];
 
   var selectedorderOptions = Rxn<String>();
-  List<String> statues2OptionsList = [
-    "حالة1",
-    "حالة2",
-    "حالة3",
-  ];
+
   List<String> weightOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
   var selectedweightOptions = Rxn<String>();
   var selectedGroupOptions = Rxn<String>();
@@ -75,27 +73,16 @@ class WizardController extends ProductController {
     "وحدة3",
   ];
   var selectedunintOptions = Rxn<String>();
-  List<String> featureOptionsList = [
-    "ميزة1",
-    "ميزة2",
-    "ميزة3",
-  ];
+
   var storesId = Rxn<int>();
   var categorieId = Rxn<int>();
 
-  List<String> optionsproductlist = [
-    "Checkbox",
-    "Date",
-    "Date & Time",
-    "Delivery Date",
-    "File"
-  ];
   List<String> optioncheckchoose = [
     "small",
     "medium",
     "large",
   ];
-  List<String> FirstDiscountChooseOptionList = ["default"];
+
   List<String> SecondDiscountChooseOptionList = ["default"];
 
   List<String> CheckBoxPriceChooseOptionlist = ["+", "-"];
@@ -106,11 +93,7 @@ class WizardController extends ProductController {
   List<String> optionsproductdatelist = ["yes", "no"];
   List<String> SelectedTimeDateOption = ["yes", "no"];
   List<String> optionsproductdeliverydatelist = ["yes", "no"];
-  List<String> subscrOptionsList = [
-    "خطة1",
-    "خطة2",
-    "خطة3",
-  ];
+
 
   var selectedsubscrOptions = Rxn<String>();
   List<String> custmGroupOptionsList = [
@@ -120,6 +103,12 @@ class WizardController extends ProductController {
   ];
   List<String> testofatrr = [];
   TextEditingController myController = TextEditingController();
+  TextEditingController pointsController = TextEditingController();
+  TextEditingController rewardsController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController dateStartController = TextEditingController();
+  TextEditingController dateEndController = TextEditingController();
+
 
   RxList<TextEditingController> textEditingController =
       RxList<TextEditingController>();
@@ -139,7 +128,7 @@ class WizardController extends ProductController {
   var selectedCheckBoxTaxOption = Rxn<String>();
   var selectedCheckBoxChooseOption = Rxn<String>();
   var firstSelectedDiscountChooseOption = Rxn<String>();
-  var secondSelectedDiscountChooseOption = Rxn<String>();
+  var secondSelectedDiscountChooseOption = Rxn<int>();
   var selectedCheckBoxPriceChooseOption = Rxn<String>();
   var checkBoxPointsChooseOption = Rxn<String>();
   var checkBoxWeightChooseOption = Rxn<String>();
@@ -154,10 +143,10 @@ class WizardController extends ProductController {
   dynamic secondDiscountPrice;
   dynamic firstDiscountPriority;
   dynamic secondDiscountPriority;
-  dynamic startDate1;
-  dynamic startDate2;
-  dynamic endDate1;
-  dynamic endDate2;
+  dynamic startDate1=Rxn<String>();
+  dynamic startDate2=Rxn<String>();
+  Rxn<String> endDate1=Rxn<String>();
+  Rxn<String> endDate2=Rxn<String>();
   RxList<CheckBoxDataModel> checkBoxDataList = RxList<CheckBoxDataModel>([]);
   RxList<DiscountDataModel> firstdiscountDataList =
       RxList<DiscountDataModel>([]);

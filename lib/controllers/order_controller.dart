@@ -127,24 +127,18 @@ class OrderController extends BaseController implements IOrder {
   deleteOrder(int id) async {
     isDataLoading(false);
     var res = await delete("orders", id);
-
     if (res.statusCode == 200) {
       msg ="تم الحذف بنجاح";
       fetchOrder();
       update();
-
     }
   }
 
   @override
   addOrder(AddOrders addOrder)async {
-    print("aaaaaaaaaaa");
 
-    print(addOrder.toJson());
     isDataLoading(false);
     var res = await post(addOrder,"orderadmin");
-    print("aaaaaaaaaaa");
-    print(res.body);
     if (res.statusCode== 200) {
       fetchOrder();
       update();

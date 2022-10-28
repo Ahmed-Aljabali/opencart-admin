@@ -6,13 +6,25 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:opencart/core/constrants/widgetconstrant.dart';
 
+import '../../../../controllers/system_info_controller.dart';
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../model/ProductData.dart';
+import '../../../../model/system_info/init_system.dart';
 
 
 
 class ForthProductContainer extends GetView<WizardController> {
 
+  var initSystem=Get.put(SystemINfoController());
+
+
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    initSystem.fetchInitSystem();
+
+    return super.createElement();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() => ExpansionPanelList(
@@ -72,17 +84,22 @@ class ForthProductContainer extends GetView<WizardController> {
                                   ]
                               ),
                               child:Center(
-                                child: DropdownButton<String>(
-                                  hint:  const Text("حالة نفاذ المخزون"),
-                                  value: controller.selectedstatuesOptions.value,
+                                child:
+                                initSystem.isDataLoading.value==false?
+                                CircularProgressIndicator():
+                                DropdownButton<StockStatuses>(
+                                  hint:  const Text("حالة نفاذ المخزون "),
+                                  value: initSystem.selectStockStatuses.value,
                                   onChanged:(v) {
-                                    controller.selectedstatuesOptions.value = v!;},
-                                  items:controller.statuesOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
+                                    initSystem.selectStockStatuses.value=v;
+                                  controller.prod.stockStatusId=v!.stockStatusId;
+                                  },
+                                  items:initSystem.stockStatuses.
+                                  map<DropdownMenuItem<StockStatuses>>((StockStatuses value) {
+                                    return   DropdownMenuItem<StockStatuses>(
                                       enabled: true,
                                       value: value,
-                                      child: Text(value),
+                                      child: Text(value.name.toString()),
                                     );
                                   }).toList(),
                                 ),
@@ -114,8 +131,7 @@ class ForthProductContainer extends GetView<WizardController> {
                     ),
 
                     TextField(
-
-
+                     controller:controller.dateController ,
                       onTap: () {
                         controller.chooseGenerlDate();
                       },

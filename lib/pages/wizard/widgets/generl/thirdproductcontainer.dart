@@ -2,18 +2,22 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/core/constrants/widgetconstrant.dart';
+import '../../../../controllers/system_info_controller.dart';
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../model/ProductData.dart';
-
-
-
-
+import '../../../../model/system_info/init_system.dart';
 
 class ThirdProductContainer extends GetView<WizardController> {
 
+  var initSystem=Get.put(SystemINfoController());
 
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    initSystem.fetchInitSystem();
 
-
+    return super.createElement();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() => ExpansionPanelList(
@@ -65,32 +69,33 @@ class ThirdProductContainer extends GetView<WizardController> {
                                         blurRadius: 3) //blur radius of shadow
                                   ]
                               ),
+          child: Container(
+          width: MediaQuery.of(context).size.width * 0.5,
+          child:
 
-                              child:Center(
-                                child: DropdownButton<String>(
-                                  hint:  const Text("فئة الضريبة"),
-                                  value: controller.selectedtaxCategOptions.value,
-                                  onChanged:(v) {
-
-
-                                    controller.selectedtaxCategOptions.value = v!;
-                                    controller.prod.taxClassId = v;
-
-
-                                    // print(v);
-                                  },
-                                  items:controller.taxCategOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              )
-                          ),
-                        ),
+          initSystem.isDataLoading.value==false?
+          CircularProgressIndicator():
+          Center(
+          child: DropdownButton<TaxClasses>(
+          alignment: AlignmentDirectional.bottomCenter,
+          underline: Container(color: Colors.transparent),
+          hint: const Text("فئة الضربية"),
+          value: initSystem.selectTax.value,
+          onChanged: (v) {
+          initSystem.selectTax.value=v;
+          controller.prod.taxClassId=v!.taxClassId;
+          },
+          items: initSystem.taxClass
+              .map<DropdownMenuItem<TaxClasses>>(
+          (TaxClasses value) {
+          return DropdownMenuItem<TaxClasses>(
+          value: value,
+          child: Text(value!.title),
+          );
+          }).toList(),
+          ),
+          ),
+          )
                       ), /*TextDropdownFormField(
 
                         options: controller.taxCategOptionsList,
@@ -98,6 +103,8 @@ class ThirdProductContainer extends GetView<WizardController> {
                         dropdownHeight: controller.taxCategOptionsList.length * 50,
                       ),*/
                     ),
+                      )
+                    )
                   ],
                 ),
               ),

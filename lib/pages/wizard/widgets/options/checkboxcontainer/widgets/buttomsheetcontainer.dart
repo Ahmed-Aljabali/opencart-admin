@@ -65,6 +65,7 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                 Expanded(
                     child: MyTextFieldWidget(
                   hintText: 'الكمية',
+                    keyboardType: TextInputType.number,
                   onChanged: (value) {
 
                     controller.checkBoxQty = value ;
@@ -102,13 +103,10 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                               underline: Container(color: Colors.transparent),
                               disabledHint: const Text('required'),
                               hint: const Text("Required"),
-                              value:
-                                  controller.selectedCheckBoxChooseOption.value,
+                              value: controller.selectedCheckBoxChooseOption.value,
                               onChanged: (v) {
-                                controller.selectedCheckBoxChooseOption.value =
-                                    v!;
+                                controller.selectedCheckBoxChooseOption.value = v!;
 
-                                // print(v);
                               },
                               items: controller.optioncheckchoose
                                   .map<DropdownMenuItem<String>>(
@@ -171,7 +169,6 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                               onChanged: (v) {
                                 controller.selectedCheckBoxTaxOption.value = v!;
 
-                                // print(v);
                               },
                               items: controller.optionTaxcheckchoose
                                   .map<DropdownMenuItem<String>>(
@@ -200,7 +197,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                 Expanded(
                     child: MyTextFieldWidget(
                   hintText: 'السعر',
-                  onChanged: (value) {
+                      keyboardType: TextInputType.number,
+
+                      onChanged: (value) {
                     controller.checkBoxPrice= value;
                   },
 
@@ -280,7 +279,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                     child: MyTextFieldWidget(
 
                   hintText: 'النقاط',
-                  onChanged: (value) {
+                      keyboardType: TextInputType.number,
+
+                      onChanged: (value) {
                     print(value);
                     controller.checkboxpoint= value;
                   },
@@ -359,7 +360,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                 Expanded(
                     child: MyTextFieldWidget(
                   hintText: ' الوزن',
-                  onChanged: (value) {
+                      keyboardType: TextInputType.number,
+
+                      onChanged: (value) {
                     controller.checkboxweight = value;
                   },
                 )),
@@ -469,7 +472,7 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                           price:checkedBoxModel.price,
                           weight: checkedBoxModel.weight,
                           quantity: checkedBoxModel.qty,
-                          points: checkedBoxModel.point  ));
+                          points: checkedBoxModel.point));
 
                     controller.productOptionValue=controller.productOptionValue;
 

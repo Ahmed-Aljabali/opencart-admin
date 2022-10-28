@@ -158,26 +158,75 @@ class WizardPage extends GetView<WizardController> {
               //  controller.productDescriptionlist.add(controller.productDescription);
               // controller.prod.productDescription=controller.productDescriptionlist;
               //  controller.addProduct(controller.prod);
+              //
+              // var index=0 ;
+              // for (var element in controller.attrWidgetList) {
+              //   print(element.attrSelected);
+              //
+              //   controller.textEditingController[index].text;
+              //
+              //   controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
+              //   index++;
+              //
+              // }
+              // // controller.prod.productAttribute=controller.productAttribute;
+              // //  print(controller.productAttributeDescription.value!.languageId);
+              //
+              // print(controller.productAttributeDescription.value?.languageId);
+            //    print(controller.productDescription.name);
+            //    print(controller.prod.model);
+            //    print(controller.prod.sku);
+            //    print(controller.prod.price);
+            //    print(controller.prod.quantity);
+            // //   print(controller.linkeproduct1.quantity);
+            //    print(controller.manufacturersId.value);
+            //    print(controller.categorieId.value);
+            //    print(controller.selectedrelatedProdOptions.value);
+            //    print(controller.storesId.value);
+            //    print(controller.storesId.value);
+            //
+            //
+            //     var index=0 ;
+            //   for (var element in controller.attrWidgetList) {
+            //     print(element.attrSelected);
+            //
+            //
+            //     controller.textEditingController[index].text;
+            //     print(controller.textEditingController[index].text);
+            //     controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
+            //     index++;
+            //
+            //   }
+              controller.firstdiscountDataList.forEach((element) {
+                print(element.price);
+                print(element.qty);
+                print(element.clintGroup);
 
-              var index=0 ;
-              for (var element in controller.attrWidgetList) {
-                print(element.attrSelected);
+              });
+              print(controller.rewardsController.text);
+              print(controller.pointsController.text);
+              controller.seconddiscountDataList.forEach((element) {
 
-                controller.textEditingController[index].text;
-                // controller.selectedProductAttribute.obs.value.value?.attributeId=="5";
-                //  print(controller.selectedProductAttribute.obs.value.value?.attributeId);
 
-                controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
+                print(element.clintGroup);
+              });
+              print(controller.prod.shipping);
 
-                //controller.selectedProductAttribute.value!.productAttributeDescription!.add(controller.productAttributeDescription.value!);
-                //controller.productAttribute.add(controller.selectedProductAttribute.value!);
-                index++;
-
-              }
-              // controller.prod.productAttribute=controller.productAttribute;
-              //  print(controller.productAttributeDescription.value!.languageId);
-
-              print(controller.productAttributeDescription.value?.languageId);
+      //         print(controller.addFirstDiscountModel.)
+      //         print(controller.prod.upc);
+      //         print(controller.prod.model);
+      //         controller.productOption.forEach((element) {
+      //              print(element.optionId);
+      //              print(element.type);
+      //              print(element.required);
+      //              element.productOptionValue?.forEach((e)
+      // {
+      // print(e.price);
+      // }
+      //                   );
+      //
+      //
+      //         });
             },
             tooltip: 'add a new product',
             highlightElevation: 1,

@@ -13,16 +13,10 @@ class PointsAndRewards extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context)  {
-    DiscountDataModel discountDataModel;
     return Obx(() {
       return SizedBox(
-
-
         child: Column(
           children: <Widget>[
-
-
-
             Container(
               padding: const EdgeInsets.only( right: 10,top: 10),
               child: Row(
@@ -31,28 +25,27 @@ class PointsAndRewards extends GetView<WizardController> {
                     width: 10,
                   ),
                   Expanded(
-                      child: MyTextFieldWidget(
-                        hintText: 'نقاط المكافأة',
-                        keyboardType: TextInputType.number,
-                        onChanged: (value) {
+                      child: DynamicTextFieldWidget(
+                         controller:controller.rewardsController ,
+                        onFieldSubmitted: (c){
 
                         },
+                        hintText: 'نقاط المكافأة',
+                        keyboardType: TextInputType.number,
+
                       )),
                   const SizedBox(
                     width: 10,
                   ),
-                  /* Expanded(
-
-                  child: Card(
-
-                    margin: EdgeInsets.only(right:39),
-                    child:
-                  ),
-                ),*/
                   Expanded(
-                      child: MyTextFieldWidget(
+                      child: DynamicTextFieldWidget(
+                         controller:controller.pointsController ,
+                           onFieldSubmitted: (x){
+
+
+                           },
                         hintText: 'النقاط المطلوبة',
-                        onChanged: (value) {},
+                        keyboardType: TextInputType.number,
                       )),
                 ],
               ),

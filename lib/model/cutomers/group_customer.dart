@@ -1,14 +1,14 @@
-class GroupCustomer {
-  List<Data>? data;
+class GroupCustomerData {
+  List<GroupCustomer>? data;
 
-  GroupCustomer({this.data});
+  GroupCustomerData({this.data});
 
-  GroupCustomer.fromJson(Map<String, dynamic> json) {
+  GroupCustomerData.fromJson(Map<String, dynamic> json) {
 
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <GroupCustomer>[];
       json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
+        data!.add(GroupCustomer.fromJson(v));
       });
     }
   }
@@ -23,7 +23,7 @@ class GroupCustomer {
   }
 }
 
-class Data {
+class GroupCustomer {
   int? customerGroupId;
   String? name;
   int? sortOrder;
@@ -31,7 +31,7 @@ class Data {
   int? description;
   int? languageId;
 
-  Data(
+  GroupCustomer(
       {this.customerGroupId,
         this.name,
         this.sortOrder,
@@ -39,7 +39,7 @@ class Data {
         this.description,
         this.languageId});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  GroupCustomer.fromJson(Map<String, dynamic> json) {
     customerGroupId = json['customer_group_id'];
     name = json['name'];
     sortOrder = json['sort_order'];

@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/model/cutomers/group_customer.dart';
 
 
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
+import '../../../../../controllers/group_customer_controller.dart';
 import '../../../../../model/discount.dart';
 
 class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
   const SecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context)  {
     DiscountDataModel discountDataModel;
+    final CustomerGroup =Get.put(GroupCustomerController());
     return Obx(() {
       return SizedBox(
 
@@ -82,30 +83,29 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: Center(
-                              child: DropdownButton<String>(
+                              child: DropdownButton<GroupCustomer>(
                                 alignment: AlignmentDirectional.bottomCenter,
                                 underline: Container(color: Colors.transparent),
 
                                 hint: const Text("مجموعة العملاء"),
-                                value:
-                                controller.secondSelectedDiscountChooseOption.value,
+                         //       value: controller.secondSelectedDiscountChooseOption.value,
                                 onChanged: (v) {
-                                  controller.secondSelectedDiscountChooseOption.value =
-                                  v!;
+                                 controller.secondSelectedDiscountChooseOption.value = v?.customerGroupId;
 
                                   // print(v);
                                 },
-                                items: controller.SecondDiscountChooseOptionList
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
-                                      return DropdownMenuItem<String>(
+                                items: CustomerGroup.itemsList.value
+                                    .map<DropdownMenuItem<GroupCustomer>>(
+                                        (GroupCustomer value) {
+                                      return DropdownMenuItem<GroupCustomer>(
                                         value: value,
-                                        child: Text(value),
+                                        child: Text(value.name.toString()),
                                       );
                                     }).toList(),
                               ),
                             ),
-                          )),
+                          )
+                      ),
                     ),
                   ),
                 ],
@@ -186,7 +186,7 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
                         hintText:"تاريخ الانتهاء",
                         onChanged: (value) {
 
-                          controller.endDate2 =value;
+                          controller.endDate2.value =value;
                         },
                       )),
                 ],
@@ -226,7 +226,7 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
                       onPressed: () {
                         discountDataModel = DiscountDataModel(
                             index: (controller.seconddiscountDataList.length),
-                            clintGroup:controller.secondSelectedDiscountChooseOption.toString() ,
+                            clintGroup:controller.secondSelectedDiscountChooseOption.value ,
                             priority: controller.secondDiscountPriority.toString(),
 
                             price:controller.secondDiscountPrice.toString(),
