@@ -1,3 +1,5 @@
+import 'option/option.dart';
+
 class Products{
   dynamic id;
   dynamic model;
@@ -38,7 +40,7 @@ class Products{
   List<ProductSpecial>? productSpecial;
   List<ProductDiscount>? productDiscount;
   List<ProductAttribute>? productAttribute;
-  List<ProductOption>? productOption;
+  List<AddProductOption>? productOption;
 
   Products(
       {this.model,
@@ -142,9 +144,9 @@ class Products{
       });
     }
     if (json['product_option'] != null) {
-      productOption = <ProductOption>[];
+      productOption = <AddProductOption>[];
       json['product_option'].forEach((v) {
-        productOption!.add( ProductOption.fromJson(v));
+        productOption!.add( AddProductOption.fromJson(v));
       });
     }
   }
@@ -202,8 +204,7 @@ class Products{
           productAttribute!.map((v) => v.toJson()).toList();
     }
     if (productOption != null) {
-      data['product_option'] =
-          productOption!.map((v) => v.toJson()).toList();
+      data['product_option'] = productOption!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -345,8 +346,7 @@ class ProductAttribute {
     final Map<String, dynamic> data =  <String, dynamic>{};
     data['attribute_id'] = attributeId;
     if (productAttributeDescription != null) {
-      data['product_attribute_description'] =
-          productAttributeDescription!.map((v) => v.toJson()).toList();
+      data['product_attribute_description'] = productAttributeDescription!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -367,40 +367,6 @@ class ProductAttributeDescription {
     final Map<String, dynamic> data =  <String, dynamic>{};
     data['text'] = text;
     data['language_id'] = languageId;
-    return data;
-  }
-}
-
-class ProductOption {
- dynamic type;
- dynamic optionId;
- dynamic required;
- List<ProductOptionValue>? productOptionValue;
-
-  ProductOption(
-      {this.type, this.optionId, this.required, this.productOptionValue});
-
-  ProductOption.fromJson(Map<String, dynamic> json) {
-    type = json['type'];
-    optionId = json['option_id'];
-    required = json['required'];
-    if (json['product_option_value'] != null) {
-      productOptionValue = <ProductOptionValue>[];
-      json['product_option_value'].forEach((v) {
-        productOptionValue!.add(ProductOptionValue.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['type'] = type;
-    data['option_id'] = optionId;
-    data['required'] = required;
-    if (productOptionValue != null) {
-      data['product_option_value'] =
-          productOptionValue!.map((v) => v.toJson()).toList();
-    }
     return data;
   }
 }
@@ -465,15 +431,3 @@ class ProductData {
   }
 }
 
-class ProductOptionData {
-  var data = <ProductOption>[];
-
-  ProductOptionData.fromJson(Map<String, dynamic> json) {
-
-    for (var e in (json['data'] as List)) {
-      data.add(ProductOption.fromJson(e));
-
-    }
-  }
-
-}

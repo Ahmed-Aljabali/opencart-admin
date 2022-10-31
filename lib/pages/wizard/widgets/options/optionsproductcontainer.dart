@@ -8,6 +8,7 @@ import 'package:opencart/pages/wizard/widgets/options/datecontainer/datecontaine
 import 'package:opencart/pages/wizard/widgets/options/deliverydatecontainer/deliverydatecontainer.dart';
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../model/ProductData.dart';
+import '../../../../model/porducts/option/option.dart';
 import 'checkboxcontainer/checkboxcontainer.dart';
 import 'timeanddateconainer/timedatecontainer.dart';
 
@@ -68,15 +69,18 @@ class OptionsProductContainer extends GetView<WizardController> {
                                             backgroundColor: Colors.white,
                                             canTapOnHeader: true,
                                             isExpanded: item.isExpanded!.value,
-                                            headerBuilder: ((context,
-                                                isExpanded) {
+                                            headerBuilder: ((context, isExpanded) {
                                               return ListTile(
                                                   leading: InkWell(
                                                     child: const Icon(
                                                       Icons.remove,
                                                     ),
                                                     onTap: () {
-                                                      controller.productOptionValue.removeAt(index);
+                                                      if (controller.productOptionValue.isNotEmpty)
+                                                        {
+                                                           controller.productOptionValue.removeAt(index);
+                                                        }
+                                                      controller.productOption.removeAt(index);
                                                       controller.removeOptWidget(item.id);
                                                     },
                                                   ),
@@ -88,15 +92,8 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                     textAlign: TextAlign.center,
                                                   ));
                                             }),
-                                            body:
-                                              (
-
-                                                 ( item.optType == "checkbox") ?
-
-                                                CheckBoxContainer(
-                                                    controller: controller,
-                                                    index: item.id)
-
+                                            body: (( item.optType == "checkbox"|| item.optType=="radio" ) ?
+                                                CheckBoxContainer(controller: controller, index: item.id)
                                             :
                                             item.optType == "date" ?
                                             DateContainer(controller: controller, index: item.id) :
@@ -106,11 +103,6 @@ class OptionsProductContainer extends GetView<WizardController> {
                                             DeliveryDateContainer(controller: controller) :
 
                                             new Container())
-
-
-                                          // if(item.optType == "date"){
-
-                                          // }
 
 
                                         );
@@ -175,23 +167,16 @@ class OptionsProductContainer extends GetView<WizardController> {
                                             .size
                                             .width * 0.5,
                                         child: Center(
-                                            child:
-                                            FutureBuilder<List<ProductOption>>(
-                                              future: controller
-                                                  .initProductOptions(),
+                                            child: FutureBuilder<List<ProductOption>>(
+                                              future: controller.initProductOptions(),
                                               builder: (context, snapshot) {
                                                 if (snapshot.hasData) {
-                                                  var data = snapshot.data!.obs
-                                                      .value;
-                                                  return DropdownButton<
-                                                      ProductOption>(
-                                                    hint: const Text(
-                                                        "Add An  Option"),
-                                                    value:
-                                                    controller.selectedOption.value,
-                                                    icon: const Icon(
-                                                        Icons
-                                                            .keyboard_arrow_down),
+                                                  var data = snapshot.data!.obs.value;
+
+                                                  return DropdownButton<ProductOption>(
+                                                    hint: const Text("Add An  Option"),
+                                                    value: controller.selectedOption.value,
+                                                    icon: const Icon(Icons.keyboard_arrow_down),
                                                     items: data.map<DropdownMenuItem<ProductOption>>(
                                                             (ProductOption value) {
                                                           return DropdownMenuItem<ProductOption>(
@@ -201,10 +186,13 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                           );
                                                         }).toList(),
                                                     onChanged: (v) {
-                                                      if (v?.type == "date") {
+                                                           v!.productOptionValue!.forEach((element) {
+                                                             print(element.optionValueId);
+                                                           });
+                                                      if (v.type == "date") {
                                                         controller.addOptWidget(
                                                             OptModel(controller.optWidgetList.length,
-                                                                v!.type,
+                                                                v.type,
                                                                 DateContainer(
                                                                     controller:
                                                                     controller,  index: controller
@@ -214,31 +202,21 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                                 "date",
                                                                 "date",
                                                                 false.obs));
-                                                      } else if (v?.type ==
-                                                          "checkbox") {
+                                                      } else if (v.type == "checkbox"||v.type=="radio") {
+
                                                         controller.addOptWidget(
-                                                            OptModel(controller
-                                                                    .optWidgetList
-                                                                    .length,
-                                                                v!.type,
-                                                                CheckBoxContainer(
-                                                                  controller:
-                                                                  controller,
-                                                                  index: controller
-                                                                      .optWidgetList
-                                                                      .length,),
+                                                            OptModel(controller.optWidgetList.length,
+                                                                v.type,
+                                                                CheckBoxContainer(controller: controller,
+                                                                  index: controller.optWidgetList.length,),
                                                                 "yes",
-                                                                "checkbox",
-                                                                "checkbox",
+                                                                v.type,
+                                                                v.type,
                                                                 false.obs));
-                                                      } else if (v?.type ==
-                                                          "datetime") {
+                                                      } else if (v.type == "datetime") {
                                                         controller.addOptWidget(
-                                                            OptModel(
-                                                                controller
-                                                                    .optWidgetList
-                                                                    .length,
-                                                                v!.type,
+                                                            OptModel(controller.optWidgetList.length,
+                                                                v.type,
                                                                 TimeDateContainer(
                                                                     controller:
                                                                     controller, index:  controller
@@ -248,7 +226,7 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                                 "datetime",
                                                                 "datetime",
                                                                 false.obs));
-                                                      } else if (v?.type ==
+                                                      } else if (v.type ==
                                                           "Delivery Date") {
                                                         controller.addOptWidget(
                                                             OptModel(controller
@@ -264,11 +242,16 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                                 "datetime",
                                                                 false.obs));
                                                       }
-                                                      controller.productOption.add(ProductOption(type: v?.type,
-                                                          optionId: v?.optionId,
-                                                          required: v?.required,
-                                                          productOptionValue: controller.productOptionValue
-                                                      ));
+                                                      // controller.optionId=v.optionId;
+                                                      // controller.optionId=v.type;
+                                                      // controller.optionId=v.optionId;
+
+                                                      controller.productOption.add(AddProductOption(
+                                                          type: v.type,
+                                                          optionId: v.optionId,
+                                                          required: v.required,
+
+                                                        ));
                                                     },
                                                   );
                                                 } else {

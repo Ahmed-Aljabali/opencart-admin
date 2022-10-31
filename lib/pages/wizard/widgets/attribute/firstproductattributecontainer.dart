@@ -175,7 +175,7 @@ class FirstProductAttributeContainer extends GetView<WizardController> {
                             textColor: Colors.blueAccent,
                             onPressed: () {
               //                controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.myController.text);
-                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.myController.text);
+                              controller.addAttribWidget(AttrModel(controller.dataAttribute, "ميزة1"),controller.myController.text);
                               controller.textEditingController.add(TextEditingController(text: controller.myController.text));
 
                             },

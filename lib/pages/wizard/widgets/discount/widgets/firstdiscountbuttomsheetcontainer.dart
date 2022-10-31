@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
-
+import 'package:opencart/model/porducts/product.dart';
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../Controllers/customer_controller.dart';
@@ -19,7 +18,6 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
     DiscountDataModel discountDataModel;
     final CustomerGroup =Get.put(GroupCustomerController());
     var customerController =Get.put(CustomerController());
-
     return Obx(() =>
       SizedBox(
       height: MediaQuery.of(context).size.height * 0.7,
@@ -68,6 +66,7 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                 Expanded(
                     child:Center(
                       child: DropdownButton<Customers>(
+                        value: controller.customer.value,
                         hint:   const Align(
                           alignment: Alignment.center,
                           child: Text(
@@ -76,16 +75,7 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                           ),
                         ),
                         onChanged:(v) {
-                          // var initName= v!.name.toString().indexOf(" ");
-                          // var firstName=v.name!.substring(0,initName);
-                          // var lastName=v.name!.substring(initName).trim();
-                          // controller.addOrders.value.customer?.customerId=v.customerid;
-                          // controller.customer.value.customerId=v.customerid;
-                          // controller.customer.value.email=v.email;
-                          // controller.customer.value.customerGroupId=v.customergroupid;
-                          // controller.customer.value.telephone=v.telephone;
-                          // controller.customer.value.firstname=firstName;
-                          // controller.customer.value.lastname=lastName;
+                          controller.customer.value=v!;
 
                         },
                         items:customerController.trx.
@@ -122,17 +112,14 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                             ]),
                         child: Container(
                           width: MediaQuery.of(context).size.width * 0.5,
-                          child:
-                          Center(
+                          child: Center(
                             child: DropdownButton<GroupCustomer>(
                               alignment: AlignmentDirectional.bottomCenter,
                               underline: Container(color: Colors.transparent),
-
                               hint: const Text("مجموعة العملاء"),
-                              //       value: controller.secondSelectedDiscountChooseOption.value,
+                              value: controller.firstSelectedDiscountChooseOption.value,
                               onChanged: (v) {
-                                controller.secondSelectedDiscountChooseOption.value = v?.customerGroupId;
-
+                                controller.firstSelectedDiscountChooseOption.value = v;
                               },
                               items: CustomerGroup.itemsList.value
                                   .map<DropdownMenuItem<GroupCustomer>>(
@@ -200,95 +187,103 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                   width: 10,
                 ),
 
+
                 Expanded(
-                    child:
-                    TextField(
-                      controller:controller.dateStartController ,
-                      onTap: () {
-                        controller.chooseGenerlDate();
-                      },
-                      textAlign: TextAlign.center,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        fillColor:Colors.white60, //background color of dropdown button
+                    child: Column(
+                      children: [
+                        const Text("تاريخ الانتهاء"),
+                        TextField(
+                          controller:controller.dateEndController ,
+                          onTap: () {
+                            controller.chooseGenerlDate();
+                          },
+                          textAlign: TextAlign.center,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            fillColor:Colors.white60, //background color of dropdown button
+                            prefixIcon: const Icon(
+                              Icons.date_range_rounded,
+                              color: Colors.blueAccent,
+                            ),
+                            hintText: DateFormat("dd-MM-yyyy")
+                                .format(controller.selectedDate.value)
+                                .toString(),
+                            hintStyle: const TextStyle(
+                              fontSize: 12,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 40.0),
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.grey, width: 0.5),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(5.0)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.grey, width: 2.0),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(32.0)),
+                            ),
+                          ),
+                        ),
 
-                        prefixIcon: const Icon(
-                          Icons.date_range_rounded,
-                          color: Colors.blueAccent,
-                        ),
-                        hintText: DateFormat("dd-MM-yyyy")
-                            .format(controller.selectedDate.value)
-                            .toString(),
-                        hintStyle: const TextStyle(
-                          fontSize: 19,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 40.0),
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.grey, width: 0.5),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5.0)),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.grey, width: 2.0),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(32.0)),
-                        ),
-                      ),
-                    ),
-
-                ),
+                      ],
+                    )),
                 const SizedBox(
                   width: 3,
                 ),
 
-                Expanded(
-                    child:
-                    TextField(
-                      controller:controller.dateEndController ,
-                      onTap: () {
-                        controller.chooseGenerlDate();
-                      },
-                      textAlign: TextAlign.center,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        fillColor:Colors.white60, //background color of dropdown button
 
-                        prefixIcon: const Icon(
-                          Icons.date_range_rounded,
-                          color: Colors.blueAccent,
+                Expanded(
+                    child: Column(
+                      children: [
+                        const Text("تاريخ البدء"),
+                        TextField(
+                          controller:controller.dateStartController ,
+                          onTap: () {
+                            controller.chooseGenerlDate();
+                          },
+                          textAlign: TextAlign.center,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            fillColor:Colors.white60, //background color of dropdown button
+
+                            prefixIcon: const Icon(
+                              Icons.date_range_rounded,
+                              color: Colors.blueAccent,
+                            ),
+                            hintText: DateFormat("dd-MM-yyyy")
+                                .format(controller.selectedDate.value)
+                                .toString(),
+                            hintStyle: const TextStyle(
+                              fontSize: 12,
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 10.0, horizontal: 40.0),
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.grey, width: 0.5),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(5.0)),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide:
+                              BorderSide(color: Colors.grey, width: 2.0),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(32.0)),
+                            ),
+                          ),
                         ),
-                        hintText: DateFormat("dd-MM-yyyy")
-                            .format(controller.selectedDate.value)
-                            .toString(),
-                        hintStyle: const TextStyle(
-                          fontSize: 12,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 40.0),
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        enabledBorder: const OutlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.grey, width: 0.5),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(5.0)),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide:
-                          BorderSide(color: Colors.grey, width: 2.0),
-                          borderRadius:
-                          BorderRadius.all(Radius.circular(32.0)),
-                        ),
-                      ),
-                    ),
-                ),
+
+                      ],
+                    )),
               ],
             ),
           ),
@@ -324,16 +319,25 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                     height: 60,
                     color: Colors.green,
                     onPressed: () {
-                      // discountDataModel = DiscountDataModel(
-                      //   index: (controller.firstdiscountDataList.length),
-                      //     clintGroup:controller.firstSelectedDiscountChooseOption.toString() ,
-                      //        priority: controller.firstDiscountPriority.toString(),
-                      //     price:controller.firstDiscountPrice.toString(),
-                      //   qty: controller.firstDiscountQty.toString(),
-                      //   startDate: controller.startDate1.toString(),
-                      // endDate:controller.endDate1.toString());
-                      // controller.addFirstDiscountModel(discountDataModel);
+                      discountDataModel = DiscountDataModel(
+                        index: (controller.firstdiscountDataList.length),
+                          clintGroup:controller.firstSelectedDiscountChooseOption.value!.customerGroupId.toString() ,
+                             priority: controller.firstDiscountPriority.toString(),
+                          price:controller.firstDiscountPrice.toString(),
+                        qty: controller.firstDiscountQty.toString(),
 
+                        startDate: controller.startDate1.toString(),
+                      endDate:controller.endDate1.toString());
+
+                      controller.addFirstDiscountModel(discountDataModel);
+                      controller.productDiscount.add(ProductDiscount(
+                         name: controller.customer.value!.name,
+                        customerGroupId:controller.secondSelectedDiscountGroupCustomer.value!.customerGroupId,
+                        dateEnd: controller.endDate2.value,
+                        dateStart: controller.startDate2.toString(),
+                        price: controller.secondDiscountPrice.toString(),
+                        priority: controller.secondDiscountPriority.toString(),
+                      ));
                       Get.back();
                     })
               ],
@@ -342,8 +346,6 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
           // tow buttons of save and cancel
         ],
       ),
-
 ));
   }
 }
-//my idiea is to clone this class and try to use the index somehow to get into a

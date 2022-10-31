@@ -8,11 +8,8 @@ import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../model/ProductData.dart';
 
 class CheckBoxRequiredOptionPicker extends GetView<WizardController> {
-
   var index;
-
   CheckBoxRequiredOptionPicker({this.index});
-
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +25,8 @@ class CheckBoxRequiredOptionPicker extends GetView<WizardController> {
                   decoration: BoxDecoration(
 
                       color: Colors.white60,
-                      //background color of dropdown button
                       border: Border.all(color: Colors.black38, width: 0.5),
-                      //border of dropdown button
                       borderRadius: BorderRadius.circular(10),
-                      //border raiuds of dropdown button
                       boxShadow: <BoxShadow>[ //apply shadow on Dropdown button
                         BoxShadow(
                             color: Color.fromRGBO(0, 0, 0, 0.2),
@@ -53,11 +47,19 @@ class CheckBoxRequiredOptionPicker extends GetView<WizardController> {
                         hint: Text("مطلوب"),
                         value: controller.optWidgetList[index].isselectedCheckBoxOption,
                         onChanged: (v) {
+                          bool required;
                           controller.optWidgetList[index].isselectedCheckBoxOption = v!;
                           controller.optWidgetList.refresh();
+                          if (v=="yes")
+                          {
+                            required=true;
+                          }
+                          else
+                          {
+                            required=false;
+                          }
 
-
-                          // print(v);
+                          controller.productOption[index].required=required;
                         },
                         items: controller.optionsproductyesnolist.
                         map<DropdownMenuItem<String>>((String value) {

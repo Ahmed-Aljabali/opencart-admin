@@ -51,18 +51,20 @@ class ForthProductContainer extends GetView<WizardController> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    MyTextFieldWidget(hintText:  "الكمية", onChanged: (v)=>controller.prod.quantity==v),
+                    MyTextFieldWidget(keyboardType: TextInputType.number, hintText:  "الكمية", onChanged: (v)=>controller.prod.quantity=v),
                     const SizedBox(
                       height: 10,
                     ),
-                    MyTextFieldWidget(hintText: "الحد الادنى للكمية", onChanged:  (v)=>controller.prod.minimum=v),
+                    MyTextFieldWidget(keyboardType: TextInputType.number,hintText: "الحد الادنى للكمية", onChanged:  (v)=>controller.prod.minimum=v),
                     LSwitchListTile(
                       isChecked: controller.isSwitchedOn.value,
                       listSwitchFun: (b) {
+                        controller.isSwitchedOn.value = b;
                         controller.prod.subtract = b;
                       },
                       listSwitchText: 'Subact Stoc',
                     ),
+
                     const Divider(thickness: 1,),
 
                     Container(
@@ -131,9 +133,11 @@ class ForthProductContainer extends GetView<WizardController> {
                     ),
 
                     TextField(
-                     controller:controller.dateController ,
+                     controller:controller.dateController,
                       onTap: () {
                         controller.chooseGenerlDate();
+                  //     var date = "${controller.selectedDate.value.year}-${controller.selectedDate.value.month}-${controller.selectedDate.value.day}";
+                      //   controller.dateController.text=date;
                       },
                       textAlign: TextAlign.center,
                       readOnly: true,

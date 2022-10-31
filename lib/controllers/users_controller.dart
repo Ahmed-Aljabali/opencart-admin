@@ -14,6 +14,7 @@ void  onInit() {
 
 login(User user)async {
   var res= await post(user,"login");
+
   if (res.statusCode==200) {
     Get.offNamed('/');
   }

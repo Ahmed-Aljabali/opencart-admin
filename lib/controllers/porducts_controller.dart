@@ -8,23 +8,24 @@ import 'package:opencart/model/porducts/category.dart';
 import 'package:opencart/model/porducts/stores.dart';
 import '../model/porducts/attribute.dart';
 import '../model/porducts/manufacturers.dart';
+import '../model/porducts/option/option.dart';
 import '../model/porducts/product.dart';
 
 class  ProductController extends BaseController implements IProduct {
   dynamic _data;
   dynamic _dataOption;
   dynamic _dataManufacturers;
-  dynamic _dataCategory;
-  dynamic _dataStores;
   dynamic _dataAttribute;
   RxBool listTypeGrid = true.obs ;
 
   List<Products> get dataProduct => _data;
   List<ProductOption> get dataOption => _dataOption;
   List<Manufacturers> get dataManufacturers => _dataManufacturers;
-  List<Categories> get dataCategory => _dataCategory;
-  List<Stores> get dataStores => _dataStores;
+
   List<Attribute> get dataAttribute => _dataAttribute;
+ var manuf =RxList<Manufacturers>();
+ var dataStores =RxList<Stores>();
+ var dataCategory =RxList<Categories>();
 
 
   @override
@@ -53,36 +54,44 @@ class  ProductController extends BaseController implements IProduct {
     return dataAttribute;
   }
 
-  Future<List<Manufacturers>> initManufacturers()async {
-
+   initManufacturers()async {
     var res = await get("manufacturers/limit/10/page/1");
     if (res.statusCode == 200) {
-      _dataManufacturers=  ManufacturersData.fromJson(jsonDecode(res.body)).data;
+      manuf.value= ManufacturersData.fromJson(jsonDecode(res.body)).data!;
     }
+    isDataLoading(true);
+    update();
     return dataManufacturers;
   }
 
- Future<List<Stores>> initStores()async {
+  initStores()async {
 
     var res = await get("stores");
     if (res.statusCode == 200) {
-      _dataStores=  StoresData.fromJson(jsonDecode(res.body)).data;
+      dataStores.value=StoresData.fromJson(jsonDecode(res.body)).data!;
     }
+
+    isDataLoading(true);
+    update();
     return dataStores;
   }
 
-  Future<List<Categories>> initCategory()async {
+   initCategory()async {
 
     var res = await get("categories/extended/limit/10/page/1");
     if (res.statusCode == 200) {
-      _dataCategory=  CategoryData.fromJson(jsonDecode(res.body)).data;
+      dataCategory.value=  CategoryData.fromJson(jsonDecode(res.body)).data!;
     }
-    return dataCategory;
+
+    isDataLoading(true);
+    update();
   }
 
   @override
   Future<String?> addProduct(Products product)async{
+   print(product.toJson());
     var res= await post(product,"products");
+      print(res.body);
 
     if (res.statusCode==400) {
       msg="successfully saved";

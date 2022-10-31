@@ -99,8 +99,10 @@ class FifhProductScreen extends GetView<WizardController> {
                                     hint: const Text("فئة الطول"),
                                     value: initSystem.selectLength.value,
                                     onChanged: (v) {
+                                      print(v);
                                       initSystem.selectLength.value=v;
-                                      controller.prod.lengthClassId=v;
+                                      controller.prod.lengthClassId=v!.lengthClassId;
+                                      initSystem.update();
                                     },
                                     items: initSystem.lengthClasses
                                         .map<DropdownMenuItem<LengthClasses?>>(
@@ -153,7 +155,7 @@ class FifhProductScreen extends GetView<WizardController> {
                                   value: initSystem.selectWeight.value,
                                   onChanged:(v) {
                                     initSystem.selectWeight.value=v;
-                                    controller.prod.weightClassId=v;
+                                    controller.prod.weightClassId=v!.weightClassId;
                                     },
                                   items:initSystem.weightClass.
                                   map<DropdownMenuItem<WeightClasses>>((WeightClasses value) {

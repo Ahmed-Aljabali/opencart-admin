@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/controllers/wizard_controller.dart';
 import 'package:opencart/pages/mainproductpage/widgets/gridviewcontainer.dart';
 import 'package:opencart/pages/mainproductpage/widgets/listviewbuilder.dart';
 
@@ -9,7 +10,7 @@ import '../../core/utils/math_utils.dart';
 
 import '../wizard/wizard_page.dart';
 
-class ProductPage extends GetView<ProductController> {
+class ProductPage extends GetView<WizardController> {
 
   @override
   StatelessElement createElement() {

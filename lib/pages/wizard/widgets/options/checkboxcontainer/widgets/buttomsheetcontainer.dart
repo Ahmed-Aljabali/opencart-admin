@@ -74,53 +74,45 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                 const SizedBox(
                   width: 10,
                 ),
-
-                Container(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Expanded(
-                    child: DecoratedBox(
-                        decoration: BoxDecoration(
-                            color: Colors.white60,
-                            //background color of dropdown button
-                            border:
-                                Border.all(color: Colors.black38, width: 0.5),
-                            //border of dropdown button
-                            borderRadius: BorderRadius.circular(10),
-                            //border raiuds of dropdown button
-                            boxShadow: const <BoxShadow>[
-                              //apply shadow on Dropdown button
-                              BoxShadow(
-                                  color: Color.fromRGBO(0, 0, 0, 0.1),
-                                  //shadow for button
-                                  blurRadius: 3)
-                              //blur radius of shadow
-                            ]),
-                        child: SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.5,
-                          child: Center(
-                            child: DropdownButton<String>(
-                              alignment: AlignmentDirectional.bottomCenter,
-                              underline: Container(color: Colors.transparent),
-                              disabledHint: const Text('required'),
-                              hint: const Text("Required"),
-                              value: controller.selectedCheckBoxChooseOption.value,
-                              onChanged: (v) {
-                                controller.selectedCheckBoxChooseOption.value = v!;
-
-                              },
-                              items: controller.optioncheckchoose
-                                  .map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        )),
-                  ),
-                ),
+                //
+                // Container(
+                //   padding: const EdgeInsets.only(right: 10),
+                //   child: Expanded(
+                //     child: DecoratedBox(
+                //         decoration: BoxDecoration(
+                //             color: Colors.white60,
+                //             border:Border.all(color: Colors.black38, width: 0.5),
+                //             borderRadius: BorderRadius.circular(10),
+                //             boxShadow: const <BoxShadow>[
+                //               BoxShadow(
+                //                   color: Color.fromRGBO(0, 0, 0, 0.1),
+                //                   blurRadius: 3)
+                //             ]),
+                //         child: SizedBox(
+                //           width: MediaQuery.of(context).size.width * 0.5,
+                //           child: Center(
+                //             child: DropdownButton<String>(
+                //               alignment: AlignmentDirectional.bottomCenter,
+                //               underline: Container(color: Colors.transparent),
+                //               disabledHint: const Text('required'),
+                //               hint: const Text("Required"),
+                //               value: controller.selectedCheckBoxChooseOption.value,
+                //               onChanged: (v) {
+                //                 controller.selectedCheckBoxChooseOption.value = v!;
+                //               },
+                //               items: controller.optioncheckchoose
+                //                   .map<DropdownMenuItem<String>>(
+                //                       (String value) {
+                //                 return DropdownMenuItem<String>(
+                //                   value: value,
+                //                   child: Text(value),
+                //                 );
+                //               }).toList(),
+                //             ),
+                //           ),
+                //         )),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -243,11 +235,10 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                               underline: Container(color: Colors.transparent),
                               disabledHint: const Text('required'),
                               hint: const Text("Required"),
-                              value: controller
-                                  .selectedCheckBoxPriceChooseOption.value,
+                              value: controller.selectedCheckBoxPriceChooseOption.value,
                               onChanged: (v) {
-                                controller.selectedCheckBoxPriceChooseOption
-                                    .value = v!;
+
+                                controller.selectedCheckBoxPriceChooseOption.value = v!;
 
                                 // print(v);
                               },
@@ -397,12 +388,9 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                               underline: Container(color: Colors.transparent),
                               disabledHint: const Text('required'),
                               hint: const Text("Required"),
-                              value:
-
-                                  controller.checkBoxWeightChooseOption.value,
+                              value: controller.checkBoxWeightChooseOption.value,
                               onChanged: (v) {
-                                controller.checkBoxWeightChooseOption.value =
-                                    v!;
+                                controller.checkBoxWeightChooseOption.value = v!;
 
                                 // print(v);
                               },
@@ -468,8 +456,11 @@ class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
                       controller.addCheckBoxModel(checkedBoxModel,index);
                       Get.back();
 
-                      controller. productOptionValue.add(ProductOptionValue(
+                      controller.productOptionValue.add(ProductOptionValue(
                           price:checkedBoxModel.price,
+                          pricePrefix:controller.selectedCheckBoxPriceChooseOption.value ,
+                          pointsPrefix: controller.checkBoxPointsChooseOption.value,
+                          weightPrefix: controller.checkBoxWeightChooseOption.value,
                           weight: checkedBoxModel.weight,
                           quantity: checkedBoxModel.qty,
                           points: checkedBoxModel.point));

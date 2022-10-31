@@ -77,6 +77,7 @@ late   File image;
                     var productDescription = ProductDescription(description: "asda",languageId: 1,metaDescription: "asd",name: "asd",metaTitle: "asd",metaKeyword: "asd",tag: "5");
                     sa.add(productDescription);
                     var product =Products(image: "aaa",productDescription: sa,model: "sssss",quantity: 100,price: 500,taxClassId: 1,manufacturerId: 2,sku: "aa",status: 1,points: 0,reward: 0);
+
                     if (image==null)
                     {
                       print("sa");

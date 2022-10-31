@@ -16,6 +16,7 @@ import 'package:opencart/pages/wizard/widgets/seo/seopage.dart';
 import 'package:opencart/pages/wizard/widgets/subscribe/subscribeproductcontainer.dart';
 
 import '../../controllers/porducts_controller.dart';
+import '../../model/porducts/option/option.dart';
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
 
@@ -89,19 +90,19 @@ class WizardPage extends GetView<WizardController> {
                         StepData(
                             OptionsProductContainer()
                         )),
-                    controller.SingleStep(4,
-                        StepData(
-                          FirstProductSubscribeContainer(),
-                        )),
+                    // controller.SingleStep(4,
+                    //     StepData(
+                    //       FirstProductSubscribeContainer(),
+                    //     )),
 
                     controller.SingleStep(5,
                         StepData(
                           DiscountContainer(),
                         )),
-                    controller.SingleStep(6,
-                        StepData(
-                          Seo(),
-                        )),
+                    // controller.SingleStep(6,
+                    //     StepData(
+                    //       Seo(),
+                    //     )),
 
 
                   ],
@@ -110,9 +111,9 @@ class WizardPage extends GetView<WizardController> {
                     controller.stepheader( controller.currentStep.value,1,Icons.info_outline_rounded),
                     controller.stepheader( controller.currentStep.value,2,Icons.perm_device_info),
                     controller.stepheader( controller.currentStep.value,3,Icons.add),
-                    controller.stepheader( controller.currentStep.value,4,Icons.subscriptions),
+               //     controller.stepheader( controller.currentStep.value,4,Icons.subscriptions),
                     controller.stepheader( controller.currentStep.value,5,Icons.discount),
-                    controller.stepheader( controller.currentStep.value,6,Icons.star),
+             //       controller.stepheader( controller.currentStep.value,6,Icons.star),
                   ],
                 ),
               ),
@@ -155,36 +156,41 @@ class WizardPage extends GetView<WizardController> {
 
             backgroundColor: Colors.green,
             onPressed: ()  {
-              //  controller.productDescriptionlist.add(controller.productDescription);
-              // controller.prod.productDescription=controller.productDescriptionlist;
-              //  controller.addProduct(controller.prod);
+             //  List<int> productCategory=[];
+             //  List<int> productRelated=[];
+             //  productCategory.add(controller.categorieId.value!);
+             //  productRelated.add(controller.selectedrelatedProdOptions.value!);
+             //  controller.prod.productCategory=productCategory;
+             //  controller.prod.productRelated=productRelated;
+             // controller.productDescriptionlist.add(controller.productDescription);
+             // controller.prod.productDescription=controller.productDescriptionlist;
+             //
+             //  controller.productOption.forEach((element) {
+             //    element.productOptionValue=controller.productOptionValue;
+             //  });
+             //  controller.prod.productOption=controller.productOption;
+
+              //     var index=0 ;
+              //   for (var element in controller.attrWidgetList) {
               //
-              // var index=0 ;
-              // for (var element in controller.attrWidgetList) {
-              //   print(element.attrSelected);
+              //     controller.textEditingController[index].text;
+              //     controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
+              //     controller.
+              //     index++;
               //
-              //   controller.textEditingController[index].text;
-              //
-              //   controller.productAttributeDescription.value?.text=controller.textEditingController[index].text;
-              //   index++;
-              //
-              // }
-              // // controller.prod.productAttribute=controller.productAttribute;
-              // //  print(controller.productAttributeDescription.value!.languageId);
-              //
-              // print(controller.productAttributeDescription.value?.languageId);
-            //    print(controller.productDescription.name);
-            //    print(controller.prod.model);
-            //    print(controller.prod.sku);
-            //    print(controller.prod.price);
-            //    print(controller.prod.quantity);
-            // //   print(controller.linkeproduct1.quantity);
-            //    print(controller.manufacturersId.value);
-            //    print(controller.categorieId.value);
-            //    print(controller.selectedrelatedProdOptions.value);
-            //    print(controller.storesId.value);
-            //    print(controller.storesId.value);
-            //
+              //   }
+              controller.prod.productSpecial=controller.productSpecial;
+              controller.prod.productDiscount=controller.productDiscount;
+              controller.productDiscount.forEach((element) {
+
+                print(element.name);
+                print(element.price);
+              });
+                 controller.addProduct(controller.prod);
+
+
+              //     productCategory.clear();
+
             //
             //     var index=0 ;
             //   for (var element in controller.attrWidgetList) {
@@ -197,20 +203,10 @@ class WizardPage extends GetView<WizardController> {
             //     index++;
             //
             //   }
-              controller.firstdiscountDataList.forEach((element) {
-                print(element.price);
-                print(element.qty);
-                print(element.clintGroup);
 
-              });
-              print(controller.rewardsController.text);
-              print(controller.pointsController.text);
-              controller.seconddiscountDataList.forEach((element) {
-
-
-                print(element.clintGroup);
-              });
-              print(controller.prod.shipping);
+                // if (controller.nameProdController.text.isEmpty){
+                //   return "sad";
+                // }
 
       //         print(controller.addFirstDiscountModel.)
       //         print(controller.prod.upc);

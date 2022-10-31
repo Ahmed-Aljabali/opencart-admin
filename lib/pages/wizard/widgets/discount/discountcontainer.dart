@@ -7,7 +7,6 @@ import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../model/ProductData.dart';
 class DiscountContainer extends GetView<WizardController> {
 
-
   @override
   Widget build(BuildContext context) {
     return Obx(() => Column(children: [
@@ -27,7 +26,7 @@ class DiscountContainer extends GetView<WizardController> {
                       item.header!,
                       style: const TextStyle(
                         fontSize: 20,
-                      ),
+                        ),
                       textAlign: TextAlign.center,
                     ));
               }),

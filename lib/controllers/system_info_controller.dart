@@ -49,11 +49,13 @@ class SystemINfoController extends BaseController{
   }
 
 
-  Future<List<Countries>> fetchCountries() async {
+   fetchCountries() async {
     var res = await get("countries");
     if (res.statusCode == 200) {
       _countries = CountriesData.fromJson(jsonDecode(res.body)).data;
     }
+    isDataLoading(true);
+    update();
     return countries;
   }
 

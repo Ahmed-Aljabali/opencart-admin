@@ -44,7 +44,10 @@ class ThirdProductContainer extends GetView<WizardController> {
                 child: Column(
                   children: [
 
-                    MyTextFieldWidget(hintText: 'price', onChanged: (value)=>controller.prod.price==value),
+                    MyTextFieldWidget(
+                      keyboardType: TextInputType.number,
+                        hintText: 'price',
+                        onChanged: (value)=>controller.prod.price=value),
 
                     const SizedBox(
                       height: 10,
@@ -90,7 +93,7 @@ class ThirdProductContainer extends GetView<WizardController> {
           (TaxClasses value) {
           return DropdownMenuItem<TaxClasses>(
           value: value,
-          child: Text(value!.title),
+          child: Text(value.title),
           );
           }).toList(),
           ),
