@@ -19,6 +19,7 @@ class FirstProductAttributeContainer extends GetView<WizardController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.textEditingController.add(TextEditingController());
     return Obx(() => Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
@@ -69,7 +70,7 @@ class FirstProductAttributeContainer extends GetView<WizardController> {
                                           Expanded(
                                             child:DynamicTextFieldWidget(
                                               hintText: "اضافة",
-                                              controller: controller.myController,
+                                              controller:  controller.textEditingController[index],
 
                                               keyboardType: TextInputType.text,
                                               onFieldSubmitted: (String value) {  },
@@ -137,10 +138,10 @@ class FirstProductAttributeContainer extends GetView<WizardController> {
                                             onPressed: (){
                                               String s = "$index ";
 
-controller.attrWidgetList.length==1 ? {
-                                                      controller.attrWidgetList
+                                                     controller.attrWidgetList.length==1 ? {
+                                                         controller.attrWidgetList
                                                           .clear(),controller.testofatrr.clear(),
-  controller.index = 0,controller.myController.clear()
+                                                          controller.index = 0,controller.myController.clear()
 
                                                     }
                                                   :index==0?controller.removeAttribWidget(index+1):controller.removeAttribWidget(index);
@@ -173,8 +174,11 @@ controller.attrWidgetList.length==1 ? {
                             color: Colors.blueAccent,
                             textColor: Colors.blueAccent,
                             onPressed: () {
-                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.myController.text);
-                              },
+              //                controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.myController.text);
+                              controller.addAttribWidget(AttrModel(controller.dataAttribute, "ميزة1"),controller.myController.text);
+                              controller.textEditingController.add(TextEditingController(text: controller.myController.text));
+
+                            },
 
                           ),
                         ),

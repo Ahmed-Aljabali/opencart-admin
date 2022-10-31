@@ -11,7 +11,6 @@ class CheckBoxContainer extends StatelessWidget {
 
   final WizardController controller;
   final int index;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,8 +21,7 @@ class CheckBoxContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                  child: CheckBoxRequiredOptionPicker(
-                     index: index)),
+                  child: CheckBoxRequiredOptionPicker(index: index)),
               const SizedBox(
                 width: 2,
               ),
@@ -75,10 +73,7 @@ class CheckBoxContainer extends StatelessWidget {
                                 InkWell(
                                   child: const Icon(Icons.edit),
                                   onTap: () {
-                                    controller.removeCheckBoxModel(
-                                        element.index, index);
-                                    print(element.index);
-                                    print(index);
+                                    controller.removeCheckBoxModel(element.index, index);
                                   },
                                 ),
                               ),
@@ -159,45 +154,3 @@ class CheckBoxContainer extends StatelessWidget {
     );
   }
 }
-
-/*
-Expanded(
-child: Card(
-
-margin: EdgeInsets.only(right:39),
-child: Row(
-children: [
-
-
-
-Expanded(
-child: DropdownButton<String>(
-alignment : AlignmentDirectional.bottomCenter,
-underline: Container(width:MediaQuery.of(context).size.width,color:Colors.transparent),
-disabledHint:Text('required'),
-hint: const Text("Required"),
-value: controller.selectedCheckBoxChooseOption.value,
-onChanged:(v) {
-controller.selectedCheckBoxChooseOption.value = v.toString() ;
-
-
-// print(v);
-},
-items:controller.optioncheckchoose.
-map<DropdownMenuItem<String>>((String value) {
-return   DropdownMenuItem<String>(
-
-value: value,
-child: Text(value),
-);
-}).toList(),
-),
-),
-Container(
-
-
-child:    Text("قابل للضريبة"),),
-],
-),
-),
-),*/ // the expanded

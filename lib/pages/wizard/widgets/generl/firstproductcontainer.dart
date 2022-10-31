@@ -10,7 +10,6 @@ import '../../../../model/porducts/product.dart';
 class FirstProductContainer extends GetView<WizardController> {
 
 
-
   @override
   Widget build(BuildContext context) {
     return Obx(() => ExpansionPanelList(
@@ -36,7 +35,8 @@ class FirstProductContainer extends GetView<WizardController> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    MyTextFieldWidget(hintText:  "اسم المنتج", onChanged:(value)=>controller.productDescription.name=value,),
+                    MyTextFieldWidget(hintText:"اسم المنتج" ,onChanged: (value)=>controller.productDescription.name=value,),
+
                     const SizedBox(
                       height: 10,
                     ),

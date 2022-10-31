@@ -17,12 +17,20 @@ import '../../../../model/porducts/product.dart';
 
 class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
 
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    controller.initManufacturers();
+    controller.initCategory();
+    controller.initStores();
 
+    return super.createElement();
+  }
   @override
   Widget build(BuildContext context) {
-    var prodController =Get.put(ProductController());
 
     return Obx(() => ExpansionPanelList(
+
         expansionCallback: (panelIndex, isExpanded) {
           controller.linkeproduct1[panelIndex].isExpanded!.value = !isExpanded;
         },
@@ -64,37 +72,32 @@ class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
                                         blurRadius: 3) //blur radius of shadow
                                   ]
                               ),
-                              child: Center(
-                                child:FutureBuilder<List<Manufacturers>>(
-                                  future:controller.initManufacturers(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      var data = snapshot.data!.obs.value;
-                                      return DropdownButton<Manufacturers>(
-                                        hint:  const Text("الشركات المصنعه"),
-                                        //value:controller.selectedManufacturers.value,
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        items:data.
-                                        map<DropdownMenuItem<Manufacturers>>((Manufacturers value) {
-                                          return   DropdownMenuItem<Manufacturers>(
-                                            enabled: true,
-                                            value: value,
-                                            child: Text(value.name!),
-                                          );
-                                        }).toList(),
-                                        onChanged:(v) {
-                                                controller.manufacturersId.value = v?.manufacturerId;
-
-                                                },
-
-                                    );
-                                    }
-                                    else {
-                                      return const CircularProgressIndicator();
-                                    }
+                             child: Center(
+                              child: controller.isDataLoading.value==false?
+                              CircularProgressIndicator():
+                              Center(
+                                child: DropdownButton<Manufacturers?>(
+                                  alignment: AlignmentDirectional.bottomCenter,
+                                  underline: Container(color: Colors.transparent),
+                                  hint:  const Text("الشركات "),
+                                  value:controller.selectedManufacturers.value,
+                                  onChanged: (v) {
+                                    controller.selectedManufacturers.value=v;
+                                //   controller.manufacturersId.value = v?.manufacturerId;
+                                   controller.prod.manufacturerId=v!.manufacturerId;
                                   },
-                                )
-                              )
+                                  items: controller.manuf
+                                      .map<DropdownMenuItem<Manufacturers?>>(
+                                          (Manufacturers? value) {
+                                        return DropdownMenuItem<Manufacturers?>(
+                                          value: value,
+                                          child: Text(value!.name.toString()),
+                                        );
+                                      }).toList(),
+                                ),
+                              ),
+                            )
+
                           )
 
                         ),
@@ -121,36 +124,28 @@ class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
                                         blurRadius: 3) //blur radius of shadow
                                   ]
                               ),
-                              child:Center(
-                                child:FutureBuilder<List<Categories>>(
-                                  future:controller.initCategory(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      var data = snapshot.data!.obs.value;
-                                      return DropdownButton<Categories>(
-                                        hint:  const Text("الفئات"),
-                                       value:controller.selectedCategories.value,
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        items:data.
-                                        map<DropdownMenuItem<Categories>>((Categories value) {
-                                          return   DropdownMenuItem<Categories>(
-                                            enabled: true,
+                              child: Center(
+                                child: controller.isDataLoading.value==false?
+                                CircularProgressIndicator():
+                                Center(
+                                  child: DropdownButton<Categories>(
+                                    alignment: AlignmentDirectional.bottomCenter,
+                                    underline: Container(color: Colors.transparent),
+                                    hint:  const Text("الفئات"),
+                                    value:controller.selectedCategories.value,
+                                    onChanged: (v) {
+                                      controller.selectedCategories.value=v;
+                                      controller.categorieId.value = v?.categoryId;
+                                    },
+                                    items: controller.dataCategory
+                                        .map<DropdownMenuItem<Categories>>(
+                                            (Categories value) {
+                                          return DropdownMenuItem<Categories>(
                                             value: value,
-                                            child: Text(value.name!),
+                                            child: Text(value.name.toString()),
                                           );
                                         }).toList(),
-
-                                        onChanged:(v) {
-
-                                          controller.categorieId.value=v?.categoryId;
-
-                                        },
-                                      );
-                                    }
-                                    else {
-                                      return const CircularProgressIndicator();
-                                    }
-                                  },
+                                  ),
                                 ),
                               )
                           ),
@@ -180,34 +175,28 @@ class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
                                         blurRadius: 3) //blur radius of shadow
                                   ]
                               ),
-                              child:Center(
-                                child:FutureBuilder<List<Stores>>(
-                                  future:controller.initStores(),
-                                  builder: (context, snapshot) {
-                                    if (snapshot.hasData) {
-                                      var data = snapshot.data!.obs.value;
-                                      return DropdownButton<Stores>(
-                                        hint:  const Text("المتاجر"),
-                                        value:controller.selectedStores.value,
-                                        icon: const Icon(Icons.keyboard_arrow_down),
-                                        items:data.
-                                        map<DropdownMenuItem<Stores>>((Stores value) {
-                                          return   DropdownMenuItem<Stores>(
-                                            enabled: true,
+                              child: Center(
+                                child: controller.isDataLoading.value==false?
+                                CircularProgressIndicator():
+                                Center(
+                                  child: DropdownButton<Stores>(
+                                    alignment: AlignmentDirectional.bottomCenter,
+                                    underline: Container(color: Colors.transparent),
+                                    hint:  const Text("المتاجر"),
+                                    value:controller.selectedStores.value,
+                                    onChanged: (v) {
+                                      controller.selectedStores.value=v;
+                                      controller.storesId.value = v?.storeId;
+                                    },
+                                    items: controller.dataStores
+                                        .map<DropdownMenuItem<Stores>>(
+                                            (Stores value) {
+                                          return DropdownMenuItem<Stores>(
                                             value: value,
-                                            child: Text(value.name!),
+                                            child: Text(value.name.toString()),
                                           );
                                         }).toList(),
-
-                                        onChanged:(v) {
-                                          controller.storesId.value=v?.storeId;
-                                        },
-                                      );
-                                    }
-                                    else {
-                                      return const CircularProgressIndicator();
-                                    }
-                                  },
+                                  ),
                                 ),
                               )
                           ),
@@ -241,12 +230,12 @@ class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
                               child:Center(
                                 child: DropdownButton<Products>(
                                   hint:  const Text("منتجات ذات صلة"),
-                               //   value:controller.selectProd.value,
-
+                                 value:controller.selectProd.value,
                                   onChanged:(v) {
-                                    controller.selectedrelatedProdOptions.value = v!.id.toString();
+                                    controller.selectProd.value=v;
+                                    controller.selectedrelatedProdOptions.value = v!.id;
                                     },
-                                  items:prodController.dataProduct.
+                                  items:controller.dataProduct.
                                   map<DropdownMenuItem<Products>>((Products value) {
                                     return   DropdownMenuItem<Products>(
                                       enabled: true,
@@ -260,25 +249,10 @@ class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
                         ),
                       ),
                     ),
-
-                  /*  Container(
-                      constraints: BoxConstraints(maxWidth: 250),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-
-                          Text('Choose One Item With Done Button',style:  TextStyle(fontSize: 14,color: Colors.black)),
-
-
-                        ],
-                      ),
-                    ),*/// addition
-
                   ],
                 ),
               ),
-              isExpanded: item.isExpanded!.value);
+              isExpanded:item.isExpanded!.value);
         }).toList()));
   }
 }

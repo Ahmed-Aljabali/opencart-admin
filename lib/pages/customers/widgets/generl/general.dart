@@ -21,7 +21,6 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
   @override
   Widget build(BuildContext context) {
 
-
     return Obx(() => Column(
       children: [
         ExpansionPanelList(
@@ -66,37 +65,39 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
                                               blurRadius: 3) //blur radius of shadow
                                         ]
                                     ),
-                                    child: Center(
-                                        child:FutureBuilder<List<Manufacturers>>(
-                                          future:ProductController().initManufacturers(),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.hasData) {
-                                              var data = snapshot.data!.obs;
-                                              return DropdownButton<Manufacturers>(
-                                                hint:  const Text("حدد  العميل"),
-                                                // value:controller.selectedManufacturers.value,
-                                                icon: const Icon(Icons.keyboard_arrow_down),
-                                                items:data.
-                                                map<DropdownMenuItem<Manufacturers>>((Manufacturers value) {
-                                                  return   DropdownMenuItem<Manufacturers>(
-                                                    enabled: true,
-                                                    value: value,
-                                                    child: Text(value.name!),
-                                                  );
-                                                }).toList(),
-                                                onChanged:(v) {
-                                                  WizardController().manufacturersId.value = v?.manufacturerId;
-
-                                                },
-
-                                              );
-                                            }
-                                            else {
-                                              return const CircularProgressIndicator();
-                                            }
-                                          },
-                                        )
-                                    ))
+                                    child: Text("sasa")
+                                ),
+                                    // child: Center(
+                                    //     child:FutureBuilder<List<Manufacturers>>(
+                                    //       future:ProductController().initManufacturers(),
+                                    //       builder: (context, snapshot) {
+                                    //         if (snapshot.hasData) {
+                                    //           var data = snapshot.data!.obs;
+                                    //           return DropdownButton<Manufacturers>(
+                                    //             hint:  const Text("حدد  العميل"),
+                                    //             // value:controller.selectedManufacturers.value,
+                                    //             icon: const Icon(Icons.keyboard_arrow_down),
+                                    //             items:data.
+                                    //             map<DropdownMenuItem<Manufacturers>>((Manufacturers value) {
+                                    //               return   DropdownMenuItem<Manufacturers>(
+                                    //                 enabled: true,
+                                    //                 value: value,
+                                    //                 child: Text(value.name!),
+                                    //               );
+                                    //             }).toList(),
+                                    //             onChanged:(v) {
+                                    //               WizardController().manufacturersId.value = v?.manufacturerId;
+                                    //
+                                    //             },
+                                    //
+                                    //           );
+                                    //         }
+                                    //         else {
+                                    //           return const CircularProgressIndicator();
+                                    //         }
+                                    //       },
+                                    //     )
+                                    // ))
 
                             ),
                           ),
@@ -120,38 +121,39 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
                                             blurRadius: 3) //blur radius of shadow
                                       ]
                                   ),
-                                  child:Center(
-                                    child:FutureBuilder<List<Categories>>(
-                                      future:ProductController().initCategory(),
-                                      builder: (context, snapshot) {
-                                        if (snapshot.hasData) {
-                                          var data = snapshot.data!.obs;
-                                          return DropdownButton<Categories>(
-                                            hint:  const Text("مجموعة العميل"),
-                                            value:WizardController().selectedCategories.value,
-                                            icon: const Icon(Icons.keyboard_arrow_down),
-                                            items:data.
-                                            map<DropdownMenuItem<Categories>>((Categories value) {
-                                              return   DropdownMenuItem<Categories>(
-                                                enabled: true,
-                                                value: value,
-                                                child: Text(value.name!),
-                                              );
-                                            }).toList(),
-
-                                            onChanged:(v) {
-
-                                              WizardController().categorieId.value=v?.categoryId;
-
-                                            },
-                                          );
-                                        }
-                                        else {
-                                          return const CircularProgressIndicator();
-                                        }
-                                      },
-                                    ),
-                                  )
+                                  child: Text("6520"),
+                                  // child:Center(
+                                  //   child:FutureBuilder<List<Categories>>(
+                                  //     future:ProductController().initCategory(),
+                                  //     builder: (context, snapshot) {
+                                  //       if (snapshot.hasData) {
+                                  //         var data = snapshot.data!.obs;
+                                  //         return DropdownButton<Categories>(
+                                  //           hint:  const Text("مجموعة العميل"),
+                                  //           value:WizardController().selectedCategories.value,
+                                  //           icon: const Icon(Icons.keyboard_arrow_down),
+                                  //           items:data.
+                                  //           map<DropdownMenuItem<Categories>>((Categories value) {
+                                  //             return   DropdownMenuItem<Categories>(
+                                  //               enabled: true,
+                                  //               value: value,
+                                  //               child: Text(value.name!),
+                                  //             );
+                                  //           }).toList(),
+                                  //
+                                  //           onChanged:(v) {
+                                  //
+                                  //             WizardController().categorieId.value=v?.categoryId;
+                                  //
+                                  //           },
+                                  //         );
+                                  //       }
+                                  //       else {
+                                  //         return const CircularProgressIndicator();
+                                  //       }
+                                  //     },
+                                  //   ),
+                                  // )
                               ),
                             ),
                           ),

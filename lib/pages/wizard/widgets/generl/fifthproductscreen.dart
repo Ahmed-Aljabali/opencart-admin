@@ -5,13 +5,25 @@ import 'package:get/get.dart';
 import 'package:opencart/core/constrants/widgetconstrant.dart';
 
 
+import '../../../../controllers/system_info_controller.dart';
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../model/ProductData.dart';
+import '../../../../model/system_info/init_system.dart';
 import 'fothproductcontainer.dart';
 
 
 class FifhProductScreen extends GetView<WizardController> {
 
+  var initSystem=Get.put(SystemINfoController());
+
+
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    initSystem.fetchInitSystem();
+
+    return super.createElement();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() =>
@@ -74,20 +86,33 @@ class FifhProductScreen extends GetView<WizardController> {
                                         blurRadius: 3) //blur radius of shadow
                                   ]
                               ),
-                              child:Center(
-                                child: DropdownButton<String>(
-                                  hint:  const Text("وحدة القياس"),
-                                  value: controller.selectedunintOptions.value,
-                                  onChanged:(v) {
-                                    controller.selectedunintOptions.value = v!;},
-                                  items:controller.unintOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                child:
+
+                                initSystem.isDataLoading.value==false?
+                                CircularProgressIndicator():
+                                Center(
+                                  child: DropdownButton<LengthClasses?>(
+                                    alignment: AlignmentDirectional.bottomCenter,
+                                    underline: Container(color: Colors.transparent),
+                                    hint: const Text("فئة الطول"),
+                                    value: initSystem.selectLength.value,
+                                    onChanged: (v) {
+                                      print(v);
+                                      initSystem.selectLength.value=v;
+                                      controller.prod.lengthClassId=v!.lengthClassId;
+                                      initSystem.update();
+                                    },
+                                    items: initSystem.lengthClasses
+                                        .map<DropdownMenuItem<LengthClasses?>>(
+                                            (LengthClasses? value) {
+                                          return DropdownMenuItem<LengthClasses>(
+                                            value: value,
+                                            child: Text(value!.title),
+                                          );
+                                        }).toList(),
+                                  ),
                                 ),
                               )
                           ),
@@ -122,19 +147,22 @@ class FifhProductScreen extends GetView<WizardController> {
                                   ]
                               ),
                               child:Center(
-                                child: DropdownButton<String>(
+                                child:
+                                initSystem.isDataLoading.value==false?
+                                CircularProgressIndicator():
+                                DropdownButton<WeightClasses>(
                                   hint:  const Text("فئة الوزن"),
-                                  value: controller.selectedweightOptions.value,
+                                  value: initSystem.selectWeight.value,
                                   onChanged:(v) {
-                                    controller.selectedweightOptions.value = v!;
-                                    controller.prod.weightClassId=v;
+                                    initSystem.selectWeight.value=v;
+                                    controller.prod.weightClassId=v!.weightClassId;
                                     },
-                                  items:controller.weightOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
+                                  items:initSystem.weightClass.
+                                  map<DropdownMenuItem<WeightClasses>>((WeightClasses value) {
+                                    return   DropdownMenuItem<WeightClasses>(
                                       enabled: true,
                                       value: value,
-                                      child: Text(value),
+                                      child: Text(value.title.toString()),
                                     );
                                   }).toList(),
                                 ),
