@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
-
 import 'package:opencart/pages/customers/customer_page.dart';
 import 'package:opencart/pages/dashboard/dashboard_binding.dart';
 import 'package:opencart/pages/loginpage/loginpage.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:opencart/presentation/customers/add_customer.dart';
-
 import 'package:opencart/presentation/orders/add_order.dart';
-
-
 import 'package:opencart/presentation/products/add_prodcts.dart';
 import 'package:opencart/presentation/products/product.dart';
 import 'package:opencart/presentation/products/update_product.dart';

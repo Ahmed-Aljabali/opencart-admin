@@ -133,7 +133,6 @@ class WizardController extends ProductController {
   RxInt currentOptionCheckIndex = 0.obs;
 
   var isselectedCheckBoxOption = Rxn<String>();
-
   var isSelectedDeliveryDateOption = Rxn<String>();
   var isSelectedTimeDateOption = Rxn<String>();
   var selectedCheckBoxTaxOption = Rxn<String>();
@@ -143,12 +142,10 @@ class WizardController extends ProductController {
   var selectedCheckBoxPriceChooseOption = Rxn<String>();
   var checkBoxPointsChooseOption = Rxn<String>();
   var checkBoxWeightChooseOption = Rxn<String>();
-
   dynamic checkBoxQty = 0;
   dynamic checkBoxPrice = 50.0;
   dynamic checkboxpoint = 0;
   dynamic checkboxweight = 10.0;
-
   dynamic firstDiscountQty = 0;
   dynamic firstDiscountPrice;
   dynamic secondDiscountPrice;

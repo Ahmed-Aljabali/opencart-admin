@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../core/utils/utilities.dart';
 import '../main.dart';
 import '../model/ProductData.dart';
 import '../model/addproductmodel.dart';
-import '../model/checkbox_data.dart';
+
 
 class BaseController extends GetxController{
 

@@ -31,7 +31,6 @@ final color ;
         child:Center(
             child: TextField(
               obscureText: obscureText,
-
               readOnly: readOnly,
               //controller:  controller.controllers.value,
               onChanged: (dynamic value){onChanged(value);},
