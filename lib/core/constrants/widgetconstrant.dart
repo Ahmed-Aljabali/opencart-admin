@@ -30,6 +30,7 @@ final color ;
           ),
         child:Center(
             child: TextField(
+
               obscureText: obscureText,
 
               readOnly: readOnly,
@@ -74,7 +75,6 @@ class DynamicTextFieldWidget extends StatelessWidget {
     return  SizedBox(
      // height: height,
       child: TextFormField(
-
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,

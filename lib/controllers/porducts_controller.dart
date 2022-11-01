@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:opencart/Interface/Iproduct.dart';
 import 'package:opencart/controllers/BaseController.dart';
@@ -47,7 +46,6 @@ class  ProductController extends BaseController implements IProduct {
 
  Future<List<Attribute>> initAttribute()async {
     var res = await get("attributes/limit/10/page/1");
-
     if (res.statusCode == 200) {
       _dataAttribute=  AttributeData.fromJson(jsonDecode(res.body)).data;
     }
@@ -65,7 +63,6 @@ class  ProductController extends BaseController implements IProduct {
   }
 
   initStores()async {
-
     var res = await get("stores");
     if (res.statusCode == 200) {
       dataStores.value=StoresData.fromJson(jsonDecode(res.body)).data!;
@@ -77,8 +74,16 @@ class  ProductController extends BaseController implements IProduct {
   }
 
    initCategory()async {
-
     var res = await get("categories/extended/limit/10/page/1");
+    if (res.statusCode == 200) {
+      dataCategory.value=  CategoryData.fromJson(jsonDecode(res.body)).data!;
+    }
+
+    isDataLoading(true);
+    update();
+  }
+  initFilter()async {
+    var res = await get("product_filters/filters/limit/10/page/1");
     if (res.statusCode == 200) {
       dataCategory.value=  CategoryData.fromJson(jsonDecode(res.body)).data!;
     }
@@ -89,12 +94,12 @@ class  ProductController extends BaseController implements IProduct {
 
   @override
   Future<String?> addProduct(Products product)async{
-   print(product.toJson());
     var res= await post(product,"products");
-      print(res.body);
+    var decodedResponse = jsonDecode(utf8.decode(res.bodyBytes)) as Map;
 
-    if (res.statusCode==400) {
-      msg="successfully saved";
+    if (res.statusCode==200 && decodedResponse["success"]==1) {
+      msg="تم الحفظ بنجاح";
+      isDataLoading(true);
       update();
     }
     return msg;
@@ -104,6 +109,7 @@ class  ProductController extends BaseController implements IProduct {
    deleteProduct(int id)async{
     var res = await delete("products", id);
     if (res.statusCode == 200) {
+
       msg = "تم الحذف بنجاح";
       update();
     }

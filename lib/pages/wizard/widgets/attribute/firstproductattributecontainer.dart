@@ -1,21 +1,22 @@
 import 'dart:ui';
-
-
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:opencart/model/attr_model.dart';
-
 import '../../../../controllers/wizard_controller.dart';
-import '../../../../core/constrants/text_constrants.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
+import '../../../../model/porducts/attribute.dart';
 
 
 
 class FirstProductAttributeContainer extends GetView<WizardController> {
+
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    controller.initAttribute();
+    return super.createElement();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,17 +111,19 @@ class FirstProductAttributeContainer extends GetView<WizardController> {
 
 
                                                     child: Center(
-                                                      child: DropdownButton<String>(
+                                                      child: DropdownButton<Attribute>(
                                                         hint:  const Text("الميزة"),
-                                                        value: controller.attrWidgetList[index].attrSelected,
+                                                        value: controller.dataAttribute[index],
                                                         onChanged:(v) {
-                                                          controller.attrWidgetList[index].attrSelected = v!;},
-                                                        items:controller.attrWidgetList[index].attrList.
-                                    map<DropdownMenuItem<String>>((String value) {
-                                                          return   DropdownMenuItem<String>(
+                                                         controller.dataAttribute[index].name = v!.name;
+                                                          controller.attrWidgetList[index].attrSelected = v;
+                                                          },
+                                                        items:controller.dataAttribute.
+                                                        map<DropdownMenuItem<Attribute>>((Attribute value) {
+                                                          return   DropdownMenuItem<Attribute>(
                                                             enabled: true,
                                                             value: value,
-                                                            child: Text(value),
+                                                            child: Text(value.name!),
                                                           );
                                                         }).toList(),
                                                       ),
@@ -174,10 +177,8 @@ class FirstProductAttributeContainer extends GetView<WizardController> {
                             color: Colors.blueAccent,
                             textColor: Colors.blueAccent,
                             onPressed: () {
-              //                controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], "ميزة1"),controller.myController.text);
-                              controller.addAttribWidget(AttrModel(controller.dataAttribute, "ميزة1"),controller.myController.text);
+                              controller.addAttribWidget(AttrModel(["ميزة1", "ميزة2", "ميزة3"], Attribute()),controller.myController.text);
                               controller.textEditingController.add(TextEditingController(text: controller.myController.text));
-
                             },
 
                           ),

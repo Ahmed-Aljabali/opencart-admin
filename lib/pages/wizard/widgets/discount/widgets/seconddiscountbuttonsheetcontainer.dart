@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:opencart/model/cutomers/group_customer.dart';
 
 
@@ -7,16 +8,17 @@ import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../controllers/group_customer_controller.dart';
 import '../../../../../model/discount.dart';
+import '../../../../../presentation/Widgets/dateWidgets.dart';
 
 class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
   const SecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
 
-
   @override
   Widget build(BuildContext context)  {
     DiscountDataModel discountDataModel;
-    return Obx(() {
+    final CustomerGroup =Get.put(GroupCustomerController());
+
       return SizedBox(
 
           height: MediaQuery.of(context).size.height * 0.7,
@@ -64,26 +66,48 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
       width: 10,
       ),
 
-      Container(
-      padding: const EdgeInsets.only(right: 10),
-      child: Expanded(
-      child: DecoratedBox(
-      decoration: BoxDecoration(
-      color: Colors.white60,
-      //background color of dropdown button
-      border:
-      Border.all(color: Colors.black38, width: 0.5),
-      borderRadius: BorderRadius.circular(10),
-      boxShadow: <BoxShadow>[
-      const  BoxShadow(
-      color: const Color.fromRGBO(0, 0, 0, 0.1),
-      //shadow for button
-      blurRadius: 3)
-      //blur radius of shadow
-      ]),
-      child: Text("Sa")),
-      ),
-      ),
+        Container(
+          padding: const EdgeInsets.only(right: 10),
+          child: Expanded(
+            child: DecoratedBox(
+                decoration: BoxDecoration(
+                    color: Colors.white60,
+                    //background color of dropdown button
+                    border:
+                    Border.all(color: Colors.black38, width: 0.5),
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: <BoxShadow>[
+                      const  BoxShadow(
+                          color: const Color.fromRGBO(0, 0, 0, 0.1),
+                          //shadow for button
+                          blurRadius: 3)
+                      //blur radius of shadow
+                    ]),
+                child: Container(
+                  alignment: Alignment.centerRight,
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: Center(
+                    child: DropdownButton<GroupCustomer>(
+                      alignment: AlignmentDirectional.bottomCenter,
+                      underline: Container(color: Colors.transparent),
+                      hint: const Text("مجموعة العملاء"),
+                      value: controller.secondSelectedDiscountGroupCustomer.value,
+                      onChanged: (v) {
+                        controller.secondSelectedDiscountGroupCustomer.value = v;
+                      },
+                      items: CustomerGroup.itemsList.value
+                          .map<DropdownMenuItem<GroupCustomer>>(
+                              (GroupCustomer value) {
+                            return DropdownMenuItem<GroupCustomer>(
+                              value: value,
+                              child: Text(value.name.toString()),
+                            );
+                          }).toList(),
+                    ),
+                  ),
+                )),
+          ),
+        ),
       ],
       ),
       ),
@@ -134,38 +158,109 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
       width: 10,
       ),
 
-      Expanded(
-      child: MyTextFieldWidget(
+        Expanded(
+            child: Column(
+              children: [
+                const Text("تاريخ البدء"),
+                dateTime(controller.dateStartDisCountController),
 
-      hintText:"تاريخ البدء",
-      onChanged: (value) {
-      print(value);
+                // TextField(
+                //   controller:controller.dateStartDisCountController,
+                //   onTap: () {
+                //     controller.chooseGenerlDate();
+                //     controller.dateStartDisCountController.text = "${controller.selectedDate.value.year}-${controller.selectedDate.value.month}-${controller.selectedDate.value.day}";
+                //
+                //   },
+                //   textAlign: TextAlign.center,
+                //   readOnly: true,
+                //   decoration: InputDecoration(
+                //     fillColor:Colors.white60, //background color of dropdown button
+                //
+                //     prefixIcon: const Icon(
+                //       Icons.date_range_rounded,
+                //       color: Colors.blueAccent,
+                //     ),
+                //     hintText: DateFormat("dd-MM-yyyy")
+                //         .format(controller.selectedDate.value)
+                //         .toString(),
+                //     hintStyle: const TextStyle(
+                //       fontSize: 12,
+                //     ),
+                //     contentPadding: const EdgeInsets.symmetric(
+                //         vertical: 10.0, horizontal: 40.0),
+                //     border: const OutlineInputBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(5)),
+                //     ),
+                //     enabledBorder: const OutlineInputBorder(
+                //       borderSide:
+                //       BorderSide(color: Colors.grey, width: 0.5),
+                //       borderRadius:
+                //       BorderRadius.all(Radius.circular(5.0)),
+                //     ),
+                //     focusedBorder: const OutlineInputBorder(
+                //       borderSide:
+                //       BorderSide(color: Colors.grey, width: 2.0),
+                //       borderRadius:
+                //       BorderRadius.all(Radius.circular(32.0)),
+                //     ),
+                //   ),
+                // ),
 
-      controller.startDate2 =value;
-      },
-      )),
+              ],
+            )),
       const SizedBox(
       width: 10,
       ),
-      /* Expanded(
 
-                  child: Card(
+        Expanded(
+            child: Column(
+              children: [
+                const Text("تاريخ الانتهاء"),
+                dateTime(controller.dateEndDisCountController),
 
-                    margin: EdgeInsets.only(right:39),
-                    child:
-                  ),
-                ),*/
-      Expanded(
-      child: MyTextFieldWidget(
+                // TextField(
+                //   controller:controller.dateEndDisCountController ,
+                //   onTap: () {
+                //     controller.chooseGenerlDate();
+                //     controller.dateEndDisCountController.text = "${controller.selectedDate.value.year}-${controller.selectedDate.value.month}-${controller.selectedDate.value.day}";
+                //
+                //   },
+                //   textAlign: TextAlign.center,
+                //   readOnly: true,
+                //   decoration: InputDecoration(
+                //     fillColor:Colors.white60, //background color of dropdown button
+                //     prefixIcon: const Icon(
+                //       Icons.date_range_rounded,
+                //       color: Colors.blueAccent,
+                //     ),
+                //     hintText: DateFormat("dd-MM-yyyy")
+                //         .format(controller.selectedDate.value)
+                //         .toString(),
+                //     hintStyle: const TextStyle(
+                //       fontSize: 12,
+                //     ),
+                //     contentPadding: const EdgeInsets.symmetric(
+                //         vertical: 10.0, horizontal: 40.0),
+                //     border: const OutlineInputBorder(
+                //       borderRadius: BorderRadius.all(Radius.circular(5)),
+                //     ),
+                //     enabledBorder: const OutlineInputBorder(
+                //       borderSide:
+                //       BorderSide(color: Colors.grey, width: 0.5),
+                //       borderRadius:
+                //       BorderRadius.all(Radius.circular(5.0)),
+                //     ),
+                //     focusedBorder: const OutlineInputBorder(
+                //       borderSide:
+                //       BorderSide(color: Colors.grey, width: 2.0),
+                //       borderRadius:
+                //       BorderRadius.all(Radius.circular(32.0)),
+                //     ),
+                //   ),
+                // ),
 
-
-      hintText:"تاريخ الانتهاء",
-      onChanged: (value) {
-
-      controller.endDate2 =value;
-      controller.endDate2.value =value;
-      },
-      )),
+              ],
+            )),
       ],
       ),
       ),
@@ -222,7 +317,6 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
       ],
       ),
       );
-      });
+
     }
         }
-//my idiea is to clone this class and try to use the index somehow to get into a
