@@ -27,10 +27,6 @@ class BaseController extends GetxController{
   var selectedLanguageAddProduct= Rxn<String>();
   List<String> currencyAddProductList = ["ريال", "دولار"];
   var selectedCurrenctAddProduct= Rxn<String>();
-  List<String>shippingAddProductList = ["طريقة1 ", "طريقة2"];
-  var selectedShippingAddProduct= Rxn<String>();
-  List<String>payMethodAddProductList = ["نقد ", "حوالة مالية" , " شيك ", " عند الاستلام"];
-  var selectedpayMethodAddProduct= Rxn<String>();
   var selectedClintOptions = Rxn<String>();
   late List<Product> salesExpansionTitle2;
   late List<Product> salesExpansionTitle1;

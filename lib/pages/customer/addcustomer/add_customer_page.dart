@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import 'package:opencart/Controllers/customer_controller.dart';
 import 'package:opencart/controllers/wizard_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import 'package:opencart/pages/customers/widgets/adresses/adress.dart';
-import '../wizard/widgets/custom_stepper.dart';
+import 'package:opencart/pages/customer/addcustomer/widgets/adresses/adress.dart';
+
+import '../../wizard/widgets/custom_stepper.dart';
+
 import 'widgets/generl/general.dart';
 
-class CustomerPage extends GetView<CustomerController> {
-  const CustomerPage({Key? key}) : super(key: key);
+class AddCustomerPage extends GetView<CustomerController> {
+  const AddCustomerPage({Key? key}) : super(key: key);
 
 
   @override

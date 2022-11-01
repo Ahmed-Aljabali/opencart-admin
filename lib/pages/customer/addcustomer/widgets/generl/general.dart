@@ -7,13 +7,10 @@ import 'package:opencart/controllers/porducts_controller.dart';
 import 'package:opencart/controllers/wizard_controller.dart';
 import 'package:opencart/core/constrants/widgetconstrant.dart';
 
+import '../../../../../Controllers/customer_controller.dart';
+import '../../../../../model/ProductData.dart';
 
-import '../../../../Controllers/customer_controller.dart';
-import '../../../../core/utils/math_utils.dart';
-import '../../../../model/ProductData.dart';
-import '../../../../model/porducts/category.dart';
-import '../../../../model/porducts/manufacturers.dart';
-import '../../../orders/pages/sales/widgets/firstsalescontainer/widgets/addclintbottomsheet.dart';
+
 
 
 class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {

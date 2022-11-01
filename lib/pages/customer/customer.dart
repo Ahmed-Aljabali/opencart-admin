@@ -1,19 +1,18 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/controllers/porducts_controller.dart';
-import 'package:opencart/pages/orders/pages/sales/sales.dart';
+import 'package:opencart/pages/customer/widgets/customer_search_form.dart';
+import 'package:opencart/pages/customer/widgets/mycustomerlistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
-
-import '../../Controllers/order_controller.dart';
 import '../../controllers/Init_add_order_controller.dart';
 import '../../core/utils/math_utils.dart';
-import '../../model/orders/add_order.dart';
+import 'addcustomer/add_customer_page.dart';
 
-class OrderPage extends GetView<InitAddOrderController> {
-  const OrderPage({Key? key}) : super(key: key);
+
+
+class CustomerPage extends GetView<InitAddOrderController> {
+  const CustomerPage({Key? key}) : super(key: key);
   @override
   // TODO: implement controller
 
@@ -40,7 +39,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                   padding: EdgeInsets.only(left: 30),
                   child: Center(
                       child: Text(
-                        "اضافة طلب",
+                        "اضافة عميل",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black,fontFamily: 'Cairo Regular',
                           fontWeight: FontWeight.w400,
@@ -49,10 +48,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                       )),
                 ),
               ),
-              Icon(
-                Icons.arrow_forward,
-                color: Colors.black,
-              ),
+
             ],
           ),
           /* leading: Builder(
@@ -190,7 +186,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                         ),
                       )
                     ],
-                  ),
+                  ),//تحديد الكل طريقة عرض القوائم
                   // if (productController.dataProduct.isEmpty||productController.dataProduct.isEmpty)
                   //   const CircularProgressIndicator() else
                   //   controller.orderListTypeGrid.value ? NewGridtrashItemWidget(
@@ -201,10 +197,10 @@ class OrderPage extends GetView<InitAddOrderController> {
                   else
 
                     if (controller.listFilter.obs.value==null)
-                     Expanded(child: MyOrderListViewContainer(order: controller.data))
-                     else
-                     Expanded(child: MyOrderListViewContainer(order: controller.listFilter!),
-                    ),
+                      Expanded(child: MyCustomerListViewContainer(order: controller.data))
+                    else
+                      Expanded(child: MyCustomerListViewContainer(order: controller.listFilter!),
+                      ),
 
 
                 ],
@@ -215,16 +211,13 @@ class OrderPage extends GetView<InitAddOrderController> {
                     ? null
                     : Container(
                   margin: getMargin(top: MediaQuery.of(context).size.height*0.25,bottom: MediaQuery.of(context).size.height*0.1),
-
-
-
                   decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey, //New
-                          blurRadius: 2.0,
-                        )
-                      ] ,
+boxShadow: [
+  BoxShadow(
+    color: Colors.grey, //New
+    blurRadius: 2.0,
+  )
+] ,
                       borderRadius: BorderRadius.circular(30.0),
 
                       color: Colors.white
@@ -268,7 +261,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                         ),
                         const AnimatedSwitcher(
                           duration: Duration(milliseconds: 300),
-                          child: OrderSearchForm(),
+                          child: CustomerSearchForm(),
 
                         ),
                         Container(
@@ -292,7 +285,6 @@ class OrderPage extends GetView<InitAddOrderController> {
                               const SizedBox(
                                 width: 50,
                               ),
-                              // DropdownButtonFormField()
                               MaterialButton(
                                   child: const Text(
                                     'بحث',
@@ -304,10 +296,10 @@ class OrderPage extends GetView<InitAddOrderController> {
                                   height: 60,
                                   color: Colors.green,
                                   onPressed: () {
-                                   controller.filterOrderList();
+                                    controller.filterOrderList();
 
-                                   controller.filterOrder.idOrder==1;
-                                   controller.searchFormVisible.value = false;
+                                    controller.filterOrder.idOrder==1;
+                                    controller.searchFormVisible.value = false;
                                   })
                             ],
                           ),
@@ -332,9 +324,9 @@ class OrderPage extends GetView<InitAddOrderController> {
             backgroundColor: Colors.green,
             onPressed: () {
 
-              Get.to(Sales());
+              Get.to(AddCustomerPage());
             },
-            tooltip: 'add a new product',
+            tooltip: 'add a new customer',
             highlightElevation: 1,
 
             child:   Container(

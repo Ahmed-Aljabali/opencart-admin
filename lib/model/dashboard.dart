@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../controllers/dashboard_controller.dart';
 import '../navigation/custom_animated_bottom_bar.dart';
-
-import '../pages/customers/customer_page.dart';
-import '../pages/home/home_page.dart';
+import '../pages/customer/customer.dart';
 import '../pages/mainproductpage/productpage.dart';
 import '../pages/orders/orders_page.dart';
-import '../pages/users/user_page.dart';
+
 
 class MyDashBoard extends StatefulWidget {
   const MyDashBoard({Key? key}) : super(key: key);
@@ -30,7 +27,7 @@ class _MyDashBoardState extends State<MyDashBoard> {
             children: [
             //  UserPage(),
               ProductPage(),
-              CustomerPage(),
+             CustomerPage(),
               OrderPage(),
 
             ],

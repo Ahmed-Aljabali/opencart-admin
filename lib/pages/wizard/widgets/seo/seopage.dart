@@ -77,6 +77,7 @@ class Seo extends GetView<WizardController> {
                               ),
                             ),
                           )),
+
                       const SizedBox(
                         width: 10,
                       ),
@@ -146,6 +147,7 @@ class Seo extends GetView<WizardController> {
                                     ),
                                     child:Center(
                                       child: DropdownButton<String>(
+
                                         alignment: Alignment.center,
                                         hint:  const Text("المتجر"),
                                         value: controller.selectedmarketsSeo.value,

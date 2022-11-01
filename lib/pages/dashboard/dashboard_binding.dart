@@ -19,7 +19,7 @@ class DashBoardBindings extends Bindings {
     Get.lazyPut<HomePageController>(() => HomePageController());
     Get.lazyPut(() => OrderController());
     Get.put( BaseController());
-    Get.lazyPut(() => CustomerController());
+    Get.lazyPut(() => CustomerController(),fenix: true);
     Get.lazyPut(() => SystemINfoController(),fenix: true);
     Get.lazyPut(() => UsersController(),fenix: true);
     Get.lazyPut<ProductController>(() => ProductController());

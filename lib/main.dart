@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
-import 'package:opencart/pages/customers/customer_page.dart';
+import 'package:opencart/pages/customer/addcustomer/add_customer_page.dart';
+
+
 import 'package:opencart/pages/dashboard/dashboard_binding.dart';
 import 'package:opencart/pages/loginpage/loginpage.dart';
 import 'package:http/http.dart' as http;
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/", page: () => const MyDashBoard(), binding: DashBoardBindings(),),
 
         GetPage(name: "/Login", page:()=>AuthThreePage(),binding: DashBoardBindings()),
-        GetPage(name: "/Customer", page:()=>CustomerPage()),
+        GetPage(name: "/Customer", page:()=>AddCustomerPage()),
         GetPage(name: "/AddCustomer", page:()=>const AddCustomer()),
         GetPage(name: "/Product", page:()=>const Product()),
         GetPage(name: "/AddProduct", page:()=>const AddProduct()),
