@@ -4,6 +4,7 @@ import 'package:opencart/model/orders/payment_metho.dart';
 import 'package:opencart/model/orders/shipping_methods.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/comment.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/companyfollow.dart';
+import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/paymentAddressForm.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/thirdsalescontainer/widgets/shippingaddress.dart';
 import '../../../../../../controllers/Init_add_order_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
@@ -12,7 +13,13 @@ import '../../../../../../model/ProductData.dart';
 
 class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
-
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    controller.initPaymentMethod();
+    controller.initShippingMethods();
+    return super.createElement();
+  }
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -559,7 +566,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
                                               child: Padding(
                                                 padding: getPadding(all: 10),
-                                                child:ShippinAddressForm(title: "عنوان الدفع",)
+                                                child:PaymentAddressForm()
                                               ),
                                             );
                                           },
@@ -603,7 +610,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
 
                                       readOnly: true,
-                                      onTap: (){     showModalBottomSheet<TestData>(
+                                      onTap: (){showModalBottomSheet<TestData>(
                                         isScrollControlled: true,
 
                                         shape: const RoundedRectangleBorder(
@@ -616,7 +623,7 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
 
                                             child: Padding(
                                               padding: getPadding(all: 10),
-                                              child: ShippinAddressForm(title: "عنوان الشحن",),
+                                              child: ShippinAddressForm(title: "عنوان ",),
                                             ),
                                           );
                                         },
@@ -680,50 +687,24 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                     3) //blur radius of shadow
                                           ]),
                                       child: Align(
-
-                                          child: FutureBuilder<
-                                              List<ShippingMethods>>(
-                                            future: controller
-                                                .initShippingMethods(),
-                                            builder: (context, snapshot) {
-                                              if (snapshot.hasData) {
-                                                var data =
-                                                    snapshot.data!.obs.value;
-                                                return DropdownButton<
-                                                    ShippingMethods>(
-                                                  hint:
-                                                  const Align(
-                                                    alignment: Alignment.center,
-                                                    child: Text(
-                                                      "طريقة الشحن",
-                                                      style: TextStyle(color: Colors.grey),
-                                                    ),
-                                                  ),
-                                                  //   value:controller.shippingMethods.value,
-                                                  icon: const Icon(Icons
-                                                      .keyboard_arrow_down),
-                                                  items: data.map<
-                                                          DropdownMenuItem<
-                                                              ShippingMethods>>(
-                                                      (ShippingMethods value) {
-                                                    return DropdownMenuItem<
-                                                        ShippingMethods>(
-                                                      enabled: true,
-                                                      value: value,
-                                                      child: Text(value.name!),
-                                                    );
-                                                  }).toList(),
-                                                  onChanged: (v) {
-                                                    controller.shippingMethods.value.code = "flat.flat";
-                                                     controller.shippingMethods.value.title=v!.name;
-                                                    // controller.manufacturersId.value = v?.manufacturerId;
-                                                  },
-                                                );
-                                              } else {
-                                                return const CircularProgressIndicator();
-                                              }
-                                            },
-                                          )),
+                                        child: DropdownButton<ShippingMethods>(
+                                          hint:  const Text("طريقة الشحن"),
+                                          value:controller.selectShippingMethods.value,
+                                          onChanged:(v) {
+                                            controller.selectShippingMethods.value = v!;
+                                            controller.orderShippingMethods.value!.code = "flat.flat";
+                                            controller.orderShippingMethods.value!.title=v.name;
+                                          },
+                                          items:controller.listShippingMethods.
+                                          map<DropdownMenuItem<ShippingMethods>>((ShippingMethods value) {
+                                            return   DropdownMenuItem<ShippingMethods>(
+                                              enabled: true,
+                                              value: value,
+                                              child: Text(value.name!),
+                                            );
+                                          }).toList(),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -758,55 +739,26 @@ class ThirdSalesContainer extends GetView<InitAddOrderController> {
                                                 blurRadius:
                                                     3)
                                           ]),
-                                      child: Expanded(
-                                        child:
-                                            FutureBuilder<List<PaymentMethod>>(
-
-                                          future: controller.initPaymentMethod(),
-                                          builder: (context, snapshot) {
-                                            if (snapshot.hasData) {
-                                              var data = snapshot.data!.obs.value;
-                                              return DropdownButton<PaymentMethod>(
-
-                                                isExpanded: true,
-                                                alignment: Alignment.center,
-                                                hint:   const Align(
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    "طريقة الدفع",
-                                                    style: TextStyle(color: Colors.grey),
-                                                  ),
-                                                ),
-                                            value:   snapshot.data![5],
-                                                //value:controller.selectedManufacturers.value,
-                                                icon: const Icon(
-                                                    Icons.keyboard_arrow_down),
-                                                items: data.map<  DropdownMenuItem<
-                                                            PaymentMethod>>(
-                                                    (PaymentMethod value) {
-                                                  return DropdownMenuItem<
-
-
-                                                      PaymentMethod>(
-                                                    alignment: AlignmentDirectional.center,
-                                                    enabled: true,
-                                                    value: value,
-                                                    child: Text(value.name!),
-                                                  );
-                                                }).toList(),
-                                                onChanged: (v) {
-                                                  controller.paymentMethod.value.code = v!.code;
-                                                  controller.paymentMethod.value
-                                                      .title = v.name;
-
-                                                  // controller.manufacturersId.value = v?.manufacturerId;
-                                                },
+                                   child: Align(
+                                        child: DropdownButton<PaymentMethod>(
+                                              hint:  const Text("طريقة الدفع"),
+                                          value:controller.selectPaymentMethod.value,
+                                              onChanged:(v) {
+                                                controller.selectPaymentMethod.value = v!;
+                                                controller.paymentMethod.value!.code = v.code;
+                                            controller.paymentMethod.value!.title = v.name;
+                                                  },
+                                              items:controller.listPaymentMethod.
+                                              map<DropdownMenuItem<PaymentMethod>>((PaymentMethod value) {
+                                              return   DropdownMenuItem<PaymentMethod>(
+                                              enabled: true,
+                                              value: value,
+                                              child: Text(value.name!),
                                               );
-                                            } else {
-                                              return const CircularProgressIndicator();
-                                            }
-                                          },
-                                        ),
+                                              }).toList(),
+
+                                        )
+
                                       ),
 
                                     ),

@@ -20,26 +20,40 @@ class OrderController extends BaseController implements IOrder {
   dynamic _shippingMethods;
   List<Orders> get data => _trx;
   List<Orders>? get listFilter => _listFilter;
-  List<PaymentMethod> get listPaymentMethod => _paymentMethod;
-  List<ShippingMethods> get listShippingMethods => _shippingMethods;
   RxList<Orders>  listFilte = RxList<Orders>();
+  RxList<ShippingMethods>  listShippingMethods = RxList<ShippingMethods>();
+  RxList<PaymentMethod>  listPaymentMethod = RxList<PaymentMethod>();
   RxBool orderListTypeGrid = false.obs;
+
   var selectedOrderStatuses= Rxn<OrderStatuses>();
   var addOrders = AddOrders().obs;
   var customer =Customer().obs;
-  var paymentMethod =OrderShippingMethod().obs;
-  var shippingMethods =OrderShippingMethod().obs;
-  var shippingPayment =PaymentAddress().obs;
+  var paymentMethod =Rxn<OrderShippingMethod>();
+  var orderShippingMethods =Rxn<OrderShippingMethod>();
+  var shippingMethods =Rxn<ShippingMethods>();
+  var paymentAddress =Rxn<PaymentAddress>();
+  var shippingAddress =Rxn<ShippingAddress>();
   var filterOrder = FilterOrder();
   var productsOrder = ProductsOrder();
   var listProductsOrder = RxList<ProductsOrder>();
+  var selectPaymentMethod = Rxn<PaymentMethod>();
+  var selectShippingMethods = Rxn<ShippingMethods>();
 
-  TextEditingController  lastNameController = TextEditingController();
-  var  firstNameController = TextEditingController();
-  var  addressController = TextEditingController();
-  var  address2Controller = TextEditingController();
-  var  codeZoneController = TextEditingController();
-  var  cityController = TextEditingController();
+
+  var  shippingLastNameController = TextEditingController();
+  var  shippingFirstNameController = TextEditingController();
+  var  shippingAddressController = TextEditingController();
+  var  shippingAddress2Controller = TextEditingController();
+  var  shippingCodeZoneController = TextEditingController();
+  var  shippingCityController = TextEditingController();
+
+
+  var  paymentLastNameController = TextEditingController();
+  var  paymentFirstNameController = TextEditingController();
+  var  paymentAddressController = TextEditingController();
+  var  paymentAddress2Controller = TextEditingController();
+  var  paymentCodeZoneController = TextEditingController();
+  var  paymentCityController = TextEditingController();
 
 
   @override
@@ -56,18 +70,21 @@ class OrderController extends BaseController implements IOrder {
     super.onClose();
   }
 
-  Future<List<PaymentMethod>> initPaymentMethod()async {
+ initPaymentMethod()async {
     var res = await get("paymentmethods");
     if (res.statusCode == 200) {
       _paymentMethod= PaymentMethodData.fromJson(jsonDecode(res.body)).data;
     }
+    listPaymentMethod.value=_paymentMethod;
     return listPaymentMethod;
   }
-  Future<List<ShippingMethods>> initShippingMethods()async {
+  initShippingMethods()async {
     var res = await get("shippingmethods");
     if (res.statusCode == 200) {
       _shippingMethods= ShippingMethodsData.fromJson(jsonDecode(res.body)).data;
     }
+    listShippingMethods.value=_shippingMethods;
+
     return listShippingMethods;
   }
 
@@ -136,14 +153,16 @@ class OrderController extends BaseController implements IOrder {
 
   @override
   addOrder(AddOrders addOrder)async {
+  print(addOrder.toJson());
 
-    isDataLoading(false);
     var res = await post(addOrder,"orderadmin");
+    print(res.body);
     if (res.statusCode== 200) {
       fetchOrder();
       update();
       msg="تم الحفط بنجاح";
     }
   }
+
 
 }

@@ -27,7 +27,6 @@ class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
           Row(
           children: [
           Container(
-
           padding: const EdgeInsets.only(left: 20, top: 10),
           child: InkWell(
               onTap: () {

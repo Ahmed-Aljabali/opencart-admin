@@ -6,10 +6,8 @@ import 'package:opencart/core/utils/math_utils.dart';
 import '../../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../../model/system_info/contries.dart';
 
-class ShippinAddressForm extends GetView<InitAddOrderController> {
-  String title ;
+class PaymentAddressForm extends GetView<InitAddOrderController> {
 
-  ShippinAddressForm({this.title = "عنوان "});
   var systemINfoController =Get.put(SystemINfoController());
 
   @override
@@ -21,7 +19,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
   @override
   Widget build(BuildContext context) {
 
-    return      SizedBox(
+    return  SizedBox(
       height: MediaQuery.of(context).size.height*0.7,
       child: Column(
 
@@ -43,7 +41,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                   child: Container(
                       padding: const EdgeInsets.only(top: 10),
                       child:  Text(
-                        '$title',
+                        'عنوان الدفع',
                         style: TextStyle(color: Colors.grey, fontSize: 22,fontFamily: 'Cairo Regular'),
                         textAlign: TextAlign.center,
                       ))),
@@ -80,23 +78,23 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                             ]
                         ),
                         child:Center(
-                            child: DropdownButton<Countries>(
+                          child: DropdownButton<Countries>(
                             hint:  const Text("اختيار العنوان"),
-                        //    value:systemINfoController.selectCountries.value,
+                            //    value:systemINfoController.selectCountries.value,
                             onChanged:(v) {
                               systemINfoController.selectCountries.value=v;
-                              controller.shippingAddress.value!.countryId=v!.countryId;
+                              controller.paymentAddress.value!.countryId=v!.countryId;
                             },
                             items:systemINfoController.countries.
                             map<DropdownMenuItem<Countries>>((Countries value) {
-                            return   DropdownMenuItem<Countries>(
-                            enabled: true,
-                            value: value,
-                            child: Text(value.name!),
-                            );
+                              return   DropdownMenuItem<Countries>(
+                                enabled: true,
+                                value: value,
+                                child: Text(value.name!),
+                              );
                             }).toList(),
-                            ),
-                            )
+                          ),
+                        )
 
                     ),
                   ),
@@ -117,7 +115,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                   Expanded(
                     child:DynamicTextFieldWidget(
                       hintText: "اللقب",
-                      controller: controller.shippingLastNameController,
+                      controller: controller.paymentLastNameController,
 
                       keyboardType: TextInputType.text,
                       onFieldSubmitted: (String value) {  },
@@ -126,7 +124,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                   ),
                   Expanded(
                     child: DynamicTextFieldWidget(
-                      controller:controller.shippingFirstNameController ,
+                      controller:controller.paymentFirstNameController ,
                       keyboardType: TextInputType.text,
                       hintText: "الاسم الاول",
                       onFieldSubmitted: (val){},
@@ -171,7 +169,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                   Expanded(
 
                     child: DynamicTextFieldWidget(
-                      controller:controller.shippingAddressController,
+                      controller:controller.paymentAddressController,
                       keyboardType: TextInputType.text,
                       hintText: "العنوان 1",
                       onFieldSubmitted: (val){
@@ -196,7 +194,7 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                   Expanded(
 
                     child: DynamicTextFieldWidget(
-                      controller:controller.shippingAddress2Controller ,
+                      controller:controller.paymentAddress2Controller ,
                       keyboardType: TextInputType.text,
                       hintText: "العنوان 2",
                       onFieldSubmitted: (val){
@@ -218,17 +216,17 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
 
                 children: [
                   Expanded(
-                  child: DynamicTextFieldWidget(
-                    controller:controller.shippingCityController ,
-                    keyboardType: TextInputType.text,
-                    hintText: "المدينة",
-                    onFieldSubmitted: (val){
-                    },
+                    child: DynamicTextFieldWidget(
+                      controller:controller.paymentCityController ,
+                      keyboardType: TextInputType.text,
+                      hintText: "المدينة",
+                      onFieldSubmitted: (val){
+                      },
+                    ),
                   ),
-                ),
                   Expanded(
                     child: DynamicTextFieldWidget(
-                      controller:controller.shippingCodeZoneController ,
+                      controller:controller.paymentCodeZoneController ,
                       keyboardType: TextInputType.number,
                       hintText: "الرمز البريدي",
                       onFieldSubmitted: (val){
@@ -253,137 +251,137 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                     child: Container(
                       color: Colors.white,
                       child: DecoratedBox(
-                          decoration: BoxDecoration(
-                              color: Colors
-                                  .white, //background color of dropdown button
-                              border: Border.all(
-                                  color: Colors.black38,
-                                  width:
-                                  1), //border of dropdown button
-                              borderRadius: BorderRadius.circular(
-                                  5), //border raiuds of dropdown button
-                              boxShadow: const <BoxShadow>[
-                                //apply shadow on Dropdown button
-                                BoxShadow(
-                                    color: Color.fromRGBO(
-                                        0,
-                                        0,
-                                        0,
-                                        0.1), //shadow for button
-                                    blurRadius:
-                                    3) //blur radius of shadow
-                              ]),
-                          // child: Align(
-                          //   alignment: Alignment.center,
-                          //   child: DropdownButton<String>(
-                          //     isExpanded: true,
-                          //     icon: Icon(Icons
-                          //         .keyboard_arrow_down_outlined),
-                          //     alignment:
-                          //     AlignmentDirectional.center,
-                          //     hint:  const Align(
-                          //       alignment: Alignment.center,
-                          //       child: Text(
-                          //         "الولاية",
-                          //         style: TextStyle(color: Colors.grey),
-                          //       ),
-                          //     ),
-                          //     value: controller.selectedmarketsAddProduct.value,
-                          //     onChanged: (v) {
-                          //       controller.selectedmarketsAddProduct.value = v!;
-                          //     },
-                          //     items: controller.marketsAddProductList.map<
-                          //         DropdownMenuItem<String>>(
-                          //             (String value) {
-                          //           return DropdownMenuItem<String>(
-                          //             alignment:
-                          //             AlignmentDirectional.center,
-                          //             enabled: true,
-                          //             value: value,
-                          //             child: Text(value),
-                          //           );
-                          //         }).toList(),
-                          //   ),
-                          // )),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   width: 4,
-              // ),
-              // Expanded(
-              //   child: Container(
-              //     color: Colors.white,
-              //     margin: getMargin(top: 10, bottom: 10),
-              //     alignment: Alignment.center,
-              //     height: 44,
-              //     child: Expanded(
-              //       child: Container(
-              //         color: Colors.white,
-              //         child: DecoratedBox(
-              //             decoration: BoxDecoration(
-              //                 color: Colors
-              //                     .white, //background color of dropdown button
-              //                 border: Border.all(
-              //                     color: Colors.black38,
-              //                     width:
-              //                     1), //border of dropdown button
-              //                 borderRadius: BorderRadius.circular(
-              //                     5), //border raiuds of dropdown button
-              //                 boxShadow: const <BoxShadow>[
-              //                   //apply shadow on Dropdown button
-              //                   BoxShadow(
-              //                       color: Color.fromRGBO(
-              //                           0,
-              //                           0,
-              //                           0,
-              //                           0.1), //shadow for button
-              //                       blurRadius:
-              //                       3) //blur radius of shadow
-              //                 ]),
-              //             child: Align(
-              //               alignment: Alignment.center,
-              //               child: DropdownButton<String>(
-              //                 isExpanded: true,
-              //                 icon: Icon(Icons
-              //                     .keyboard_arrow_down_outlined),
-              //                 hint:  const Align(
-              //                   alignment: Alignment.center,
-              //                   child: Text(
-              //                     "الولاية",
-              //                     style: TextStyle(color: Colors.grey),
-              //                   ),
-              //                 ),
-              //                 value: controller
-              //                     .selectedLanguageAddProduct
-              //                     .value,
-              //                 onChanged: (v) {
-              //                   controller
-              //                       .selectedLanguageAddProduct
-              //                       .value = v!;
-              //                 },
-              //                 items: controller
-              //                     .languageAddProductList
-              //                     .map<
-              //                     DropdownMenuItem<
-              //                         String>>(
-              //                         (String value) {
-              //                       return DropdownMenuItem<String>(
-              //                         alignment:
-              //                         AlignmentDirectional
-              //                             .center,
-              //                         enabled: true,
-              //                         value: value,
-              //                         child: Text(value),
-              //                       );
-              //                     }).toList(),
-              //               ),
-              //             )),
+                        decoration: BoxDecoration(
+                            color: Colors
+                                .white, //background color of dropdown button
+                            border: Border.all(
+                                color: Colors.black38,
+                                width:
+                                1), //border of dropdown button
+                            borderRadius: BorderRadius.circular(
+                                5), //border raiuds of dropdown button
+                            boxShadow: const <BoxShadow>[
+                              //apply shadow on Dropdown button
+                              BoxShadow(
+                                  color: Color.fromRGBO(
+                                      0,
+                                      0,
+                                      0,
+                                      0.1), //shadow for button
+                                  blurRadius:
+                                  3) //blur radius of shadow
+                            ]),
+                        // child: Align(
+                        //   alignment: Alignment.center,
+                        //   child: DropdownButton<String>(
+                        //     isExpanded: true,
+                        //     icon: Icon(Icons
+                        //         .keyboard_arrow_down_outlined),
+                        //     alignment:
+                        //     AlignmentDirectional.center,
+                        //     hint:  const Align(
+                        //       alignment: Alignment.center,
+                        //       child: Text(
+                        //         "الولاية",
+                        //         style: TextStyle(color: Colors.grey),
+                        //       ),
+                        //     ),
+                        //     value: controller.selectedmarketsAddProduct.value,
+                        //     onChanged: (v) {
+                        //       controller.selectedmarketsAddProduct.value = v!;
+                        //     },
+                        //     items: controller.marketsAddProductList.map<
+                        //         DropdownMenuItem<String>>(
+                        //             (String value) {
+                        //           return DropdownMenuItem<String>(
+                        //             alignment:
+                        //             AlignmentDirectional.center,
+                        //             enabled: true,
+                        //             value: value,
+                        //             child: Text(value),
+                        //           );
+                        //         }).toList(),
+                        //   ),
+                        // )),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(
+                        //   width: 4,
+                        // ),
+                        // Expanded(
+                        //   child: Container(
+                        //     color: Colors.white,
+                        //     margin: getMargin(top: 10, bottom: 10),
+                        //     alignment: Alignment.center,
+                        //     height: 44,
+                        //     child: Expanded(
+                        //       child: Container(
+                        //         color: Colors.white,
+                        //         child: DecoratedBox(
+                        //             decoration: BoxDecoration(
+                        //                 color: Colors
+                        //                     .white, //background color of dropdown button
+                        //                 border: Border.all(
+                        //                     color: Colors.black38,
+                        //                     width:
+                        //                     1), //border of dropdown button
+                        //                 borderRadius: BorderRadius.circular(
+                        //                     5), //border raiuds of dropdown button
+                        //                 boxShadow: const <BoxShadow>[
+                        //                   //apply shadow on Dropdown button
+                        //                   BoxShadow(
+                        //                       color: Color.fromRGBO(
+                        //                           0,
+                        //                           0,
+                        //                           0,
+                        //                           0.1), //shadow for button
+                        //                       blurRadius:
+                        //                       3) //blur radius of shadow
+                        //                 ]),
+                        //             child: Align(
+                        //               alignment: Alignment.center,
+                        //               child: DropdownButton<String>(
+                        //                 isExpanded: true,
+                        //                 icon: Icon(Icons
+                        //                     .keyboard_arrow_down_outlined),
+                        //                 hint:  const Align(
+                        //                   alignment: Alignment.center,
+                        //                   child: Text(
+                        //                     "الولاية",
+                        //                     style: TextStyle(color: Colors.grey),
+                        //                   ),
+                        //                 ),
+                        //                 value: controller
+                        //                     .selectedLanguageAddProduct
+                        //                     .value,
+                        //                 onChanged: (v) {
+                        //                   controller
+                        //                       .selectedLanguageAddProduct
+                        //                       .value = v!;
+                        //                 },
+                        //                 items: controller
+                        //                     .languageAddProductList
+                        //                     .map<
+                        //                     DropdownMenuItem<
+                        //                         String>>(
+                        //                         (String value) {
+                        //                       return DropdownMenuItem<String>(
+                        //                         alignment:
+                        //                         AlignmentDirectional
+                        //                             .center,
+                        //                         enabled: true,
+                        //                         value: value,
+                        //                         child: Text(value),
+                        //                       );
+                        //                     }).toList(),
+                        //               ),
+                        //             )),
+                      ),
                     ),
                   ),
                 ),
-              ),
               )
             ],
           ),
@@ -419,7 +417,8 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
                     height: 60,
                     color: Colors.green,
                     onPressed: () {
-                      Get.back();
+
+                      Get.back(result:TestData("zaid",28));
                     })
               ],
             ),
@@ -432,8 +431,8 @@ class ShippinAddressForm extends GetView<InitAddOrderController> {
 
   }
 }
-class ShippingTestData{
+class TestData{
   String name;
   int age;
-  ShippingTestData(this.name,this.age);
+  TestData(this.name,this.age);
 }

@@ -56,7 +56,7 @@ class Comment extends GetView<InitAddOrderController> {
             child:    Expanded(
               child: MyTextFieldWidget(hintText: "تعليق", height: 60,
                 onChanged: (value) {
-                  // controller.filterOrder.value!.date=value;
+                   controller.addOrders.value.comment=value;
                 },),
             ),),
           MaterialButton(

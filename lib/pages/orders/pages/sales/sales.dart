@@ -72,36 +72,35 @@ class Sales extends GetView<InitAddOrderController> {
 
             backgroundColor: Colors.green,
             onPressed: () {
-              // var paymentaddress=PaymentAddress(firstname: "ALi",lastname: "Mohammaed",zone: "0");
-              // var method=ShippingMethod(code: "flat.flat",title: "test");
-              // var customer =Customer(email: "ahmed@gmail.com",lastname: "Mohammaed",firstname: "ALi",customerId: 1,telephone: "776816212",customerGroupId: 1);
+
+               controller.paymentAddress.value!.address1=controller.paymentAddressController.text;
+               controller.paymentAddress.value!.address2=controller.paymentAddressController.text;
+               controller.paymentAddress.value!.lastname=controller.paymentLastNameController.text;
+               controller.paymentAddress.value!.firstname=controller.paymentFirstNameController.text;
+               controller.paymentAddress.value!.city=controller.paymentCityController.text;
+               controller.paymentAddress.value!.zone=controller.paymentCodeZoneController.text;
+
+               controller.shippingAddress.value!.address1=controller.shippingAddressController.text;
+               controller.shippingAddress.value!.address2=controller.shippingAddress2Controller.text;
+               controller.shippingAddress.value!.lastname=controller.shippingLastNameController.text;
+               controller.shippingAddress.value!.firstname=controller.shippingFirstNameController.text;
+               controller.shippingAddress.value!.city=controller.shippingCityController.text;
+               controller.shippingAddress.value!.zone=controller.shippingCodeZoneController.text;
+
+
                List<ProductsOrder>? products=[];
-              products.add(ProductsOrder(productId: 49,quantity: 2,option: Option(i227: 17)));
-              // var shippingmethod=ShippingMethod(title: "tesr",code: "flat.flat");
-              // //  var shippingaddress=PaymentAddress();
-               controller.shippingPayment.value.address1=controller.addressController.text;
-               controller.shippingPayment.value.address2=controller.address2Controller.text;
-               controller.shippingPayment.value.lastname=controller.lastNameController.text;
-               controller.shippingPayment.value.firstname=controller.firstNameController.text;
-               controller.shippingPayment.value.city=controller.cityController.text;
-               controller.shippingPayment.value.zone=controller.codeZoneController.text;
-               controller.shippingPayment.value.address1=controller.addressController.text;
+                products.clear();
+               products.add(ProductsOrder(productId:controller.productsOrder.productId,quantity:controller.productsOrder.quantity,option: Option(i227: 17)));
 
-              var order = AddOrders(
-                  affiliateId: "",
-                  comment: "",
-                  storeId: 0,
-                  coupon: "111",
-                  tracking: "",
-                  voucher: "demo-0000",
-                  shippingAddress:controller.shippingPayment.value ,
-                  shippingMethod: controller.shippingMethods.value ,
-                  paymentAddress: controller.shippingPayment.value,
-                  customer:controller.customer.value,
-                  paymentMethod: controller.paymentMethod.value,
-                  products:products);
+               controller.addOrders.value.shippingAddress=controller.shippingAddress.value;
+               controller.addOrders.value.paymentAddress=controller.paymentAddress.value;
+               controller.addOrders.value.shippingAddress=controller.shippingAddress.value;
+               controller.addOrders.value.shippingMethod=controller.orderShippingMethods.value;
+               controller.addOrders.value.paymentMethod=controller.paymentMethod.value;
+               controller.addOrders.value.customer=controller.customer.value;
+               controller.addOrders.value.products=products;
+               controller.addOrder(controller.addOrders.value);
 
-                controller.addOrder(order);
             },
             tooltip: 'add a new product',
             highlightElevation: 1,

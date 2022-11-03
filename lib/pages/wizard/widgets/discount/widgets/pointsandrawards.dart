@@ -8,9 +8,6 @@ import '../../../../../model/discount.dart';
 
 class PointsAndRewards extends GetView<WizardController> {
 
-
-
-
   @override
   Widget build(BuildContext context)  {
 
