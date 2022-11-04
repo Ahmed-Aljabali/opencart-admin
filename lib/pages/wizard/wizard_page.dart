@@ -16,7 +16,7 @@ import '../../presentation/Widgets/dialogs.dart';
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
 
-class WizardPage extends GetView<WizardController> {
+class MainWizardPage extends GetView<MainWizardController> {
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +54,7 @@ class WizardPage extends GetView<WizardController> {
 
               Expanded(
                 flex: 8,
-                child: Timeline(
+                child: MainTimeline(
 
                   children: <Widget>[
                     // FirstProductContainer(),
@@ -63,26 +63,26 @@ class WizardPage extends GetView<WizardController> {
                         StepData(
                             Column(
                               children: [
-                                FirstProductContainer(),
-                                SecondProductContainer(),
-                                ThirdProductContainer(),
-                                ForthProductContainer(),
-                                FifhProductScreen(),
+                                MainFirstProductContainer(),
+                                MainSecondProductContainer(),
+                                MainThirdProductContainer(),
+                                MainForthProductContainer(),
+                                MainFifhProductScreen(),
                               ],
                             )
                         )),
                     controller.SingleStep(1,
                         StepData(
-                            FirstProductLinkeExpantionPanel()
+                            MainFirstProductLinkeExpantionPanel()
                         )),
 
                     controller.SingleStep(2,
                         StepData(
-                            FirstProductAttributeContainer()
+                            MainFirstProductAttributeContainer()
                         )),
                     controller.SingleStep(3,
                         StepData(
-                            OptionsProductContainer()
+                            MainOptionsProductContainer()
                         )),
                     // controller.SingleStep(4,
                     //     StepData(
@@ -91,7 +91,7 @@ class WizardPage extends GetView<WizardController> {
 
                     controller.SingleStep(4,
                         StepData(
-                          DiscountContainer(),
+                          MainDiscountContainer(),
                         )),
                     // controller.SingleStep(6,
                     //     StepData(

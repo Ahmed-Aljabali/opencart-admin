@@ -14,7 +14,7 @@ import '../../../../presentation/Widgets/dateWidgets.dart';
 
 
 
-class ForthProductContainer extends GetView<WizardController> {
+class MainForthProductContainer extends GetView<MainWizardController> {
 
   var initSystem=Get.put(SystemINfoController());
 
@@ -170,7 +170,7 @@ class ForthProductContainer extends GetView<WizardController> {
   }
 }
 
-class LSwitchListTile extends GetView<WizardController> {
+class LSwitchListTile extends GetView<MainWizardController> {
   var listSwitchText;
   bool isChecked;
 

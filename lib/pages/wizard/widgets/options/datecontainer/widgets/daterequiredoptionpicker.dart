@@ -5,16 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:opencart/controllers/wizard_controller.dart';
 
+import '../../../../../../controllers/edit_wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 
-class DateRequiredOptionPicker extends StatelessWidget{
-  WizardController controller;
+class MainDateRequiredOptionPicker extends StatelessWidget{
+  MainWizardController controller;
 
 var index;
 
 
 
-  DateRequiredOptionPicker(
+  MainDateRequiredOptionPicker(
       {required this.controller,this.index});
 
 

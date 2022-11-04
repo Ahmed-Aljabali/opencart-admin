@@ -22,7 +22,7 @@ class AddCustomerPage extends GetView<CustomerController> {
 
   @override
   Widget build(BuildContext context) {
-    final WizardController wizardController = Get.find();
+    final MainWizardController wizardController = Get.find();
     return  SafeArea(
       child: Obx(
             () => Scaffold(
@@ -53,7 +53,7 @@ class AddCustomerPage extends GetView<CustomerController> {
 
               Expanded(
                 flex: 8,
-                child: Timeline(
+                child: MainTimeline(
                   children: <Widget>[
                     wizardController.SingleStep(0,
                         StepData(

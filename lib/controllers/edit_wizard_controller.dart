@@ -18,7 +18,7 @@ import '../model/porducts/option/option_value_description.dart';
 import '../model/porducts/product.dart';
 import '../model/porducts/stores.dart';
 
-class MainWizardController extends ProductController {
+class WizardController extends ProductController {
   final formKey = GlobalKey<FormState>();
   final FocusNode focusNode = FocusNode();
 
@@ -126,7 +126,7 @@ class MainWizardController extends ProductController {
 
 
   RxList<TextEditingController> textEditingController =
-      RxList<TextEditingController>();
+  RxList<TextEditingController>();
 
   RxList<AttrModel> attrWidgetList = RxList<AttrModel>([]);
   RxList<Attribute> attributeList = RxList<Attribute>([]);
@@ -285,17 +285,17 @@ class MainWizardController extends ProductController {
     subscWidgetList.refresh();
     update();
   }
-      RxBool isSwitchedOn = false.obs;
-      RxBool isSwitchedOn2 = false.obs;
-      RxBool _isVaild = true.obs;
-      RxBool get isVaild => _isVaild;
-      RxInt _currentStep = 0.obs;
-      RxInt get currentStep => _currentStep;
-      set currentStep(RxInt value) => _currentStep = value;
-      tapped(int step) {
-        _currentStep.value = step;
+  RxBool isSwitchedOn = false.obs;
+  RxBool isSwitchedOn2 = false.obs;
+  RxBool _isVaild = true.obs;
+  RxBool get isVaild => _isVaild;
+  RxInt _currentStep = 0.obs;
+  RxInt get currentStep => _currentStep;
+  set currentStep(RxInt value) => _currentStep = value;
+  tapped(int step) {
+    _currentStep.value = step;
 
-      }
+  }
 
 
   Widget SingleStep(int index,Widget item){
@@ -305,17 +305,17 @@ class MainWizardController extends ProductController {
   Widget stepheader(int current_step,int index,IconData iconData){
     return InkWell(
         onTap: () {
-         tapped(index);
+          tapped(index);
         },
         child: Icon(iconData,color: current_step==index?Colors.blue:Colors.green,));
   }
-      continued() {
-        _currentStep.value < 7 ? _currentStep += 1 : null;
-      }
+  continued() {
+    _currentStep.value < 7 ? _currentStep += 1 : null;
+  }
 
-      cancel() {
-        _currentStep > 0 ? _currentStep -= 1 : null;
-      }
+  cancel() {
+    _currentStep > 0 ? _currentStep -= 1 : null;
+  }
 
   late List<Product> genrlproduct4;
   late List<Product> genrlproduct1;
@@ -494,11 +494,11 @@ class MainWizardController extends ProductController {
     });
   }
 
-  // List<OptModel> generateOptModel(int numberOfItems, OptModel optModel) {
-  //   return List<OptModel>.generate(numberOfItems, (int index) {
-  //     return optModel;
-  //   });
-  // }
+// List<OptModel> generateOptModel(int numberOfItems, OptModel optModel) {
+//   return List<OptModel>.generate(numberOfItems, (int index) {
+//     return optModel;
+//   });
+// }
 
 
 

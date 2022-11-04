@@ -11,8 +11,8 @@ import '../../../../../model/cutomers/group_customer.dart';
 import '../../../../../model/discount.dart';
 import '../../../../../presentation/Widgets/dateWidgets.dart';
 
-class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
-  const FirstButtomCheetDiscountContainer({Key? key}) : super(key: key);
+class MainFirstButtomCheetDiscountContainer extends GetView<MainWizardController> {
+  const MainFirstButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context)  {

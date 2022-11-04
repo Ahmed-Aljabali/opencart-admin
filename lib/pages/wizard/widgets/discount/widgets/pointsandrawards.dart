@@ -8,7 +8,7 @@ import '../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../model/cutomers/group_customer.dart';
 import '../../../../../model/discount.dart';
 
-class PointsAndRewards extends GetView<WizardController> {
+class MainPointsAndRewards extends GetView<MainWizardController> {
 
 
 
@@ -101,4 +101,4 @@ class PointsAndRewards extends GetView<WizardController> {
       );
 
 
-}
+}}

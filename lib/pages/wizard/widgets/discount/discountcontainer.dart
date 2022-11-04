@@ -5,7 +5,7 @@ import 'package:opencart/pages/wizard/widgets/discount/widgets/pointsandrawards.
 import 'package:opencart/pages/wizard/widgets/discount/widgets/seconddiscountbuttonsheetcontainer.dart';
 import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../model/ProductData.dart';
-class DiscountContainer extends GetView<WizardController> {
+class MainDiscountContainer extends GetView<MainWizardController> {
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +121,7 @@ class DiscountContainer extends GetView<WizardController> {
                                 ),
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return  FirstButtomCheetDiscountContainer();
+                                  return  MainFirstButtomCheetDiscountContainer();
                                 },
                               );
                             },
@@ -246,7 +246,7 @@ class DiscountContainer extends GetView<WizardController> {
                                   ),
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return  SecondButtomCheetDiscountContainer(
+                                    return  MainSecondButtomCheetDiscountContainer(
 
 
                                       );
@@ -290,7 +290,7 @@ class DiscountContainer extends GetView<WizardController> {
                         textAlign: TextAlign.center,
                       ));
                 }),
-                body:PointsAndRewards(),
+                body:MainPointsAndRewards(),
                 isExpanded: item.isExpanded!.value);
           }).toList()),
 

@@ -7,7 +7,7 @@ import '../../../../controllers/wizard_controller.dart';
 import '../../../../model/ProductData.dart';
 import '../../../../model/system_info/init_system.dart';
 
-class ThirdProductContainer extends GetView<WizardController> {
+class MainThirdProductContainer extends GetView<MainWizardController> {
 
   var initSystem=Get.put(SystemINfoController());
 

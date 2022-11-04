@@ -4,11 +4,11 @@ import 'package:opencart/controllers/wizard_controller.dart';
 
 import '../../../../../../core/constrants/widgetconstrant.dart';
 
-class TimeDateRequiredOptionPicker extends StatelessWidget {
-  WizardController controller;
+class MainTimeDateRequiredOptionPicker extends StatelessWidget {
+  MainWizardController controller;
   var index;
 
-  TimeDateRequiredOptionPicker({required this.controller, this.index});
+  MainTimeDateRequiredOptionPicker({required this.controller, this.index});
 
   @override
   Widget build(BuildContext context) {

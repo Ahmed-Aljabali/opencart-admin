@@ -7,9 +7,9 @@ import 'package:opencart/controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../../model/ProductData.dart';
 
-class CheckBoxRequiredOptionPicker extends GetView<WizardController> {
+class MainCheckBoxRequiredOptionPicker extends GetView<MainWizardController> {
   var index;
-  CheckBoxRequiredOptionPicker({this.index});
+  MainCheckBoxRequiredOptionPicker({this.index});
 
   @override
   Widget build(BuildContext context) {

@@ -6,13 +6,13 @@ import 'package:opencart/model/porducts/product.dart';
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 
-class ButtomCheetCheckBoxContainer extends GetView<WizardController> {
-   ButtomCheetCheckBoxContainer({
+class MainButtomCheetCheckBoxContainer extends GetView<MainWizardController> {
+   MainButtomCheetCheckBoxContainer({
     required this.controller,
     required this.index,
   });
 
-  final WizardController controller;
+  final MainWizardController controller;
   final int index;
 
   @override

@@ -15,7 +15,7 @@ import '../../../../model/porducts/product.dart';
 
 
 
-class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
+class MainFirstProductLinkeExpantionPanel extends GetView<MainWizardController> {
 
   @override
   StatelessElement createElement() {

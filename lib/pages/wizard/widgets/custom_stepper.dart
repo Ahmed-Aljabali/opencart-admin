@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../controllers/wizard_controller.dart';
 
-class Timeline extends StatelessWidget {
-  const Timeline({
+class MainTimeline extends StatelessWidget {
+  const MainTimeline({
     Key? key,
     required this.children,
     this.indicators,

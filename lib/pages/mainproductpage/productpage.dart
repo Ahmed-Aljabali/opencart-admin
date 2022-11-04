@@ -7,7 +7,7 @@ import '../../core/utils/math_utils.dart';
 import '../wizard/wizard_page.dart';
 
 
-class ProductPage extends GetView<WizardController> {
+class ProductPage extends GetView<MainWizardController> {
 
   @override
   StatelessElement createElement() {
@@ -208,7 +208,7 @@ class ProductPage extends GetView<WizardController> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Get.to(() => WizardPage());
+            Get.to(() => MainWizardPage());
           },
           tooltip: 'add a new product',
           child: const Icon(

@@ -19,14 +19,14 @@ import '../../../../../model/ProductData.dart';
 
 
 
-class DateContainer extends StatelessWidget {
-  const DateContainer({
+class MainDateContainer extends StatelessWidget {
+  const MainDateContainer({
 
     required this.controller,
     required this.index,
   }) ;
 
-  final WizardController controller;
+  final MainWizardController controller;
   final int index;
 
   @override
@@ -45,7 +45,7 @@ class DateContainer extends StatelessWidget {
 
 
                           Expanded(
-                              child:DateRequiredOptionPicker( controller: controller, index: index,)),
+                              child:MainDateRequiredOptionPicker( controller: controller, index: index,)),
                           const SizedBox(width: 2,),
                           Container(
                             padding: const EdgeInsets.only(right:5,),

@@ -12,7 +12,7 @@ import '../../../../model/system_info/init_system.dart';
 import 'fothproductcontainer.dart';
 
 
-class FifhProductScreen extends GetView<WizardController> {
+class MainFifhProductScreen extends GetView<MainWizardController> {
 
   var initSystem=Get.put(SystemINfoController());
 

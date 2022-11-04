@@ -14,7 +14,7 @@ import '../../../../model/ProductData.dart';
 
 
 
-class FirstProductSubscribeContainer extends GetView<WizardController> {
+class MainFirstProductSubscribeContainer extends GetView<MainWizardController> {
 
 
 

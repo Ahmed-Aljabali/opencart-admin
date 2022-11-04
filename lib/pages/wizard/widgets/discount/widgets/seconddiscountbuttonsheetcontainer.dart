@@ -10,8 +10,8 @@ import '../../../../../controllers/group_customer_controller.dart';
 import '../../../../../model/discount.dart';
 import '../../../../../presentation/Widgets/dateWidgets.dart';
 
-class SecondButtomCheetDiscountContainer extends GetView<WizardController> {
-  const SecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
+class MainSecondButtomCheetDiscountContainer extends GetView<MainWizardController> {
+  const MainSecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
 
   @override

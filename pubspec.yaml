@@ -38,8 +38,8 @@ dependencies:
   http: ^0.13.4
   shared_preferences: ^2.0.15
   get_it: ^7.2.0
-  deep_menu:
-  multiselect:
+
+
   intl:
   timelines: ^0.1.0
   country_picker:
@@ -88,12 +88,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

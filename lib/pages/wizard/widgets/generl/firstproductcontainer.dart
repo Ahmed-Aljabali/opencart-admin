@@ -7,9 +7,9 @@ import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
 import '../../../../model/porducts/product.dart';
 
-class FirstProductContainer extends GetView<WizardController> {
+class MainFirstProductContainer extends GetView<MainWizardController> {
 
-
+  TextEditControllerCust textController = TextEditControllerCust();
   @override
   Widget build(BuildContext context) {
     return Obx(() => ExpansionPanelList(
@@ -35,7 +35,12 @@ class FirstProductContainer extends GetView<WizardController> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    MyTextFieldWidget(hintText:"اسم المنتج" ,onChanged: (value)=>controller.productDescription.name=value,),
+                    DynamicTextFieldWidget(controller: textController.textController, keyboardType: TextInputType.text,onFieldSubmitted:(value)
+                    {
+                      textController.textController.text =value ;
+                      } ,hintText: 'product name',),
+                    MyTextFieldWidget(hintText:"اسم المنتج" ,onChanged: (value)
+                    {controller.productDescription.name=value ; }),
 
                     const SizedBox(
                       height: 10,

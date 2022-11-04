@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:opencart/controllers/edit_wizard_controller.dart';
 
 import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 import '../../../../model/ProductData.dart';
 
-class SecondProductContainer extends GetView<WizardController> {
+class MainSecondProductContainer extends GetView<MainWizardController> {
 
   @override
   Widget build(BuildContext context) {

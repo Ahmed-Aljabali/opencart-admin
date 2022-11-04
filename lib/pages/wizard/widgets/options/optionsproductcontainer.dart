@@ -12,7 +12,7 @@ import '../../../../model/porducts/option/option.dart';
 import 'checkboxcontainer/checkboxcontainer.dart';
 import 'timeanddateconainer/timedatecontainer.dart';
 
-class OptionsProductContainer extends GetView<WizardController> {
+class MainOptionsProductContainer extends GetView<MainWizardController> {
 
   @override
   Widget build(BuildContext context) {
@@ -93,14 +93,14 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                   ));
                                             }),
                                             body: (( item.optType == "checkbox"|| item.optType=="radio" ) ?
-                                                CheckBoxContainer(controller: controller, index: item.id)
+                                                MainCheckBoxContainer(controller: controller, index: item.id)
                                             :
                                             item.optType == "date" ?
-                                            DateContainer(controller: controller, index: item.id) :
+                                            MainDateContainer(controller: controller, index: item.id) :
                                             item.optType == "datetime" ?
-                                            TimeDateContainer(controller: controller, index: item.id) :
+                                            MainTimeDateContainer(controller: controller, index: item.id) :
                                             item.optType == "Delivery Date" ?
-                                            DeliveryDateContainer(controller: controller) :
+                                            MainDeliveryDateContainer(controller: controller) :
 
                                             new Container())
 
@@ -193,7 +193,7 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                         controller.addOptWidget(
                                                             OptModel(controller.optWidgetList.length,
                                                                 v.type,
-                                                                DateContainer(
+                                                                MainDateContainer(
                                                                     controller:
                                                                     controller,  index: controller
                                                                     .optWidgetList
@@ -207,7 +207,7 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                         controller.addOptWidget(
                                                             OptModel(controller.optWidgetList.length,
                                                                 v.type,
-                                                                CheckBoxContainer(controller: controller,
+                                                                MainCheckBoxContainer(controller: controller,
                                                                   index: controller.optWidgetList.length,),
                                                                 "yes",
                                                                 v.type,
@@ -217,7 +217,7 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                         controller.addOptWidget(
                                                             OptModel(controller.optWidgetList.length,
                                                                 v.type,
-                                                                TimeDateContainer(
+                                                                MainTimeDateContainer(
                                                                     controller:
                                                                     controller, index:  controller
                                                                     .optWidgetList
@@ -236,7 +236,7 @@ class OptionsProductContainer extends GetView<WizardController> {
                                                                     .selectedOption
                                                                     .value
                                                                     ?.type,
-                                                                DeliveryDateContainer(controller: controller),
+                                                                MainDeliveryDateContainer(controller: controller),
                                                                 "yes",
                                                                 "datetime",
                                                                 "datetime",

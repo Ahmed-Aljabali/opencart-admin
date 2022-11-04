@@ -1,3 +1,5 @@
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Product {
@@ -10,4 +12,7 @@ class Product {
   String? body;
   String? header;
   RxBool? isExpanded;
+}
+class TextEditControllerCust{
+  TextEditingController textController = TextEditingController();
 }

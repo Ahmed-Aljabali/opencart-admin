@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/Interface/Iproduct.dart';
 import 'package:opencart/controllers/BaseController.dart';
@@ -30,9 +31,11 @@ class  ProductController extends BaseController implements IProduct {
   @override
  fetchProduct()async{
    var res = await get("products");
+
    if (res.statusCode == 200) {
      _data=ProductData.fromJson(jsonDecode(res.body)).data;
    }
+   dataProduct.forEach((element) {print(element);});
    }
 
 

@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import '../../controllers/wizard_controller.dart';
 
 Widget dateTime(TextEditingController date ){
-var controller=Get.put(WizardController());
+var controller=Get.put(MainWizardController());
   return  TextField(
     controller:date,
 

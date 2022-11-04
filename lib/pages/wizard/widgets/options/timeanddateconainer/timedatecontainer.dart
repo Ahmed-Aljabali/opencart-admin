@@ -21,14 +21,14 @@ import '../../../../../model/ProductData.dart';
 
 
 
-class TimeDateContainer extends StatelessWidget {
-  const TimeDateContainer({
+class MainTimeDateContainer extends StatelessWidget {
+  const MainTimeDateContainer({
 
     required this.controller,
     required this.index,
   }) ;
 
-  final WizardController controller;
+  final MainWizardController controller;
   final int index;
 
   @override
@@ -45,7 +45,7 @@ class TimeDateContainer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                              child:TimeDateRequiredOptionPicker( controller: controller, index: index,)),
+                              child:MainTimeDateRequiredOptionPicker( controller: controller, index: index,)),
                           SizedBox(width: 2,),
                           Container(
                             padding: EdgeInsets.only(right:5,),

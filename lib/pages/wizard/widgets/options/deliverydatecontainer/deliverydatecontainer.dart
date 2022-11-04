@@ -6,27 +6,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/buttomsheetcontainer.dart';
-import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/checkboxrequiredoptionpicker.dart';
-import 'package:opencart/pages/wizard/widgets/options/datecontainer/widgets/daterequiredoptionpicker.dart';
 import 'package:opencart/pages/wizard/widgets/options/deliverydatecontainer/widgets/deliverydaterequiredoptionpicker.dart';
 
 import '../../../../../controllers/wizard_controller.dart';
-import '../../../../../core/constrants/text_constrants.dart';
-import '../../../../../core/constrants/widgetconstrant.dart';
-import '../../../../../model/ProductData.dart';
 
 
 
 
 
-class DeliveryDateContainer extends StatelessWidget {
-  const DeliveryDateContainer({
+class MainDeliveryDateContainer extends StatelessWidget {
+  const MainDeliveryDateContainer({
 
     required this.controller,
   }) ;
 
-  final WizardController controller;
+  final MainWizardController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +36,7 @@ class DeliveryDateContainer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                              child:DeliveryDateRequiredOptionPicker( controller: controller)),
+                              child:MainDeliveryDateRequiredOptionPicker( controller: controller)),
                           SizedBox(width: 2,),
                           Container(
                             padding: EdgeInsets.only(right:5,),

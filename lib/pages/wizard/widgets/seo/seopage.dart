@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../model/ProductData.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
-class Seo extends GetView<WizardController> {
+class MainSeo extends GetView<MainWizardController> {
 
 
   @override

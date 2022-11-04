@@ -9,7 +9,7 @@ import '../../../../model/porducts/attribute.dart';
 
 
 
-class FirstProductAttributeContainer extends GetView<WizardController> {
+class MainFirstProductAttributeContainer extends GetView<MainWizardController> {
 
   @override
   StatelessElement createElement() {

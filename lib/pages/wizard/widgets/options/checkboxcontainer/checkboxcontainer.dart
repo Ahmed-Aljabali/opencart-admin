@@ -3,13 +3,13 @@ import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/
 import 'package:opencart/pages/wizard/widgets/options/checkboxcontainer/widgets/checkboxrequiredoptionpicker.dart';
 import '../../../../../controllers/wizard_controller.dart';
 
-class CheckBoxContainer extends StatelessWidget {
-  const CheckBoxContainer({
+class MainCheckBoxContainer extends StatelessWidget {
+  const MainCheckBoxContainer({
     required this.controller,
     required this.index,
   });
 
-  final WizardController controller;
+  final MainWizardController controller;
   final int index;
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CheckBoxContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                  child: CheckBoxRequiredOptionPicker(index: index)),
+                  child: MainCheckBoxRequiredOptionPicker(index: index)),
               const SizedBox(
                 width: 2,
               ),
@@ -134,7 +134,7 @@ class CheckBoxContainer extends StatelessWidget {
                           topRight: Radius.circular(20))),
                   context: context,
                   builder: (BuildContext context) {
-                    return ButtomCheetCheckBoxContainer(
+                    return MainButtomCheetCheckBoxContainer(
                         controller: controller, index: index);
                   },
                 );
