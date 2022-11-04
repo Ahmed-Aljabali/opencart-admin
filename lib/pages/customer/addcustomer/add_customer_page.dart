@@ -63,10 +63,11 @@ class AddCustomerPage extends GetView<CustomerController> {
                               ],
                             )
                         )),
-                    wizardController.SingleStep(1,
-                        StepData(
-                            AddressForm()
-                        )),
+                    // wizardController.SingleStep(1,
+                    //     StepData(
+                    //         AddressForm()
+                    //     )
+                    // ),
                   ],
                   indicators: <Widget>[
                     wizardController.stepheader( wizardController.currentStep.value,0,Icons.account_circle_rounded),

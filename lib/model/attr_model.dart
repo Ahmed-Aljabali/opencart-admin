@@ -1,6 +1,7 @@
+import 'package:opencart/model/porducts/attribute.dart';
+
 class AttrModel {
   var attrList;
-  var  attrSelected;
-
+  Attribute  attrSelected;
   AttrModel(this.attrList, this.attrSelected);
 }

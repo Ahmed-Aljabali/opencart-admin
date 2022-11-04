@@ -331,7 +331,6 @@ class OrderPage extends GetView<InitAddOrderController> {
 
             backgroundColor: Colors.green,
             onPressed: () {
-
               Get.to(Sales());
             },
             tooltip: 'add a new product',

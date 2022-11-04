@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/model/cutomers/customer.dart';
+import 'package:opencart/model/orders/voucher.dart';
 import 'package:opencart/pages/orders/pages/sales/widgets/firstsalescontainer/widgets/addclintbottomsheet.dart';
 import '../../../../../../Controllers/customer_controller.dart';
 import '../../../../../../controllers/Init_add_order_controller.dart';
@@ -12,6 +13,12 @@ import '../../../../../../model/ProductData.dart';
 
 class FirstSalesContainer extends GetView<InitAddOrderController> {
 
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    controller.initVouchers();
+    return super.createElement();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +49,25 @@ class FirstSalesContainer extends GetView<InitAddOrderController> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    MyTextFieldWidget(
-                      hintText:  "فاتورة ",
-                      onChanged:(value)=>null
-                      ,readOnly: true,textAlign: TextAlign.center,),
+                    Center(
+                      child: DropdownButton<Vouchers>(
+                        hint:  const Text("الفاتورة"),
+                        value:controller.selectVoucher.value,
+                        onChanged:(v) {
+                          controller.selectVoucher.value=v;
+                          controller.addOrders.value.voucher=v!.code;
+                        },
+                        items:controller.dataVoucher.
+                        map<DropdownMenuItem<Vouchers>>((Vouchers value) {
+                          return   DropdownMenuItem<Vouchers>(
+                            enabled: true,
+                            value: value,
+                            child: Text(value.code!),
+                          );
+                        }).toList(),
+                      ),
+                    )
+                    ,
                     Container(
                         padding: getPadding(top: 8),
                         height: 51,

@@ -28,7 +28,7 @@ class WizardController extends ProductController {
   var selectedOption = Rxn<ProductOption>();
   var selectedCategories = Rxn<Categories>();
   var selectedStores = Rxn<Stores>();
-  var selectedProductAttribute = Rxn<ProductAttribute>();
+  var productAttribute = Rxn<ProductAttribute>();
   var selectedManufacturers = Rxn<Manufacturers>();
   var ss = Rxn<String>();
   var productAttributeDescription = Rxn<ProductAttributeDescription>();
@@ -39,7 +39,7 @@ class WizardController extends ProductController {
 
   List<ProductOptionValue> productOptionValue = [];
   List<ProductDescription> productDescriptionlist = [];
-  List<ProductAttribute> productAttribute = [];
+  List<ProductAttribute> productAttributeList = [];
   List<AddProductOption> productOption = [];
   List<ProductDiscount> productDiscount=[];
   List<ProductSpecial> productSpecial=[];
@@ -53,6 +53,7 @@ class WizardController extends ProductController {
   var currentOptionTimeDateIndex;
 
   var selectedrelatedProdOptions = Rxn<int>();
+  var selectedFilterProd = Rxn<int>();
 
   var selectedcompOptions = Rxn<String>();
   List<String> taxCategOptionsList = ["فئة1", "فئة2", "فئة3", "فئة4"];
@@ -110,11 +111,7 @@ class WizardController extends ProductController {
 
 
   var selectedsubscrOptions = Rxn<String>();
-  List<String> custmGroupOptionsList = [
-    "مجموعة1",
-    "مجموعة2",
-    "مجموعة3",
-  ];
+
   List<String> testofatrr = [];
   TextEditingController myController = TextEditingController();
   TextEditingController pointsController = TextEditingController();
@@ -131,6 +128,7 @@ class WizardController extends ProductController {
       RxList<TextEditingController>();
 
   RxList<AttrModel> attrWidgetList = RxList<AttrModel>([]);
+  RxList<Attribute> attributeList = RxList<Attribute>([]);
   RxList<OptModel> optWidgetList = RxList<OptModel>([]);
 
   RxList<SubModel> subscWidgetList = RxList<SubModel>([]);
@@ -145,7 +143,7 @@ class WizardController extends ProductController {
   var isSelectedTimeDateOption = Rxn<String>();
   var selectedCheckBoxTaxOption = Rxn<String>();
   var selectedCheckBoxChooseOption = Rxn<String>();
-  var firstSelectedDiscountChooseOption = Rxn<GroupCustomer>();
+  var firstSelectedDiscountGroupCustomer = Rxn<GroupCustomer>();
   var secondSelectedDiscountGroupCustomer = Rxn<GroupCustomer>();
   var selectedCheckBoxPriceChooseOption = Rxn<String>();
   var checkBoxPointsChooseOption = Rxn<String>();
@@ -191,6 +189,10 @@ class WizardController extends ProductController {
 
   void removeAttribWidget(int index) {
     attrWidgetList.removeAt(index);
+    testofatrr.removeAt(index);
+  }
+  void removeAttribWidget2(int index) {
+    dataAttribute.removeAt(index);
     testofatrr.removeAt(index);
   }
 
@@ -372,14 +374,12 @@ class WizardController extends ProductController {
   @override
   void onClose() {}
 
-  chooseGenerlDate() async {
+  chooseGenerlDate(TextEditingController controller) async {
     DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
       initialDate: selectedDate.value,
       firstDate: DateTime(2000),
       lastDate: DateTime(2024),
-      //initialEntryMode: DatePickerEntryMode.input,
-      // initialDatePickerMode: DatePickerMode.year,
       helpText: 'Select DOB',
       cancelText: 'Close',
       confirmText: 'Confirm',
@@ -389,7 +389,10 @@ class WizardController extends ProductController {
       fieldHintText: 'Month/Date/Year',
     );
     if (pickedDate != null && pickedDate != selectedDate.value) {
+
       selectedDate.value = pickedDate;
+      controller.text = "${selectedDate.value.year}-${selectedDate.value.month}-${selectedDate.value.day}";
+
     }
   }
 

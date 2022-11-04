@@ -9,6 +9,7 @@ import '../../../../../controllers/group_customer_controller.dart';
 import '../../../../../model/cutomers/customer.dart';
 import '../../../../../model/cutomers/group_customer.dart';
 import '../../../../../model/discount.dart';
+import '../../../../../presentation/Widgets/dateWidgets.dart';
 
 class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
   const FirstButtomCheetDiscountContainer({Key? key}) : super(key: key);
@@ -117,9 +118,9 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                               alignment: AlignmentDirectional.bottomCenter,
                               underline: Container(color: Colors.transparent),
                               hint: const Text("مجموعة العملاء"),
-                              value: controller.firstSelectedDiscountChooseOption.value,
+                              value: controller.firstSelectedDiscountGroupCustomer.value,
                               onChanged: (v) {
-                                controller.firstSelectedDiscountChooseOption.value = v;
+                                controller.firstSelectedDiscountGroupCustomer.value = v;
                               },
                               items: CustomerGroup.itemsList.value
                                   .map<DropdownMenuItem<GroupCustomer>>(
@@ -192,44 +193,48 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                     child: Column(
                       children: [
                         const Text("تاريخ الانتهاء"),
-                        TextField(
-                          controller:controller.dateEndController ,
-                          onTap: () {
-                            controller.chooseGenerlDate();
-                          },
-                          textAlign: TextAlign.center,
-                          readOnly: true,
-                          decoration: InputDecoration(
-                            fillColor:Colors.white60, //background color of dropdown button
-                            prefixIcon: const Icon(
-                              Icons.date_range_rounded,
-                              color: Colors.blueAccent,
-                            ),
-                            hintText: DateFormat("dd-MM-yyyy")
-                                .format(controller.selectedDate.value)
-                                .toString(),
-                            hintStyle: const TextStyle(
-                              fontSize: 12,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 40.0),
-                            border: const OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide:
-                              BorderSide(color: Colors.grey, width: 0.5),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(5.0)),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(32.0)),
-                            ),
-                          ),
-                        ),
+                        dateTime(controller.dateEndController),
+
+                        // TextField(
+                        //   controller:controller.dateEndController ,
+                        //   onTap: () {
+                        //     controller.chooseGenerlDate();
+                        //     controller.dateEndController.text = "${controller.selectedDate.value.year}-${controller.selectedDate.value.month}-${controller.selectedDate.value.day}";
+                        //
+                        //   },
+                        //   textAlign: TextAlign.center,
+                        //   readOnly: true,
+                        //   decoration: InputDecoration(
+                        //     fillColor:Colors.white60, //background color of dropdown button
+                        //     prefixIcon: const Icon(
+                        //       Icons.date_range_rounded,
+                        //       color: Colors.blueAccent,
+                        //     ),
+                        //     hintText: DateFormat("dd-MM-yyyy")
+                        //         .format(controller.selectedDate.value)
+                        //         .toString(),
+                        //     hintStyle: const TextStyle(
+                        //       fontSize: 12,
+                        //     ),
+                        //     contentPadding: const EdgeInsets.symmetric(
+                        //         vertical: 10.0, horizontal: 40.0),
+                        //     border: const OutlineInputBorder(
+                        //       borderRadius: BorderRadius.all(Radius.circular(5)),
+                        //     ),
+                        //     enabledBorder: const OutlineInputBorder(
+                        //       borderSide:
+                        //       BorderSide(color: Colors.grey, width: 0.5),
+                        //       borderRadius:
+                        //       BorderRadius.all(Radius.circular(5.0)),
+                        //     ),
+                        //     focusedBorder: const OutlineInputBorder(
+                        //       borderSide:
+                        //       BorderSide(color: Colors.grey, width: 2.0),
+                        //       borderRadius:
+                        //       BorderRadius.all(Radius.circular(32.0)),
+                        //     ),
+                        //   ),
+                        // ),
 
                       ],
                     )),
@@ -242,45 +247,49 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                     child: Column(
                       children: [
                         const Text("تاريخ البدء"),
-                        TextField(
-                          controller:controller.dateStartController ,
-                          onTap: () {
-                            controller.chooseGenerlDate();
-                          },
-                          textAlign: TextAlign.center,
-                          readOnly: true,
-                          decoration: InputDecoration(
-                            fillColor:Colors.white60, //background color of dropdown button
+                        dateTime(controller.dateStartController),
 
-                            prefixIcon: const Icon(
-                              Icons.date_range_rounded,
-                              color: Colors.blueAccent,
-                            ),
-                            hintText: DateFormat("dd-MM-yyyy")
-                                .format(controller.selectedDate.value)
-                                .toString(),
-                            hintStyle: const TextStyle(
-                              fontSize: 12,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 10.0, horizontal: 40.0),
-                            border: const OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide:
-                              BorderSide(color: Colors.grey, width: 0.5),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(5.0)),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide:
-                              BorderSide(color: Colors.grey, width: 2.0),
-                              borderRadius:
-                              BorderRadius.all(Radius.circular(32.0)),
-                            ),
-                          ),
-                        ),
+                        // TextField(
+                        //   controller:controller.dateStartController,
+                        //   onTap: () {
+                        //     controller.chooseGenerlDate();
+                        //     controller.dateStartController.text = "${controller.selectedDate.value.year}-${controller.selectedDate.value.month}-${controller.selectedDate.value.day}";
+                        //
+                        //   },
+                        //   textAlign: TextAlign.center,
+                        //   readOnly: true,
+                        //   decoration: InputDecoration(
+                        //     fillColor:Colors.white60, //background color of dropdown button
+                        //
+                        //     prefixIcon: const Icon(
+                        //       Icons.date_range_rounded,
+                        //       color: Colors.blueAccent,
+                        //     ),
+                        //     hintText: DateFormat("dd-MM-yyyy")
+                        //         .format(controller.selectedDate.value)
+                        //         .toString(),
+                        //     hintStyle: const TextStyle(
+                        //       fontSize: 12,
+                        //     ),
+                        //     contentPadding: const EdgeInsets.symmetric(
+                        //         vertical: 10.0, horizontal: 40.0),
+                        //     border: const OutlineInputBorder(
+                        //       borderRadius: BorderRadius.all(Radius.circular(5)),
+                        //     ),
+                        //     enabledBorder: const OutlineInputBorder(
+                        //       borderSide:
+                        //       BorderSide(color: Colors.grey, width: 0.5),
+                        //       borderRadius:
+                        //       BorderRadius.all(Radius.circular(5.0)),
+                        //     ),
+                        //     focusedBorder: const OutlineInputBorder(
+                        //       borderSide:
+                        //       BorderSide(color: Colors.grey, width: 2.0),
+                        //       borderRadius:
+                        //       BorderRadius.all(Radius.circular(32.0)),
+                        //     ),
+                        //   ),
+                        // ),
 
                       ],
                     )),
@@ -321,7 +330,7 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                     onPressed: () {
                       discountDataModel = DiscountDataModel(
                         index: (controller.firstdiscountDataList.length),
-                          clintGroup:controller.firstSelectedDiscountChooseOption.value!.customerGroupId.toString() ,
+                          clintGroup:controller.firstSelectedDiscountGroupCustomer.value!.customerGroupId.toString() ,
                              priority: controller.firstDiscountPriority.toString(),
                           price:controller.firstDiscountPrice.toString(),
                         qty: controller.firstDiscountQty.toString(),
@@ -332,12 +341,14 @@ class FirstButtomCheetDiscountContainer extends GetView<WizardController> {
                       controller.addFirstDiscountModel(discountDataModel);
                       controller.productDiscount.add(ProductDiscount(
                          name: controller.customer.value!.name,
-                        customerGroupId:controller.secondSelectedDiscountGroupCustomer.value!.customerGroupId,
-                        dateEnd: controller.endDate2.value,
-                        dateStart: controller.startDate2.toString(),
-                        price: controller.secondDiscountPrice.toString(),
-                        priority: controller.secondDiscountPriority.toString(),
+                        customerGroupId:controller.firstSelectedDiscountGroupCustomer.value!.customerGroupId.toString(),
+                        dateEnd: controller.endDate1.toString(),
+                        dateStart: controller.startDate1.toString(),
+                        quantity: controller.firstDiscountQty,
+                        price: controller.firstDiscountPrice,
+                        priority: controller.firstDiscountPriority,
                       ));
+                      print(controller.productDiscount);
                       Get.back();
                     })
               ],

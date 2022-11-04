@@ -9,7 +9,7 @@ class AddOrders {
   OrderShippingMethod? shippingMethod;
   OrderShippingMethod? paymentMethod;
   PaymentAddress? paymentAddress;
-  PaymentAddress? shippingAddress;
+  ShippingAddress? shippingAddress;
   Customer? customer;
 
   AddOrders(
@@ -49,7 +49,7 @@ class AddOrders {
         ?  PaymentAddress.fromJson(json['payment_address'])
         : null;
     shippingAddress = json['shipping_address'] != null
-        ?  PaymentAddress.fromJson(json['shipping_address'])
+        ?  ShippingAddress.fromJson(json['shipping_address'])
         : null;
     customer = json['customer'] != null
         ?  Customer.fromJson(json['customer'])
@@ -170,6 +170,59 @@ class PaymentAddress {
         this.country});
 
   PaymentAddress.fromJson(Map<String, dynamic> json) {
+    firstname = json['firstname'];
+    lastname = json['lastname'];
+    city = json['city'];
+    address1 = json['address_1'];
+    countryId = json['country_id'];
+    postcode = json['postcode'];
+    zoneId = json['zone_id'];
+    zone = json['zone'];
+    address2 = json['address_2'];
+    country = json['country'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['firstname'] = firstname;
+    data['lastname'] = lastname;
+    data['city'] = city;
+    data['address_1'] =address1;
+    data['country_id'] = countryId;
+    data['postcode'] = postcode;
+    data['zone_id'] = zoneId;
+    data['zone'] = zone;
+    data['address_2'] = address2;
+    data['country'] = country;
+    return data;
+  }
+}
+
+class ShippingAddress {
+  String? firstname;
+  String? lastname;
+  String? city;
+  String? address1;
+  int? countryId;
+  String? postcode;
+  int? zoneId;
+  String? zone;
+  String? address2;
+  String? country;
+
+  ShippingAddress(
+      {this.firstname,
+        this.lastname,
+        this.city,
+        this.address1,
+        this.countryId,
+        this.postcode,
+        this.zoneId,
+        this.zone,
+        this.address2,
+        this.country});
+
+  ShippingAddress.fromJson(Map<String, dynamic> json) {
     firstname = json['firstname'];
     lastname = json['lastname'];
     city = json['city'];

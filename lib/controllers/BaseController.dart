@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../core/utils/utilities.dart';
@@ -141,7 +142,6 @@ class BaseController extends GetxController{
 
 
   Future<http.Response> getById(String url,String id) async{
-
     var perf= await Utilities.prefs;
     Utilities.header['Authorization']='Bearer ${perf.getString('token')}';
     var response = await client.get(

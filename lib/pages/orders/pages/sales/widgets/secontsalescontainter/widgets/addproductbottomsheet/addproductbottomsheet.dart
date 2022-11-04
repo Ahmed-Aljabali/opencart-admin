@@ -14,12 +14,18 @@ import '../../../../../../../../model/cutomers/customer.dart';
 import '../../../../../../../../model/orders/add_order.dart';
 
 class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
+  var productController =Get.put(ProductController());
 
+  @override
+  StatelessElement createElement() {
+    // TODO: implement createElement
+    productController.fetchProduct();
+    return super.createElement();
+  }
 
   @override
   Widget build(BuildContext context) {
    AddProductDataModel addProductModel;
-   var customerController =Get.put(ProductController());
    const StepperType stepperType = StepperType.horizontal;
       return Obx(() {
   return SizedBox(
@@ -96,8 +102,8 @@ class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
                                               3)
                                         ]),
                                     child:Center(
-                                      child: DropdownButton<Products>(
-
+                                      child: controller.isDataLoading.value==false?CircularProgressIndicator():
+                                     DropdownButton<Products>(
                                         hint:   const Align(
                                           alignment: Alignment.center,
                                           child: Text(
@@ -105,19 +111,19 @@ class ButtomCheetAddProductContainer extends GetView<InitAddOrderController> {
                                             style: TextStyle(color: Colors.grey),
                                           ),
                                         ),
-                                        //   value:controller.selectProd.value,
-
+                                         value:controller.selectProd.value,
                                         onChanged:(v) {
                                           controller.productsOrder.productId=v!.id;
                                           controller.productsOrder.quantity=v.quantity;
+                                          controller.selectProd.value=v;
 
                                         },
-                                        items:customerController.dataProduct.
+                                        items:productController.dataProduct.
                                         map<DropdownMenuItem<Products>>((Products value) {
                                           return   DropdownMenuItem<Products>(
                                             enabled: true,
                                             value: value,
-                                            child: Text(value.id.toString()),
+                                            child: Text(value.model),
                                           );
                                         }).toList(),
                                       ),

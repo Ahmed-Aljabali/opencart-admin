@@ -10,15 +10,21 @@ import '../model/ProductData.dart';
 import '../model/addproductmodel.dart';
 import '../model/orders/filter_order.dart';
 import '../model/orders/order.dart';
+import '../model/orders/voucher.dart';
+import '../model/porducts/product.dart';
 import '../pages/orders/widgets/orderslistviewcontainer.dart';
 
 class InitAddOrderController extends OrderController {
   RxInt _currentStep = 0.obs;
-
   RxInt get currentStep => _currentStep;
+  var selectVoucher= Rxn<Vouchers>();
+
+  dynamic _dataVoucher;
+ var  dataVoucher = RxList<Vouchers>();
 
   set currentStep(RxInt value) => _currentStep = value;
   RxBool _isVaild = true.obs;
+  var selectProd = Rxn<Products>();
 
   RxBool get isVaild => _isVaild;
 
@@ -125,4 +131,12 @@ class InitAddOrderController extends OrderController {
     update();
   }
 
+  initVouchers()async {
+    var res = await get("vouchers/limit/10/page/1");
+    if (res.statusCode == 200) {
+      _dataVoucher= VoucherData.fromJson(jsonDecode(res.body)).data!;
+    }
+  dataVoucher.value=_dataVoucher;
+    return dataVoucher;
+  }
 }

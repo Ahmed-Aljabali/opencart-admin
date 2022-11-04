@@ -25,7 +25,8 @@ class SystemINfoController extends BaseController{
   var selectWeight= Rxn<WeightClasses>();
   var selectTax= Rxn<TaxClasses>();
   var selectStockStatuses= Rxn<StockStatuses>();
- 
+  var selectCountries= Rxn<Countries>();
+
 
   Future<List<OrderStatuses>> fetchOrderStatuses() async {
     var res = await get("init/order_statuses");

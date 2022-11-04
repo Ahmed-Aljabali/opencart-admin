@@ -155,7 +155,13 @@ class FirstProductLinkeExpantionPanel extends GetView<WizardController> {
 
                     const SizedBox(height: 10,),
 
-                    SizedBox(height:47,child: MyTextFieldWidget(hintText: 'الفلتر', onChanged: (value){print(value);},)),// الفلتر
+                    SizedBox(height:47,child:
+                    MyTextFieldWidget(
+                      keyboardType: TextInputType.number,
+                      hintText: 'الفلتر',
+                      onChanged: (value){
+                      controller.selectedFilterProd.value=value;
+                      },)),// الفلتر
                     const SizedBox(height: 10,),
                     Container(
                       alignment: Alignment.center,
