@@ -231,7 +231,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                   ),
 
                   alignment: Alignment.center,
-                  child: SingleChildScrollView(
+                  child: SingleChildScrollView (
                     padding: getPadding(all: 19),
                     child: Column(
 

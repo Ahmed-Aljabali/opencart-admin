@@ -25,7 +25,7 @@ class AuthThreePage extends GetView<UsersController> {
                       textColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
+                        borderRadius: BorderRadius.circular(20.0),
                       ),
                       padding:
                       const EdgeInsets.only(
@@ -62,19 +62,41 @@ class AuthThreePage extends GetView<UsersController> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            const SizedBox(width: 70.0),
-                            RaisedButton(
+                             SizedBox(width: MediaQuery.of(context).size.width*0.1),
+                            MaterialButton(
+
+
+
+
+                                padding: const EdgeInsets.only(
+                                    left: 15, right: 15, top: 5, bottom: 5),
+
+                                child: Text(
+                                  'تسجيل دخول',
+                                  style: TextStyle(fontSize: 25, fontFamily: 'Cairo Family',color: controller.formsIndex.value == 1
+                                      ? Colors.black
+                                      : Colors.black ,),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                minWidth: 100,
+                                height: 40,
+                                color: Colors.white,
+                                onPressed: () {
+                                  controller.formsIndex.value = 1;
+                                }),
+               /*             RaisedButton(
                               textColor: controller.formsIndex.value == 1
                                   ? Colors.white
                                   : Colors.black,
                               color: controller.formsIndex.value == 1
                                   ? Colors.white
                                   : Colors.white,
-                              padding: const EdgeInsets.only(
-                                  left: 15, right: 15, top: 5, bottom: 5),
+
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0)),
                               onPressed: () {
+                                print('im priessed');
                                 controller.formsIndex.value = 1;
                               },
                               child: const Text(
@@ -85,7 +107,7 @@ class AuthThreePage extends GetView<UsersController> {
                                     color: Colors.black,
                                     fontFamily: 'Cairo Regular'),
                               ),
-                            ),
+                            ),*/
 
                           /*   RaisedButton(
                               textColor:  controller.formsIndex.value == 2
@@ -104,6 +126,7 @@ class AuthThreePage extends GetView<UsersController> {
                             ),//SignUp //SignUp*/// sign up
 
                             IconButton(
+                              iconSize: 40,
                               color: Colors.white,
                               icon: const Icon(Icons.clear),
                               onPressed: () {
@@ -148,7 +171,7 @@ class LoginForm extends StatelessWidget {
         margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(20.0),
         ),
         child: Form(
           key: _formKey,
@@ -157,10 +180,12 @@ class LoginForm extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             children: <Widget>[
               TextFormField(
+                style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular'),
                 controller: userName,
-                textAlign: TextAlign.right,
+                textAlign: TextAlign.center,
                 decoration: const InputDecoration(
                   hintText: "ادحل اسم المستخدم",
+                  hintStyle: TextStyle(fontFamily: 'Cairo Regular'),
                   border: OutlineInputBorder(),
 
 
@@ -174,8 +199,9 @@ class LoginForm extends StatelessWidget {
               ),
               const SizedBox(height: 10.0),
               TextFormField(
+                style: TextStyle(fontSize: 24),
                 controller: password,
-                textAlign: TextAlign.right,
+                textAlign: TextAlign.center,
                 obscureText: true,
                 decoration: const InputDecoration(
                   hintText: "ادحل كلمة السر",
@@ -190,12 +216,35 @@ class LoginForm extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 10.0),
-              RaisedButton(
+              MaterialButton(
+
+                  color: Colors.lightGreen,
+
+
+                  padding: const EdgeInsets.only(
+                      left: 15, right: 15, top: 5, bottom: 5),
+
+                  child: Text(
+                    'تسجيل دخول',
+                    style: TextStyle(fontSize: 25, fontFamily: 'Cairo Family',color: Colors.black),
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  minWidth: 100,
+                  height: 40,
+
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      login.login(
+                          User(password: password.text, username: userName.text));
+                    }
+                  }),
+             /* RaisedButton(
                 color: Colors.lightGreen,
                 textColor: Colors.black,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: const Text("تسجيل دخول"),
                 onPressed: () {
@@ -204,7 +253,7 @@ class LoginForm extends StatelessWidget {
                         User(password: password.text, username: userName.text));
                   }
                 },
-              ),
+              ),*/
             ],
           ),
         )
