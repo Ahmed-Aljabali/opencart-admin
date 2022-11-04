@@ -5,8 +5,9 @@ import 'package:opencart/controllers/wizard_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/pages/customer/addcustomer/widgets/adresses/adress.dart';
 
-import '../../wizard/widgets/custom_stepper.dart';
 
+
+import '../../edit_wizard/widgets/custom_stepper.dart';
 import 'widgets/generl/general.dart';
 
 class AddCustomerPage extends GetView<CustomerController> {
@@ -53,7 +54,7 @@ class AddCustomerPage extends GetView<CustomerController> {
 
               Expanded(
                 flex: 8,
-                child: MainTimeline(
+                child: Timeline(
                   children: <Widget>[
                     wizardController.SingleStep(0,
                         StepData(

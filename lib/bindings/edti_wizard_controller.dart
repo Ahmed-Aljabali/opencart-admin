@@ -9,8 +9,6 @@ import '../controllers/edit_wizard_controller.dart';
 class WizardBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<WizardController>(() {
-      return WizardController();
-    },fenix: true);
+    Get.put(EditWizardController());
   }
 }

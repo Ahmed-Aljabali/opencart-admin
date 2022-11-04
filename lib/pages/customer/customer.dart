@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/pages/customer/widgets/customer_search_form.dart';
 import 'package:opencart/pages/customer/widgets/mycustomerlistviewcontainer.dart';
-import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
-import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
 import '../../controllers/Init_add_order_controller.dart';
 import '../../core/utils/math_utils.dart';
 import 'addcustomer/add_customer_page.dart';

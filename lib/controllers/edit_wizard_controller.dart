@@ -18,7 +18,7 @@ import '../model/porducts/option/option_value_description.dart';
 import '../model/porducts/product.dart';
 import '../model/porducts/stores.dart';
 
-class WizardController extends ProductController {
+class EditWizardController extends ProductController {
   final formKey = GlobalKey<FormState>();
   final FocusNode focusNode = FocusNode();
 
@@ -343,7 +343,7 @@ class WizardController extends ProductController {
   @override
   void onInit() {
     focusNode.addListener((){ });
-
+    //initProductEditing();
     super.onInit();
     genrlproduct1 = generateItems(1, 'معلومات المنتج');
     genrlproduct2 = generateItems(1, 'معلومات الموديل');
@@ -353,11 +353,7 @@ class WizardController extends ProductController {
     linkeproduct1 = generateItems(1, 'معلومات الصنع');
     attributeproduct1 = generateItems(1, 'خصائص مميزات');
     optionsproduct1 = generateItems(1, 'Add Option');
-    // checkBox = generateItems(1,'CheckBox');
 
-    // datecontainertitle=  generateItems(1,'Date');
-    // timeDateContainerTitele = generateItems(1, ' Date & Time');
-    // DeliveryDateContainerTitle = generateItems(1, 'Delivery Date');
     subscribeproduct1 = generateItems(1, 'اضافة خطة الاشتراك');
     discount1 = generateItems(1, 'اضافة تخفيض');
     discount2 = generateItems(1, 'اضافة خصم');
@@ -493,13 +489,14 @@ class WizardController extends ProductController {
           header: header, body: ' - $index Details', isExpanded: false.obs);
     });
   }
+var price =TextEditingController();
+var productsController= Products();
+  initProductEditing(Products products){
+    productsController.price=products.price;
+    price.text=products.price.toString();
+   update();
 
-// List<OptModel> generateOptModel(int numberOfItems, OptModel optModel) {
-//   return List<OptModel>.generate(numberOfItems, (int index) {
-//     return optModel;
-//   });
-// }
-
+}
 
 
 }

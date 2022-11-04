@@ -63,9 +63,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/Customer", page:()=>AddCustomerPage()),
         GetPage(name: "/AddCustomer", page:()=>const AddCustomer()),
         GetPage(name: "/Product", page:()=>const Product()),
-        GetPage(name: "/AddProduct", page:()=>const AddProduct()),
-        GetPage(name: "/UpdateProduct", page:()=>const UpdateProduct()),
-        GetPage(name: "/AddOrder", page:()=>const AddOrder()),
+              GetPage(name: "/AddOrder", page:()=>const AddOrder()),
 
       ],
     );

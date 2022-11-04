@@ -66,7 +66,7 @@ final color ;
 class DynamicTextFieldWidget extends StatelessWidget {
   final String hintText ;
   final Function onFieldSubmitted ;
-  final controller;
+  final  controller;
   final keyboardType;
   final height ;
   DynamicTextFieldWidget({required this.hintText,this.height = 43,required this.onFieldSubmitted( String value),required this.controller, required this.keyboardType });

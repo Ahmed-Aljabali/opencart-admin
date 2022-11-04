@@ -54,7 +54,7 @@ class MainWizardPage extends GetView<MainWizardController> {
 
               Expanded(
                 flex: 8,
-                child: MainTimeline(
+                child: Timeline(
 
                   children: <Widget>[
                     // FirstProductContainer(),

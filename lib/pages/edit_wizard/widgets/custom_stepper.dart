@@ -27,7 +27,7 @@ class Timeline extends StatelessWidget {
   })  : itemCount = children.length,
         assert(itemGap >= 0),
         assert(lineGap >= 0),
-        assert(indicators == null || children.length == indicators.length),
+
         super(key: key);
 
   final List<Widget> children;

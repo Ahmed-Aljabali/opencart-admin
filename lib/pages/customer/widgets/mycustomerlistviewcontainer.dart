@@ -18,8 +18,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
     return ListView.builder(
         itemCount: order.length,
         itemBuilder: (context, index) {
-          print(order[index].orderid);
-          print(order[index].total);
+
           return SizedBox(
             height: getHorizontalSize(120),
             child: Card(
