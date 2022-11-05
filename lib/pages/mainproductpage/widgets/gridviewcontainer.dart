@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/controllers/edit_wizard_controller.dart';
-import 'package:opencart/pages/edit_wizard/wizard_page.dart';
 
 import '../../../bindings/edti_wizard_controller.dart';
 import '../../../controllers/porducts_controller.dart';
@@ -244,7 +243,7 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
                                 onTap: () {
                                   p.initProductEditing(product[index]);
 
-                                  Get.to(EditWizardPage(),binding:WizardBinding() );
+                          //        Get.to(EditWizardPage(),binding:WizardBinding() );
                                 },
                                 child: Icon(
                                   Icons.edit_outlined,

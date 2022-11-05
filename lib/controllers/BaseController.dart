@@ -67,6 +67,12 @@ class BaseController extends GetxController{
 
   var  error = <String>[]; // Good
 
+  clearErrorList(){
+    if (error.isNotEmpty){
+
+      error.clear();
+    }
+  }
 
  Future<http.Response> get(String url) async{
     var perf= await Utilities.prefs;

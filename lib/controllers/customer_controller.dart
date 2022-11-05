@@ -1,12 +1,15 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
-import 'package:opencart/controllers/wizard_controller.dart';
+
+import 'package:http/http.dart' as http;
 import '../InterFace/ICustomer.dart';
 import '../model/ProductData.dart';
 import '../model/cutomers/add_customer.dart';
 
 import '../model/cutomers/customer.dart';
+import '../model/cutomers/group_customer.dart';
 
 
 class CustomerController extends BaseController implements ICustomers{
@@ -16,7 +19,7 @@ class CustomerController extends BaseController implements ICustomers{
   RxInt get currentStep => _currentStep;
 
   dynamic _trx;
-  List<Customers> get trx => _trx;
+  List<Customers> get dataCustomer => _trx;
 
   set currentStep(RxInt value) => _currentStep = value;
   RxBool _isVaild = true.obs;
@@ -27,6 +30,22 @@ class CustomerController extends BaseController implements ICustomers{
 
   RxBool get isActive => _isActive;
 
+  RxBool _isNewsletterActive = false.obs;
+
+  RxBool get isNewsletterActive => _isNewsletterActive;
+  RxBool _isSafeActive= false.obs;
+
+  RxBool get isSafeActive => _isSafeActive;
+
+  var selectCustomerGroup = Rxn<GroupCustomer>();
+ // var postCustomer = Rxn<PostCustomer>();
+  var customerGroupId = Rxn<int>();
+  var postCustomer=PostCustomer();
+  var lastName = TextEditingController();
+  var firstName = TextEditingController();
+  var phone = TextEditingController();
+  var email = TextEditingController();
+  var password = TextEditingController();
 
   tapped(int step) {
     _currentStep.value = step;
@@ -68,12 +87,15 @@ class CustomerController extends BaseController implements ICustomers{
 
 
   @override
-   addNewCustomer(PostCustomer customer) async{
+  Future<http.Response> addNewCustomer(PostCustomer customer) async{
     var res= await post(customer,"customers");
     if (res.statusCode==200) {
-      msg="successfully saved";
+      msg="تم الاضافة بنجاح";
+
+      update();
     }
-    return msg;
+
+    return res;
 
   }
 

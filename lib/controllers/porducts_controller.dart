@@ -31,11 +31,10 @@ class  ProductController extends BaseController implements IProduct {
   @override
  fetchProduct()async{
    var res = await get("products");
-
    if (res.statusCode == 200) {
      _data=ProductData.fromJson(jsonDecode(res.body)).data;
    }
-   dataProduct.forEach((element) {print(element);});
+
    }
 
 

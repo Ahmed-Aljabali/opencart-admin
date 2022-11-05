@@ -8,7 +8,7 @@ import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
 import '../../../../../controllers/group_customer_controller.dart';
 import '../../../../../model/discount.dart';
-import '../../../../../presentation/Widgets/dateWidgets.dart';
+import '../../../../widgets/date_time.dart';
 
 class MainSecondButtomCheetDiscountContainer extends GetView<MainWizardController> {
   const MainSecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
@@ -162,48 +162,6 @@ class MainSecondButtomCheetDiscountContainer extends GetView<MainWizardControlle
               children: [
                 const Text("تاريخ البدء"),
                 dateTime(controller.dateStartDisCountController),
-
-                // TextField(
-                //   controller:controller.dateStartDisCountController,
-                //   onTap: () {
-                //     controller.chooseGenerlDate();
-                //     controller.dateStartDisCountController.text = "${controller.selectedDate.value.year}-${controller.selectedDate.value.month}-${controller.selectedDate.value.day}";
-                //
-                //   },
-                //   textAlign: TextAlign.center,
-                //   readOnly: true,
-                //   decoration: InputDecoration(
-                //     fillColor:Colors.white60, //background color of dropdown button
-                //
-                //     prefixIcon: const Icon(
-                //       Icons.date_range_rounded,
-                //       color: Colors.blueAccent,
-                //     ),
-                //     hintText: DateFormat("dd-MM-yyyy")
-                //         .format(controller.selectedDate.value)
-                //         .toString(),
-                //     hintStyle: const TextStyle(
-                //       fontSize: 12,
-                //     ),
-                //     contentPadding: const EdgeInsets.symmetric(
-                //         vertical: 10.0, horizontal: 40.0),
-                //     border: const OutlineInputBorder(
-                //       borderRadius: BorderRadius.all(Radius.circular(5)),
-                //     ),
-                //     enabledBorder: const OutlineInputBorder(
-                //       borderSide:
-                //       BorderSide(color: Colors.grey, width: 0.5),
-                //       borderRadius:
-                //       BorderRadius.all(Radius.circular(5.0)),
-                //     ),
-                //     focusedBorder: const OutlineInputBorder(
-                //       borderSide:
-                //       BorderSide(color: Colors.grey, width: 2.0),
-                //       borderRadius:
-                //       BorderRadius.all(Radius.circular(32.0)),
-                //     ),
-                //   ),
-                // ),
 
               ],
             )),

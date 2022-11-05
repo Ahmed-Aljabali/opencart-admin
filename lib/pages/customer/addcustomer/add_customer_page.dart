@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import 'package:opencart/Controllers/customer_controller.dart';
 import 'package:opencart/controllers/wizard_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import 'package:opencart/pages/customer/addcustomer/widgets/adresses/adress.dart';
-
-
-
+import 'package:opencart/model/cutomers/add_customer.dart';
 import '../../edit_wizard/widgets/custom_stepper.dart';
+import '../../widgets/dialogs.dart';
 import 'widgets/generl/general.dart';
 
 class AddCustomerPage extends GetView<CustomerController> {
@@ -64,16 +62,11 @@ class AddCustomerPage extends GetView<CustomerController> {
                               ],
                             )
                         )),
-                    // wizardController.SingleStep(1,
-                    //     StepData(
-                    //         AddressForm()
-                    //     )
-                    // ),
+
                   ],
                   indicators: <Widget>[
                     wizardController.stepheader( wizardController.currentStep.value,0,Icons.account_circle_rounded),
                     wizardController.stepheader( wizardController.currentStep.value,1,Icons.info_outline_rounded),
-
                   ],
                 ),
               ),
@@ -111,89 +104,57 @@ class AddCustomerPage extends GetView<CustomerController> {
             ],
           ),
 
-/*
-          Row(
-            children: [
-              Expanded(
-                child: Stepper(
-                  type: stepperType,
-                  physics:const ClampingScrollPhysics(),
-                  currentStep: controller.currentStep.value,
-                  onStepTapped: (step) => controller.tapped(step),
-                  onStepContinue:
-                  controller.isVaild.value ? controller.continued : null,
-                  onStepCancel: controller.cancel,
-                  steps: <Step>[
-                    Step(
-                      title: const Text('عام', style: TextStyle(fontWeight: FontWeight.bold,fontFamily: "Cairo Regular",fontSize: 20),),
-                      content: Column(
-                        children: [
-                          GeneralFirstCustomerExpantionPanel(controller: controller,)
-                        ],
-                      ),
-                      isActive: controller.currentStep.value >= 0,
-                      state: controller.currentStep.value >= 0
-                          ? StepState.complete
-                          : StepState.disabled,
-                    ),
-                    Step(
-                    title:  const Text('Linke'),
-                      content: const Text('Linke'),
-                      isActive: controller.currentStep.value >= 0,
-                      //   state: controller.currentStep.value >= 1
-                      //       ? StepState.complete
-                      //       : StepState.disabled,
-                    ),
-                    Step(
+              floatingActionButton: FloatingActionButton(
 
-                      title:  const Text('Attribute'),
-                      content:const Text('Attribute'),
-                      isActive: controller.currentStep.value >= 0,
-                      // state: controller.currentStep.value >= 2
-                      //     ? StepState.complete
-                      //     : StepState.disabled,
-                    ), //attripute
-                    Step(
-                      title:  const Text("Options"),
-                      content: Column(
-                        children: <Widget>[
-                          *//*if(controller.selectedOption.value=='Date')
-                            CheckBoxContainer(controller: controller),*//*
-                          const Text('Attribute'),
-                        ],
-                      ),
-                      isActive: controller.currentStep.value >= 0,
-                      // state: controller.currentStep.value >= 3
-                      //     ? StepState.complete
-                      //     : StepState.disabled,
-                    ), // options
 
-                  ],
+                backgroundColor: Colors.green,
+                onPressed: ()async {
+
+                   controller.postCustomer.firstname=controller.firstName.text;
+                  controller.postCustomer.lastname=controller.lastName.text;
+                  controller.postCustomer.email=controller.email.text;
+                  controller.postCustomer.telephone=controller.phone.text;
+                  controller.postCustomer.password=controller.password.text;
+                  controller.postCustomer.confirm=controller.password.text;
+                  controller.postCustomer.customerGroupId=controller.postCustomer.customerGroupId;
+                 controller.addNewCustomer(controller.postCustomer).then((value) =>
+                {
+
+                if (controller.error.isNotEmpty)
+                {
+                    errorDialog(controller.error.first)
+
+                }else
+                  {
+                  successDialog(controller.msg)
+                  }
+
+                });
+
+
+                },
+                tooltip: 'add a new Customer',
+                highlightElevation: 1,
+
+                child:   Container(
+
+                    decoration: const BoxDecoration(
+
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+
+                    ),
+                    child: const Text('حفظ')
                 ),
+
+
               ),
-
-
-            ],
-          ),*/
 
         ),
       ),
     );
-  /*    Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Obx(
-                  () => !controller.isDataLoading.value? const Center(
-          child: CircularProgressIndicator(),
-                 ): Text("controller.trx.data.toString()"),
-            ),
-          ],
-        ),
-      ),
-    );*/
 
   }
 }
