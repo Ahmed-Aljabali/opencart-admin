@@ -48,30 +48,26 @@ class MainThirdProductContainer extends GetView<MainWizardController> {
                       keyboardType: TextInputType.number,
                         hintText: 'price',
                         onChanged: (value)=>controller.prod.price=value),
-
                     const SizedBox(
                       height: 10,
                     ),
                     Container(
                       alignment: Alignment.center,
                       height: 47,
-                      child: Expanded(
+                      padding: const EdgeInsets.only(left: 1,right: 1),
+                      child: DecoratedBox(
 
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 1,right: 1),
-                          child: DecoratedBox(
+                          decoration: BoxDecoration(
 
-                              decoration: BoxDecoration(
-
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
+                              color:Colors.white60, //background color of dropdown button
+                              border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                              borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                    blurRadius: 3) //blur radius of shadow
+                              ]
+                          ),
           child: Container(
           width: MediaQuery.of(context).size.width * 0.5,
           child:
@@ -99,14 +95,12 @@ class MainThirdProductContainer extends GetView<MainWizardController> {
           ),
           ),
           )
-                      ), /*TextDropdownFormField(
+                    ), /*TextDropdownFormField(
 
-                        options: controller.taxCategOptionsList,
-                        decoration: CategInputDecoration,
-                        dropdownHeight: controller.taxCategOptionsList.length * 50,
-                      ),*/
-                    ),
-                      )
+                    options: controller.taxCategOptionsList,
+                    decoration: CategInputDecoration,
+                    dropdownHeight: controller.taxCategOptionsList.length * 50,
+                    ),*/
                     )
                   ],
                 ),

@@ -74,56 +74,54 @@ class MyCustomerListViewContainer extends StatelessWidget {
                             right: 5,
                           ),
 
-                          child: Expanded(
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment
-                                  .start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Padding(
-                                  padding: getPadding(
-                                    left: 5,
-                                    top: 4,
-                                    bottom: 4,
-                                  ),
-                                  child: Text(
-                                    order[index].currencycode!,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: getFontSize(
-                                        11,
-                                      ),
-                                      fontFamily: 'Cairo Regular',
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.00,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment
+                                .start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Padding(
+                                padding: getPadding(
+                                  left: 5,
+                                  top: 4,
+                                  bottom: 4,
+                                ),
+                                child: Text(
+                                  order[index].currencycode!,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.start,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: getFontSize(
+                                      11,
                                     ),
+                                    fontFamily: 'Cairo Regular',
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.00,
                                   ),
                                 ),
-                                Padding(
-                                  padding: getPadding(
-                                    left: 4,
-                                    top: 4,
-                                    right: 9,
-                                    bottom: 4,
-                                  ),
-                                  child: Text(
-                                    order[index].total!,
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      color: Colors.black ,
-                                      fontSize:getFontSize(15),
+                              ),
+                              Padding(
+                                padding: getPadding(
+                                  left: 4,
+                                  top: 4,
+                                  right: 9,
+                                  bottom: 4,
+                                ),
+                                child: Text(
+                                  order[index].total!,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    color: Colors.black ,
+                                    fontSize:getFontSize(15),
 
-                                      fontFamily: 'Cairo Regular',
-                                      fontWeight: FontWeight.bold,
-                                      height: 1.00,
-                                    ),
+                                    fontFamily: 'Cairo Regular',
+                                    fontWeight: FontWeight.bold,
+                                    height: 1.00,
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ), // اسم المنتج وسعرة
                         ),
                         Align(
@@ -179,7 +177,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                       ],),
                   ),//s
 
-                  Expanded(
+                  Flexible(
                     child: Container(
                       padding:getPadding(left: 10,top: 15,bottom: 25,right: 8),
                       child: Column(
@@ -220,16 +218,14 @@ class MyCustomerListViewContainer extends StatelessWidget {
                             ),// اسم المنتج وسعرة
                           ),
 
-                          Expanded(
-                              child :  Row(
+                          Row(
 
 
-                                children: [
-                                  Expanded(child: Container()),
-                                  Text(order[index].dateadded!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
-                                  Text('  -   #${order[index].orderid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
-                                ],
-                              )
+                            children: [
+
+                              Text(order[index].dateadded!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                              Text('  -   #${order[index].orderid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                            ],
                           ),
 
                         ],),

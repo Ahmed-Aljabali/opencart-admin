@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/controllers/users_controller.dart';
+import 'package:opencart/core/utils/math_utils.dart';
 import '../../model/user.dart';
 import '../../../controllers/users_controller.dart';
 
@@ -49,6 +50,7 @@ class AuthThreePage extends GetView<UsersController> {
                     ),
                   ),
                 ),
+
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),
                   child: (!controller.formVisible.value)
@@ -143,7 +145,8 @@ class AuthThreePage extends GetView<UsersController> {
                                 LoginForm()
 
                           ),
-                        )
+                        ),
+
                       ],
                     ),
                   ),

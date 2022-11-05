@@ -196,7 +196,8 @@ class MyListViewContainer extends StatelessWidget {
                         ],),
                       ),
 
-                      Expanded(
+                      Flexible(
+
                         child: Container(
                           padding:getPadding(left: 10,top: 15,bottom: 15,right: 3),
                           child: Column(
@@ -204,16 +205,13 @@ class MyListViewContainer extends StatelessWidget {
                             children: [
 
                               Container(
-padding:getPadding(bottom: 16),
-
-
+                                padding:getPadding(bottom: 16),
                                 margin: getMargin(
                                   left: 14,
                                   top: 2,
                                   right: 10,
                                 ),
                                 decoration: BoxDecoration(
-
 
                                   borderRadius: BorderRadius.circular(
                                     getHorizontalSize(
@@ -236,10 +234,8 @@ padding:getPadding(bottom: 16),
                                 ),// اسم المنتج وسعرة
                               ),
 
-                            Expanded(
-                                  child :  Text('''
- تلفون سامسونج اس 10 ذهبي تلفون سامسونج اس 10 ذهبي''',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 12.0 ,color: Colors.black) , )
-                              ),
+                            Text('''
+ تلفون سامسونج اس 10 ذهبي تلفون سامسونج اس 10 ذهبي''',maxLines: 4,   overflow: TextOverflow.ellipsis, style: TextStyle(fontSize: 10.0 ,color: Colors.black) , ),
                              /* Expanded(
 
 
@@ -273,16 +269,14 @@ padding:getPadding(bottom: 16),
 
                       Padding(
                         padding: const EdgeInsets.all(3.0),
-                        child: Expanded(
-                          child: SizedBox(
+                        child: SizedBox(
 
-                            height:150,
-                            width: 89,
+                          height:150,
+                          width: 89,
 
-                            child: Image.asset(
+                          child: Image.asset(
 
-                              'images/s10.jpg',
-                            ),
+                            'images/s10.jpg',
                           ),
                         ),
                       ),

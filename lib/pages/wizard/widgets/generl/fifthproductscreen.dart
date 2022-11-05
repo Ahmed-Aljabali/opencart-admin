@@ -71,52 +71,48 @@ class MainFifhProductScreen extends GetView<MainWizardController> {
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      child: Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 1,right: 1),
-                          child: DecoratedBox(
-                              decoration: BoxDecoration(
+                      padding: const EdgeInsets.only(left: 1,right: 1),
+                      child: DecoratedBox(
+                          decoration: BoxDecoration(
 
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
-                              child: Container(
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                child:
-
-                                initSystem.isDataLoading.value==false?
-                                CircularProgressIndicator():
-                                Center(
-                                  child: DropdownButton<LengthClasses?>(
-                                    alignment: AlignmentDirectional.bottomCenter,
-                                    underline: Container(color: Colors.transparent),
-                                    hint: const Text("فئة الطول"),
-                                    value: initSystem.selectLength.value,
-                                    onChanged: (v) {
-                                      print(v);
-                                      initSystem.selectLength.value=v;
-                                      controller.prod.lengthClassId=v!.lengthClassId;
-                                      initSystem.update();
-                                    },
-                                    items: initSystem.lengthClasses
-                                        .map<DropdownMenuItem<LengthClasses?>>(
-                                            (LengthClasses? value) {
-                                          return DropdownMenuItem<LengthClasses>(
-                                            value: value,
-                                            child: Text(value!.title),
-                                          );
-                                        }).toList(),
-                                  ),
-                                ),
-                              )
+                              color:Colors.white60, //background color of dropdown button
+                              border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                              borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                    blurRadius: 3) //blur radius of shadow
+                              ]
                           ),
-                        ),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            child:
+
+                            initSystem.isDataLoading.value==false?
+                            CircularProgressIndicator():
+                            Center(
+                              child: DropdownButton<LengthClasses?>(
+                                alignment: AlignmentDirectional.bottomCenter,
+                                underline: Container(color: Colors.transparent),
+                                hint: const Text("فئة الطول"),
+                                value: initSystem.selectLength.value,
+                                onChanged: (v) {
+                                  print(v);
+                                  initSystem.selectLength.value=v;
+                                  controller.prod.lengthClassId=v!.lengthClassId;
+                                  initSystem.update();
+                                },
+                                items: initSystem.lengthClasses
+                                    .map<DropdownMenuItem<LengthClasses?>>(
+                                        (LengthClasses? value) {
+                                      return DropdownMenuItem<LengthClasses>(
+                                        value: value,
+                                        child: Text(value!.title),
+                                      );
+                                    }).toList(),
+                              ),
+                            ),
+                          )
                       ),
                     ),
 
@@ -131,44 +127,40 @@ class MainFifhProductScreen extends GetView<MainWizardController> {
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      child: Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 1,right: 1),
-                          child: DecoratedBox(
-                              decoration: BoxDecoration(
+                      padding: const EdgeInsets.only(left: 1,right: 1),
+                      child: DecoratedBox(
+                          decoration: BoxDecoration(
 
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
-                              child:Center(
-                                child:
-                                initSystem.isDataLoading.value==false?
-                                CircularProgressIndicator():
-                                DropdownButton<WeightClasses>(
-                                  hint:  const Text("فئة الوزن"),
-                                  value: initSystem.selectWeight.value,
-                                  onChanged:(v) {
-                                    initSystem.selectWeight.value=v;
-                                    controller.prod.weightClassId=v!.weightClassId;
-                                    },
-                                  items:initSystem.weightClass.
-                                  map<DropdownMenuItem<WeightClasses>>((WeightClasses value) {
-                                    return   DropdownMenuItem<WeightClasses>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value.title.toString()),
-                                    );
-                                  }).toList(),
-                                ),
-                              )
+                              color:Colors.white60, //background color of dropdown button
+                              border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                              borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                    blurRadius: 3) //blur radius of shadow
+                              ]
                           ),
-                        ),
+                          child:Center(
+                            child:
+                            initSystem.isDataLoading.value==false?
+                            CircularProgressIndicator():
+                            DropdownButton<WeightClasses>(
+                              hint:  const Text("فئة الوزن"),
+                              value: initSystem.selectWeight.value,
+                              onChanged:(v) {
+                                initSystem.selectWeight.value=v;
+                                controller.prod.weightClassId=v!.weightClassId;
+                                },
+                              items:initSystem.weightClass.
+                              map<DropdownMenuItem<WeightClasses>>((WeightClasses value) {
+                                return   DropdownMenuItem<WeightClasses>(
+                                  enabled: true,
+                                  value: value,
+                                  child: Text(value.title.toString()),
+                                );
+                              }).toList(),
+                            ),
+                          )
                       ),
                     ),
 
@@ -178,39 +170,35 @@ class MainFifhProductScreen extends GetView<MainWizardController> {
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      child: Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 1,right: 1),
-                          child: DecoratedBox(
-                              decoration: BoxDecoration(
+                      padding: const EdgeInsets.only(left: 1,right: 1),
+                      child: DecoratedBox(
+                          decoration: BoxDecoration(
 
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
-                              child:Center(
-                                child: DropdownButton<String>(
-                                  hint:  const Text("الحالة"),
-                                  value: controller.selectedstatuesOptions.value,
-                                  onChanged:(v) {
-                                    controller.selectedstatuesOptions.value = v!;},
-                                  items:controller.statuesOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              )
+                              color:Colors.white60, //background color of dropdown button
+                              border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                              borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                    blurRadius: 3) //blur radius of shadow
+                              ]
                           ),
-                        ),
+                          child:Center(
+                            child: DropdownButton<String>(
+                              hint:  const Text("الحالة"),
+                              value: controller.selectedstatuesOptions.value,
+                              onChanged:(v) {
+                                controller.selectedstatuesOptions.value = v!;},
+                              items:controller.statuesOptionsList.
+                              map<DropdownMenuItem<String>>((String value) {
+                                return   DropdownMenuItem<String>(
+                                  enabled: true,
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          )
                       ),
                     ),
 
@@ -220,42 +208,38 @@ class MainFifhProductScreen extends GetView<MainWizardController> {
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      child: Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.only(left: 1,right: 1),
-                          child: DecoratedBox(
-                              decoration: BoxDecoration(
+                      padding: const EdgeInsets.only(left: 1,right: 1),
+                      child: DecoratedBox(
+                          decoration: BoxDecoration(
 
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
-                              child:Center(
-                                child: DropdownButton<String>(
-                                  hint:  const Text("امر الترتيب"),
-                                  value: controller.selectedorderOptions.value,
-                                  onChanged:(v) {
-                                    controller.selectedorderOptions.value = v!;
-                                    controller.prod.sortOrder = v;
-
-                                    },
-                                  items:controller.orderOptionsList.
-                                  map<DropdownMenuItem<String>>((String value) {
-                                    return   DropdownMenuItem<String>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              )
+                              color:Colors.white60, //background color of dropdown button
+                              border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                              borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                    blurRadius: 3) //blur radius of shadow
+                              ]
                           ),
-                        ),
+                          child:Center(
+                            child: DropdownButton<String>(
+                              hint:  const Text("امر الترتيب"),
+                              value: controller.selectedorderOptions.value,
+                              onChanged:(v) {
+                                controller.selectedorderOptions.value = v!;
+                                controller.prod.sortOrder = v;
+
+                                },
+                              items:controller.orderOptionsList.
+                              map<DropdownMenuItem<String>>((String value) {
+                                return   DropdownMenuItem<String>(
+                                  enabled: true,
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          )
                       ),
                     ),
 

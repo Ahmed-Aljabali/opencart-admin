@@ -71,44 +71,40 @@ class MainForthProductContainer extends GetView<MainWizardController> {
                     Container(
                       alignment: Alignment.center,
                       height: 50,
-                      child: Expanded(
-                        child: Container(
-                          padding: EdgeInsets.only(left: 1,right: 1),
-                          child: DecoratedBox(
-                              decoration: BoxDecoration(
+                      padding: EdgeInsets.only(left: 1,right: 1),
+                      child: DecoratedBox(
+                          decoration: BoxDecoration(
 
-                                  color:Colors.white60, //background color of dropdown button
-                                  border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
-                                  borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
-                                  boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
-                                    BoxShadow(
-                                        color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
-                                        blurRadius: 3) //blur radius of shadow
-                                  ]
-                              ),
-                              child:Center(
-                                child:
-                                initSystem.isDataLoading.value==false?
-                                CircularProgressIndicator():
-                                DropdownButton<StockStatuses>(
-                                  hint:  const Text("حالة نفاذ المخزون "),
-                                  value: initSystem.selectStockStatuses.value,
-                                  onChanged:(v) {
-                                    initSystem.selectStockStatuses.value=v;
-                                  controller.prod.stockStatusId=v!.stockStatusId;
-                                  },
-                                  items:initSystem.stockStatuses.
-                                  map<DropdownMenuItem<StockStatuses>>((StockStatuses value) {
-                                    return   DropdownMenuItem<StockStatuses>(
-                                      enabled: true,
-                                      value: value,
-                                      child: Text(value.name.toString()),
-                                    );
-                                  }).toList(),
-                                ),
-                              )
+                              color:Colors.white60, //background color of dropdown button
+                              border: Border.all(color: Colors.black38, width:0.5), //border of dropdown button
+                              borderRadius: BorderRadius.circular(10), //border raiuds of dropdown button
+                              boxShadow: const <BoxShadow>[ //apply shadow on Dropdown button
+                                BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1), //shadow for button
+                                    blurRadius: 3) //blur radius of shadow
+                              ]
                           ),
-                        ),
+                          child:Center(
+                            child:
+                            initSystem.isDataLoading.value==false?
+                            CircularProgressIndicator():
+                            DropdownButton<StockStatuses>(
+                              hint:  const Text("حالة نفاذ المخزون "),
+                              value: initSystem.selectStockStatuses.value,
+                              onChanged:(v) {
+                                initSystem.selectStockStatuses.value=v;
+                              controller.prod.stockStatusId=v!.stockStatusId;
+                              },
+                              items:initSystem.stockStatuses.
+                              map<DropdownMenuItem<StockStatuses>>((StockStatuses value) {
+                                return   DropdownMenuItem<StockStatuses>(
+                                  enabled: true,
+                                  value: value,
+                                  child: Text(value.name.toString()),
+                                );
+                              }).toList(),
+                            ),
+                          )
                       ),
                     ),
                     const SizedBox(

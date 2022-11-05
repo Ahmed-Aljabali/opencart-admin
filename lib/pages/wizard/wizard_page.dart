@@ -112,34 +112,31 @@ class MainWizardPage extends GetView<MainWizardController> {
                 ),
               ),
 
-              Padding(
-                padding: getPadding(bottom: 50),
-                child: Expanded(
+              Expanded(
 
-                    flex: 1,
-                    child:  InkWell(
-                      onTap: (){
-                        if(controller.currentStep.value!=6) {
-                          controller.tapped(controller.currentStep.value + 1);
-                        }
-                      },
-                      child:  Container(
+                  flex: 1,
+                  child:  InkWell(
+                    onTap: (){
+                      if(controller.currentStep.value!=6) {
+                        controller.tapped(controller.currentStep.value + 1);
+                      }
+                    },
+                    child:  Container(
 
 
-                        decoration: const BoxDecoration(
+                      decoration: const BoxDecoration(
 
-                          color: Colors.green,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(20),
-                          ),
-
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20),
                         ),
 
-                        margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
-                        padding:getPadding(all: 10),
-                        child: Text('NextStep',style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
-                      ),)),
-              )
+                      ),
+
+                      margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
+                      padding:getPadding(all: 10),
+                      child: Text('NextStep',style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
+                    ),))
             ],
           ),
 

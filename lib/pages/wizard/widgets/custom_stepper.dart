@@ -184,7 +184,7 @@ class _TimelinePainter extends CustomPainter {
 }
 Widget StepData(Widget item){
   return SingleChildScrollView(
-    child: Expanded(
+    child: Container(
       child:item ,),);
 }
 
