@@ -124,7 +124,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                               ),
                             ],
                           ), // اسم المنتج وسعرة
-                        ),
+                        ),),
                         Align(
                           alignment: Alignment.center,
                           child: Container(
