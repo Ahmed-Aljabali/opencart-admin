@@ -8,7 +8,9 @@ import 'package:opencart/controllers/wizard_controller.dart';
 import 'package:opencart/core/constrants/widgetconstrant.dart';
 
 import '../../../../../Controllers/customer_controller.dart';
+import '../../../../../controllers/group_customer_controller.dart';
 import '../../../../../model/ProductData.dart';
+import '../../../../../model/cutomers/group_customer.dart';
 
 
 
@@ -17,7 +19,7 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
 
   @override
   Widget build(BuildContext context) {
-
+    final CustomerGroup =Get.put(GroupCustomerController());
     return Obx(() => Column(
       children: [
         ExpansionPanelList(
@@ -196,11 +198,25 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
 
                             children: [
                               Expanded(
-                                child: MyTextFieldWidget(hintText: "اللقب", onChanged: (value) {  },),
+                                child: DynamicTextFieldWidget(
+                                  controller: controller.lastName,
+                                  hintText: "اللقب",
+                                  onFieldSubmitted: (value){
+
+                                },
+                                keyboardType: TextInputType.text,
+                                ),
                               ),
                               SizedBox(width: 4,),
                               Expanded(
-                                child: MyTextFieldWidget(hintText: "الاسم الاول", onChanged: (value) {  },),
+                                child:  DynamicTextFieldWidget(
+                                controller: controller.firstName,
+                                hintText: "الاسم الاول",
+                                onFieldSubmitted: (value){
+
+                                },
+                                keyboardType: TextInputType.text,
+                              ),
                               ),
 
                             ],
@@ -213,12 +229,26 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
 
                             children: [
                               Expanded(
-                                child: MyTextFieldWidget(hintText: "الايميل", onChanged: (value) {  },keyboardType: TextInputType.emailAddress,),
-                              ),
+                                child:  DynamicTextFieldWidget(
+                                  controller: controller.email,
+                                  hintText: "الايميل",
+                                  onFieldSubmitted: (value){
+
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                ), ),
                               SizedBox(width: 4,),
                               Expanded(
-                                child: MyTextFieldWidget(hintText: "رقم التلفون", onChanged: (value) {  },keyboardType: TextInputType.phone,),
-                              ),
+                                child:  DynamicTextFieldWidget(
+                                  controller: controller.phone,
+                                  hintText: "رقم التلفون",
+                                  onFieldSubmitted: (value){
+
+                                  },
+                                  keyboardType: TextInputType.phone,
+                                ),
+
+                                ),
 
                             ],
                           ),
@@ -227,51 +257,94 @@ class GeneralFirstCustomerExpantionPanel extends GetView<CustomerController> {
                           padding: const EdgeInsets.only(left: 3,right: 3,bottom: 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
                             children: [
                               Expanded(
                                 child: MyTextFieldWidget(obscureText: true,hintText: "تاكيد كلمة المرور", onChanged: (value) {  },keyboardType: TextInputType.emailAddress,),
                               ),
                               SizedBox(width: 4,),
                               Expanded(
-                                child: MyTextFieldWidget(obscureText: true,hintText: "كلمة المرور", onChanged: (value) {  },keyboardType: TextInputType.phone,),
-                              ),
+                                child:  DynamicTextFieldWidget(
+                                  controller: controller.password,
+                                  hintText: "كلمة المرور",
+                                  onFieldSubmitted: (value){
 
+                                  },
+                                  keyboardType: TextInputType.visiblePassword,
+                                ),
+                                ),
                             ],
                           ),
                         ),
+                        DecoratedBox(
+                            decoration: BoxDecoration(
+                                color: Colors.white60,
+                                //background color of dropdown button
+                                border:
+                                Border.all(color: Colors.black38, width: 0.5),
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: <BoxShadow>[
+                                  const  BoxShadow(
+                                      color: const Color.fromRGBO(0, 0, 0, 0.1),
+                                      //shadow for button
+                                      blurRadius: 3)
+                                  //blur radius of shadow
+                                ]),
+                            child: Container(
+                              alignment: Alignment.centerRight,
+                              width: MediaQuery.of(context).size.width * 0.5,
+                              child: Center(
+                                child: DropdownButton<GroupCustomer>(
+                                  alignment: AlignmentDirectional.bottomCenter,
+                                  underline: Container(color: Colors.transparent),
+                                  hint: const Text("مجموعة العملاء"),
+                                  value: controller.selectCustomerGroup.value,
+                                  onChanged: (v) {
+                                    controller.selectCustomerGroup.value = v!;
+                                    controller.postCustomer.customerGroupId=v.customerGroupId;
+                                    controller.customerGroupId.value=v.customerGroupId;
+
+                                  },
+                                  items: CustomerGroup.itemsList.value
+                                      .map<DropdownMenuItem<GroupCustomer>>(
+                                          (GroupCustomer value) {
+                                        return DropdownMenuItem<GroupCustomer>(
+                                          value: value,
+                                          child: Text(value.name.toString()),
+                                        );
+                                      }).toList(),
+                                ),
+                              ),
+                            )),
                         SwitchListTile(
                   title: const Text('   الحالة (فعال/غير فعال'),
                   value: controller.isActive.value,
                   onChanged: (bool value ) {
                     controller.isActive.value = value;
-                  //TODO: move this function to the controller
-
+                    controller.postCustomer.status=value?1:0;
 
                   },
                   secondary:  Icon(Icons.check_circle_sharp, color: controller.isActive.value?Colors.green:null,),
                 ),
                         SwitchListTile(
                           title: const Text('اضافة في النشرة الاخبارية'),
-                          value: controller.isActive.value,
+                          value: controller.isNewsletterActive.value,
                           onChanged: (bool value ) {
-                            controller.isActive.value = value;
-                            //TODO: move this function to the controller
+                            controller.isNewsletterActive.value = value;
 
+                            controller.postCustomer.newsletter=value?1:0;
 
                           },
-                          secondary:  Icon(Icons.check_circle_sharp, color: controller.isActive.value?Colors.green:null,),
+                          secondary:  Icon(Icons.check_circle_sharp, color: controller.isNewsletterActive.value?Colors.green:null,),
                         ),
                         SwitchListTile(
-                          title: const Text('اضافة في النشرة الاخبارية'),
-                          value: controller.isActive.value,
+                          title: const Text('Safe'),
+                          value: controller.isSafeActive.value,
                           onChanged: (bool value ) {
-                            controller.isActive.value = value;
-
-
+                            controller.isSafeActive.value = value;
+                            controller.postCustomer.safe=value?1:0;
 
                           },
-                          secondary:  Icon(Icons.check_circle_sharp, color: controller.isActive.value?Colors.green:null,),
+                          secondary:  Icon(Icons.check_circle_sharp, color: controller.isSafeActive.value?Colors.green:null,),
                         ),
 
 

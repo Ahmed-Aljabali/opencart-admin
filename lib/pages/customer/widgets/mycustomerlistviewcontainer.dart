@@ -5,18 +5,18 @@ import 'package:get/get.dart';
 
 import '../../../Controllers/order_controller.dart';
 import '../../../core/utils/math_utils.dart';
+import '../../../model/cutomers/customer.dart';
 import '../../../model/orders/order.dart';
 
 class MyCustomerListViewContainer extends StatelessWidget {
-  final List<Orders> order;
-  const MyCustomerListViewContainer({Key? key,required this.order}) : super(key: key);
+  final List<Customers> customer;
+  const MyCustomerListViewContainer({Key? key,required this.customer}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
-    var orderController =Get.put(OrderController());
     return ListView.builder(
-        itemCount: order.length,
+        itemCount: customer.length,
         itemBuilder: (context, index) {
 
           return SizedBox(
@@ -28,7 +28,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              key: ValueKey(order[index]),
+              key: ValueKey(customer[index]),
               margin: getMargin(bottom: 5, top: 5 ,left: 10,right: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -46,7 +46,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
 
                         onSelected: (value) {
                           if (value==2){
-                            orderController.deleteOrder(order[index].orderid);
+                        //    orderController.deleteOrder(customer[index].customerid);
                           }
 
                         },
@@ -74,46 +74,47 @@ class MyCustomerListViewContainer extends StatelessWidget {
                             right: 5,
                           ),
 
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment
-                                .start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: getPadding(
-                                  left: 5,
-                                  top: 4,
-                                  bottom: 4,
-                                ),
-                                child: Text(
-                                  order[index].currencycode!,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: getFontSize(
-                                      11,
-                                    ),
-                                    fontFamily: 'Cairo Regular',
-                                    fontWeight: FontWeight.bold,
-                                    height: 1.00,
+                          child: Expanded(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment
+                                  .start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: getPadding(
+                                    left: 5,
+                                    top: 4,
+                                    bottom: 4,
                                   ),
+                                  // child: Text(
+                                  //   customer[index].customergroupid.toString()!,
+                                  //   overflow: TextOverflow.ellipsis,
+                                  //   textAlign: TextAlign.start,
+                                  //   style: TextStyle(
+                                  //     color: Colors.black,
+                                  //     fontSize: getFontSize(
+                                  //       11,
+                                  //     ),
+                                  //     fontFamily: 'Cairo Regular',
+                                  //     fontWeight: FontWeight.bold,
+                                  //     height: 1.00,
+                                  //   ),
+                                  // ),
                                 ),
-                              ),
-                              Padding(
-                                padding: getPadding(
-                                  left: 4,
-                                  top: 4,
-                                  right: 9,
-                                  bottom: 4,
-                                ),
-                                child: Text(
-                                  order[index].total!,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: Colors.black ,
-                                    fontSize:getFontSize(15),
+                                Padding(
+                                  padding: getPadding(
+                                    left: 4,
+                                    top: 4,
+                                    right: 9,
+                                    bottom: 4,
+                                  ),
+                                  child: Text(
+                                    customer[index].telephone!,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      color: Colors.black ,
+                                      fontSize:getFontSize(15),
 
                                     fontFamily: 'Cairo Regular',
                                     fontWeight: FontWeight.bold,
@@ -155,7 +156,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                                     bottom: 4,
                                   ),
                                   child:  Text(
-                                    order[index].status!,
+                                    customer[index].email!,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
@@ -177,7 +178,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                       ],),
                   ),//s
 
-                  Flexible(
+                  Expanded(
                     child: Container(
                       padding:getPadding(left: 10,top: 15,bottom: 25,right: 8),
                       child: Column(
@@ -204,7 +205,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                               ),
                             ),
                             child:Text(
-                              order[index].name!,
+                              customer[index].name!,
                               overflow: TextOverflow.clip,
 
                               style: TextStyle(
@@ -218,14 +219,16 @@ class MyCustomerListViewContainer extends StatelessWidget {
                             ),// اسم المنتج وسعرة
                           ),
 
-                          Row(
+                          Expanded(
+                              child :  Row(
 
 
-                            children: [
-
-                              Text(order[index].dateadded!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
-                              Text('  -   #${order[index].orderid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
-                            ],
+                                children: [
+                                  Expanded(child: Container()),
+                                  Text(customer[index].date_added!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                                  Text('  -   #${customer[index].customerid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                                ],
+                              )
                           ),
 
                         ],),

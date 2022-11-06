@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/Controllers/customer_controller.dart';
 import 'package:opencart/pages/customer/widgets/customer_search_form.dart';
 import 'package:opencart/pages/customer/widgets/mycustomerlistviewcontainer.dart';
 import '../../controllers/Init_add_order_controller.dart';
@@ -9,15 +10,14 @@ import 'addcustomer/add_customer_page.dart';
 
 
 
-class CustomerPage extends GetView<InitAddOrderController> {
+class CustomerPage extends GetView<CustomerController> {
   const CustomerPage({Key? key}) : super(key: key);
   @override
-  // TODO: implement controller
 
   @override
   StatelessElement createElement() {
     // TODO: implement createElement
-    controller.fetchOrder();
+    controller.fetchCustomer("10","1");
     return super.createElement();
   }
   @override
@@ -112,11 +112,8 @@ class CustomerPage extends GetView<InitAddOrderController> {
                       Padding(
                         padding: const EdgeInsets.only(left: 20),
                         child: InkWell(
-                          /* onTap: () {
-                             controller.orderListTypeGrid.value = true;
-                              print(controller.orderListTypeGrid.value);
-                            },*/ // to activate the gridviewlist
-                            child: controller.orderListTypeGrid.value ? Container(
+                          
+                            child:Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   boxShadow: [
@@ -133,8 +130,7 @@ class CustomerPage extends GetView<InitAddOrderController> {
                                   ],
                                 ),
                                 margin: getMargin(all: 2),
-                                child: const Icon(Icons.grid_view)) : const Icon(
-                                Icons.grid_view)),
+                                child: const Icon(Icons.grid_view)) ),
                       ),
                       const SizedBox(
 
@@ -145,11 +141,9 @@ class CustomerPage extends GetView<InitAddOrderController> {
                         padding: const EdgeInsets.only(left: 5),
                         child: InkWell(
                             onTap: () {
-                              controller.orderListTypeGrid.value = false;
+                          //    controller.orderListTypeGrid.value = false;
                             },
-                            child: controller.orderListTypeGrid.value
-                                ? const Icon(Icons.format_list_bulleted)
-                                : Container(
+                            child: Container(
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   boxShadow: [
@@ -194,11 +188,8 @@ class CustomerPage extends GetView<InitAddOrderController> {
                     const CircularProgressIndicator()
                   else
 
-                    if (controller.listFilter.obs.value==null)
-                      Expanded(child: MyCustomerListViewContainer(order: controller.data))
-                    else
-                      Expanded(child: MyCustomerListViewContainer(order: controller.listFilter!),
-                      ),
+                    Expanded(child: MyCustomerListViewContainer(customer: controller.dataCustomer))
+
 
 
                 ],
@@ -294,9 +285,9 @@ boxShadow: [
                                   height: 60,
                                   color: Colors.green,
                                   onPressed: () {
-                                    controller.filterOrderList();
+                                 //   controller.filterOrderList();
 
-                                    controller.filterOrder.idOrder==1;
+                                  // controller.filterOrder.idOrder==1;
                                     controller.searchFormVisible.value = false;
                                   })
                             ],

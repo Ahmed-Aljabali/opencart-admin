@@ -105,7 +105,7 @@ class AddClintForm extends GetView<InitAddOrderController> {
                                 controller.customer.value.lastname=lastName;
 
                               },
-                              items:customerController.trx.
+                              items:customerController.dataCustomer.
                               map<DropdownMenuItem<Customers>>((Customers value) {
                                 return   DropdownMenuItem<Customers>(
                                   enabled: true,
@@ -167,7 +167,7 @@ class AddClintForm extends GetView<InitAddOrderController> {
                               controller.customer.value.lastname=lastName;
 
                             },
-                            items:customerController.trx.
+                            items:customerController.dataCustomer.
                             map<DropdownMenuItem<Customers>>((Customers value) {
                               return   DropdownMenuItem<Customers>(
                                 enabled: true,

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import 'package:opencart/model/porducts/product.dart';
 import 'package:opencart/pages/wizard/widgets/attribute/firstproductattributecontainer.dart';
 import 'package:opencart/pages/wizard/widgets/custom_stepper.dart';
 import 'package:opencart/pages/wizard/widgets/discount/discountcontainer.dart';
@@ -12,7 +11,8 @@ import 'package:opencart/pages/wizard/widgets/generl/secondproductcontainter.dar
 import 'package:opencart/pages/wizard/widgets/generl/thirdproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/linke/firstproductlinkecontainer.dart';
 import 'package:opencart/pages/wizard/widgets/options/optionsproductcontainer.dart';
-import '../../presentation/Widgets/dialogs.dart';
+import '../../model/porducts/product.dart';
+import '../widgets/dialogs.dart';
 import 'widgets/generl/firstproductcontainer.dart';
 import '../../controllers/wizard_controller.dart';
 
@@ -146,63 +146,62 @@ class MainWizardPage extends GetView<MainWizardController> {
 
             backgroundColor: Colors.green,
             onPressed: ()  {
-              print(controller.dateController.text);
-              //
-              // List<int> productCategory=[];
-              // List<int> productFilter=[];
-              // List<int> productRelated=[];
-              // List<ProductAttribute> productAttribute=[];
-              // var index=0;
-              // if (controller.categorieId.value!=null)
-              // {
-              //   productCategory.add(controller.categorieId.value!);
-              //   controller.prod.productCategory=productCategory;
-              // }
-              // print(controller.selectedrelatedProdOptions.value);
-              // if (controller.selectedrelatedProdOptions.value!=null)
-              // {
-              //   productRelated.add(controller.selectedrelatedProdOptions.value!);
-              //   controller.prod.productRelated=productRelated;
-              // }
-              //
-              // if (controller.attrWidgetList.isNotEmpty)
-              // {
-              //   for (var element in controller.attrWidgetList) {
-              //     List<ProductAttributeDescription> productAttributeDescription=[];
-              //     productAttributeDescription.add(ProductAttributeDescription(languageId:element.attrSelected.languageId, text: controller.textEditingController[index].text ));
-              //
-              //     productAttribute.add(ProductAttribute(attributeId:element.attrSelected.attributeId,productAttributeDescription: productAttributeDescription ));
-              //
-              //     index++;
-              //   }
-              //   controller.prod.productAttribute=productAttribute;
-              // }
-              // controller.productDescriptionlist.add(controller.productDescription);
-              // controller.prod.productDescription=controller.productDescriptionlist;
-              //
-              // controller.productOption.forEach((element) {
-              //   element.productOptionValue=controller.productOptionValue;
-              // });
-              // controller.prod.productOption=controller.productOption;
-              // controller.prod.productSpecial=controller.productSpecial;
-              // controller.prod.productDiscount=controller.productDiscount;
-              //
-              // controller.prod.reward=controller.rewardsController.text;
-              // controller.prod.points=controller.pointsController.text;
-              // productFilter.add(5050);
-              //
-              // controller.prod.productFilter=productFilter;
-              // controller.addProduct(controller.prod);
-              //
-              // if (controller.error.isNotEmpty)
-              // {
-              //   errorDialog(controller.error.first);
-              // }else
-              // {
-              //   successDialog(controller.msg);
-              //   controller.productDescriptionlist.clear();
-              //   controller.prod.productDiscount!.clear();
-              // }
+
+              List<int> productCategory=[];
+              List<int> productFilter=[];
+              List<int> productRelated=[];
+              List<ProductAttribute> productAttribute=[];
+              var index=0;
+              if (controller.categorieId.value!=null)
+              {
+                productCategory.add(controller.categorieId.value!);
+                controller.prod.productCategory=productCategory;
+              }
+              print(controller.selectedrelatedProdOptions.value);
+              if (controller.selectedrelatedProdOptions.value!=null)
+              {
+                productRelated.add(controller.selectedrelatedProdOptions.value!);
+                controller.prod.productRelated=productRelated;
+              }
+
+              if (controller.attrWidgetList.isNotEmpty)
+              {
+                for (var element in controller.attrWidgetList) {
+                  List<ProductAttributeDescription> productAttributeDescription=[];
+                  productAttributeDescription.add(ProductAttributeDescription(languageId:element.attrSelected.languageId, text: controller.textEditingController[index].text ));
+
+                  productAttribute.add(ProductAttribute(attributeId:element.attrSelected.attributeId,productAttributeDescription: productAttributeDescription ));
+
+                  index++;
+                }
+                controller.prod.productAttribute=productAttribute;
+              }
+              controller.productDescriptionlist.add(controller.productDescription);
+              controller.prod.productDescription=controller.productDescriptionlist;
+
+              controller.productOption.forEach((element) {
+                element.productOptionValue=controller.productOptionValue;
+              });
+              controller.prod.productOption=controller.productOption;
+              controller.prod.productSpecial=controller.productSpecial;
+              controller.prod.productDiscount=controller.productDiscount;
+
+              controller.prod.reward=controller.rewardsController.text;
+              controller.prod.points=controller.pointsController.text;
+              productFilter.add(5050);
+
+              controller.prod.productFilter=productFilter;
+              controller.addProduct(controller.prod);
+
+              if (controller.error.isNotEmpty)
+              {
+                errorDialog(controller.error.first);
+              }else
+              {
+                successDialog(controller.msg);
+                controller.productDescriptionlist.clear();
+                controller.prod.productDiscount!.clear();
+              }
 
             },
             highlightElevation: 1,

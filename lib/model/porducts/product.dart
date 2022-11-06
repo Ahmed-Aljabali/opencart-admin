@@ -6,7 +6,7 @@ class Products{
   dynamic id;
   dynamic model;
   dynamic quantity;
-  dynamic price;
+  TextEditingController? price;
   dynamic taxClassId;
   dynamic manufacturerId;
   dynamic sku;
@@ -89,7 +89,7 @@ class Products{
     id=json['id'];
     model = json['model'];
     quantity = json['quantity'];
-    price = json['price'];
+    price!.text = json['price'];
     taxClassId = json['tax_class_id'];
     manufacturerId = json['manufacturer_id'];
     sku = json['sku'];
