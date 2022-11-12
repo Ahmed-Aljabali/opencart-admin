@@ -76,8 +76,8 @@ class OrderPage extends GetView<InitAddOrderController> {
                   Padding(
                     padding: const EdgeInsets.only(right: 11, left: 11),
                     child: TextField(
-                      readOnly:  true,
-                      onTap: (){     controller.searchFormVisible.value = true; },
+                      onChanged: (value)=>controller.runFilterOrder(value),
+                  //    onTap: (){     controller.searchFormVisible.value = true; },
                       textAlign: TextAlign.right,
                       decoration: const InputDecoration(
                         suffixIcon: Icon(
@@ -201,7 +201,7 @@ class OrderPage extends GetView<InitAddOrderController> {
                   else
 
                     if (controller.listFilter.obs.value==null)
-                     Expanded(child: MyOrderListViewContainer(order: controller.data))
+                     Expanded(child: MyOrderListViewContainer(order: controller.foundOrders.value))
                      else
                      Expanded(child: MyOrderListViewContainer(order: controller.listFilter!),
                     ),

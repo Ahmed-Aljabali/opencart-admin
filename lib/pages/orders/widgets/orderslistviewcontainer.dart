@@ -5,6 +5,8 @@ import 'package:opencart/Controllers/order_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/model/orders/order.dart';
 
+import '../../widgets/dialogs.dart';
+
 
 class MyOrderListViewContainer extends StatelessWidget {
   final List<Orders> order;
@@ -46,7 +48,27 @@ class MyOrderListViewContainer extends StatelessWidget {
 
                         onSelected: (value) {
                              if (value==2){
-                               orderController.deleteOrder(order[index].orderid);
+                               Get.defaultDialog(
+                                   title: "هل انت متأكد من الحذف",
+                                   textCancel: "الالغاء",
+                                   cancelTextColor: Colors.redAccent,
+                                   confirm:FlatButton(
+                                       onPressed: ()async{
+                                         orderController.deleteOrder(order[index].orderid).then((value) =>
+                                         {
+                                           if(orderController.isDataLoading.isTrue){
+                                             Get.back(),
+                                             successMessage("تم الحذف بنجاح"),
+
+                                           }
+                                         });
+                                       }, child: Text("تأكيد",style: TextStyle(color: Colors.green),)) ,
+                                   backgroundColor: Colors.white60,
+                                   titleStyle: TextStyle(color: Colors.redAccent),
+
+                                   radius: 30
+                               );
+
                              }
 
                         },

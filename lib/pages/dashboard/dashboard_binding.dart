@@ -4,6 +4,7 @@ import 'package:opencart/controllers/system_info_controller.dart';
 import '../../Controllers/customer_controller.dart';
 import '../../Controllers/order_controller.dart';
 import '../../controllers/Init_add_order_controller.dart';
+import '../../controllers/check_interNet_controller.dart';
 import '../../controllers/dashboard_controller.dart';
 import '../../controllers/home_controller.dart';
 import '../../controllers/porducts_controller.dart';
@@ -24,5 +25,6 @@ class DashBoardBindings extends Bindings {
     Get.lazyPut<ProductController>(() => ProductController());
     Get.lazyPut(() => MainWizardController(), fenix: true);
     Get.lazyPut(() => InitAddOrderController(), fenix: true);
+    Get.lazyPut<ConnectionManagerController>(() => ConnectionManagerController());
   }
 }

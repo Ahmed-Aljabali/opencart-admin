@@ -16,10 +16,11 @@ class CustomerPage extends GetView<CustomerController> {
 
   @override
   StatelessElement createElement() {
-    // TODO: implement createElement
     controller.fetchCustomer("10","1");
+
     return super.createElement();
   }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
@@ -70,8 +71,8 @@ class CustomerPage extends GetView<CustomerController> {
                   Padding(
                     padding: const EdgeInsets.only(right: 11, left: 11),
                     child: TextField(
-                      readOnly:  true,
-                      onTap: (){     controller.searchFormVisible.value = true; },
+                       onChanged: (value)=>controller.runFilter(value),
+                    //  onTap: (){     controller.searchFormVisible.value = true; },
                       textAlign: TextAlign.right,
                       decoration: const InputDecoration(
                         suffixIcon: Icon(
@@ -188,7 +189,7 @@ class CustomerPage extends GetView<CustomerController> {
                     const CircularProgressIndicator()
                   else
 
-                    Expanded(child: MyCustomerListViewContainer(customer: controller.dataCustomer))
+                    Expanded(child: MyCustomerListViewContainer(customer: controller.foundCustomers.value))
 
 
 

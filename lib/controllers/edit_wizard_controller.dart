@@ -23,7 +23,6 @@ class EditWizardController extends ProductController {
   final FocusNode focusNode = FocusNode();
 
   var productDescription = ProductDescription();
-
   var prod = Products();
   var selectProd = Rxn<Products>();
   var selectedOption = Rxn<ProductOption>();
@@ -490,11 +489,34 @@ class EditWizardController extends ProductController {
     });
   }
 var price =TextEditingController();
+var name =TextEditingController();
+
 var productsController= Products();
   initProductEditing(Products products){
-    productsController.price=products.price;
+    // productsController.price=products.price;
+    // productsController.status=products.price;
+    // productsController.model=products.price;
+    // productsController.quantity=products.price;
+    // productsController.points=products.price;
+    // productsController.reward=products.price;
+    // productsController.weight=products.price;
+    // productsController.dateAvailable=products.price;
+    // productsController.height=products.price;
+    // productsController.keyword=products.price;
+    // productsController.length=products.price;
+    // productsController.manufacturerId=products.price;
+    // productsController.lengthClassId=products.price;
+    print("6666666666666");
+
+    products.productDescription!.forEach((element) {
+      print(element.name);
+      print(element.metaKeyword);
+      print(element.metaTitle);
+    });
+    print("555555555555");
+    name.text=products.productDescription![0].metaKeyword;
     price.text=products.price.toString();
-   update();
+     update();
 
 }
 

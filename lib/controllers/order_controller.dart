@@ -55,6 +55,7 @@ class OrderController extends BaseController implements IOrder {
   var  paymentCodeZoneController = TextEditingController();
   var  paymentCityController = TextEditingController();
 
+  var foundOrders=Rx<List<Orders>>([]);
 
   @override
   void dispose() {
@@ -93,6 +94,7 @@ class OrderController extends BaseController implements IOrder {
     var res = await get("orders");
     if (res.statusCode == 200) {
       _trx = OrdersData.fromJson(jsonDecode(res.body)).data;
+      foundOrders.value=_trx;
     }
   }
 
@@ -142,11 +144,11 @@ class OrderController extends BaseController implements IOrder {
   }
   @override
   deleteOrder(int id) async {
-    isDataLoading(false);
     var res = await delete("orders", id);
     if (res.statusCode == 200) {
       msg ="تم الحذف بنجاح";
       fetchOrder();
+      isDataLoading(true);
       update();
     }
   }
@@ -162,6 +164,16 @@ class OrderController extends BaseController implements IOrder {
       update();
       msg="تم الحفط بنجاح";
     }
+  }
+  void runFilterOrder(String nameKeyWord){
+    List<Orders> orders=[];
+    if (nameKeyWord.isEmpty){
+      orders=data;
+    }else{
+      orders=data.where((element) => element.name!.toLowerCase().contains(nameKeyWord)).toList();
+    }
+    foundOrders.value=orders;
+    update();
   }
 
 

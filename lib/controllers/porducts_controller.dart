@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/Interface/Iproduct.dart';
 import 'package:opencart/controllers/BaseController.dart';
@@ -10,6 +9,8 @@ import '../model/porducts/attribute.dart';
 import '../model/porducts/manufacturers.dart';
 import '../model/porducts/option/option.dart';
 import '../model/porducts/product.dart';
+import 'package:http/http.dart' as http;
+
 
 class  ProductController extends BaseController implements IProduct {
   dynamic _data;
@@ -30,10 +31,19 @@ class  ProductController extends BaseController implements IProduct {
 
   @override
  fetchProduct()async{
-   var res = await get("products");
-   if (res.statusCode == 200) {
-     _data=ProductData.fromJson(jsonDecode(res.body)).data;
+    isDataLoading(false);
+    var res = await get("products");
+    print(res.body);
+
+    if (res.statusCode == 200) {
+      print("bbbbbbbbbbbbbb");
+
+      _data=ProductData.fromJson(jsonDecode(res.body)).data;
+     print("AAAAAAAAAAAAAAA");
+     print(_data);
    }
+    isDataLoading(true);
+   update();
 
    }
 
@@ -108,14 +118,15 @@ class  ProductController extends BaseController implements IProduct {
   }
 
   @override
-   deleteProduct(int id)async{
+  Future<http.Response> deleteProduct(int id)async{
     var res = await delete("products", id);
     if (res.statusCode == 200) {
-
       msg = "تم الحذف بنجاح";
+      fetchProduct();
+      isDataLoading(true);
       update();
     }
-    return msg;
+    return res;
   }
 
 

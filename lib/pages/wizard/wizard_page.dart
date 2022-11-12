@@ -98,7 +98,6 @@ class MainWizardPage extends GetView<MainWizardController> {
                     //       Seo(),
                     //     )),
 
-
                   ],
                   indicators: <Widget>[
                     controller.stepheader( controller.currentStep.value,0,Icons.work),
