@@ -2,11 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/core/utils/math_utils.dart';
-import 'package:opencart/model/porducts/product.dart';
 import 'package:opencart/pages/edit_wizard/widgets/attribute/firstproductattributecontainer.dart';
 import 'package:opencart/pages/edit_wizard/widgets/discount/discountcontainer.dart';
 import 'package:opencart/pages/edit_wizard/widgets/options/optionsproductcontainer.dart';
-import 'package:opencart/pages/wizard/widgets/attribute/firstproductattributecontainer.dart';
 import 'package:opencart/pages/wizard/widgets/custom_stepper.dart';
 
 import '../../controllers/edit_wizard_controller.dart';
