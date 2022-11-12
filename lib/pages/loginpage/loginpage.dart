@@ -5,14 +5,18 @@ import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/controllers/users_controller.dart';
 import 'package:opencart/core/utils/math_utils.dart';
+import '../../controllers/check_interNet_controller.dart';
 import '../../model/user.dart';
 import '../../../controllers/users_controller.dart';
+import '../widgets/dialogs.dart';
 
 class AuthThreePage extends GetView<UsersController> {
 
 
   @override
   Widget build(BuildContext context) {
+    final ConnectionManagerController connectionManager = Get.find<ConnectionManagerController>();
+
     return Obx(() {
       return Scaffold(
           body: Container(
@@ -32,7 +36,7 @@ class AuthThreePage extends GetView<UsersController> {
                       const EdgeInsets.only(
                           left: 40, top: 10, right: 40, bottom: 10),
                       child: const Text(
-                        "تسجيل الدخول",
+                        "تسجيل ",
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w900,
@@ -40,12 +44,16 @@ class AuthThreePage extends GetView<UsersController> {
                             fontFamily: 'Cairo Regular'),
                       ),
                       onPressed: () {
-                        controller.formVisible.value = true;
-                        controller.formsIndex.value = 1;
-                        /*setState(() {
-                   formVisible.value = true;
-                   _formsIndex = 1;
-                  });*/
+                        if (connectionManager.connectionType.value==0){
+                          errorInternetDialog();
+                        }else{
+                          controller.formVisible.value = true;
+                          controller.formsIndex.value = 1;
+
+
+                        }
+
+
                       },
                     ),
                   ),
@@ -65,12 +73,7 @@ class AuthThreePage extends GetView<UsersController> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                              SizedBox(width: MediaQuery.of(context).size.width*0.1),
-                            MaterialButton(
-
-
-
-
-                                padding: const EdgeInsets.only(
+                            MaterialButton(padding: const EdgeInsets.only(
                                     left: 15, right: 15, top: 5, bottom: 5),
 
                                 child: Text(
@@ -87,45 +90,6 @@ class AuthThreePage extends GetView<UsersController> {
                                 onPressed: () {
                                   controller.formsIndex.value = 1;
                                 }),
-               /*             RaisedButton(
-                              textColor: controller.formsIndex.value == 1
-                                  ? Colors.white
-                                  : Colors.black,
-                              color: controller.formsIndex.value == 1
-                                  ? Colors.white
-                                  : Colors.white,
-
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              onPressed: () {
-                                print('im priessed');
-                                controller.formsIndex.value = 1;
-                              },
-                              child: const Text(
-                                "تسجيل دخول",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w900,
-                                    color: Colors.black,
-                                    fontFamily: 'Cairo Regular'),
-                              ),
-                            ),*/
-
-                          /*   RaisedButton(
-                              textColor:  controller.formsIndex.value == 2
-                                  ? Colors.white
-                                  : Colors.black,
-                              color:
-                              controller.formsIndex.value == 2 ? Colors.red : Colors.white,
-                              child: Text("Signup"),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0)),
-                              onPressed: () {
-
-                                controller.formsIndex.value =2 ;
-
-                              },
-                            ),//SignUp //SignUp*/// sign up
 
                             IconButton(
                               iconSize: 40,
@@ -140,9 +104,7 @@ class AuthThreePage extends GetView<UsersController> {
                         Container(
                           child: AnimatedSwitcher(
                             duration: Duration(milliseconds: 300),
-                            child:
-
-                                LoginForm()
+                            child: LoginForm()
 
                           ),
                         ),
@@ -159,8 +121,6 @@ class AuthThreePage extends GetView<UsersController> {
 }
 
 class LoginForm extends StatelessWidget {
-
-
   UsersController login = Get.find();
   var userName = TextEditingController();
   var password = TextEditingController();
@@ -168,6 +128,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ConnectionManagerController connectionManager = Get.find<ConnectionManagerController>();
     userName.text="admin";
     password.text="admin";
     return Container(
@@ -182,7 +143,9 @@ class LoginForm extends StatelessWidget {
             shrinkWrap: true,
             padding: const EdgeInsets.all(16.0),
             children: <Widget>[
-              TextFormField(
+//          GetBuilder<ConnectionManagerController>(builder: (builder)=>Text((controller.connectionType == 0 )? 'No Internet' : (controller.connectionType == 1) ? 'You are Connected to Wifi' : 'You are Connected to Mobile Internet',style: TextStyle(fontSize: 30),)),
+
+    TextFormField(
                 style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular'),
                 controller: userName,
                 textAlign: TextAlign.center,
@@ -237,26 +200,20 @@ class LoginForm extends StatelessWidget {
                   height: 40,
 
                   onPressed: () {
+
                     if (_formKey.currentState!.validate()) {
-                      login.login(
-                          User(password: password.text, username: userName.text));
+                      if (connectionManager.connectionType.value==0){
+                        errorInternetDialog();
+                      }else{
+                        login.login(
+                            User(password: password.text, username: userName.text));
+
+
+                      }
+
                     }
                   }),
-             /* RaisedButton(
-                color: Colors.lightGreen,
-                textColor: Colors.black,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                ),
-                child: const Text("تسجيل دخول"),
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    login.login(
-                        User(password: password.text, username: userName.text));
-                  }
-                },
-              ),*/
+
             ],
           ),
         )

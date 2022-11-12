@@ -13,6 +13,7 @@ class ProductPage extends GetView<MainWizardController> {
   StatelessElement createElement() {
     // TODO: implement createElement
     controller.fetchProduct();
+
     return super.createElement();
   }
   @override
@@ -195,10 +196,8 @@ class ProductPage extends GetView<MainWizardController> {
               ),
               if (controller.isDataLoading.value==false)
                 const CircularProgressIndicator() else
-
                 controller.listTypeGrid.value ? NewGridtrashItemWidget(
                     product: controller.dataProduct) : Expanded(
-
                   child: MyListViewContainer(),
                 ),
 

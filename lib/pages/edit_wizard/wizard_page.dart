@@ -58,7 +58,6 @@ class EditWizardPage extends GetView<EditWizardController> {
                 child: Timeline(
 
                   children: <Widget>[
-                    // FirstProductContainer(),
 
                     controller.SingleStep(0,
                         StepData(

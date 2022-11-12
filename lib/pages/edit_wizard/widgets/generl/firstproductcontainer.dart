@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import '../../../../controllers/edit_wizard_controller.dart';
-import '../../../../controllers/wizard_controller.dart';
 import '../../../../core/constrants/widgetconstrant.dart';
 
 import '../../../../model/ProductData.dart';
-import '../../../../model/porducts/product.dart';
+
 
 class FirstProductContainer extends GetView<EditWizardController> {
 
@@ -40,7 +39,7 @@ class FirstProductContainer extends GetView<EditWizardController> {
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: Column(
                   children: [
-                    DynamicTextFieldWidget(controller: q, keyboardType: TextInputType.text,onFieldSubmitted:(value)
+                    DynamicTextFieldWidget(controller:controller.name, keyboardType: TextInputType.text,onFieldSubmitted:(value)
                     {
 
                       } ,hintText: 'product name',),

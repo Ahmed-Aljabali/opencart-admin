@@ -2,8 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/Controllers/customer_controller.dart';
+import 'package:opencart/pages/widgets/dialogs.dart';
 
 import '../../../Controllers/order_controller.dart';
+import '../../../controllers/dashboard_controller.dart';
 import '../../../core/utils/math_utils.dart';
 import '../../../model/cutomers/customer.dart';
 import '../../../model/orders/order.dart';
@@ -12,9 +15,9 @@ class MyCustomerListViewContainer extends StatelessWidget {
   final List<Customers> customer;
   const MyCustomerListViewContainer({Key? key,required this.customer}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
+    var customerController =Get.put(CustomerController());
     return ListView.builder(
         itemCount: customer.length,
         itemBuilder: (context, index) {
@@ -46,7 +49,28 @@ class MyCustomerListViewContainer extends StatelessWidget {
 
                         onSelected: (value) {
                           if (value==2){
-                        //    orderController.deleteOrder(customer[index].customerid);
+                            var dashBoardController=Get.put(DashBoardController());
+                            Get.defaultDialog(
+                                title: "هل انت متأكد من الحذف",
+                                textCancel: "الالغاء",
+                                cancelTextColor: Colors.redAccent,
+                                confirm:FlatButton(
+                                    onPressed: ()async{
+                                      customerController.deleteCustomer(customer[index].customerid!).then((value) =>
+                                      {
+                                        if(customerController.isDataLoading.isTrue){
+                                          Get.back(),
+                                          successMessage("تم الحذف بنجاح"),
+
+                                          }
+                                        });
+
+                                    }, child: Text("تأكيد",style: TextStyle(color: Colors.green),)) ,
+                                backgroundColor: Colors.white60,
+                                titleStyle: TextStyle(color: Colors.redAccent),
+
+                                radius: 30
+                            );
                           }
 
                         },

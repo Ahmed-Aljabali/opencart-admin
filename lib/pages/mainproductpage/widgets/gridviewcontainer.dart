@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:opencart/controllers/edit_wizard_controller.dart';
-
 import '../../../bindings/edti_wizard_controller.dart';
 import '../../../controllers/porducts_controller.dart';
 import '../../../core/utils/math_utils.dart';
@@ -10,6 +9,9 @@ import '../../../model/porducts/product.dart';
 
 
 import 'package:flutter/cupertino.dart';
+
+import '../../edit_wizard/wizard_page.dart';
+import '../../widgets/dialogs.dart';
 
 class NewGridtrashItemWidget extends GetView<EditWizardController> {
   final List<Products> product;
@@ -22,17 +24,13 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
     return Expanded(
 
       child: GridView.builder(
-
         shrinkWrap: true,
-
-
         physics: const ScrollPhysics(),
 
         itemCount:product.length,
-
         itemBuilder: (context,index) {
-          return Container(
 
+          return Container(
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(
@@ -220,9 +218,26 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
                                   );
                                 },
                                 child: IconButton(
-                                  onPressed: (){
+                                  onPressed: () async{
                                     final  products = Get.put(ProductController());
-                                    products.deleteProduct(product[index].id);
+                                    Get.defaultDialog(
+                                        title: "هل انت متأكد من الحذف",
+                                        textCancel: "الالغاء",
+                                        cancelTextColor: Colors.redAccent,
+                                        confirm:FlatButton(
+                                            onPressed: ()async{
+                                  await  products.deleteProduct(product[index].id).then((value) => {
+                                        if (products.isDataLoading.isTrue){
+                                          Get.back(),
+                                          successMessage("تم الحذف بنجاح")
+                                        }
+                                  });
+                                            }, child: Text("تأكيد",style: TextStyle(color: Colors.green),)) ,
+                                        backgroundColor: Colors.white60,
+                                        titleStyle: TextStyle(color: Colors.redAccent),
+
+                                        radius: 30
+                                    );
                                   },
                                   icon:const Icon(Icons.delete) ,
 
@@ -242,19 +257,19 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
                               child: InkWell(
                                 onTap: () {
                                   p.initProductEditing(product[index]);
-
-                          //        Get.to(EditWizardPage(),binding:WizardBinding() );
+                              Get.to(EditWizardPage(),binding:WizardBinding() );
                                 },
                                 child: Icon(
                                   Icons.edit_outlined,
                                   color: Colors.blue,
+
                                 ),
                               ),
                               height: getSize(
-                                20.00,
+                                12.00,
                               ),
                               width: getSize(
-                                20.0,
+                                12.0,
                               ),
                             ),
                           ),

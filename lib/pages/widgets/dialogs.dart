@@ -13,6 +13,26 @@ Future<dynamic> errorDialog(String middleText){
       radius: 30
   );
 }
+Future<dynamic> errorInternetDialog(){
+  return Get.defaultDialog(
+      title: "يجب الاتصال بالاتنرنت",
+      textCancel: "تم",
+      backgroundColor: Colors.white60,
+      titleStyle: TextStyle(color: Colors.redAccent),
+      radius: 30
+  );
+}
+Future<dynamic> successMessage(String title){
+  return Get.defaultDialog(
+      title:title,
+      textCancel: "تم",
+
+      backgroundColor: Colors.white60,
+      titleStyle: TextStyle(color: Colors.redAccent),
+
+      radius: 30
+  );
+}
 Future<dynamic> successDialog(String title){
   return Get.defaultDialog(
       title:title,

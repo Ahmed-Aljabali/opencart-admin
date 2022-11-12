@@ -6,7 +6,7 @@ class Products{
   dynamic id;
   dynamic model;
   dynamic quantity;
-  TextEditingController? price;
+  dynamic price;
   dynamic taxClassId;
   dynamic manufacturerId;
   dynamic sku;
@@ -89,7 +89,7 @@ class Products{
     id=json['id'];
     model = json['model'];
     quantity = json['quantity'];
-    price!.text = json['price'];
+    price = json['price'];
     taxClassId = json['tax_class_id'];
     manufacturerId = json['manufacturer_id'];
     sku = json['sku'];
@@ -426,10 +426,16 @@ class ProductOptionValue {
 class ProductData {
   var data = <Products>[];
 
+
+  // ProductData.fromJson(Map<String, dynamic> json) {
+  //   (json['data'] as List).forEach((e) => data.add(Products.fromJson(e)));
+  //
+
   ProductData.fromJson(Map<String, dynamic> json) {
     for (var e in (json['data'] as List)) {
       data.add(Products.fromJson(e));
     }
+
   }
 }
 
