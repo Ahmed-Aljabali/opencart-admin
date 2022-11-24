@@ -6,9 +6,7 @@ import 'package:opencart/pages/edit_wizard/widgets/attribute/firstproductattribu
 import 'package:opencart/pages/edit_wizard/widgets/discount/discountcontainer.dart';
 import 'package:opencart/pages/edit_wizard/widgets/options/optionsproductcontainer.dart';
 import 'package:opencart/pages/wizard/widgets/custom_stepper.dart';
-
 import '../../controllers/edit_wizard_controller.dart';
-
 import '../edit_wizard/widgets/generl/fifthproductscreen.dart';
 import '../edit_wizard/widgets/generl/fothproductcontainer.dart';
 import '../edit_wizard/widgets/generl/secondproductcontainter.dart';
