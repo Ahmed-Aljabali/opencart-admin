@@ -78,7 +78,7 @@ class MainFirstButtomCheetDiscountContainer extends GetView<MainWizardController
                           controller.customer.value=v!;
 
                         },
-                        items:customerController.dataCustomer.
+                        items:customerController.lstCustomer.
                         map<DropdownMenuItem<Customers>>((Customers value) {
                           return   DropdownMenuItem<Customers>(
                             enabled: true,

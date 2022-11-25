@@ -1,16 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:opencart/controllers/porducts_controller.dart';
 import 'package:opencart/pages/orders/pages/sales/sales.dart';
 import 'package:opencart/pages/orders/widgets/orderslistviewcontainer.dart';
 import 'package:opencart/pages/orders/widgets/searchpopupformorder.dart';
-
-import '../../Controllers/order_controller.dart';
 import '../../controllers/Init_add_order_controller.dart';
 import '../../core/utils/math_utils.dart';
-import '../../model/orders/add_order.dart';
 
 class OrderPage extends GetView<InitAddOrderController> {
   const OrderPage({Key? key}) : super(key: key);

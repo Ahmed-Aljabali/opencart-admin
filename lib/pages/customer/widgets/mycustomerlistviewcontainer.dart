@@ -12,16 +12,19 @@ import '../../../model/cutomers/customer.dart';
 import '../../../model/orders/order.dart';
 
 class MyCustomerListViewContainer extends StatelessWidget {
-  final List<Customers> customer;
-  const MyCustomerListViewContainer({Key? key,required this.customer}) : super(key: key);
+  const MyCustomerListViewContainer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var customerController =Get.put(CustomerController());
     return ListView.builder(
-        itemCount: customer.length,
+      controller: customerController.scrollController,
+        itemCount: customerController.lstCustomer.length,
         itemBuilder: (context, index) {
-
+          if (index == customerController.lstCustomer.length - 1 &&
+              customerController.isMoreDataAvailable.value == true) {
+            return Center(child: CircularProgressIndicator());
+          }
           return SizedBox(
             height: getHorizontalSize(120),
             child: Card(
@@ -31,7 +34,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              key: ValueKey(customer[index]),
+              key: ValueKey(customerController.lstCustomer[index]),
               margin: getMargin(bottom: 5, top: 5 ,left: 10,right: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -56,7 +59,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                                 cancelTextColor: Colors.redAccent,
                                 confirm:FlatButton(
                                     onPressed: ()async{
-                                      customerController.deleteCustomer(customer[index].customerid!).then((value) =>
+                                      customerController.deleteCustomer(customerController.lstCustomer[index].customerid!).then((value) =>
                                       {
                                         if(customerController.isDataLoading.isTrue){
                                           Get.back(),
@@ -133,7 +136,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                                     bottom: 4,
                                   ),
                                   child: Text(
-                                    customer[index].telephone!,
+                                    customerController.lstCustomer[index].telephone!,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
@@ -180,7 +183,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                                     bottom: 4,
                                   ),
                                   child:  Text(
-                                    customer[index].email!,
+                                    customerController.lstCustomer[index].email!,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
@@ -229,7 +232,7 @@ class MyCustomerListViewContainer extends StatelessWidget {
                               ),
                             ),
                             child:Text(
-                              customer[index].name!,
+                              customerController.lstCustomer[index].name!,
                               overflow: TextOverflow.clip,
 
                               style: TextStyle(
@@ -249,8 +252,8 @@ class MyCustomerListViewContainer extends StatelessWidget {
 
                                 children: [
                                   Expanded(child: Container()),
-                                  Text(customer[index].date_added!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
-                                  Text('  -   #${customer[index].customerid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                                  Text(customerController.lstCustomer[index].date_added!,maxLines: 4,   overflow: TextOverflow.clip, style: const TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
+                                  Text('  -   #${customerController.lstCustomer[index].customerid!.toString()}   ',maxLines: 4,   overflow: TextOverflow.clip, style: TextStyle(fontSize: 10.0 ,color: Colors.black,fontFamily: 'Cairo Regular',fontWeight: FontWeight.bold) , ),
                                 ],
                               )
                           ),

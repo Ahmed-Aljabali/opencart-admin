@@ -1,9 +1,11 @@
 import '../model/cutomers/add_customer.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/cutomers/customer.dart';
+
 abstract class ICustomers{
 
-    fetchCustomer(String limit,String page);
+  Future<List<Customers>> fetchCustomer(String page);
     Future<http.Response> deleteCustomer(int id);
      addNewCustomer(PostCustomer postCustomer);
 

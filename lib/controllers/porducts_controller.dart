@@ -33,14 +33,8 @@ class  ProductController extends BaseController implements IProduct {
  fetchProduct()async{
     isDataLoading(false);
     var res = await get("products");
-    print(res.body);
-
     if (res.statusCode == 200) {
-      print("bbbbbbbbbbbbbb");
-
       _data=ProductData.fromJson(jsonDecode(res.body)).data;
-     print("AAAAAAAAAAAAAAA");
-     print(_data);
    }
     isDataLoading(true);
    update();

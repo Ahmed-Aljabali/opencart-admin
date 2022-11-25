@@ -16,10 +16,14 @@ class CustomerController extends BaseController implements ICustomers{
   RxInt _currentStep = 0.obs;
   late List<Product> customer;
   late List<Product> custInfo;
+  var page=1;
   RxInt get currentStep => _currentStep;
+  ScrollController scrollController = ScrollController();
+  var isMoreDataAvailable = true.obs;
+  var lstCustomer = List<Customers>.empty(growable: true).obs;
 
   dynamic _trx;
-  List<Customers> get dataCustomer => _trx;
+  //List<Customers> get dataCustomer => _trx;
 
   set currentStep(RxInt value) => _currentStep = value;
   RxBool _isVaild = true.obs;
@@ -61,6 +65,8 @@ class CustomerController extends BaseController implements ICustomers{
     super.onInit();
     customer = generateItems(1, 'العميل');
     custInfo = generateItems(1, 'معلومات العميل');
+    fetchCustomer(page.toString());
+    paginateTask();
   }
 
   @override
@@ -68,9 +74,9 @@ class CustomerController extends BaseController implements ICustomers{
   void runFilter(String nameKeyWord){
     List<Customers> cusotmerfilter=[];
     if (nameKeyWord.isEmpty){
-      cusotmerfilter=dataCustomer;
+      cusotmerfilter=lstCustomer;
     }else{
-      cusotmerfilter=dataCustomer.where((element) => element.name!.toLowerCase().contains(nameKeyWord)).toList();
+      cusotmerfilter=lstCustomer.where((element) => element.name!.toLowerCase().contains(nameKeyWord)).toList();
     }
     foundCustomers.value=cusotmerfilter;
     update();
@@ -78,14 +84,17 @@ class CustomerController extends BaseController implements ICustomers{
 
 
   @override
-  fetchCustomer(String limit,String page)async{
-    var res = await get("customers/limit/$limit/page/$page");
-    if (res.statusCode == 200)
-    {
-      _trx=CustomerData.fromJson(jsonDecode(res.body)).data;
-      foundCustomers.value=_trx;
-      update();
-    }
+  Future<List<Customers>> fetchCustomer(String page)async{
+    isMoreDataAvailable(false);
+    var res = await get("customers/limit/10/page/$page");
+      if (res.statusCode == 200)
+      {
+        lstCustomer.addAll(CustomerData.fromJson(jsonDecode(res.body)).data);
+        return CustomerData.fromJson(jsonDecode(res.body)).data;
+
+      }
+      return Future.error("ex");
+
   }
 
 
@@ -95,7 +104,7 @@ class CustomerController extends BaseController implements ICustomers{
    if (res.statusCode == 200) {
      msg = "تم الحذف بنجاح";
    //  dataCustomer.clear();
-     fetchCustomer("10", "1");
+     fetchCustomer("1");
      isDataLoading(true);
      update();
    }
@@ -107,17 +116,48 @@ class CustomerController extends BaseController implements ICustomers{
   @override
   Future<http.Response> addNewCustomer(PostCustomer customer) async{
     var res= await post(customer,"customers");
+    print(res.body);
     if (res.statusCode==200) {
+      error.clear();
       msg="تم الاضافة بنجاح";
-
       update();
     }
-
     return res;
-
+  }
+  void paginateTask() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        page++;
+        getMoreTask(page.toString());
+      }
+    });
+  }
+  void getMoreTask(var page) {
+    try {
+      fetchCustomer(page).then((resp) {
+        if (resp.length > 0) {
+          isMoreDataAvailable(true);
+        } else {
+          isMoreDataAvailable(false);
+          showSnackBar("رسالة", "لايوجد بيانات متوفره", Colors.lightBlueAccent);
+        }
+        lstCustomer.addAll(resp);
+      }, onError: (err) {
+        isMoreDataAvailable(false);
+        showSnackBar("Error", err.toString(), Colors.red);
+      });
+    } catch (exception) {
+      isMoreDataAvailable(false);
+      showSnackBar("Exception", exception.toString(), Colors.red);
+    }
   }
 
 
-
-
+  showSnackBar(String title, String message, Color backgroundColor) {
+    Get.snackbar(title, message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: backgroundColor,
+        colorText: Colors.white);
+  }
 }
