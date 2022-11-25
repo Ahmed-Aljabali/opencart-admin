@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/controllers/BaseController.dart';
 import 'package:opencart/controllers/Init_add_order_controller.dart';
-import 'package:opencart/controllers/order_controller.dart';
 import 'package:opencart/controllers/system_info_controller.dart';
 import 'package:opencart/model/system_info/order_statuses.dart';
-
-import '../../../controllers/wizard_controller.dart';
 import '../../../core/constrants/widgetconstrant.dart';
-import '../../../model/checkbox_data.dart';
+
 
 class CustomerSearchForm extends GetView<InitAddOrderController> {
   const CustomerSearchForm({Key? key}) : super(key: key);

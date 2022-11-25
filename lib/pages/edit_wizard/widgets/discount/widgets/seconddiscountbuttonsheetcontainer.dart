@@ -67,47 +67,44 @@ class SecondButtomCheetDiscountContainer extends GetView<EditWizardController> {
       width: 10,
       ),
 
-        Container(
-          padding: const EdgeInsets.only(right: 10),
-          child: Expanded(
-            child: DecoratedBox(
-                decoration: BoxDecoration(
-                    color: Colors.white60,
-                    //background color of dropdown button
-                    border:
-                    Border.all(color: Colors.black38, width: 0.5),
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: <BoxShadow>[
-                      const  BoxShadow(
-                          color: const Color.fromRGBO(0, 0, 0, 0.1),
-                          //shadow for button
-                          blurRadius: 3)
-                      //blur radius of shadow
-                    ]),
-                child: Container(
-                  alignment: Alignment.centerRight,
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: Center(
-                    child: DropdownButton<GroupCustomer>(
-                      alignment: AlignmentDirectional.bottomCenter,
-                      underline: Container(color: Colors.transparent),
-                      hint: const Text("مجموعة العملاء"),
-                      value: controller.secondSelectedDiscountGroupCustomer.value,
-                      onChanged: (v) {
-                        controller.secondSelectedDiscountGroupCustomer.value = v;
-                      },
-                      items: CustomerGroup.itemsList.value
-                          .map<DropdownMenuItem<GroupCustomer>>(
-                              (GroupCustomer value) {
-                            return DropdownMenuItem<GroupCustomer>(
-                              value: value,
-                              child: Text(value.name.toString()),
-                            );
-                          }).toList(),
-                    ),
+        Expanded(
+          child: DecoratedBox(
+              decoration: BoxDecoration(
+                  color: Colors.white60,
+                  //background color of dropdown button
+                  border:
+                  Border.all(color: Colors.black38, width: 0.5),
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: <BoxShadow>[
+                    const  BoxShadow(
+                        color: const Color.fromRGBO(0, 0, 0, 0.1),
+                        //shadow for button
+                        blurRadius: 3)
+                    //blur radius of shadow
+                  ]),
+              child: Container(
+                alignment: Alignment.centerRight,
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: Center(
+                  child: DropdownButton<GroupCustomer>(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    underline: Container(color: Colors.transparent),
+                    hint: const Text("مجموعة العملاء"),
+                    value: controller.secondSelectedDiscountGroupCustomer.value,
+                    onChanged: (v) {
+                      controller.secondSelectedDiscountGroupCustomer.value = v;
+                    },
+                    items: CustomerGroup.itemsList.value
+                        .map<DropdownMenuItem<GroupCustomer>>(
+                            (GroupCustomer value) {
+                          return DropdownMenuItem<GroupCustomer>(
+                            value: value,
+                            child: Text(value.name.toString()),
+                          );
+                        }).toList(),
                   ),
-                )),
-          ),
+                ),
+              )),
         ),
       ],
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/model/porducts/product.dart';
 import '../../../../../../controllers/wizard_controller.dart';
 import '../../../../../../core/constrants/widgetconstrant.dart';
@@ -93,9 +94,9 @@ class MainFirstButtomCheetDiscountContainer extends GetView<MainWizardController
                   width: 10,
                 ),
 
-                Container(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Expanded(
+                Expanded(
+                  child: Container(
+                    padding: getPadding(right: 10),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
                             color: Colors.white60,
@@ -141,7 +142,7 @@ class MainFirstButtomCheetDiscountContainer extends GetView<MainWizardController
 
 
           Container(
-            padding: const EdgeInsets.only(left: 10, top: 10),
+            padding: const EdgeInsets.only(right: 10,left: 10, top: 10),
             child: Row(
               children: [
                 Expanded(

@@ -50,7 +50,7 @@ class AddCustomerPage extends GetView<CustomerController> {
                     ),
                   ),
                   margin: getMargin(top: 10,right: 8,left: 8,bottom: 8),
-                  padding: getPadding(bottom: 10,left: 10,right: 10),
+                  padding: getPadding(left: 10,right: 10),
                   child: Text(get_title2(wizardController.currentStep.value),style: TextStyle(fontSize: 20,fontFamily: 'Cairo Regular',color: Colors.white,fontWeight: FontWeight.bold),),
                 ),),
 
@@ -80,9 +80,9 @@ class AddCustomerPage extends GetView<CustomerController> {
                 ),
               ),
 
-              Padding(
-                padding: getPadding(bottom: 30),
-                child: Expanded(
+
+
+                 Expanded(
 
                     flex: 1,
                     child:  InkWell(
@@ -109,7 +109,7 @@ class AddCustomerPage extends GetView<CustomerController> {
                       ):Container(),
                     ),
                 ),
-              )
+
             ],
           ),
 

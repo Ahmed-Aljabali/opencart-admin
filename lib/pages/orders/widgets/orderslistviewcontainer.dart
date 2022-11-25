@@ -89,14 +89,13 @@ class MyOrderListViewContainer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
 
-                          Container(
-                            margin: getMargin(
-                              left: 5,
-                              top: 2,
-                              right: 5,
-                            ),
-
-                            child: Expanded(
+                          Expanded(
+                            child: Container(
+                              margin: getMargin(
+                                left: 5,
+                                top: 2,
+                                right: 5,
+                              ),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment
                                     .start,
@@ -146,7 +145,7 @@ class MyOrderListViewContainer extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ), // اسم المنتج وسعرة
+                            ),
                           ),
                           Align(
                             alignment: Alignment.center,

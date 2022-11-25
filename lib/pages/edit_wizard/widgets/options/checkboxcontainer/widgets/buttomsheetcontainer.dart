@@ -208,9 +208,9 @@ class ButtomCheetCheckBoxContainer extends GetView<EditWizardController> {
                     child:
                   ),
                 ),*/
-                Container(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Expanded(
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(right: 10),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
                             color: Colors.white60,
@@ -289,9 +289,9 @@ class ButtomCheetCheckBoxContainer extends GetView<EditWizardController> {
                     child:
                   ),
                 ),*/
-                Container(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Expanded(
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(right: 10),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
                             color: Colors.white60,
@@ -361,9 +361,9 @@ class ButtomCheetCheckBoxContainer extends GetView<EditWizardController> {
                 const SizedBox(
                   width: 10,
                 ),
-                Container(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: Expanded(
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.only(right: 10),
                     child: DecoratedBox(
                         decoration: BoxDecoration(
                             color: Colors.white60,
