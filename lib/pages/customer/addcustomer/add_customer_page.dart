@@ -18,7 +18,7 @@ class AddCustomerPage extends GetView<CustomerController> {
 
   @override
   StatelessElement createElement() {
-    controller.fetchCustomer("10","3");
+    controller.fetchCustomer("1");
     return super.createElement();
   }
 
@@ -114,14 +114,13 @@ class AddCustomerPage extends GetView<CustomerController> {
           ),
 
               floatingActionButton: FloatingActionButton(
-
-
                 backgroundColor: Colors.green,
                 onPressed: ()async {
-
+                  print(controller.email.text);
                    controller.postCustomer.firstname=controller.firstName.text;
                   controller.postCustomer.lastname=controller.lastName.text;
                   controller.postCustomer.email=controller.email.text;
+                  print(controller.postCustomer.email);
                   controller.postCustomer.telephone=controller.phone.text;
                   controller.postCustomer.password=controller.password.text;
                   controller.postCustomer.confirm=controller.password.text;
@@ -132,15 +131,11 @@ class AddCustomerPage extends GetView<CustomerController> {
                 if (controller.error.isNotEmpty)
                 {
                     errorDialog(controller.error.first)
-
                 }else
                   {
                   successDialog(controller.msg)
                   }
-
                 });
-
-
                 },
                 tooltip: 'add a new Customer',
                 highlightElevation: 1,

@@ -14,12 +14,12 @@ class CustomerPage extends GetView<CustomerController> {
   const CustomerPage({Key? key}) : super(key: key);
   @override
 
-  @override
-  StatelessElement createElement() {
-    controller.fetchCustomer("10","1");
-
-    return super.createElement();
-  }
+  // @override
+  // StatelessElement createElement() {
+  //   controller.fetchCustomer("10","1");
+  //
+  //   return super.createElement();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -188,10 +188,7 @@ class CustomerPage extends GetView<CustomerController> {
                   if (controller.isDataLoading.value==false)
                     const CircularProgressIndicator()
                   else
-
-                    Expanded(child: MyCustomerListViewContainer(customer: controller.foundCustomers.value))
-
-
+                    Expanded(child: MyCustomerListViewContainer())
 
                 ],
               ),
