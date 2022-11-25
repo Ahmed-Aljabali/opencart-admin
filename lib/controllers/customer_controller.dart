@@ -86,7 +86,7 @@ class CustomerController extends BaseController implements ICustomers{
   @override
   Future<List<Customers>> fetchCustomer(String page)async{
     isMoreDataAvailable(false);
-    var res = await get("customers/limit/10/page/$page");
+    var res = await get("customers/limit/15/page/$page");
       if (res.statusCode == 200)
       {
         lstCustomer.addAll(CustomerData.fromJson(jsonDecode(res.body)).data);
@@ -101,9 +101,9 @@ class CustomerController extends BaseController implements ICustomers{
  @override
   Future<http.Response> deleteCustomer(int id)async{
    var res = await delete("customers", id);
+   print(res.body);
    if (res.statusCode == 200) {
      msg = "تم الحذف بنجاح";
-   //  dataCustomer.clear();
      fetchCustomer("1");
      isDataLoading(true);
      update();
@@ -119,6 +119,9 @@ class CustomerController extends BaseController implements ICustomers{
     print(res.body);
     if (res.statusCode==200) {
       error.clear();
+      lstCustomer.clear();
+      fetchCustomer(page.toString());
+      paginateTask();
       msg="تم الاضافة بنجاح";
       update();
     }
