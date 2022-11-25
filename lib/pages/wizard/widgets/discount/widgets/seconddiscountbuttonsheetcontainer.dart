@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:opencart/core/utils/math_utils.dart';
 import 'package:opencart/model/cutomers/group_customer.dart';
 
 
@@ -11,7 +12,6 @@ import '../../../../../model/discount.dart';
 import '../../../../widgets/date_time.dart';
 
 class MainSecondButtomCheetDiscountContainer extends GetView<MainWizardController> {
-  const MainSecondButtomCheetDiscountContainer({Key? key}) : super(key: key);
 
 
   @override
@@ -65,9 +65,9 @@ class MainSecondButtomCheetDiscountContainer extends GetView<MainWizardControlle
       width: 10,
       ),
 
-        Container(
-          padding: const EdgeInsets.only(right: 10),
-          child: Expanded(
+        Expanded(
+          child: Container(
+            padding: getPadding(right: 10),
             child: DecoratedBox(
                 decoration: BoxDecoration(
                     color: Colors.white60,

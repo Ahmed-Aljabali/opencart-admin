@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:opencart/pages/edit_wizard/widgets/discount/widgets/firstdiscountbuttomsheetcontainer.dart';
 import 'package:opencart/pages/edit_wizard/widgets/discount/widgets/pointsandrawards.dart';
-import 'package:opencart/pages/wizard/widgets/discount/widgets/firstdiscountbuttomsheetcontainer.dart';
-import 'package:opencart/pages/wizard/widgets/discount/widgets/pointsandrawards.dart';
-import 'package:opencart/pages/wizard/widgets/discount/widgets/seconddiscountbuttonsheetcontainer.dart';
-import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../model/ProductData.dart';
 import '../../../../controllers/edit_wizard_controller.dart';
 import '../../../edit_wizard/widgets/discount/widgets/seconddiscountbuttonsheetcontainer.dart';
@@ -44,8 +40,6 @@ class DiscountContainer extends GetView<EditWizardController> {
 
                     Column(
                       children: [
-
-
                         Container(
                           padding: const EdgeInsets.only(right: 5,top: 10,bottom: 10),
 

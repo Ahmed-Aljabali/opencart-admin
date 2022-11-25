@@ -183,9 +183,8 @@ class _TimelinePainter extends CustomPainter {
   }
 }
 Widget StepData(Widget item){
-  return SingleChildScrollView(
-    child: Expanded(
-      child:item ,),);
+  return Expanded(
+    child:item ,);
 }
 
 String get_title(int current_index){

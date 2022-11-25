@@ -256,8 +256,10 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
                             child: SizedBox(
                               child: InkWell(
                                 onTap: () {
+                                  Get.to(EditWizardPage(),binding:WizardBinding() );
+
                                   p.initProductEditing(product[index]);
-                              Get.to(EditWizardPage(),binding:WizardBinding() );
+
                                 },
                                 child: Icon(
                                   Icons.edit_outlined,

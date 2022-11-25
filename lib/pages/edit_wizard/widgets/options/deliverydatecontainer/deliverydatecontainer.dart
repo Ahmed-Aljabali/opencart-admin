@@ -35,7 +35,7 @@ class DeliveryDateContainer extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                              child:DeliveryDateRequiredOptionPicker( controller: controller)),
+                              child:DeliveryDateRequiredOptionPicker( )),
                           SizedBox(width: 2,),
                           Container(
                             padding: EdgeInsets.only(right:5,),

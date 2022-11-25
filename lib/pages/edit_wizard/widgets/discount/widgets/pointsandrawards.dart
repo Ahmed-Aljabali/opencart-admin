@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:opencart/core/utils/math_utils.dart';
-
 import '../../../../../controllers/edit_wizard_controller.dart';
 import '../../../../../controllers/group_customer_controller.dart';
-import '../../../../../controllers/wizard_controller.dart';
 import '../../../../../core/constrants/widgetconstrant.dart';
-import '../../../../../model/cutomers/group_customer.dart';
 import '../../../../../model/discount.dart';
 
 class PointsAndRewards extends GetView<EditWizardController> {

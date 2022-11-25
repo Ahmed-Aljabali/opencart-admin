@@ -117,7 +117,7 @@ class EditWizardPage extends GetView<EditWizardController> {
                     flex: 1,
                     child:  InkWell(
                       onTap: (){
-                        if(controller.currentStep.value!=6) {
+                        if(controller.currentStep.value!=4) {
                           controller.tapped(controller.currentStep.value + 1);
                         }
                       },

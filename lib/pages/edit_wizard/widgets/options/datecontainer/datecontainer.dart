@@ -51,12 +51,8 @@ class DateContainer extends StatelessWidget {
                           const SizedBox(width: 2,),
                           Container(
                             padding: const EdgeInsets.only(right:5,),
-
-
                             child:const Text('مطلوب',style: TextStyle(fontSize: 20,),textAlign: TextAlign.right,),
                           ),
-
-
                         ],
                       ),
                       const SizedBox(height: 5,),
