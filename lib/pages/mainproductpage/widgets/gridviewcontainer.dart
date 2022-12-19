@@ -221,8 +221,10 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
                                   onPressed: () async{
                                     final  products = Get.put(ProductController());
                                     Get.defaultDialog(
+
                                         title: "هل انت متأكد من الحذف",
                                         textCancel: "الالغاء",
+
                                         cancelTextColor: Colors.redAccent,
                                         confirm:FlatButton(
                                             onPressed: ()async{
@@ -233,7 +235,7 @@ class NewGridtrashItemWidget extends GetView<EditWizardController> {
                                         }
                                   });
                                             }, child: Text("تأكيد",style: TextStyle(color: Colors.green),)) ,
-                                        backgroundColor: Colors.white60,
+                                        backgroundColor: Colors.white,
                                         titleStyle: TextStyle(color: Colors.redAccent),
 
                                         radius: 30

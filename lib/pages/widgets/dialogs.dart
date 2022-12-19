@@ -27,7 +27,7 @@ Future<dynamic> successMessage(String title){
       title:title,
       textCancel: "تم",
 
-      backgroundColor: Colors.white60,
+      backgroundColor: Colors.white,
       titleStyle: TextStyle(color: Colors.redAccent),
 
       radius: 30
